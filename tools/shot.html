@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- The window with made-up data for README screenshots (not part of the app):
+     serve the project folder and open /tools/shot.html?view=home&theme=dark&lang=en[&app=<id>][&repo=<owner/name>][&bg=<slate|#rrggbb>][&howto] -->
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Komora</title>
+<link rel="stylesheet" href="../web/app.css">
+</head>
+<body>
+<div id="app">
+  <header id="top">
+    <button class="brand" id="home"><span class="mark"></span><b>Komora</b><span class="ver mono"></span></button>
+    <div class="sbox" id="sbox">
+      <label class="search"><i class="i prompt"></i><input id="q" spellcheck="false" autocomplete="off"><span class="kbd mono">Ctrl K</span></label>
+      <div id="fly" class="fly" hidden></div>
+    </div>
+    <div class="hright">
+      <button class="btn acc" id="addBtn"></button>
+    </div>
+    <div class="winbtns" id="winbtns"><button data-win="min" tabindex="-1"></button><button data-win="max" tabindex="-1"></button><button data-win="close" class="close" tabindex="-1"></button></div>
+  </header>
+  <div id="body">
+    <nav id="nav"></nav>
+    <main id="main"></main>
+  </div>
+</div>
+<div id="toasts"></div>
+<script src="../web/i18n.js"></script>
+<script src="../web/app.js"></script>
+<script type="module">
+  const p = new URLSearchParams(location.search);
+  const lang = p.get('lang') || 'en';
+  const m = await import('./mock.js?' + Date.now());
+  localStorage.clear();
+  m.load({ theme: p.get('theme') || 'dark', lang, langNow: lang, bg: p.get('bg') || '' });
+  if (p.has('howto')) setTimeout(() => document.querySelectorAll('.howto').forEach(d => d.open = true), 300);
+  if (p.get('app')) openApp(p.get('app'));
+  else if (p.get('repo')) { m.search(); openRepo(p.get('repo')); }
+  else go(p.get('view') || 'home');
+  m.tweaks();
+</script>
+</body>
+</html>

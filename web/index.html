@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="uk" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Komora</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <header id="top">
+    <button class="brand" id="home"><span class="mark"></span><b>Komora</b><span class="ver mono"></span></button>
+    <div class="sbox" id="sbox">
+      <label class="search"><i class="i prompt"></i><input id="q" spellcheck="false" autocomplete="off"><span class="kbd mono">Ctrl K</span></label>
+      <div id="fly" class="fly" hidden></div>
+    </div>
+    <div class="hright">
+      <button class="btn acc" id="addBtn"></button>
+    </div>
+    <div class="winbtns" id="winbtns"><button data-win="min" tabindex="-1"></button><button data-win="max" tabindex="-1"></button><button data-win="close" class="close" tabindex="-1"></button></div>
+  </header>
+  <div id="body">
+    <nav id="nav"></nav>
+    <main id="main"></main>
+  </div>
+</div>
+<div id="toasts"></div>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
