@@ -22,6 +22,44 @@ use crate::{
 };
 
 static BUSY: Mutex<Option<HashMap<String, (String, f32)>>> = Mutex::new(None);
+/// Installs the user cancelled (queued or downloading); cleared when the install ends.
+static CANCEL: Mutex<Vec<String>> = Mutex::new(Vec::new());
+
+/// 1.6: «My kit» became what comes back after Windows is reinstalled, and sync carries only the kit. So that sync
+/// loses nothing it carried, the library gets its marks once: installed programs, links, groups, authors, applied
+/// tweaks (programs only watched, not installed, stay out: «Install all» would install them).
+pub fn migrate_kit() {
+    if config::get().kit_v2 {
+        return;
+    }
+    let applied: Vec<String> = tweaks::state().applied.keys().cloned().collect();
+    library::update(|l| {
+        for a in l.apps.iter_mut() {
+            if a.inst.is_some() || a.kind == "link" {
+                a.kit = true;
+            }
+        }
+        for au in l.authors.iter_mut() {
+            au.kit = true;
+        }
+        for t in applied {
+            if !l.kit_tweaks.contains(&t) {
+                l.kit_tweaks.push(t);
+            }
+        }
+    });
+    config::update(|c| c.kit_v2 = true);
+    logf!("kit: the library got its kit marks (1.6)");
+}
+
+/// Whether the install of `id` was cancelled.
+pub fn cancelled(id: &str) -> bool {
+    CANCEL.lock().unwrap().iter().any(|x| x == id)
+}
+
+fn cancel_done(id: &str) {
+    CANCEL.lock().unwrap().retain(|x| x != id);
+}
 static EVENTS: Mutex<Vec<String>> = Mutex::new(Vec::new());
 static CHECKING: AtomicBool = AtomicBool::new(false);
 /// One install or removal at a time (setups refuse to run side by side, msiexec above all).
@@ -84,8 +122,53 @@ fn is_busy(id: &str) -> bool {
     BUSY.lock().unwrap().as_ref().is_some_and(|m| m.contains_key(id))
 }
 
+/// Installs or updates winget packages one by one; what installed goes into the library.
+/// `to` — the folder picked for this install; "" — the folder for installers from Settings (with the program's name),
+/// else where the installer itself puts it.
+fn winget_install(ids: Vec<String>, to: String) {
+    for id in &ids {
+        set_busy(&crate::winget::lib_id(id), Some(("queued", -1.0)));
+    }
+    let setup = config::get().setup_dir;
+    for id in ids {
+        let key = crate::winget::lib_id(&id);
+        if cancelled(&key) {
+            cancel_done(&key);
+            set_busy(&key, None);
+            continue;
+        }
+        set_busy(&key, Some(("install", -1.0)));
+        let name = crate::winget::CATALOG.iter().find(|c| c.0.eq_ignore_ascii_case(&id)).map(|c| c.1).unwrap_or("");
+        let loc = if !to.is_empty() { to.clone() } else if !setup.is_empty() { std::path::Path::new(&setup).join(util::safe_name(name)).to_string_lossy().into_owned() } else { String::new() };
+        let k2 = key.clone();
+        let progress = move |stage: &str, pct: f32| set_busy(&k2, Some((stage, pct)));
+        match crate::winget::install(&id, &loc, &progress) {
+            Ok(()) => {
+                crate::winget::add_to_library(&id);
+                // some installers keep their own folder whatever they are asked
+                let dir = crate::winget::installed_dir(&id);
+                if !loc.is_empty() && !dir.is_empty() && !dir.to_lowercase().starts_with(&loc.to_lowercase()) {
+                    toast(&format!("{name}: the installer chose its own folder: {dir}"), false);
+                }
+            }
+            Err(e) if e == "cancelled" => toast("Встановлення скасовано", false),
+            Err(e) => event(json!({ "t": "toast", "text": format!("{id}: {e}"), "err": true })),
+        }
+        cancel_done(&key);
+        set_busy(&key, None);
+    }
+    crate::winget::scan();
+    notify();
+}
+
+/// Updates of the library plus those of the «For PC» catalog (winget).
 pub fn update_count() -> usize {
-    library::get().apps.iter().filter(|a| a.update().is_some()).count()
+    library::get().apps.iter().filter(|a| a.update().is_some()).count() + crate::winget::update_count()
+}
+
+/// Sends the state to the page again (after work outside the library, like a winget scan).
+pub fn state_changed() {
+    notify();
 }
 
 pub fn state_json() -> String {
@@ -110,16 +193,17 @@ pub fn state_json() -> String {
         "t": "state",
         "ver": env!("CARGO_PKG_VERSION"),
         "arch": gh::arch(),
-        "pc": std::env::var("COMPUTERNAME").unwrap_or_default(),
+        "pc": config::pc_name(),
+        "pcWin": std::env::var("COMPUTERNAME").unwrap_or_default(),
+        "steam": crate::steamicons::available(),
         "dataDir": util::data_dir().display().to_string(),
         "picks": picks,
         "cfg": {
             "theme": cfg.theme, "lang": cfg.lang, "langNow": cfg.lang(), "checkHours": cfg.check_hours,
             "hasToken": !config::token().is_empty(), "appsDir": cfg.apps_dir, "notify": cfg.notify, "autoBackup": cfg.auto_backup, "kitAutoUpdate": cfg.kit_auto_update, "kitAutoInstall": cfg.kit_auto_install, "autostart": autostart::enabled(),
             "syncDir": cfg.sync_dir, "syncGist": cfg.sync_gist, "syncDbx": cfg.sync_dbx, "hasDbx": !cfg.dbx_enc.is_empty(), "dbxAvail": crate::dropbox::available(), "ghLogin": cfg.gh_login,
-            "accent": cfg.accent, "bg": cfg.bg, "preAll": cfg.pre_all, "setupDir": cfg.setup_dir, "setupShow": cfg.setup_show, "hasVt": !cfg.vt_key_enc.is_empty(),
+            "preAll": cfg.pre_all, "pcName": cfg.pc_name, "steamIcons": cfg.steam_icons, "kitNew": cfg.kit_new, "darkLook": cfg.dark_look, "lightLook": cfg.light_look, "setupDir": cfg.setup_dir, "setupShow": cfg.setup_show, "hasVt": !cfg.vt_key_enc.is_empty(),
         },
-        "winAccent": win_accent(),
         "sync": sync,
         "lib": lib,
         "updates": updates,
@@ -131,20 +215,10 @@ pub fn state_json() -> String {
         "checkLog": { "at": log.0, "lines": log.1 },
         "disk": DISK.load(Ordering::Relaxed),
         "resets": RESETS.load(Ordering::Relaxed),
+        "sys": crate::sysinfo::json(),
+        "winget": crate::winget::json(),
     })
     .to_string()
-}
-
-/// The accent colour of Windows ("#rrggbb"; "" — unknown).
-fn win_accent() -> String {
-    use windows::{
-        Win32::System::Registry::{HKEY_CURRENT_USER, RRF_RT_REG_DWORD, RegGetValueW},
-        core::w,
-    };
-    let (mut v, mut len) = (0u32, 4u32);
-    let ok = unsafe { RegGetValueW(HKEY_CURRENT_USER, w!(r"Software\Microsoft\Windows\DWM"), w!("AccentColor"), RRF_RT_REG_DWORD, None, Some(&mut v as *mut u32 as *mut _), Some(&mut len)) }.is_ok();
-    // ABGR
-    if ok { format!("#{:02x}{:02x}{:02x}", v & 0xFF, (v >> 8) & 0xFF, (v >> 16) & 0xFF) } else { String::new() }
 }
 
 fn str_of<'a>(v: &'a Value, k: &str) -> &'a str {
@@ -175,7 +249,8 @@ pub fn on_page(v: &Value) {
             }
             for a in library::get().apps.iter().filter(|a| ids.contains(&a.id)) {
                 for f in [&a.icon, &a.preview] {
-                    if !f.is_empty() {
+                    // catalog icons (wg-*) stay: the catalog shows them too
+                    if !f.is_empty() && !f.starts_with("wg-") {
                         let _ = std::fs::remove_file(util::www_dir().join("icons").join(f));
                     }
                 }
@@ -203,6 +278,7 @@ pub fn on_page(v: &Value) {
         }
         "check" => spawn(|| check_all(true)),
         "refresh" => spawn(move || refresh(&id)),
+        "install" if id.starts_with("wg:") => spawn(move || winget_install(vec![id.trim_start_matches("wg:").to_string()], String::new())),
         "install" => {
             let (asset, tag) = (str_of(v, "asset").to_string(), str_of(v, "tag").to_string());
             spawn(move || install_app(&id, &asset, &tag));
@@ -210,8 +286,10 @@ pub fn on_page(v: &Value) {
         "ghSearch" => {
             let (q, sort, seq) = (str_of(v, "q").to_string(), str_of(v, "sort").to_string(), v.get("seq").cloned().unwrap_or_default());
             let page = v.get("page").and_then(Value::as_u64).unwrap_or(1) as u32;
+            let gitlab = str_of(v, "site") == "gitlab";
+            let filters = v.get("gl").cloned().unwrap_or_default();
             spawn(move || {
-                let r = gh::search(&q, &sort, page);
+                let r = if gitlab { crate::forge::search_gitlab(&q, &sort, page, &filters) } else { gh::search(&q, &sort, page) };
                 let items: Vec<Value> = r.as_ref().map(|x| x.1.clone()).unwrap_or_default().into_iter().map(with_gain).collect();
                 stars::save();
                 event(json!({ "t": "ghResults", "seq": seq, "page": page, "total": r.as_ref().map(|x| x.0).unwrap_or(0), "items": items, "err": r.err() }));
@@ -225,7 +303,7 @@ pub fn on_page(v: &Value) {
             let full = if id.is_empty() { str_of(v, "full").to_string() } else { library::app(&id).map(|a| format!("{}/{}", a.owner, a.repo)).unwrap_or_default() };
             let key = if id.is_empty() { full.clone() } else { id };
             spawn(move || {
-                let r = full.split_once('/').map(|(o, n)| gh::forks(o, n)).unwrap_or_else(|| Err("not a repository".into()));
+                let r = full.rsplit_once('/').map(|(o, n)| gh::forks(o, n)).unwrap_or_else(|| Err("not a repository".into()));
                 event(json!({ "t": "forks", "key": key, "list": r.as_ref().ok(), "err": r.err() }));
             });
         }
@@ -250,6 +328,13 @@ pub fn on_page(v: &Value) {
         }
         "rollback" => spawn(move || rollback(&id)),
         "uninstall" => spawn(move || uninstall(&id)),
+        // only while queued or downloading: an installer that already runs is left to finish
+        "cancel" => {
+            let stage = BUSY.lock().unwrap().as_ref().and_then(|m| m.get(&id).map(|b| b.0.clone())).unwrap_or_default();
+            if stage == "queued" || stage == "download" {
+                CANCEL.lock().unwrap().push(id);
+            }
+        }
         "launch" => {
             if let Some(inst) = library::app(&id).and_then(|a| a.inst)
                 && let Err(e) = install::launch(&inst)
@@ -274,10 +359,13 @@ pub fn on_page(v: &Value) {
                 util::shell_open(url, None);
             }
         }
-        "readme" => spawn(move || readme(&id)),
+        "readme" => {
+            let path = str_of(v, "path").to_string();
+            spawn(move || readme(&id, &path))
+        }
         "releases" => spawn(move || releases(&id)),
         "cfg" => set_cfg(str_of(v, "key"), v.get("val").unwrap_or(&Value::Null)),
-        "theme" => crate::win::set_dark(v.get("dark").and_then(Value::as_bool).unwrap_or(true)),
+        "theme" => crate::win::set_dark(v.get("dark").and_then(Value::as_bool).unwrap_or(true), str_of(v, "base")),
         "win" => crate::win::command(str_of(v, "op")),
         "detect" => spawn(|| {
             detect_all();
@@ -289,6 +377,14 @@ pub fn on_page(v: &Value) {
             let on = v.get("on").and_then(Value::as_bool).unwrap_or(true);
             spawn(move || {
                 let r = if on { tweaks::apply(&id) } else { tweaks::undo(&id) };
+                // an applied tweak comes back after a reinstall when new things go into the kit
+                if on && r.is_ok() && config::get().kit_new {
+                    library::update(|l| {
+                        if !l.kit_tweaks.contains(&id) {
+                            l.kit_tweaks.push(id.clone());
+                        }
+                    });
+                }
                 event(json!({ "t": "tweakDone", "id": id, "on": on, "err": r.err() }));
                 tweak_list();
             });
@@ -345,7 +441,7 @@ pub fn on_page(v: &Value) {
             let zip = v.get("zip").and_then(Value::as_bool).unwrap_or(false);
             let with_bk = v.get("withBk").and_then(Value::as_bool).unwrap_or(true);
             let kit_only = v.get("kitOnly").and_then(Value::as_bool).unwrap_or(false);
-            let name = format!("Komora-{}{}.{}", std::env::var("COMPUTERNAME").unwrap_or_default(), if kit_only { "-kit" } else { "" }, if zip { "zip" } else { "komora" });
+            let name = format!("Komora-{}{}.{}", util::safe_name(&config::pc_name()), if kit_only { "-kit" } else { "" }, if zip { "zip" } else { "komora" });
             let filt = if zip { "Komora + backups (*.zip)|*.zip" } else { "Komora (*.komora)|*.komora" };
             if let Some(p) = dlg::save_file("Komora", filt, if zip { "zip" } else { "komora" }, &name) {
                 spawn(move || {
@@ -365,6 +461,109 @@ pub fn on_page(v: &Value) {
         "acceptBundle" => {
             let (apps, tw) = (strings(v, "install"), strings(v, "tweaks"));
             spawn(move || accept_bundle(apps, tw));
+        }
+        "wgScan" => spawn(crate::winget::scan),
+        // upkeep of «Tweaks»: sizes and startup programs, cleaning, switching a startup entry
+        "toolsScan" => spawn(|| event(json!({ "t": "tools", "sizes": crate::tools::sizes(), "startup": crate::tools::startup() }))),
+        "toolsClean" => {
+            let what = str_of(v, "what").to_string();
+            spawn(move || {
+                let freed = if what == "shader" { crate::tools::clean_shaders() } else { crate::tools::clean_temp() };
+                event(json!({ "t": "cleaned", "what": what, "freed": freed }));
+                event(json!({ "t": "tools", "sizes": crate::tools::sizes(), "startup": crate::tools::startup() }));
+            });
+        }
+        "startupSet" => {
+            let (sid, on) = (str_of(v, "id").to_string(), v.get("on").and_then(Value::as_bool).unwrap_or(true));
+            spawn(move || {
+                if let Err(e) = crate::tools::set_startup(&sid, on) {
+                    toast(&e, true);
+                }
+                event(json!({ "t": "tools", "sizes": Value::Null, "startup": crate::tools::startup() }));
+            });
+        }
+        // «My kit»: a group (with its programs and links), an author, a tweak in or out
+        // the whole group in or out of the kit at once: the marks of its apps and links
+        "kitGroup" => {
+            let on = v.get("on").and_then(Value::as_bool).unwrap_or(true);
+            library::update(|l| {
+                let now = util::unix();
+                for a in l.apps.iter_mut().filter(|a| a.groups.contains(&id) && a.id != crate::selfup::ID && a.kit != on) {
+                    a.kit = on;
+                    a.updated = now;
+                }
+            });
+            notify();
+        }
+        "kitGroupAuto" => {
+            let on = v.get("on").and_then(Value::as_bool).unwrap_or(true);
+            library::update(|l| {
+                if let Some(g) = l.groups.iter_mut().find(|g| g.id == id) {
+                    g.kit_auto = on;
+                    g.updated = util::unix();
+                }
+            });
+            notify();
+        }
+        "kitAuthor" => {
+            let (login, on) = (str_of(v, "login").to_string(), v.get("on").and_then(Value::as_bool).unwrap_or(true));
+            library::update(|l| {
+                if let Some(a) = l.authors.iter_mut().find(|a| a.login.eq_ignore_ascii_case(&login)) {
+                    a.kit = on;
+                    a.updated = util::unix();
+                }
+            });
+            notify();
+        }
+        "kitTweak" => {
+            let on = v.get("on").and_then(Value::as_bool).unwrap_or(true);
+            library::update(|l| {
+                l.kit_tweaks.retain(|t| *t != id);
+                if on {
+                    l.kit_tweaks.push(id.clone());
+                }
+            });
+            notify();
+        }
+        // upkeep: the clock, Windows Update's cache, system files, Microsoft Store's cache, the DNS cache
+        "fix" => {
+            let what = str_of(v, "what").to_string();
+            spawn(move || {
+                let r = crate::tools::fix(&what);
+                event(json!({ "t": "fixed", "what": what, "err": r.err() }));
+            });
+        }
+        "steamIconsFix" => spawn(|| {
+            let r = crate::steamicons::fix();
+            event(json!({ "t": "steamIcons", "fixed": r.fixed, "lost": r.lost }));
+        }),
+        "wgShow" => {
+            let pid = str_of(v, "id").to_string();
+            spawn(move || {
+                let r = crate::winget::show(&pid);
+                event(json!({ "t": "wgInfo", "id": pid, "info": r.as_ref().ok(), "err": r.err() }));
+            });
+        }
+        // the dashboard while it is open: memory, video memory and disks (microseconds to read)
+        "sysLive" => event(json!({ "t": "sys", "data": crate::sysinfo::json() })),
+        "wgInstall" => {
+            let ids = strings(v, "ids");
+            // «Install to…»: the folder is picked first (one package)
+            let to = if v.get("pick").and_then(Value::as_bool).unwrap_or(false) {
+                match dlg::pick_folder("Komora") {
+                    Some(p) => p,
+                    None => return,
+                }
+            } else {
+                str_of(v, "to").to_string()
+            };
+            spawn(move || winget_install(ids, to));
+        }
+        // «Install to…» of the picks: only the folder; the install waits for the button
+        "wgPickDir" => {
+            if let Some(p) = dlg::pick_folder("Komora") {
+                event(json!({ "t": "wgLoc", "id": str_of(v, "id"), "path": p }));
+            }
         }
         "installMany" => {
             let apps = strings(v, "ids");
@@ -502,7 +701,7 @@ fn group_id(g: &str) -> String {
         let n = l.groups.iter().filter_map(|g| g.id.strip_prefix('g')?.parse::<u64>().ok()).max().unwrap_or(0) + 1;
         let id = format!("g{n}");
         const COLORS: [&str; 8] = ["#7fb8e8", "#d98bc2", "#6ccb8b", "#f5c04a", "#f08a4b", "#a78bfa", "#5fd4d0", "#ff7b72"];
-        l.groups.push(library::Group { id: id.clone(), name, color: COLORS[l.groups.len() % COLORS.len()].into(), updated: util::unix() });
+        l.groups.push(library::Group { id: id.clone(), name, color: COLORS[l.groups.len() % COLORS.len()].into(), updated: util::unix(), ..Default::default() });
         id
     })
 }
@@ -559,15 +758,13 @@ fn group(v: &Value) {
     let now = util::unix();
     match str_of(v, "op") {
         "add" => {
+            // a group may have no name: the sidebar shows its colour only
             let name = str_of(v, "name").trim().to_string();
-            if name.is_empty() {
-                return;
-            }
             let color = str_of(v, "color").to_string();
             library::update(|l| {
                 let n = l.groups.iter().filter_map(|g| g.id.strip_prefix('g')?.parse::<u64>().ok()).max().unwrap_or(0) + 1;
                 let gid = format!("g{n}");
-                l.groups.push(library::Group { id: gid.clone(), name, color, updated: now });
+                l.groups.push(library::Group { id: gid.clone(), name, color, icon: str_of(v, "icon").to_string(), updated: now, ..Default::default() });
                 // created from an app page: the app goes into it
                 let app = str_of(v, "app");
                 if let Some(a) = l.apps.iter_mut().find(|a| a.id == app) {
@@ -585,6 +782,9 @@ fn group(v: &Value) {
         "color" => library::update(|l| {
             if let Some(g) = l.groups.iter_mut().find(|g| g.id == id) {
                 g.color = str_of(v, "color").to_string();
+                if let Some(i) = v.get("icon").and_then(Value::as_str) {
+                    g.icon = i.to_string();
+                }
                 g.updated = now;
             }
         }),
@@ -685,11 +885,11 @@ fn set_cfg(key: &str, val: &Value) {
             });
         }
         "ghLogin" => config::update(|c| c.gh_login = s.trim().trim_start_matches('@').to_string()),
-        "accent" => config::update(|c| c.accent = s),
-        "bg" => {
-            config::update(|c| c.bg = s);
-            crate::win::recolor();
-        }
+        "pcName" => config::update(|c| c.pc_name = s.trim().chars().take(60).collect()),
+        "steamIcons" => config::update(|c| c.steam_icons = val.as_bool().unwrap_or(false)),
+        "kitNew" => config::update(|c| c.kit_new = val.as_bool().unwrap_or(true)),
+        "darkLook" => config::update(|c| c.dark_look = s),
+        "lightLook" => config::update(|c| c.light_look = s),
         "preAll" => {
             config::update(|c| c.pre_all = val.as_bool().unwrap_or(false));
             // the latest releases are asked again without ETags
@@ -793,8 +993,9 @@ fn add_github(owner: &str, repo: &str, group: &str) {
         l.removed.remove(&id);
         l.apps.push(App {
             id: id.clone(),
-            url: format!("https://github.com/{owner}/{repo}"),
+            url: gh::web_url(owner, repo),
             kind: "github".into(),
+            kit: config::get().kit_new,
             owner: owner.into(),
             repo: repo.into(),
             name: repo.into(),
@@ -823,7 +1024,11 @@ fn add_github(owner: &str, repo: &str, group: &str) {
         Err(e) if e.contains("not found") => {
             library::update(|l| l.apps.retain(|a| a.id != id));
             set_busy(&id, None);
-            toast("Репозиторій не знайдено на GitHub", true);
+            if gh::site_name(owner) == "GitHub" {
+                toast("Репозиторій не знайдено на GitHub", true);
+            } else {
+                toast(&e, true);
+            }
             notify();
             return;
         }
@@ -984,6 +1189,14 @@ fn link_refresh(id: &str, url: &str) -> bool {
             library::update_app(id, |a| a.dead = 0);
             true
         }
+        // a site that turns away programs (bot protection, a request limit) still opens in a browser: not an error
+        Err(e) if ["HTTP 401", "HTTP 403", "HTTP 429", "HTTP 503"].iter().any(|c| e.ends_with(c)) => {
+            library::update_app(id, |a| {
+                a.meta_at = util::unix();
+                a.error.clear();
+            });
+            false
+        }
         Err(e) => {
             let gone = e.ends_with("HTTP 404") || e.ends_with("HTTP 410");
             library::update_app(id, |a| {
@@ -1010,6 +1223,7 @@ fn add_link(url: &str, group: &str) {
             id: id.clone(),
             url: url.into(),
             kind: "link".into(),
+            kit: config::get().kit_new,
             name: host.trim_start_matches("www.").to_string(),
             added: util::unix(),
             updated: util::unix(),
@@ -1217,6 +1431,11 @@ pub fn check_all(manual: bool) {
             }
         }
     });
+    // the «For PC» catalog: installed versions and updates through winget
+    crate::winget::scan();
+    if config::get().steam_icons {
+        crate::steamicons::fix();
+    }
     let resets = check_tweaks();
     for r in &resets {
         log.push(json!({ "tag": "warn", "key": "reset", "text": r }));
@@ -1269,7 +1488,7 @@ fn install_missing_kit() {
     if !config::get().kit_auto_install {
         return;
     }
-    let ids: Vec<String> = library::get().apps.iter().filter(|a| a.kit && a.kind == "github" && a.inst.is_none() && a.id != crate::selfup::ID).map(|a| a.id.clone()).collect();
+    let ids: Vec<String> = library::get().apps.iter().filter(|a| a.kit && (a.kind == "github" || a.kind == "winget") && a.inst.is_none() && a.id != crate::selfup::ID).map(|a| a.id.clone()).collect();
     for id in ids {
         if library::app(&id).is_some_and(|a| a.inst.is_none()) {
             install_app(&id, "", "");
@@ -1280,8 +1499,27 @@ fn install_missing_kit() {
 // ---------------------------------------------------------------- followed authors
 
 /// (worker) Follows a GitHub user or organisation: profile and repositories (2 requests).
+/// An author as typed or linked: "name", "@name", a GitHub profile link (→ "name"), a GitLab or Codeberg one (→ "site/name").
+fn author_login(s: &str) -> String {
+    let t = s.trim().trim_end_matches('/');
+    let t = t.strip_prefix("https://").or_else(|| t.strip_prefix("http://")).unwrap_or(t);
+    let t = t.strip_prefix("www.").unwrap_or(t);
+    if let Some(r) = t.strip_prefix("github.com/") {
+        return r.split(['/', '?', '#']).next().unwrap_or("").to_string();
+    }
+    if let Some(r) = t.strip_prefix("gitlab.com/") {
+        return format!("gitlab.com/{}", r.split("/-/").next().unwrap_or("").split(['?', '#']).next().unwrap_or("").trim_end_matches('/'));
+    }
+    if let Some(r) = t.strip_prefix("codeberg.org/") {
+        return format!("codeberg.org/{}", r.split(['/', '?', '#']).next().unwrap_or(""));
+    }
+    t.trim_start_matches('@').to_string()
+}
+
 fn follow(login: &str) {
-    if login.is_empty() {
+    let login = author_login(login);
+    let login = login.as_str();
+    if login.is_empty() || login.ends_with('/') {
         return;
     }
     if library::get().authors.iter().any(|a| a.login.eq_ignore_ascii_case(login)) {
@@ -1300,7 +1538,7 @@ fn follow(login: &str) {
     let login = u.login.clone();
     library::update(|l| {
         l.removed.remove(&format!("au:{}", login.to_ascii_lowercase()));
-        l.authors.push(library::Author { login: u.login, name: u.name, bio: u.bio, blog: u.blog, avatar: u.avatar, org: u.org, repos, added: now, updated: now, checked: now, ..Default::default() });
+        l.authors.push(library::Author { login: u.login, name: u.name, bio: u.bio, blog: u.blog, avatar: u.avatar, org: u.org, repos, added: now, updated: now, checked: now, kit: config::get().kit_new, ..Default::default() });
     });
     event(json!({ "t": "author", "login": login }));
     notify();
@@ -1446,10 +1684,11 @@ fn gh_repo(full: &str) {
     event(json!({ "t": "ghRepo", "full": full, "release": rel.map(|x| json!({ "tag": x.tag, "date": x.date, "prerelease": x.prerelease })), "pick": pick, "readme": readme.as_deref().unwrap_or_default(), "err": readme.err(), "langs": langs, "icon": icon }));
 }
 
-fn readme(id: &str) {
+/// The README, or another Markdown file of the repository a README link points to (`path`).
+fn readme(id: &str, path: &str) {
     let Some(app) = library::app(id).filter(|a| a.kind == "github") else { return };
-    let res = gh::readme(&app.owner, &app.repo);
-    event(json!({ "t": "readme", "id": id, "html": res.as_deref().unwrap_or_default(), "err": res.err() }));
+    let res = if path.is_empty() { gh::readme(&app.owner, &app.repo) } else { gh::markdown_file(&app.owner, &app.repo, path) };
+    event(json!({ "t": "readme", "id": id, "path": path, "html": res.as_deref().unwrap_or_default(), "err": res.err() }));
     // apps added before 0.4 (or before their first refresh) have no languages yet
     if app.langs.is_empty() {
         if let Ok(langs) = gh::languages(&app.owner, &app.repo) {
@@ -1472,6 +1711,13 @@ fn releases(id: &str) {
 /// (worker) Installs the latest release, or the release `tag` (an older one pins the app on it).
 fn install_app(id: &str, asset_name: &str, tag: &str) {
     let Some(app) = library::app(id) else { return };
+    // a program of the picks goes through winget (the kit, «Update all» and the like come here too)
+    if app.kind == "winget" {
+        if !is_busy(id) {
+            winget_install(vec![app.repo.clone()], String::new());
+        }
+        return;
+    }
     if is_busy(id) || app.kind != "github" {
         return;
     }
@@ -1506,6 +1752,11 @@ fn install_app(id: &str, asset_name: &str, tag: &str) {
     };
     set_busy(id, Some(("queued", -1.0)));
     let _one = INSTALL.lock().unwrap_or_else(|e| e.into_inner());
+    if cancelled(id) {
+        cancel_done(id);
+        set_busy(id, None);
+        return;
+    }
     if config::get().auto_backup && app.inst.is_some() && !(app.bpaths.is_empty() && app.breg.is_empty()) {
         set_busy(id, Some(("backup", -1.0)));
         match backup::backup(&app) {
@@ -1554,12 +1805,14 @@ fn install_app(id: &str, asset_name: &str, tag: &str) {
                 spawn(move || vt_check(&id));
             }
         }
+        Err(e) if e == "cancelled" => toast("Встановлення скасовано", false),
         Err(e) => {
             logf!("install {id}: {e}");
             library::update_app(id, |a| a.error = e.clone());
             toast(&e, true);
         }
     }
+    cancel_done(id);
     set_busy(id, None);
     notify();
 }
@@ -1592,12 +1845,16 @@ fn uninstall(id: &str) {
     set_busy(id, Some(("queued", -1.0)));
     let _one = INSTALL.lock().unwrap_or_else(|e| e.into_inner());
     set_busy(id, Some(("uninstall", -1.0)));
-    match install::uninstall(&app) {
+    let r = if app.kind == "winget" { crate::winget::uninstall(&app) } else { install::uninstall(&app) };
+    match r {
         Ok(true) => library::update_app(id, |a| a.inst = None),
         Ok(false) => toast("Програма ще є в списку Windows", false),
         Err(e) => toast(&e, true),
     }
     set_busy(id, None);
+    if app.kind == "winget" {
+        crate::winget::scan();
+    }
     notify();
 }
 
@@ -1615,6 +1872,13 @@ fn accept_bundle(apps: Vec<String>, tw: Vec<String>) {
             failed += 1;
         }
     }
+    library::update(|l| {
+        for t in &tw {
+            if !l.kit_tweaks.contains(t) {
+                l.kit_tweaks.push(t.clone());
+            }
+        }
+    });
     tweak_list();
     for id in &apps {
         install_app(id, "", "");

@@ -10,6 +10,7 @@ mod bundle;
 mod config;
 mod dlg;
 mod dropbox;
+mod forge;
 mod gh;
 mod icon;
 mod imports;
@@ -20,9 +21,13 @@ mod net;
 mod secret;
 mod selfup;
 mod stars;
+mod steamicons;
+mod tools;
+mod sysinfo;
 mod tray;
 mod trust;
 mod tweaks;
+mod winget;
 mod util;
 mod ver;
 mod vt;
@@ -103,6 +108,7 @@ fn main() {
     TASKBAR_CREATED.store(unsafe { RegisterWindowMessageW(w!("TaskbarCreated")) }, std::sync::atomic::Ordering::Relaxed);
 
     autostart::sync_path();
+    actions::migrate_kit();
     if !tray::add() {
         unsafe {
             SetTimer(Some(hwnd), TIMER_TRAY, 2000, None);

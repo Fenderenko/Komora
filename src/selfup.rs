@@ -91,7 +91,7 @@ pub fn update(rel: &Release, progress: &mut dyn FnMut(&str, f32)) -> Result<(), 
         if total > 0 {
             progress("download", n as f32 / total as f32);
         }
-    })?;
+    }, &|| false)?;
     progress("verify", -1.0);
     let ok = std::fs::read(&tmp).map(|b| b.len() > 1 << 20 && b.starts_with(b"MZ")).unwrap_or(false);
     if !ok || trust::check(&tmp).0 == "bad" {

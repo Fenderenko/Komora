@@ -54,6 +54,18 @@ pub struct Config {
     pub bg: String,
     /// offer pre-releases as updates for every app (each app can also ask for them on its own)
     pub pre_all: bool,
+    /// this PC's name in Komora (the dashboard, bundles, sync); "" — the Windows computer name
+    pub pc_name: String,
+    /// the dark theme: "obsidian", "graphite" or "midnight"
+    pub dark_look: String,
+    /// the light theme: "grey", "white" or "sand"
+    pub light_look: String,
+    /// Steam's game shortcuts get their icon back by themselves after every update check
+    pub steam_icons: bool,
+    /// what is added to the library (programs, links, groups, authors, tweaks) goes into «My kit» at once
+    pub kit_new: bool,
+    /// the library was moved to «My kit is what comes back» (1.6): what was there got its marks once
+    pub kit_v2: bool,
     /// parent folder for apps installed by setups ("" — where the setup proposes); the app's name is added
     pub setup_dir: String,
     /// show the setup's own window instead of a silent install
@@ -104,6 +116,12 @@ impl Default for Config {
             accent: "violet".into(),
             bg: String::new(),
             pre_all: false,
+            pc_name: String::new(),
+            dark_look: "obsidian".into(),
+            light_look: "grey".into(),
+            steam_icons: false,
+            kit_new: true,
+            kit_v2: false,
             setup_dir: String::new(),
             setup_show: false,
             vt_key_enc: String::new(),
@@ -164,6 +182,12 @@ fn load() -> Config {
         save(&c);
     }
     c
+}
+
+/// This PC's name: the one given in Komora, else the Windows computer name.
+pub fn pc_name() -> String {
+    let n = get().pc_name;
+    if n.trim().is_empty() { std::env::var("COMPUTERNAME").unwrap_or_default() } else { n.trim().to_string() }
 }
 
 /// The GitHub token ("" — none).

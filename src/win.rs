@@ -39,30 +39,23 @@ const W: f64 = 1120.0; // DIP
 const H: f64 = 740.0;
 const MIN_W: f64 = 860.0;
 const MIN_H: f64 = 560.0;
-const DARK: (u8, u8, u8) = (0x1C, 0x1B, 0x19);
-const LIGHT: (u8, u8, u8) = (0xEB, 0xE7, 0xDE);
 
-/// The window's base colour for config `bg` (the page derives the same `--base`: bgBase in app.js).
+/// The window's base colour: obsidian (#0f0f12) for dark, its grey-white for light (bgBase in app.js gives the page the same).
 fn base(dark: bool) -> (u8, u8, u8) {
-    let bg = config::get().bg;
-    let hex = match bg.as_str() {
-        "obsidian" => "#0f0f12",
-        "graphite" => "#1c1c1c",
-        "slate" => "#1a1e24",
-        "moss" => "#1b1e1a",
-        "plum" => "#1f1b21",
-        x => x,
-    };
-    let Some((r, g, b)) = util::parse_hex(hex) else { return if dark { DARK } else { LIGHT } };
-    let (h, s, l) = util::rgb_hsl(r, g, b);
-    let l = if dark {
-        if l <= 0.5 { l.clamp(0.05, 0.18) } else { 0.104 }
-    } else if l > 0.5 {
-        l.clamp(0.80, 0.95)
-    } else {
-        0.896
-    };
-    util::hsl_rgb(h, s, l)
+    if let Some(c) = *BASE.lock().unwrap() {
+        return c;
+    }
+    let (h, s, l) = util::rgb_hsl(0x0F, 0x0F, 0x12);
+    util::hsl_rgb(h, s, if dark { l.clamp(0.05, 0.18) } else { 0.896 })
+}
+
+/// The base colour of the theme in use, as the page tells it ("#rrggbb").
+static BASE: std::sync::Mutex<Option<(u8, u8, u8)>> = std::sync::Mutex::new(None);
+
+fn parse_hex(s: &str) -> Option<(u8, u8, u8)> {
+    let h = s.strip_prefix('#').filter(|h| h.len() == 6 && h.is_ascii())?;
+    let c = |i: usize| u8::from_str_radix(&h[i..i + 2], 16).ok();
+    Some((c(0)?, c(2)?, c(4)?))
 }
 
 #[derive(Default)]
@@ -483,13 +476,11 @@ fn caption(hwnd: HWND, dark: bool) {
     }
 }
 
-/// (UI thread) The background setting changed: the caption and the page's backdrop follow.
-pub fn recolor() {
-    set_dark(win(|w| w.dark));
-}
-
-/// (UI thread) The page resolved its theme (setting or Windows).
-pub fn set_dark(dark: bool) {
+/// (UI thread) The page resolved its theme (setting or Windows) and its base colour.
+pub fn set_dark(dark: bool, base_hex: &str) {
+    if let Some(c) = parse_hex(base_hex) {
+        *BASE.lock().unwrap() = Some(c);
+    }
     let (hwnd, ctl) = win(|w| {
         w.dark = dark;
         (w.hwnd, w.ctl.clone())

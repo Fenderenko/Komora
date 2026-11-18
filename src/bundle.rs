@@ -37,7 +37,7 @@ pub struct Bundle {
 }
 
 fn pc() -> String {
-    std::env::var("COMPUTERNAME").unwrap_or_default()
+    crate::config::pc_name()
 }
 
 /// The library as it travels: no state of this PC (installed files, caches, errors).
@@ -76,8 +76,27 @@ pub fn make() -> Bundle {
     }
 }
 
+/// «My kit» alone: its programs and links, the groups they use and those that add to the kit by themselves, its authors
+/// and tweaks. Sync and the kit's file carry this; the rest of the library stays on this PC.
+pub fn make_kit() -> Bundle {
+    let mut b = make();
+    let kit_tweaks = library::get().kit_tweaks;
+    b.apps.retain(|a| a.kit);
+    let used: std::collections::HashSet<String> = b.apps.iter().flat_map(|a| a.groups.iter().cloned()).collect();
+    b.groups.retain(|g| g.kit_auto || used.contains(&g.id));
+    b.authors.retain(|a| a.kit);
+    b.tweaks.retain(|t| kit_tweaks.contains(t));
+    b
+}
+
 /// Merges a bundle into the library; true — something changed.
 pub fn merge(l: &mut Library, b: &Bundle) -> bool {
+    // the tweaks of the other PC's kit are in this kit too (they are applied when the user chooses)
+    for t in &b.tweaks {
+        if !l.kit_tweaks.contains(t) {
+            l.kit_tweaks.push(t.clone());
+        }
+    }
     let mut changed = false;
     for (id, at) in &b.removed {
         let gone = l.apps.iter().position(|a| &a.id == id && a.updated.max(a.added) <= *at);
@@ -185,12 +204,7 @@ fn tar() -> PathBuf {
 /// open the same zip) and the newest settings backup of the kit's apps — of every app `with_backups`.
 /// `kit_only`: just «My kit» and the groups it uses.
 pub fn export(path: &str, with_backups: bool, kit_only: bool) -> Result<(), String> {
-    let mut b = make();
-    if kit_only {
-        b.apps.retain(|a| a.kit);
-        let used: std::collections::HashSet<&String> = b.apps.iter().flat_map(|a| a.groups.iter()).collect();
-        b.groups.retain(|g| used.contains(&g.id));
-    }
+    let b = if kit_only { make_kit() } else { make() };
     let keep: std::collections::HashSet<String> = b.apps.iter().filter(|a| with_backups || a.kit).map(|a| crate::backup::folder_of(&a.id)).collect();
     let json = serde_json::to_string_pretty(&b).map_err(|e| e.to_string())?;
     if !path.to_ascii_lowercase().ends_with(".zip") {
@@ -340,7 +354,7 @@ fn copy_missing(from: &Path, to: &Path) {
 /// Merges the opened bundle into the library (the page then installs and applies what was chosen).
 pub fn accept() -> Result<(), String> {
     let b = PENDING.lock().unwrap().take().ok_or("open a bundle first")?;
-    library::update(|l| merge(l, &b));
+    library::update_synced(|l| merge(l, &b));
     merge_tweaks(&b);
     Ok(())
 }
@@ -442,7 +456,7 @@ pub fn sync_now(gist: bool) -> Result<bool, String> {
         };
         let mut changed = false;
         if let Some(b) = remote.as_ref().filter(|b| b.at > c.sync_seen && b.pc != pc()) {
-            changed = library::update(|l| merge(l, b));
+            changed = library::update_synced(|l| merge(l, b));
             merge_tweaks(b);
             config::update(|x| x.sync_seen = b.at);
             if changed {
@@ -451,7 +465,7 @@ pub fn sync_now(gist: bool) -> Result<bool, String> {
         }
         let lib_time = std::fs::metadata(util::data_dir().join("library.json")).and_then(|m| m.modified()).ok().and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok()).map(|d| d.as_secs() as i64).unwrap_or(0);
         if changed || lib_time > c.sync_wrote || remote.is_none() {
-            let b = make();
+            let b = make_kit();
             let text = serde_json::to_string(&b).map_err(|e| e.to_string())?;
             if use_gist {
                 let id = gist_write(&c.gist_id, &text)?;

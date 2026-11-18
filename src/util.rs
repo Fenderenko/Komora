@@ -71,6 +71,19 @@ pub fn unix_ms() -> u128 {
     std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_millis()).unwrap_or(0)
 }
 
+/// (year, month, day) of a unix time in UTC (Howard Hinnant's civil-from-days).
+pub fn ymd(t: i64) -> (i64, u32, u32) {
+    let z = t.div_euclid(86400) + 719_468;
+    let era = z.div_euclid(146_097);
+    let doe = z - era * 146_097;
+    let yoe = (doe - doe / 1460 + doe / 36_524 - doe / 146_096) / 365;
+    let doy = doe - (365 * yoe + yoe / 4 - yoe / 100);
+    let mp = (5 * doy + 2) / 153;
+    let d = (doy - (153 * mp + 2) / 5 + 1) as u32;
+    let m = if mp < 10 { mp + 3 } else { mp - 9 } as u32;
+    (yoe + era * 400 + i64::from(m <= 2), m, d)
+}
+
 pub fn unix() -> i64 {
     (unix_ms() / 1000) as i64
 }
@@ -160,13 +173,6 @@ pub fn system_lang() -> &'static str {
     }
 }
 
-/// "#rrggbb" → (r, g, b).
-pub fn parse_hex(s: &str) -> Option<(u8, u8, u8)> {
-    let h = s.strip_prefix('#').filter(|h| h.len() == 6 && h.is_ascii())?;
-    let c = |i: usize| u8::from_str_radix(&h[i..i + 2], 16).ok();
-    Some((c(0)?, c(2)?, c(4)?))
-}
-
 /// RGB → (hue 0..1, saturation, lightness), as rgb2hsl in app.js.
 pub fn rgb_hsl(r: u8, g: u8, b: u8) -> (f64, f64, f64) {
     let (r, g, b) = (r as f64 / 255.0, g as f64 / 255.0, b as f64 / 255.0);
@@ -214,12 +220,16 @@ mod tests {
     }
 
     #[test]
+    fn dates() {
+        assert_eq!(super::ymd(0), (1970, 1, 1));
+        assert_eq!(super::ymd(1_763_337_600), (2025, 11, 17));
+    }
+
+    #[test]
     fn hsl_round_trip() {
         for c in [(0x1a, 0x1e, 0x24), (0xe9, 0xe5, 0xdc), (0x1c, 0x1c, 0x1c), (0xff, 0x00, 0x80)] {
             let (h, s, l) = super::rgb_hsl(c.0, c.1, c.2);
             assert_eq!(super::hsl_rgb(h, s, l), c);
         }
-        assert_eq!(super::parse_hex("#1A1e24"), Some((0x1a, 0x1e, 0x24)));
-        assert_eq!(super::parse_hex("1a1e24"), None);
     }
 }

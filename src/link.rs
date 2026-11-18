@@ -234,7 +234,7 @@ pub fn fetch(url: &str) -> Result<Page, String> {
         let favicon = if host.contains("vimeo") { "https://vimeo.com/favicon.ico" } else { "https://www.youtube.com/favicon.ico" };
         return Ok(Page { title: s("title"), desc: String::new(), icon: favicon.into(), image: s("thumbnail_url"), kind: "video".into(), author: s("author_name"), site: s("provider_name"), price: 0.0, currency: String::new() });
     }
-    let r = net::get(url, &[("Accept", "text/html"), ("Accept-Language", "uk,en;q=0.8")], 3 << 20).or_else(|e| if e == "answer too large" { Err("page too large".into()) } else { Err(e) })?;
+    let r = net::get_page(url, &[("Accept", "text/html"), ("Accept-Language", "uk,en;q=0.8")], 3 << 20).or_else(|e| if e == "answer too large" { Err("page too large".into()) } else { Err(e) })?;
     if r.status != 200 {
         return Err(format!("the site answered HTTP {}", r.status));
     }

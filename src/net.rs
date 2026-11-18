@@ -30,6 +30,8 @@ pub struct Response {
     pub status: u32,
     pub etag: String,
     pub body: Vec<u8>,
+    /// the number of all results of a listing (X-Total / X-Total-Count), "" — not given
+    pub total: String,
 }
 
 /// A WinHTTP handle, closed when dropped.
@@ -80,9 +82,23 @@ fn open(url: &str, headers: &[(&str, &str)]) -> Result<Req, String> {
 }
 
 fn open_with(method: &str, url: &str, headers: &[(&str, &str)], body: &[u8]) -> Result<Req, String> {
+    open_as(method, url, headers, body, &format!("Komora/{}", env!("CARGO_PKG_VERSION")))
+}
+
+/// A browser's User-Agent: sites behind bot protection turn away an unknown client with 403 for an ordinary page.
+const BROWSER: &str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0";
+
+/// (any thread; blocks) A web page for a link's preview, asked as a browser would.
+pub fn get_page(url: &str, headers: &[(&str, &str)], max: usize) -> Result<Response, String> {
+    let r = open_as("GET", url, headers, &[], BROWSER)?;
+    let body = if r.status == 304 { Vec::new() } else { r.body(max)? };
+    Ok(Response { status: r.status, etag: String::new(), body, total: String::new() })
+}
+
+fn open_as(method: &str, url: &str, headers: &[(&str, &str)], body: &[u8], agent: &str) -> Result<Req, String> {
     let (host, path, port) = split_url(url).ok_or_else(|| format!("bad URL: {url}"))?;
     unsafe {
-        let agent = HSTRING::from(format!("Komora/{}", env!("CARGO_PKG_VERSION")));
+        let agent = HSTRING::from(agent);
         let ses = Handle(WinHttpOpen(&agent, WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY, PCWSTR::null(), PCWSTR::null(), 0));
         if ses.0.is_null() {
             return Err("WinHttpOpen".into());
@@ -147,15 +163,21 @@ impl Req {
 pub fn get(url: &str, headers: &[(&str, &str)], max: usize) -> Result<Response, String> {
     let r = open(url, headers)?;
     let etag = r.header("ETag").unwrap_or_default();
+    let total = r.header("X-Total").or_else(|| r.header("X-Total-Count")).unwrap_or_default();
     let body = if r.status == 304 { Vec::new() } else { r.body(max)? };
-    Ok(Response { status: r.status, etag, body })
+    Ok(Response { status: r.status, etag, body, total })
+}
+
+/// (any thread; blocks) The size of a file by a HEAD request (redirects followed; 0 — not told).
+pub fn content_length(url: &str) -> u64 {
+    open_with("HEAD", url, &[], &[]).ok().filter(|r| r.status == 200).and_then(|r| r.header("Content-Length")).and_then(|v| v.trim().parse().ok()).unwrap_or(0)
 }
 
 /// (any thread; blocks) A POST with the given headers and body; the answer is read for any status.
 pub fn post(url: &str, headers: &[(&str, &str)], body: &[u8], max: usize) -> Result<Response, String> {
     let r = open_with("POST", url, headers, body)?;
     let body = r.body(max)?;
-    Ok(Response { status: r.status, etag: String::new(), body })
+    Ok(Response { status: r.status, etag: String::new(), body, total: String::new() })
 }
 
 /// (any thread; blocks) A GitHub API request: token when set, conditional with `etag`, rate limit noted.
@@ -184,12 +206,13 @@ pub fn github_send(method: &str, path: &str, accept: &str, etag: &str, body: &[u
     }
     let etag = r.header("ETag").unwrap_or_default();
     let body = if r.status == 304 { Vec::new() } else { r.body(8 << 20)? };
-    Ok(Response { status: r.status, etag, body })
+    Ok(Response { status: r.status, etag, body, total: String::new() })
 }
 
 /// (any thread; blocks) Downloads `url` into `dest` (written as dest.part, renamed when complete);
 /// `progress` gets (bytes so far, total or 0). At most `max` bytes.
-pub fn download(url: &str, dest: &Path, max: u64, mut progress: impl FnMut(u64, u64)) -> Result<(), String> {
+/// `cancel` is asked between chunks: true stops the download (Err "cancelled") and removes the part.
+pub fn download(url: &str, dest: &Path, max: u64, mut progress: impl FnMut(u64, u64), cancel: &dyn Fn() -> bool) -> Result<(), String> {
     let r = open(url, &[("Accept", "application/octet-stream")])?;
     if r.status != 200 {
         return Err(format!("HTTP {}", r.status));
@@ -214,6 +237,11 @@ pub fn download(url: &str, dest: &Path, max: u64, mut progress: impl FnMut(u64, 
         };
         if n == 0 {
             break;
+        }
+        if cancel() {
+            drop(f);
+            let _ = std::fs::remove_file(&part);
+            return Err("cancelled".into());
         }
         got += n as u64;
         if got > max || f.write_all(&buf[..n]).is_err() {

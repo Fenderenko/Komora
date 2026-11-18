@@ -1,12 +1,29 @@
 //! GitHub: repository links, metadata, releases, the README rendered by GitHub, and the choice of the
-//! release file for this PC.
+//! release file for this PC. A repository of GitLab or Codeberg (its owner starts with the site) goes to forge.rs.
 
 use serde_json::Value;
 
 use crate::{
+    forge::{self, Site},
     library::{Asset, Release},
     net,
 };
+
+/// GitLab or Codeberg: the repository's site when it is not GitHub.
+fn other(owner: &str) -> Option<Site> {
+    let (s, _) = forge::site(owner);
+    (s != Site::GitHub).then_some(s)
+}
+
+/// The repository's page on its site.
+pub fn web_url(owner: &str, repo: &str) -> String {
+    if other(owner).is_some() { forge::web_url(owner, repo) } else { format!("https://github.com/{owner}/{repo}") }
+}
+
+/// "GitHub", "GitLab" or "Codeberg".
+pub fn site_name(owner: &str) -> &'static str {
+    forge::site_name(forge::site(owner).0)
+}
 
 const JSON: &str = "application/vnd.github+json";
 /// JSON with `body_html` (release notes rendered by GitHub)
@@ -17,6 +34,9 @@ const NOT_OWNERS: [&str; 14] = ["orgs", "settings", "topics", "marketplace", "sp
 
 /// (owner, repo) of "https://github.com/owner/repo/…", "github.com/owner/repo" or "owner/repo".
 pub fn parse_repo(s: &str) -> Option<(String, String)> {
+    if let Some(r) = forge::parse(s) {
+        return Some(r);
+    }
     let s = s.trim().trim_end_matches('/');
     let rest = s.strip_prefix("https://").or_else(|| s.strip_prefix("http://")).unwrap_or(s);
     let rest = rest.strip_prefix("www.").unwrap_or(rest);
@@ -70,6 +90,9 @@ fn s(v: &Value, k: &str) -> String {
 }
 
 pub fn meta(owner: &str, repo: &str) -> Result<Meta, String> {
+    if let Some(s) = other(owner) {
+        return forge::meta(s, owner, repo);
+    }
     let v = api_json(&format!("/repos/{owner}/{repo}"), JSON)?;
     Ok(Meta {
         name: s(&v, "name"),
@@ -91,6 +114,9 @@ pub fn meta(owner: &str, repo: &str) -> Result<Meta, String> {
 
 /// The repository's forks, most starred first (the same shape as search results).
 pub fn forks(owner: &str, repo: &str) -> Result<Vec<Value>, String> {
+    if let Some(s) = other(owner) {
+        return forge::forks(s, owner, repo);
+    }
     let v = api_json(&format!("/repos/{owner}/{repo}/forks?sort=stargazers&per_page=40"), JSON)?;
     Ok(v.as_array().map(|a| a.iter().map(repo_item).collect()).unwrap_or_default())
 }
@@ -112,6 +138,9 @@ pub fn repo_item(x: &Value) -> Value {
 
 /// Languages of the repository with a share of 10 % or more, largest first (one request).
 pub fn languages(owner: &str, repo: &str) -> Result<Vec<(String, f64)>, String> {
+    if let Some(s) = other(owner) {
+        return forge::languages(s, owner, repo).map(|v| lang_shares(&v));
+    }
     let v = api_json(&format!("/repos/{owner}/{repo}/languages"), JSON)?;
     Ok(lang_shares(&v))
 }
@@ -138,18 +167,27 @@ pub struct User {
 }
 
 pub fn user(login: &str) -> Result<User, String> {
+    if let Some(s) = other(login) {
+        return forge::user(s, login);
+    }
     let v = api_json(&format!("/users/{}", net::enc(login)), JSON).map_err(|e| if e.starts_with("not found") { "no such GitHub user".into() } else { e })?;
     Ok(User { login: s(&v, "login"), name: s(&v, "name"), bio: s(&v, "bio"), blog: s(&v, "blog"), avatar: s(&v, "avatar_url"), org: s(&v, "type") == "Organization" })
 }
 
 /// The user's own public repositories (forks included), most recently pushed first; one request.
 pub fn user_repos(login: &str) -> Result<Vec<Value>, String> {
+    if let Some(s) = other(login) {
+        return forge::user_repos(s, login);
+    }
     let v = api_json(&format!("/users/{}/repos?type=owner&sort=pushed&per_page=100", net::enc(login)), JSON)?;
     Ok(v.as_array().map(|a| a.iter().map(repo_item).collect()).unwrap_or_default())
 }
 
 /// One release by its tag.
 pub fn release_by_tag(owner: &str, repo: &str, tag: &str) -> Result<Release, String> {
+    if let Some(s) = other(owner) {
+        return forge::release_by_tag(s, owner, repo, tag);
+    }
     let v = api_json(&format!("/repos/{owner}/{repo}/releases/tags/{}", net::enc(tag)), JSON_HTML)?;
     Ok(parse_release(&v))
 }
@@ -229,6 +267,9 @@ pub fn icon_in_tree(files: &[(String, u64)], repo: &str) -> Option<String> {
 
 /// (path, size) of the repository's files (one request; large trees come truncated — enough for icons).
 pub fn tree(owner: &str, repo: &str, branch: &str) -> Result<Vec<(String, u64)>, String> {
+    if let Some(s) = other(owner) {
+        return forge::tree(s, owner, repo, branch);
+    }
     let b = if branch.is_empty() { "HEAD" } else { branch };
     let v = api_json(&format!("/repos/{owner}/{repo}/git/trees/{}?recursive=1", net::enc(b)), JSON)?;
     Ok(v.get("tree")
@@ -239,6 +280,9 @@ pub fn tree(owner: &str, repo: &str, branch: &str) -> Result<Vec<(String, u64)>,
 
 /// Raw URL of a repository file.
 pub fn raw_url(owner: &str, repo: &str, branch: &str, path: &str) -> String {
+    if let Some(s) = other(owner) {
+        return forge::raw_url(s, owner, repo, branch, path);
+    }
     let p: Vec<String> = path.split('/').map(net::enc).collect();
     format!("https://raw.githubusercontent.com/{owner}/{repo}/{}/{}", if branch.is_empty() { "HEAD" } else { branch }, p.join("/"))
 }
@@ -274,6 +318,10 @@ pub enum Latest {
 
 /// The latest release (pre-releases only when there is nothing else, or with `pre`); conditional on `etag`.
 pub fn latest(owner: &str, repo: &str, etag: &str, pre: bool) -> Result<Latest, String> {
+    // GitLab and Codeberg: no conditional request, the list is read each time
+    if let Some(s) = other(owner) {
+        return forge::latest(s, owner, repo, pre).map(|r| r.map_or(Latest::None, |rel| Latest::New(rel, String::new())));
+    }
     if pre {
         let list = releases(owner, repo, 1)?;
         return Ok(list.into_iter().next().map_or(Latest::None, |rel| Latest::New(rel, String::new())));
@@ -296,16 +344,39 @@ pub fn latest(owner: &str, repo: &str, etag: &str, pre: bool) -> Result<Latest, 
 }
 
 pub fn releases(owner: &str, repo: &str, n: u32) -> Result<Vec<Release>, String> {
+    if let Some(s) = other(owner) {
+        return forge::releases(s, owner, repo, n);
+    }
     let v = api_json(&format!("/repos/{owner}/{repo}/releases?per_page={n}"), JSON_HTML)?;
     Ok(v.as_array().map(|a| a.iter().map(parse_release).filter(|r| !r.tag.is_empty()).collect()).unwrap_or_default())
 }
 
 /// The README as HTML rendered (and sanitised) by GitHub; "" when there is none.
 pub fn readme(owner: &str, repo: &str) -> Result<String, String> {
+    if let Some(s) = other(owner) {
+        return forge::markdown(s, owner, repo, "");
+    }
     let r = net::github(&format!("/repos/{owner}/{repo}/readme"), "application/vnd.github.html", "")?;
     match r.status {
         200 => Ok(String::from_utf8_lossy(&r.body).into_owned()),
         404 => Ok(String::new()),
+        s => Err(format!("GitHub answered HTTP {s}")),
+    }
+}
+
+/// A Markdown file of the repository rendered to HTML (a README in another language and the like).
+pub fn markdown_file(owner: &str, repo: &str, path: &str) -> Result<String, String> {
+    if let Some(s) = other(owner) {
+        return forge::markdown(s, owner, repo, path);
+    }
+    if path.contains("..") || path.starts_with('/') {
+        return Err("not found on GitHub".into());
+    }
+    let enc: String = path.split('/').map(|p| p.bytes().map(|b| if b.is_ascii_alphanumeric() || b"-_.~".contains(&b) { (b as char).to_string() } else { format!("%{b:02X}") }).collect::<String>()).collect::<Vec<_>>().join("/");
+    let r = net::github(&format!("/repos/{owner}/{repo}/contents/{enc}"), "application/vnd.github.html", "")?;
+    match r.status {
+        200 => Ok(String::from_utf8_lossy(&r.body).into_owned()),
+        404 => Err("not found on GitHub".into()),
         s => Err(format!("GitHub answered HTTP {s}")),
     }
 }

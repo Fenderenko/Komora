@@ -16,6 +16,8 @@ pub struct Library {
     pub removed: std::collections::BTreeMap<String, i64>,
     /// GitHub authors the user follows
     pub authors: Vec<Author>,
+    /// tweaks in «My kit»: applied again after Windows is reinstalled or on a new PC
+    pub kit_tweaks: Vec<String>,
     #[serde(flatten)]
     pub rest: serde_json::Map<String, serde_json::Value>,
 }
@@ -25,8 +27,12 @@ pub struct Library {
 pub struct Group {
     pub id: String,
     pub name: String,
-    /// "#rrggbb"
+    /// "#rrggbb"; "" — no colour (the icon in the text colour)
     pub color: String,
+    /// a glyph name of the page's GROUP_ICONS; "" — a coloured square
+    pub icon: String,
+    /// an app or link put into this group goes into «My kit» too (the kit itself is the apps' own marks)
+    pub kit_auto: bool,
     /// unix time of the user's last change (sync)
     pub updated: i64,
 }
@@ -51,6 +57,8 @@ pub struct Author {
     pub updated: i64,
     pub checked: i64,
     pub error: String,
+    /// in «My kit»: followed again after Windows is reinstalled or on a new PC
+    pub kit: bool,
     #[serde(flatten)]
     pub rest: serde_json::Map<String, serde_json::Value>,
 }
@@ -104,7 +112,7 @@ pub struct App {
     pub backup_at: i64,
     /// the settings folders and keys were filled in once from backup::suggest (the user may have removed some)
     pub bk_auto: bool,
-    /// in «My kit»: the set of apps the user wants on every PC
+    /// in «My kit»: what comes back after Windows is reinstalled or on a new PC (programs are installed again)
     pub kit: bool,
     /// languages of the repository with their share (0..1), largest first (only those of 10 % and more)
     pub langs: Vec<(String, f64)>,
@@ -252,10 +260,29 @@ pub fn app(id: &str) -> Option<App> {
     cell().lock().unwrap().apps.iter().find(|a| a.id == id).cloned()
 }
 
-/// Changes the library and writes it.
+/// Changes the library and writes it. An app that lands in a group with `kit_auto` (put there or new) goes into the kit.
 pub fn update<R>(f: impl FnOnce(&mut Library) -> R) -> R {
+    write(f, true)
+}
+
+/// The same without the groups' `kit_auto`: a merge of another PC's library keeps the kit marks it brings.
+pub fn update_synced<R>(f: impl FnOnce(&mut Library) -> R) -> R {
+    write(f, false)
+}
+
+fn write<R>(f: impl FnOnce(&mut Library) -> R, auto: bool) -> R {
     let mut g = cell().lock().unwrap();
+    let auto: Vec<String> = if auto { g.groups.iter().filter(|x| x.kit_auto).map(|x| x.id.clone()).collect() } else { Vec::new() };
+    let before: Vec<(String, Vec<String>)> = if auto.is_empty() { Vec::new() } else { g.apps.iter().map(|a| (a.id.clone(), a.groups.clone())).collect() };
     let r = f(&mut g);
+    if !auto.is_empty() {
+        for a in g.apps.iter_mut().filter(|a| !a.kit && a.id != crate::selfup::ID) {
+            let had = before.iter().find(|(id, _)| *id == a.id).map(|(_, gs)| gs.as_slice()).unwrap_or(&[]);
+            if a.groups.iter().any(|x| auto.contains(x) && !had.contains(x)) {
+                a.kit = true;
+            }
+        }
+    }
     let tmp = path().with_extension("tmp");
     match serde_json::to_string_pretty(&*g) {
         Ok(s) if std::fs::write(&tmp, &s).is_ok() => {

@@ -403,7 +403,7 @@ pub fn install(app: &App, asset: &Asset, kind: Kind, tag: &str, progress: Progre
     }
     let file = util::downloads_dir().join(util::safe_name(&asset.name));
     progress("download", 0.0);
-    net::download(&asset.url, &file, MAX_FILE, |got, total| progress("download", if total > 0 { got as f32 / total as f32 } else { -1.0 }))?;
+    net::download(&asset.url, &file, MAX_FILE, |got, total| progress("download", if total > 0 { got as f32 / total as f32 } else { -1.0 }), &|| crate::actions::cancelled(&app.id))?;
     progress("verify", -1.0);
     let hash = sha256(&file)?;
     if let Some(want) = asset.digest.strip_prefix("sha256:")

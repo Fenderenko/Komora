@@ -838,14 +838,292 @@ main#main { border-top: 0; border-left: 0; }
 .kitnav .i, .kitnav .cnt { color: var(--acc-text); }
 .kitnav.on .i, .kitnav.on .cnt { color: var(--on-fill); }
 .kitmark { font-size: 12px; color: var(--acc-text); vertical-align: 0; margin-left: 2px; }
-.kithead { display: flex; align-items: center; gap: 16px; padding: 16px 18px; border-radius: 10px; background: var(--acc-soft); margin-bottom: 10px; flex-wrap: wrap; }
-.kithead .kt { font-size: 15px; }
-.kithead .kt b { color: var(--acc-text); font-size: 18px; }
-.kithead .pbar { margin-top: 8px; background: var(--btn-h); }
-.kithead .pbar i { background: var(--acc); }
 .kitset { padding: 6px 16px 10px; margin-bottom: 4px; }
 .kitset .opt { padding: 10px 0; }
 .kitcard { background: var(--acc-soft) !important; }
 .kitcard h2 { color: var(--acc-text); }
 .empty .mark.kitm { background: var(--acc-soft); color: var(--acc-text); }
 .phead h1 .i { font-size: 22px; color: var(--acc-text); vertical-align: -2px; }
+
+/* ---------------------------------------------------------------- 1.1: alignment and compact blocks */
+
+/* counters: the line box equals the pill, so the digits sit in its middle */
+.n .badge, .n .cnt { line-height: 1; display: inline-flex; align-items: center; justify-content: center; height: 18px; }
+.pill, .bdg, .kbd, .brand .ver, .toolbar .fchip .mono, .hubtabs .cnt { display: inline-flex; align-items: center; line-height: 1; }
+.pill, .kbd, .brand .ver { height: 18px; }
+.toolbar .fchip .mono, .hubtabs .cnt { height: 16px; }
+
+/* inline SVG icons (backpack, GitHub) take the size and colour of a glyph */
+.i svg { width: 1em; height: 1em; display: block; }
+
+/* the selected item: a lighter surface and a straight accent bar (no bracket along the rounded corner) */
+.n.on, .kitnav.on { background: var(--btn); color: var(--fg); font-weight: 600; }
+.n.on .i, .n.on .cnt { color: var(--acc-text); }
+.n.on .badge { background: var(--acc-soft); color: var(--acc-text); }
+.n.on .badge.warn { background: var(--warn-bg); color: var(--warn); }
+.n.on::before { display: block; content: ""; position: absolute; left: 0; top: 9px; bottom: 9px; height: auto; width: 3px; border-radius: 2px; background: var(--acc); }
+.r.on, .fly .it.on, .pal .it.on { box-shadow: none !important; background: var(--btn); }
+.r.on::before, .fly .it.on::before, .pal .it.on::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: var(--acc); }
+.fly .it, .pal .it { position: relative; }
+
+/* site icons of links: many are black, so in the dark theme they sit on a light tile */
+:root:not([data-theme="light"]) .ic.pic.fav { background: #e9e6df; }
+
+/* status dots in filter chips keep their distance from the label */
+.fchip .sdot { margin-right: 7px; }
+
+/* «My kit»: two short switches and the zip at the top, the state in one line */
+.kitbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.tgl { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 8px; border-radius: 6px; background: var(--btn); color: var(--fg); font-size: 12.5px; }
+.tgl:hover { background: var(--btn-h); }
+.sw.sm { width: 28px; height: 16px; border-radius: 8px; pointer-events: none; }
+.sw.sm::after { left: 2px; top: 2px; width: 10px; height: 10px; }
+.sw.sm.on::after { transform: translateX(12px); }
+
+/* cards of a row as tall as each other */
+.grid2.eq { align-items: stretch; }
+.grid2.eq > .card { display: flex; flex-direction: column; }
+.grid2.eq .fl { flex: 1; justify-content: space-between; }
+.bkw.line { justify-content: flex-start; margin: 0 0 4px 48px; padding: 8px 12px; border-radius: 8px; background: var(--btn); }
+.bkw.line .mono { margin-left: auto; }
+
+/* «About» */
+.about { display: flex; flex-direction: column; gap: 4px; }
+.about .ahd { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 8px; background: var(--card); }
+.about .ahd .mark { width: 44px; height: 44px; border-radius: 11px; }
+.about .ahd .mark svg { width: 26px; height: 26px; }
+.about .ahd .tx { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.about .ahd b { font-size: 17px; }
+.lrow { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; padding: 10px 16px; border-radius: 8px; background: var(--card); color: var(--fg); text-align: left; font: inherit; }
+button.lrow { cursor: pointer; }
+button.lrow:hover { background: var(--btn); }
+.lrow .li { width: 32px; height: 32px; border-radius: 8px; background: var(--btn); display: grid; place-items: center; flex: none; color: var(--acc-text); }
+.lrow .li svg { width: 17px; height: 17px; }
+.lrow .li .i { font-size: 15px; vertical-align: 0; }
+.lrow .tx { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.lrow .tx .m { font-size: 12px; }
+.lrow .path2 { overflow-wrap: anywhere; }
+.lrow > .i { color: var(--mu); font-size: 13px; }
+.lrow .btn { flex: none; }
+
+/* the dashboard's card of this PC */
+.sys { margin-bottom: 8px; }
+.sgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px 18px; margin-top: 12px; }
+.sf { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 8px 12px; border-radius: 8px; background: var(--layer); }
+.sf .k { font-size: 10.5px; letter-spacing: .06em; color: var(--mu); }
+.sf .v { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sf .m { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sf .pbar { margin-top: 6px; }
+.sf .pbar i, .vol .pbar i { background: var(--acc); }
+.vols { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin-top: 8px; }
+.vol { display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 6px 10px; border-radius: 6px; background: var(--layer); }
+.vol .vh { display: flex; align-items: baseline; gap: 6px; min-width: 0; font-size: 12px; }
+.vol .vl { font-weight: 600; }
+.vol .vn { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--mu); }
+.vol .vp { font-size: 11.5px; }
+.vol .pbar { margin-top: 0; }
+.vol .vf { font-size: 11px; white-space: nowrap; }
+.sf .pbar + .m { margin-top: 2px; }
+@container (max-width: 760px) { .vol { grid-template-columns: 26px minmax(0, 1fr) auto; } .vol .pbar { display: none; } }
+.kitcard .pbar { background: var(--btn-h); } .kitcard .pbar i { background: var(--acc); }
+
+/* «For PC» */
+.r.wg { cursor: default; }
+.hwc { display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px; }
+.hwc h2 { margin-bottom: 6px; }
+.hwr { display: flex; align-items: center; gap: 14px; padding: 8px 12px; border-radius: 8px; background: var(--layer); }
+.hwr .li { width: 32px; height: 32px; border-radius: 8px; background: var(--btn); display: grid; place-items: center; flex: none; color: var(--acc-text); }
+.hwr .li .i { font-size: 15px; vertical-align: 0; }
+.hwr .tx { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.hwr .tx .k { font-size: 10.5px; letter-spacing: .06em; color: var(--mu); text-transform: uppercase; }
+.hwr .tx b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hwr .tx .m { font-size: 12px; }
+.hwr .btn { flex: none; }
+
+/* 1.2: the house and box glyphs fill more of their em box than the others */
+.n[data-view="home"] .i, .n[data-view="all"] .i { font-size: 13px; width: 15px; text-align: center; }
+.kpill { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 13px; background: var(--acc-soft); color: var(--acc-text); font: 600 12.5px var(--mono); line-height: 1; white-space: nowrap; }
+.kpill.ok { background: var(--ok-bg, var(--acc-soft)); color: var(--ok); }
+.kpill .i { font-size: 11px; vertical-align: 0; }
+/* the row's buttons: a little taller than the small ones elsewhere */
+.r .acts2 .btn.sm { height: 30px; padding: 0 11px; }
+/* 1.2: «Find» tabs as real tabs; the dashboard copies values and links the makers' driver pages */
+.hubtabs button { height: 36px; padding: 0 16px; font-size: 13.5px; }
+.hubtabs button .i { font-size: 16px; }
+.hubtabs button .i svg { width: 16px; height: 16px; }
+.cp { cursor: copy; }
+.cp:hover { text-decoration: underline dotted; text-underline-offset: 3px; }
+.sf .k { display: flex; align-items: center; gap: 8px; }
+.sf .k > span:first-child { flex: 1; min-width: 0; }
+.sl { font: 600 11px var(--font, inherit); letter-spacing: 0; text-transform: none; color: var(--acc-text); cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+.sl .i { font-size: 10px; vertical-align: 0; }
+.sl:hover { text-decoration: underline; }
+.sers { margin-top: 8px; }
+.serl { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 4px 12px; margin-top: 6px; }
+.ser { display: flex; gap: 10px; align-items: baseline; padding: 5px 10px; border-radius: 6px; background: var(--layer); min-width: 0; }
+.ser .m { flex: none; max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+.ser .mono { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gt .mono { margin-left: 2px; }
+/* 1.3: the dashboard fills the window with three columns; the kit card is as tall as its icons */
+.page.dash .sys .sgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.page.dash .vols { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.vol .vd { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vol .vk { font-size: 11px; color: var(--mu); }
+.kc .kicons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.kc .ki.off { opacity: .35; filter: grayscale(1); }
+.kc .kpill .i { font-size: 11px; }
+.ic.sm { width: 28px; height: 28px; border-radius: 6px; font-size: 12px; }
+/* apps as cards: a grid of tiles (icon and name, two lines of description, state, buttons) */
+.list.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+.list.cards > .r { display: grid; grid-template-columns: 38px minmax(0, 1fr); grid-template-areas: "ic tx" "meta meta" "acts acts"; align-items: start; gap: 10px 12px; padding: 14px; min-height: 148px; border-radius: 8px !important; }
+.list.cards > .r > .ic { grid-area: ic; }
+.list.cards > .r > .tx { grid-area: tx; }
+.list.cards > .r .ds { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+.list.cards > .r > .meta { grid-area: meta; text-align: left; white-space: normal; align-self: end; }
+.list.cards > .r > .acts2 { grid-area: acts; flex-wrap: wrap; justify-content: flex-start; min-height: 0; }
+.list.cards > .r > .acts2:empty { display: none; }
+.list.cards > .r .bar { left: 14px; right: 14px; bottom: 6px; }
+.list.cards > .gt, .list.cards > .nothing, .list.cards > .btn.more, .list.cards > .info, .list.cards > .empty { grid-column: 1 / -1; }
+.list.cards > .r .meta br { display: none; }
+.list.cards > .r .meta .m { display: block; margin-top: 2px; }
+.gt.sub { padding: 6px 4px 2px 16px; font-size: 11.5px; }
+.r.wg[data-wg], .r.wg[data-open] { cursor: pointer; }
+.pre { white-space: pre-wrap; line-height: 1.55; font-size: 13px; }
+/* the library's filters stay on top while the list scrolls */
+.page.wide > .toolbar { position: sticky; top: -20px; z-index: 5; margin: -20px -28px 12px; padding: 14px 28px 10px; background: var(--layer); }
+/* 1.5: pages as wide as the window; one size for buttons and filters; the kit's mark; themes */
+.page, .page.narrow, .page.set { max-width: none; }
+.toolbar .fchip, .page .filters .fchip, .tgl, .phead .btn, .lhead .btn, .kitbar .btn, .acts .btn, .ahead .row > .btn, .ahead .split .btn { height: 36px; padding: 0 14px; font-size: 13.5px; border-radius: 6px; }
+.toolbar .fchip .i, .page .filters .fchip .i, .phead .btn .i, .lhead .btn .i, .kitbar .btn .i { font-size: 15px; }
+.toolbar .btn.ico, .lhead .btn.ico, .phead .btn.ico, .acts .btn.ico { width: 36px; height: 36px; padding: 0; }
+.toolbar .fchip .i { color: var(--mu); }
+.r .acts2 .btn.sm.ico { width: 30px; height: 30px; }
+.kicon { position: relative; display: inline-flex; }
+.kicon .kb { position: absolute; right: -5px; bottom: -4px; width: 11px; height: 11px; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--card); }
+.kicon .kb .i { font-size: 7px; vertical-align: 0; font-weight: 700; }
+.kitt { color: var(--mu2); }
+.kitt.on { color: var(--fg); background: var(--btn); }
+.kitbtn.on { color: var(--fg); }
+.gkit { display: inline-flex; color: var(--mu); margin-left: 4px; }
+.gkit .i { font-size: 12px; }
+.pill.gkp { display: inline-flex; align-items: center; gap: 6px; align-self: center; }
+.okc { display: inline-flex; align-items: center; gap: 6px; color: var(--ok); font-size: 12.5px; white-space: nowrap; }
+.okc .i { font-size: 12px; vertical-align: 0; }
+.loc { font-size: 11px; color: var(--acc-text); display: flex; align-items: center; gap: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.btn.xs { height: 18px; width: 18px; padding: 0; }
+.btn.xs .i { font-size: 9px; }
+.cancelb { color: var(--err); }
+.chk { margin-top: 8px; gap: 12px; align-items: center; }
+.chk .btn { height: 36px; padding: 0 16px; font-size: 13.5px; }
+.chk .sub { margin: 0; }
+.looks { display: flex; gap: 8px; flex-wrap: wrap; }
+.look { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px; border-radius: 8px; border: 1px solid var(--stroke); background: var(--card); font-size: 12px; color: var(--mu); }
+.look.on { border-color: var(--acc); color: var(--fg); }
+.look .sw3 { position: relative; display: block; width: 76px; height: 46px; border-radius: 6px; border: 1px solid var(--stroke); overflow: hidden; }
+.look .sw3 i { position: absolute; left: 8px; top: 8px; width: 40px; height: 14px; border-radius: 3px; border: 1px solid; }
+.look .sw3 i + i { top: 26px; width: 26px; height: 12px; }
+.look .sw3 b { position: absolute; right: 8px; bottom: 8px; width: 14px; height: 14px; border-radius: 50%; }
+.gkit .kicon .kb { width: 8px; height: 8px; right: -3px; bottom: -2px; box-shadow: 0 0 0 1.5px var(--base); }
+.gkit .kicon .kb .i { font-size: 5px; }
+.tw.steamfix { gap: 12px; }
+.tw.steamfix .btn { height: 36px; padding: 0 14px; }
+/* 1.5: serials blurred in their cards; disks in the same grid; the kit mark turns into a red cross on hover */
+.ser1 { display: inline-flex; align-items: center; gap: 6px; min-width: 0; height: 18px; font-family: var(--mono); font-size: 11.5px; }
+.ser1 .i { font-size: 11px; vertical-align: 0; color: var(--mu); flex: none; }
+.ser1 .sv { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ser1.blur .sv { filter: blur(5px); user-select: none; }
+.sgrid .vol { display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 8px 12px; border-radius: 8px; background: var(--layer); }
+.kitt, .kitbtn { position: relative; }
+/* hovering a kit mark that is on: a red cross takes the icon's own place */
+.kicon .kxx { position: absolute; inset: -2px; display: none; place-items: center; color: var(--err); }
+.kicon .kxx .i { font-size: 14px; vertical-align: 0; }
+.kitt.on:hover .kicon > .i, .kitt.on:hover .kicon .kb, .kitbtn.on:hover .kicon > .i, .kitbtn.on:hover .kicon .kb { visibility: hidden; }
+.kitt.on:hover .kicon .kxx, .kitbtn.on:hover .kicon .kxx { display: grid; }
+.gmark { display: inline-grid; place-items: center; width: 16px; flex: none; }
+.gmark .i { font-size: 14px; vertical-align: 0; }
+.lhead .gmark .i { font-size: 18px; }
+.colors .mono { background: repeating-linear-gradient(45deg, var(--btn) 0 4px, var(--btn-h) 4px 8px) !important; }
+.gicons { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; margin-top: 12px; }
+.gicons button { height: 34px; border-radius: 6px; border: 1px solid var(--stroke); background: var(--card); display: grid; place-items: center; color: var(--fg); }
+.gicons button.on { border-color: var(--acc); background: var(--acc-soft); }
+.gicons .sq { width: 14px; height: 14px; border-radius: 3px; background: currentColor; }
+.about { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.about > :last-child { grid-column: 1 / -1; }
+.dgrid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+@container (min-width: 1400px) { .dgrid { grid-template-columns: repeat(8, minmax(0, 1fr)) !important; } }
+.dfld .dl .i { font-size: 12px; vertical-align: -1px; margin-right: 5px; color: var(--mu); }
+.page .filters .fchip .i { font-size: 13px; }
+.tw.tool .btn, .tw.su .sw { flex: none; }
+.tw.su .d { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* 1.6: «My kit» as cards */
+.kgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 8px; margin-top: 10px; align-items: start; }
+.kcard h2 { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 8px; }
+.kcard h2 .grow { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kcard h2 > .i { color: var(--acc-text); }
+.krows { display: flex; flex-direction: column; gap: 2px; max-height: 360px; overflow-y: auto; }
+.krow { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 3px 6px; border-radius: 6px; }
+.krow[data-open] { cursor: pointer; }
+.krow:hover { background: var(--hover); }
+.krow .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.krow .m { font-size: 12px; white-space: nowrap; }
+.krow .kti { width: 28px; text-align: center; color: var(--mu); }
+.kx { width: 26px; height: 26px; padding: 0; color: var(--mu); visibility: hidden; }
+.krow:hover .kx, .kcard h2 .kx { visibility: visible; }
+.kx:hover { color: var(--err); }
+.kempty { padding: 10px 6px; font-size: 12.5px; }
+/* the kit: big cards across the page, their rows in columns */
+.kwide { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.kcard.wide .krows { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 2px 12px; max-height: none; overflow: visible; }
+.krows { max-height: none; overflow: visible; }
+.kc .kicons { gap: 5px; }
+.pcats { margin: 4px 0 4px; flex-wrap: wrap; }
+.page .filters .fchip { display: inline-flex; align-items: center; gap: 6px; }
+/* the kit as sections of rows */
+.ksect { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.ksect > .i, .ksect .gmark .i { font-size: 13px; color: var(--acc-text); text-transform: none; }
+.ksect .btn.ico { width: 28px; height: 28px; }
+.r.tw-r .ic { background: var(--btn); color: var(--mu); }
+/* the overview's kit: ready to reinstall Windows or what is in the way */
+.kready { cursor: default; }
+.kr-head { display: flex; align-items: center; gap: 10px; margin: 12px 0 8px; font-size: 16px; }
+.kr-head .i { font-size: 18px; vertical-align: 0; }
+.kr-head.ok { color: var(--ok); }
+.kr-head.warn { color: var(--warn); }
+.kr-head b { color: var(--fg); }
+.kr-list { display: flex; flex-direction: column; gap: 2px; }
+.kr-li { display: flex; align-items: center; gap: 10px; min-height: 32px; font-size: 13px; }
+.kr-li > .i { font-size: 13px; vertical-align: 0; flex: none; width: 16px; text-align: center; }
+.kr-li.ok > .i { color: var(--ok); }
+.kr-li.warn > .i { color: var(--warn); }
+.kr-li.bad > .i { color: var(--err); }
+.kr-li .btn { flex: none; }
+.kready .kicons { margin-top: 12px; }
+.kready .ki { cursor: pointer; }
+/* 1.0 (rebuild): split buttons as one; menus with real marks; the kit's folding sections; a red cross badge */
+.split { display: inline-flex; gap: 0; border-radius: 6px; overflow: hidden; }
+.split .btn, .ahead .split .btn, .r .acts2 .split .btn { border-radius: 0 !important; margin: 0; }
+.split .btn + .btn { border-left: 1px solid rgb(0 0 0 / .25); width: 30px; padding: 0; justify-content: center; }
+.ahead .split .btn + .btn { width: 36px; }
+.menu button .kicon, .menu button .ic, .menu button .gmark { flex: none; }
+.ic.xs { width: 20px; height: 20px; border-radius: 5px; font-size: 10px; }
+.kicon .kb.off { background: var(--err); }
+.ksect { cursor: pointer; user-select: none; }
+.ksect .chev { font-size: 10px; transition: transform .12s; }
+.ksect .chev.fold { transform: rotate(-90deg); }
+.toolbar.kitf { margin-top: 14px; }
+.fsep { width: 1px; height: 22px; background: var(--stroke); margin: 0 4px; align-self: center; }
+.btn.inlib { color: var(--acc-text); }
+.n[data-group] { cursor: pointer; }
+.n.drop { outline: 1px dashed var(--acc); outline-offset: -2px; }
+/* filters that stay on top while the page scrolls */
+.page .pin { position: sticky; top: -20px; z-index: 5; margin-left: -28px; margin-right: -28px; padding: 10px 28px; background: var(--layer); }
+.toolbar.kitf.pin { margin-top: 6px; }
+.grid2.eq > .kitcard .kicons { margin-top: auto; padding-top: 12px; }
+.ghost .dot { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+.ghost .i { color: var(--acc-text); font-size: 14px; }
+/* the group page: its share of the kit and the group's own switch */
+.lhead .gkn { font-size: 12.5px; white-space: nowrap; }
+.lhead .tgl { height: 30px; }
+/* a group moved with the mouse */
+.n.gmove { background: var(--btn); box-shadow: 0 0 0 1px var(--stroke2), var(--shadow); z-index: 2; cursor: grabbing; }
+body.gmoving, body.gmoving * { cursor: grabbing !important; user-select: none; }
