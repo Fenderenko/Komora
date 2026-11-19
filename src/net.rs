@@ -168,6 +168,13 @@ pub fn get(url: &str, headers: &[(&str, &str)], max: usize) -> Result<Response, 
     Ok(Response { status: r.status, etag, body, total })
 }
 
+/// (any thread; blocks) Size and Last-Modified of a file by a HEAD request as a browser asks (redirects
+/// followed; 0 and "" — not told).
+pub fn head(url: &str) -> (u64, String) {
+    let Some(r) = open_as("HEAD", url, &[], &[], BROWSER).ok().filter(|r| r.status == 200) else { return (0, String::new()) };
+    (r.header("Content-Length").and_then(|v| v.trim().parse().ok()).unwrap_or(0), r.header("Last-Modified").unwrap_or_default())
+}
+
 /// (any thread; blocks) The size of a file by a HEAD request (redirects followed; 0 — not told).
 pub fn content_length(url: &str) -> u64 {
     open_with("HEAD", url, &[], &[]).ok().filter(|r| r.status == 200).and_then(|r| r.header("Content-Length")).and_then(|v| v.trim().parse().ok()).unwrap_or(0)
@@ -213,7 +220,11 @@ pub fn github_send(method: &str, path: &str, accept: &str, etag: &str, body: &[u
 /// `progress` gets (bytes so far, total or 0). At most `max` bytes.
 /// `cancel` is asked between chunks: true stops the download (Err "cancelled") and removes the part.
 pub fn download(url: &str, dest: &Path, max: u64, mut progress: impl FnMut(u64, u64), cancel: &dyn Fn() -> bool) -> Result<(), String> {
-    let r = open(url, &[("Accept", "application/octet-stream")])?;
+    let mut r = open(url, &[("Accept", "application/octet-stream")])?;
+    // a site's own download (a download page) may turn away an unknown client: asked again as a browser
+    if r.status == 403 {
+        r = open_as("GET", url, &[], &[], BROWSER)?;
+    }
     if r.status != 200 {
         return Err(format!("HTTP {}", r.status));
     }

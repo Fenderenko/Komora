@@ -52,6 +52,23 @@ pub fn set(on: bool) {
     }
 }
 
+/// Another start with Windows of this exe under its own name, with `arg` (the charge helper).
+pub fn set_named(name: &str, arg: &str, on: bool) {
+    let Some(k) = open(KEY_WRITE) else { return };
+    let n = util::wide(name);
+    unsafe {
+        if on {
+            let exe = std::env::current_exe().map(|p| p.display().to_string()).unwrap_or_default();
+            let s = util::wide(&format!("\"{exe}\" {arg}"));
+            let bytes = std::slice::from_raw_parts(s.as_ptr() as *const u8, s.len() * 2);
+            let _ = RegSetValueExW(k, windows::core::PCWSTR(n.as_ptr()), None, REG_SZ, Some(bytes));
+        } else {
+            let _ = RegDeleteValueW(k, windows::core::PCWSTR(n.as_ptr()));
+        }
+        let _ = RegCloseKey(k);
+    }
+}
+
 /// The exe was moved: the autostart entry follows it.
 pub fn sync_path() {
     if value().is_some_and(|v| v != command()) {

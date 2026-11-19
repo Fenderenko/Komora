@@ -69,7 +69,7 @@ pub struct App {
     /// "gh:owner/repo" for GitHub repositories, "ln:<n>" for other links
     pub id: String,
     pub url: String,
-    /// "github" or "link"
+    /// "github" (GitHub, GitLab, Codeberg), "winget" (Picks), "page" (a download page, page.rs) or "link"
     pub kind: String,
     pub owner: String,
     pub repo: String,
@@ -98,6 +98,8 @@ pub struct App {
     pub link_kind: String,
     /// links: preview image file in www/icons
     pub preview: String,
+    /// links: the Windows file the page links to ("" — none): offered as a download page
+    pub dl: String,
     /// links: channel or author; shop or site name
     pub author: String,
     pub site: String,
@@ -221,8 +223,17 @@ impl App {
         if !self.pin.is_empty() || rel.tag.is_empty() || rel.tag == self.skip {
             return None;
         }
+        // a download page's version may be the file's date: it says nothing of a version found on the PC
+        if self.kind == "page" && inst.tag.is_empty() {
+            return None;
+        }
         let cur = if inst.tag.is_empty() { &inst.version } else { &inst.tag };
         if cur.is_empty() || inst.tag == rel.tag {
+            return None;
+        }
+        // found on the PC (not installed by Komora): a version counted another way than the releases is no
+        // reason to offer an update
+        if inst.tag.is_empty() && !ver::same_scheme(&rel.tag, cur) {
             return None;
         }
         ver::newer(&rel.tag, cur).then_some(rel)

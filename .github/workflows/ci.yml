@@ -44,7 +44,7 @@ jobs:
           if ($cv -ne $v) { throw "tag $v, Cargo.toml $cv" }
           New-Item -ItemType Directory pack | Out-Null
           Copy-Item target/release/komora.exe pack/Komora.exe
-          Copy-Item LICENSE, README.md pack/
+          Copy-Item LICENSE, README.md, THIRD_PARTY.md pack/
           Copy-Item web/fonts/OFL.txt pack/OFL-Geist.txt
           Compress-Archive -Path pack/* -DestinationPath "Komora-$v.zip"
           Copy-Item target/release/komora.exe "Komora-$v.exe"

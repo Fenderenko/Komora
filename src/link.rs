@@ -18,6 +18,8 @@ pub struct Page {
     pub site: String,
     pub price: f64,
     pub currency: String,
+    /// the Windows file the page links to that Komora would install ("" — none)
+    pub dl: String,
 }
 
 /// A price as the page writes it: "1 199,00", "1199.5", "₴1,199".
@@ -90,7 +92,7 @@ fn oembed(url: &str) -> Option<String> {
 }
 
 /// The value of attribute `name` in one tag ("<meta property=og:title content=…>").
-fn attr(tag: &str, name: &str) -> Option<String> {
+pub(crate) fn attr(tag: &str, name: &str) -> Option<String> {
     let low = tag.to_ascii_lowercase();
     let mut from = 0;
     while let Some(i) = low[from..].find(name) {
@@ -121,7 +123,7 @@ fn decode(s: &str) -> String {
 }
 
 /// Tags with this name ("meta", "link") in the head of the page.
-fn tags<'a>(html: &'a str, name: &str) -> Vec<&'a str> {
+pub(crate) fn tags<'a>(html: &'a str, name: &str) -> Vec<&'a str> {
     let low = html.to_ascii_lowercase();
     let open = format!("<{name}");
     let mut out = Vec::new();
@@ -219,6 +221,7 @@ pub fn parse(url: &str, html: &str) -> Page {
         }
     }
     p.icon = if best.1.is_empty() { absolute(url, "/favicon.ico") } else { absolute(url, &best.1) };
+    p.dl = crate::gh::pick(&crate::page::files(url, html), "auto").map(|(a, _)| a.name).unwrap_or_default();
     p
 }
 
@@ -232,7 +235,7 @@ pub fn fetch(url: &str) -> Result<Page, String> {
         let s = |k: &str| v.get(k).and_then(|x| x.as_str()).unwrap_or_default().to_string();
         let host = net::split_url(url).map(|h| h.0).unwrap_or_default();
         let favicon = if host.contains("vimeo") { "https://vimeo.com/favicon.ico" } else { "https://www.youtube.com/favicon.ico" };
-        return Ok(Page { title: s("title"), desc: String::new(), icon: favicon.into(), image: s("thumbnail_url"), kind: "video".into(), author: s("author_name"), site: s("provider_name"), price: 0.0, currency: String::new() });
+        return Ok(Page { title: s("title"), desc: String::new(), icon: favicon.into(), image: s("thumbnail_url"), kind: "video".into(), author: s("author_name"), site: s("provider_name"), ..Default::default() });
     }
     let r = net::get_page(url, &[("Accept", "text/html"), ("Accept-Language", "uk,en;q=0.8")], 3 << 20).or_else(|e| if e == "answer too large" { Err("page too large".into()) } else { Err(e) })?;
     if r.status != 200 {

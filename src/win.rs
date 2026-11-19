@@ -524,7 +524,14 @@ fn save_pos(hwnd: HWND) {
     }
 }
 
-/// Hides the window; the app keeps working in the tray.
+/// The window is on screen.
+pub fn shown() -> bool {
+    let hwnd = win(|f| f.hwnd);
+    !hwnd.is_invalid() && unsafe { IsWindowVisible(hwnd) }.as_bool()
+}
+
+/// Hides the window; the app keeps working in the tray. A minute later the page and its WebView2
+/// processes (~200 MB) are closed too (main.rs TIMER_FREE); the next open builds them again.
 pub fn hide() {
     let (hwnd, ctl) = win(|f| (f.hwnd, f.ctl.clone()));
     if hwnd.is_invalid() {
@@ -536,6 +543,7 @@ pub fn hide() {
         if let Some(ctl) = ctl {
             let _ = ctl.SetIsVisible(false);
         }
+        let _ = windows::Win32::UI::WindowsAndMessaging::SetTimer(Some(crate::util::main_hwnd()), crate::TIMER_FREE, 60_000, None);
     }
 }
 

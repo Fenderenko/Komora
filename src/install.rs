@@ -13,7 +13,7 @@ use windows::{
         Foundation::{CloseHandle, HANDLE},
         Security::Cryptography::{BCRYPT_HASH_HANDLE, BCRYPT_SHA256_ALG_HANDLE, BCryptCreateHash, BCryptDestroyHash, BCryptFinishHash, BCryptHashData},
         System::{
-            Com::{CLSCTX_INPROC_SERVER, COINIT_APARTMENTTHREADED, CoCreateInstance, CoInitializeEx, IPersistFile},
+            Com::{CLSCTX_INPROC_SERVER, COINIT_APARTMENTTHREADED, CoCreateInstance, CoInitializeEx, IPersistFile, STGM_READ},
             Registry::{HKEY, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, KEY_READ, KEY_WOW64_32KEY, KEY_WOW64_64KEY, REG_SAM_FLAGS, RegCloseKey, RegEnumKeyExW, RegOpenKeyExW, RegQueryValueExW},
             Threading::{GetExitCodeProcess, WaitForSingleObject},
         },
@@ -126,15 +126,56 @@ fn icon_exe(icon: &str) -> String {
 /// The installed program that matches the app (by repository name or app name).
 pub fn find(app: &App, all: &[Found]) -> Option<Found> {
     let keys: Vec<String> = [norm(&app.repo), norm(&app.name)].into_iter().filter(|k| k.len() >= 3).collect();
-    let mut best: Option<(u8, &Found)> = None;
+    // (exact name, then fewest extra words): "SimHub version 9.13.5" before "SimHub USBD480 Screen driver"
+    let mut best: Option<(u8, usize, &Found)> = None;
     for f in all {
         let n = norm(&f.name);
-        let s = keys.iter().map(|k| if n == *k { 3 } else if n.starts_with(k.as_str()) { 2 } else { 0 }).max().unwrap_or(0);
-        if s > 0 && best.is_none_or(|b| s > b.0) {
-            best = Some((s, f));
+        let Some((s, extra)) = keys
+            .iter()
+            .filter_map(|k| {
+                if n == *k {
+                    Some((3, 0))
+                } else if let Some(rest) = n.strip_prefix(k.as_str()) {
+                    let words = rest.replace("version", "").replace("x64", "").replace("x86", "");
+                    Some((2, words.chars().filter(|c| !c.is_ascii_digit()).count()))
+                } else {
+                    None
+                }
+            })
+            .max_by_key(|(s, e)| (*s, std::cmp::Reverse(*e)))
+        else {
+            continue;
+        };
+        if best.is_none_or(|b| (s, std::cmp::Reverse(extra)) > (b.0, std::cmp::Reverse(b.1))) {
+            best = Some((s, extra, f));
         }
     }
-    best.map(|b| b.1.clone())
+    best.map(|b| b.2.clone())
+}
+
+/// A version as a program states it: placeholders ("1.0.0.0", "0.0.0.0") say nothing.
+pub fn real_version(v: String) -> String {
+    let v = v.trim().to_string();
+    if ["1.0.0.0", "0.0.0.0", "1.0.0", "0.0.0", "1.0", "0.0", "1", "0"].contains(&v.as_str()) { String::new() } else { v }
+}
+
+/// The version of a program in the Windows list, checked against its own files: the list may keep a
+/// placeholder or the version a setup wrote before the app updated itself; the newest real one wins.
+pub fn best_version(f: &Found) -> String {
+    let dir = if f.dir.is_empty() { Path::new(&f.exe).parent().map(|p| p.display().to_string()).unwrap_or_default() } else { f.dir.clone() };
+    let own = if f.exe.is_empty() || !Path::new(&f.exe).is_file() { String::new() } else { folder_version(Path::new(&dir), &f.exe) };
+    ver::max(real_version(f.version.clone()), own)
+}
+
+/// The version of an app in a folder: its exe's own, else its Inno Setup uninstaller's (it carries the app's
+/// version, like SimHub's unins000.exe while SimHubWPF.exe says 1.0.0.0); "" — unknown.
+pub fn folder_version(dir: &Path, exe: &str) -> String {
+    let v = real_version(crate::winget::file_version(exe));
+    if !v.is_empty() {
+        return v;
+    }
+    let un = dir.join("unins000.exe");
+    if un.is_file() { real_version(crate::winget::file_version(&un.display().to_string())) } else { String::new() }
 }
 
 // ---------------------------------------------------------------- checks of the downloaded file
@@ -345,6 +386,73 @@ fn recycle(p: &Path) -> bool {
     unsafe { SHFileOperationW(&mut op) == 0 }
 }
 
+/// Programs started from shortcuts of the Start menu and the desktop: apps without an entry in the Windows
+/// list (portable ones, unpacked by hand). Name — the shortcut's; the version is left to the caller (reading
+/// it from every exe takes seconds).
+pub fn shortcut_programs() -> Vec<Found> {
+    let env = |k: &str| PathBuf::from(std::env::var(k).unwrap_or_default());
+    let roots = [
+        env("APPDATA").join(r"Microsoft\Windows\Start Menu\Programs"),
+        env("ProgramData").join(r"Microsoft\Windows\Start Menu\Programs"),
+        env("USERPROFILE").join("Desktop"),
+        env("PUBLIC").join("Desktop"),
+    ];
+    let mut out: Vec<Found> = Vec::new();
+    unsafe {
+        let _ = CoInitializeEx(None, COINIT_APARTMENTTHREADED);
+    }
+    let Ok(link) = (unsafe { CoCreateInstance::<_, IShellLinkW>(&ShellLink, None, CLSCTX_INPROC_SERVER) }) else { return out };
+    let Ok(pf) = link.cast::<IPersistFile>() else { return out };
+    let mut stack: Vec<(PathBuf, u32)> = roots.into_iter().map(|r| (r, 0)).collect();
+    while let Some((d, depth)) = stack.pop() {
+        let Ok(rd) = std::fs::read_dir(&d) else { continue };
+        for e in rd.flatten() {
+            let p = e.path();
+            if p.is_dir() {
+                if depth < 2 {
+                    stack.push((p, depth + 1));
+                }
+                continue;
+            }
+            if !p.extension().is_some_and(|x| x.eq_ignore_ascii_case("lnk")) {
+                continue;
+            }
+            let mut buf = [0u16; 520];
+            let ok = unsafe { pf.Load(&HSTRING::from(p.as_os_str()), STGM_READ).is_ok() && link.GetPath(&mut buf, std::ptr::null_mut(), 0).is_ok() };
+            let end = buf.iter().position(|&c| c == 0).unwrap_or(0);
+            let exe = String::from_utf16_lossy(&buf[..end]);
+            if !ok || !exe.to_ascii_lowercase().ends_with(".exe") || !Path::new(&exe).is_file() {
+                continue;
+            }
+            let stem = norm(&Path::new(&exe).file_stem().unwrap_or_default().to_string_lossy());
+            if ["unins", "uninstall", "update", "updater", "setup", "install", "helper"].iter().any(|w| stem.contains(w)) || out.iter().any(|f| f.exe.eq_ignore_ascii_case(&exe)) {
+                continue;
+            }
+            out.push(Found {
+                name: p.file_stem().unwrap_or_default().to_string_lossy().into_owned(),
+                version: String::new(),
+                dir: Path::new(&exe).parent().map(|x| x.display().to_string()).unwrap_or_default(),
+                exe,
+                uninstall: String::new(),
+            });
+        }
+    }
+    out
+}
+
+/// An app the user showed in its folder: its exe and version there (Err — no program in the folder).
+/// A setup installed it there when the Windows list has an entry for that folder: then its version is the
+/// list's and updates run setups; otherwise it is a portable app updated in that folder.
+pub fn from_folder(app: &App, dir: &Path) -> Result<Installed, String> {
+    let exe = main_exe(dir, app).ok_or("no program (.exe) in the folder")?;
+    let s = exe.display().to_string();
+    let same = |a: &str| a.trim().trim_end_matches('\\').eq_ignore_ascii_case(dir.display().to_string().trim_end_matches('\\'));
+    if let Some(f) = installed_programs().into_iter().find(|f| !f.dir.is_empty() && same(&f.dir)) {
+        return Ok(Installed { version: f.version, method: "found".into(), dir: f.dir, exe: s, uninstall: f.uninstall, at: util::unix(), ..Default::default() });
+    }
+    Ok(Installed { version: folder_version(dir, &s), method: "portable".into(), dir: dir.display().to_string(), exe: s, at: util::unix(), ..Default::default() })
+}
+
 /// The app's exe in an unpacked folder: by name, else the largest exe (helpers and uninstallers skipped).
 pub fn main_exe(dir: &Path, app: &App) -> Option<PathBuf> {
     let keys: Vec<String> = [norm(&app.repo), norm(&app.name)].into_iter().filter(|k| !k.is_empty()).collect();
@@ -428,10 +536,24 @@ pub fn install(app: &App, asset: &Asset, kind: Kind, tag: &str, progress: Progre
         }
     }
     let kind = if kind == Kind::Exe && looks_like_setup(&file) { Kind::Setup } else { kind };
-    let res = match kind {
-        Kind::Zip | Kind::Exe => portable(app, &file, kind, tag, progress),
-        Kind::Msi | Kind::Setup | Kind::Msix => setup(app, &file, kind, tag, progress),
+    // an archive holding nothing but a setup (SimHub ships its setup zipped) is installed by that setup
+    let inner = if kind == Kind::Zip { setup_in_zip(&file) } else { None };
+    if let Some((f, _)) = &inner {
+        sig = crate::trust::check(f);
+        if sig.0 == "bad" {
+            let _ = std::fs::remove_dir_all(file.with_extension("in"));
+            let _ = std::fs::remove_file(&file);
+            return Err("the file's signature is broken: it was changed after signing".into());
+        }
+    }
+    let res = match (&inner, kind) {
+        (Some((f, k)), _) => setup(app, f, *k, tag, progress),
+        (None, Kind::Zip | Kind::Exe) => portable(app, &file, kind, tag, progress),
+        (None, Kind::Msi | Kind::Setup | Kind::Msix) => setup(app, &file, kind, tag, progress),
     };
+    if inner.is_some() {
+        let _ = std::fs::remove_dir_all(file.with_extension("in"));
+    }
     let kept = if res.is_ok() { keep_file(app, &file) } else { None };
     let _ = std::fs::remove_file(&file);
     res.map(|mut i| {
@@ -444,6 +566,35 @@ pub fn install(app: &App, asset: &Asset, kind: Kind, tag: &str, progress: Progre
         i.file = kept.unwrap_or_default();
         i
     })
+}
+
+fn tar_exe() -> PathBuf {
+    PathBuf::from(std::env::var("SystemRoot").unwrap_or_else(|_| r"C:\Windows".into())).join(r"System32\tar.exe")
+}
+
+/// The only program inside an archive when it is a setup (MSI, or an exe built by a setup tool), unpacked
+/// into "<archive>.in"; None — an ordinary portable archive (an exe that is the app itself stays one).
+fn setup_in_zip(zip: &Path) -> Option<(PathBuf, Kind)> {
+    let out = std::process::Command::new(tar_exe()).arg("-tf").arg(zip).creation_flags(CREATE_NO_WINDOW).output().ok().filter(|o| o.status.success())?;
+    let list = String::from_utf8_lossy(&out.stdout);
+    let progs: Vec<&str> = list.lines().map(str::trim).filter(|l| [".exe", ".msi"].iter().any(|e| l.to_ascii_lowercase().ends_with(e))).collect();
+    let [one] = progs.as_slice() else { return None };
+    let dir = zip.with_extension("in");
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).ok()?;
+    let ok = std::process::Command::new(tar_exe()).arg("-xf").arg(zip).arg("-C").arg(&dir).arg(one).creation_flags(CREATE_NO_WINDOW).status().is_ok_and(|s| s.success());
+    let f = dir.join(one.replace('/', "\\"));
+    let kind = if !ok || !f.is_file() {
+        None
+    } else if one.to_ascii_lowercase().ends_with(".msi") {
+        Some(Kind::Msi)
+    } else {
+        looks_like_setup(&f).then_some(Kind::Setup)
+    };
+    if kind.is_none() {
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+    Some((f, kind?))
 }
 
 /// Keeps the installed release file (one per app) for an upload to VirusTotal; its path.
@@ -494,6 +645,10 @@ fn apps_dir() -> PathBuf {
 
 /// The folder of a portable app.
 pub fn app_dir(app: &App) -> PathBuf {
+    // a portable app found or shown in its own folder is updated there
+    if let Some(i) = app.inst.as_ref().filter(|i| i.method == "portable" && !i.dir.is_empty()) {
+        return PathBuf::from(&i.dir);
+    }
     apps_dir().join(util::safe_name(&app.name))
 }
 
@@ -605,6 +760,59 @@ pub fn uninstall(app: &App) -> Result<bool, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// This PC's shortcuts: `cargo test -- --ignored live_shortcuts --nocapture`.
+    #[test]
+    #[ignore]
+    fn live_shortcuts() {
+        let t = std::time::Instant::now();
+        let all = shortcut_programs();
+        println!("{} programs in {:?}", all.len(), t.elapsed());
+        for f in all.iter().take(12) {
+            println!("{} | {} | {}", f.name, f.version, f.exe);
+        }
+    }
+    /// Where the files tell a newer version than the Windows list: `cargo test -- --ignored live_versions --nocapture`.
+    #[test]
+    #[ignore]
+    fn live_versions() {
+        for f in installed_programs() {
+            let b = best_version(&f);
+            if b != f.version {
+                println!("{} | list {} | now {}", f.name, f.version, b);
+            }
+        }
+    }
+
+    #[test]
+    fn finds_the_app_not_its_driver() {
+        let f = |n: &str, v: &str| Found { name: n.into(), version: v.into(), dir: String::new(), exe: String::new(), uninstall: String::new() };
+        let all = [f("SimHub USBD480 1.4.0.0 Screen driver", "0.1.10.1"), f("SimHub version 9.13.5", "9.13.5")];
+        let app = App { name: "SimHub".into(), repo: "SimHub".into(), ..Default::default() };
+        assert_eq!(find(&app, &all).unwrap().version, "9.13.5");
+    }
+
+    #[test]
+    fn zipped_setup() {
+        let dir = std::env::temp_dir().join(format!("komora-zs-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(dir.join("a")).unwrap();
+        std::fs::create_dir_all(dir.join("b")).unwrap();
+        std::fs::write(dir.join("a/ToolSetup_1.0.exe"), b"MZ....Inno Setup Setup Data....").unwrap();
+        std::fs::write(dir.join("b/Tool.exe"), b"MZ....plain app....").unwrap();
+        std::fs::write(dir.join("b/Tool.dll"), b"MZ").unwrap();
+        let zip = |name: &str, from: &str| {
+            let z = dir.join(name);
+            let ok = std::process::Command::new(tar_exe()).arg("-a").arg("-cf").arg(&z).arg("-C").arg(dir.join(from)).arg(".").status().unwrap().success();
+            assert!(ok);
+            z
+        };
+        let (setup, plain) = (zip("s.zip", "a"), zip("p.zip", "b"));
+        let got = setup_in_zip(&setup).map(|(f, k)| (f.file_name().unwrap().to_string_lossy().into_owned(), k));
+        assert_eq!(got, Some(("ToolSetup_1.0.exe".to_string(), Kind::Setup)));
+        assert!(setup_in_zip(&plain).is_none());
+        let _ = std::fs::remove_dir_all(&dir);
+    }
 
     /// What Windows lists as installed on this PC: cargo test -- --ignored live_programs --nocapture
     #[test]

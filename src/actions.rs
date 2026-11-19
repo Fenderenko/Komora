@@ -198,11 +198,12 @@ pub fn state_json() -> String {
         "steam": crate::steamicons::available(),
         "dataDir": util::data_dir().display().to_string(),
         "picks": picks,
+        "bt": crate::btbatt::json(),
         "cfg": {
             "theme": cfg.theme, "lang": cfg.lang, "langNow": cfg.lang(), "checkHours": cfg.check_hours,
             "hasToken": !config::token().is_empty(), "appsDir": cfg.apps_dir, "notify": cfg.notify, "autoBackup": cfg.auto_backup, "kitAutoUpdate": cfg.kit_auto_update, "kitAutoInstall": cfg.kit_auto_install, "autostart": autostart::enabled(),
             "syncDir": cfg.sync_dir, "syncGist": cfg.sync_gist, "syncDbx": cfg.sync_dbx, "hasDbx": !cfg.dbx_enc.is_empty(), "dbxAvail": crate::dropbox::available(), "ghLogin": cfg.gh_login,
-            "preAll": cfg.pre_all, "pcName": cfg.pc_name, "steamIcons": cfg.steam_icons, "kitNew": cfg.kit_new, "darkLook": cfg.dark_look, "lightLook": cfg.light_look, "setupDir": cfg.setup_dir, "setupShow": cfg.setup_show, "hasVt": !cfg.vt_key_enc.is_empty(),
+            "preAll": cfg.pre_all, "pcName": cfg.pc_name, "steamIcons": cfg.steam_icons, "kitNew": cfg.kit_new, "btTray": cfg.bt_tray, "btLow": cfg.bt_low, "darkLook": cfg.dark_look, "lightLook": cfg.light_look, "setupDir": cfg.setup_dir, "setupShow": cfg.setup_show, "hasVt": !cfg.vt_key_enc.is_empty(),
         },
         "sync": sync,
         "lib": lib,
@@ -278,6 +279,72 @@ pub fn on_page(v: &Value) {
         }
         "check" => spawn(|| check_all(true)),
         "refresh" => spawn(move || refresh(&id)),
+        "pageSource" => spawn(move || page_source(&id)),
+        "btScan" => crate::battery::reload(),
+        // programs of this PC winget can install: a list to bring into the library
+        "wgInstalled" => spawn(|| {
+            let r = crate::winget::installed_list();
+            let lib = library::get();
+            let items: Vec<Value> = r
+                .as_ref()
+                .map(|l| {
+                    l.iter()
+                        .map(|(id, name, ver, sys)| {
+                            let k = crate::winget::lib_id(id).to_lowercase();
+                            json!({ "id": id, "name": name, "ver": ver, "sys": sys, "inLib": lib.apps.iter().any(|a| a.id.to_lowercase() == k) })
+                        })
+                        .collect()
+                })
+                .unwrap_or_default();
+            event(json!({ "t": "wgList", "items": items, "err": r.err() }));
+        }),
+        "wgImport" => {
+            let kit = v.get("kit").and_then(Value::as_bool).unwrap_or(true);
+            let list: Vec<(String, String)> = v
+                .get("items")
+                .and_then(Value::as_array)
+                .map(|a| a.iter().filter_map(|x| Some((x.get("id")?.as_str()?.to_string(), x.get("name")?.as_str()?.trim().chars().take(100).collect::<String>()))).filter(|(id, _)| crate::winget::valid_id(id)).collect())
+                .unwrap_or_default();
+            let n = library::update(|l| {
+                let now = util::unix();
+                let mut n = 0;
+                for (pid, name) in &list {
+                    let lid = crate::winget::lib_id(pid);
+                    if l.apps.iter().any(|a| a.id.eq_ignore_ascii_case(&lid)) {
+                        continue;
+                    }
+                    l.removed.remove(&lid);
+                    l.apps.push(App { id: lid, kind: "winget".into(), repo: pid.clone(), name: if name.is_empty() { pid.clone() } else { name.clone() }, url: format!("https://winstall.app/apps/{pid}"), added: now, updated: now, kit, ..Default::default() });
+                    n += 1;
+                }
+                n
+            });
+            event(json!({ "t": "wgImported", "n": n }));
+            notify();
+            spawn(crate::winget::scan);
+        }
+        // a device in the tray or out of it
+        "btDev" => {
+            let on = v.get("on").and_then(Value::as_bool).unwrap_or(true);
+            config::update(|c| {
+                c.bt_off.retain(|x| *x != id);
+                if !on {
+                    c.bt_off.push(id.clone());
+                }
+            });
+            crate::battery::reload();
+            notify();
+        }
+        "pageToLink" => {
+            library::update_app(&id, |a| {
+                a.kind = "link".into();
+                a.latest = None;
+                a.etag.clear();
+                a.error.clear();
+                a.updated = util::unix();
+            });
+            notify();
+        }
         "install" if id.starts_with("wg:") => spawn(move || winget_install(vec![id.trim_start_matches("wg:").to_string()], String::new())),
         "install" => {
             let (asset, tag) = (str_of(v, "asset").to_string(), str_of(v, "tag").to_string());
@@ -888,6 +955,14 @@ fn set_cfg(key: &str, val: &Value) {
         "pcName" => config::update(|c| c.pc_name = s.trim().chars().take(60).collect()),
         "steamIcons" => config::update(|c| c.steam_icons = val.as_bool().unwrap_or(false)),
         "kitNew" => config::update(|c| c.kit_new = val.as_bool().unwrap_or(true)),
+        "btLow" => {
+            config::update(|c| c.bt_low = val.as_bool().unwrap_or(true));
+            crate::battery::reload();
+        }
+        "btTray" => {
+            config::update(|c| c.bt_tray = val.as_bool().unwrap_or(false));
+            spawn(crate::battery::sync);
+        }
         "darkLook" => config::update(|c| c.dark_look = s),
         "lightLook" => config::update(|c| c.light_look = s),
         "preAll" => {
@@ -912,6 +987,22 @@ fn pick_path(purpose: &str, id: &str) {
         "setupDir" => set_cfg("setupDir", &json!(p)),
         "setupDirApp" => {
             library::touch_app(id, |a| a.setup_dir = p.clone());
+            notify();
+        }
+        // the folder an app is already installed in (outside Komora)
+        "instDir" => {
+            let Some(app) = library::app(id) else { return };
+            match install::from_folder(&app, std::path::Path::new(&p)) {
+                Ok(inst) => {
+                    library::update_app(id, |a| {
+                        a.inst = Some(inst);
+                        a.want = false;
+                    });
+                    exe_icon(id);
+                    toast("Програму знайдено в теці", false);
+                }
+                Err(e) => toast(&e, true),
+            }
             notify();
         }
         "bkPath" => {
@@ -1081,7 +1172,7 @@ fn icon_stem(id: &str, src: &str) -> String {
 
 /// (worker) The icon of the installed exe (the truest one), when there is one.
 fn exe_icon(id: &str) {
-    let Some(app) = library::app(id).filter(|a| a.kind == "github" && icon_rank(&a.icon_src) < 3) else { return };
+    let Some(app) = library::app(id).filter(|a| (a.kind == "github" || a.kind == "page") && icon_rank(&a.icon_src) < 3) else { return };
     let Some(exe) = app.inst.as_ref().map(|i| std::path::PathBuf::from(&i.exe)).filter(|p| p.is_file()) else { return };
     if let Some(bytes) = crate::icon::from_exe(&exe) {
         let file = format!("{}.ico", icon_stem(id, "exe"));
@@ -1176,6 +1267,7 @@ fn link_meta(id: &str, url: &str) -> Result<(), String> {
         a.link_kind = if p.kind == "product" { "page".into() } else { p.kind.clone() };
         a.author = p.author.clone();
         a.site = p.site.clone();
+        a.dl = p.dl.clone();
         a.meta_at = util::unix();
         a.error.clear();
     });
@@ -1260,11 +1352,59 @@ fn add_link(url: &str, group: &str) {
     notify();
 }
 
+// ---------------------------------------------------------------- download pages
+
+/// (worker) A link becomes an app installed from its page: the Windows files the page links to are its
+/// releases (page.rs); the name is taken from the file ("SimHub.9.13.5.zip" → "SimHub").
+fn page_source(id: &str) {
+    let Some(app) = library::app(id).filter(|a| a.kind == "link") else { return };
+    set_busy(id, Some(("meta", -1.0)));
+    notify();
+    let res = crate::page::release(&app.url, "auto", "");
+    set_busy(id, None);
+    match res {
+        Ok(rel) if !rel.tag.is_empty() => {
+            let name = crate::page::name_of(&rel.name);
+            library::update_app(id, |a| {
+                a.kind = "page".into();
+                a.repo = name.clone();
+                if a.updated <= a.added || a.name.is_empty() {
+                    a.name = name.clone();
+                }
+                a.method = "auto".into();
+                a.want = true;
+                a.latest = Some(rel);
+                a.checked = util::unix();
+                a.error.clear();
+                a.updated = util::unix();
+            });
+            detect_all();
+        }
+        Ok(_) => toast("На сторінці немає файлу для Windows", true),
+        Err(e) => toast(&e, true),
+    }
+    notify();
+}
+
 // ---------------------------------------------------------------- checks
 
-/// (worker) The latest release of one GitHub app (conditional request).
+/// (worker) The latest release of one app of a repository (conditional request) or of a download page.
 fn check_one(id: &str) -> bool {
-    let Some(app) = library::app(id).filter(|a| a.kind == "github") else { return false };
+    let Some(app) = library::app(id).filter(|a| a.kind == "github" || a.kind == "page") else { return false };
+    if app.kind == "page" {
+        match crate::page::release(&app.url, &app.method, &app.asset_match) {
+            Ok(rel) => library::update_app(id, |a| {
+                a.checked = util::unix();
+                a.latest = (!rel.tag.is_empty()).then_some(rel);
+                a.error = if a.latest.is_none() { "no file for Windows on the page".into() } else { String::new() };
+            }),
+            Err(e) => {
+                library::update_app(id, |a| a.error = e);
+                return false;
+            }
+        }
+        return true;
+    }
     let pre = app.pre || config::get().pre_all;
     match gh::latest(&app.owner, &app.repo, if app.latest.is_some() { &app.etag } else { "" }, pre) {
         Ok(gh::Latest::Same) => library::update_app(id, |a| {
@@ -1294,9 +1434,44 @@ fn check_one(id: &str) -> bool {
 /// or removed by hand.
 fn detect_all() {
     let all = install::installed_programs();
+    // apps missing from the Windows list are looked for among the shortcuts (read only when one is missing)
+    let missing = library::get().apps.iter().any(|a| (a.kind == "github" || a.kind == "page") && a.id != crate::selfup::ID && a.inst.as_ref().is_none_or(|i| i.method == "found") && install::find(a, &all).is_none());
+    let links = if missing { install::shortcut_programs() } else { Vec::new() };
     library::update(|l| {
-        for a in l.apps.iter_mut().filter(|a| a.kind == "github" && a.id != crate::selfup::ID) {
-            let f = install::find(a, &all);
+        for a in l.apps.iter_mut().filter(|a| (a.kind == "github" || a.kind == "page") && a.id != crate::selfup::ID) {
+            // a portable app that updates itself: its exe tells the version
+            if let Some(i) = a.inst.as_mut().filter(|i| i.method == "portable" && !i.exe.is_empty()) {
+                if !std::path::Path::new(&i.dir).is_dir() {
+                    a.inst = None;
+                    continue;
+                }
+                // a folder a setup installed into (shown by hand): the Windows list knows it better
+                let same = |d: &str| d.trim().trim_end_matches('\\').eq_ignore_ascii_case(i.dir.trim_end_matches('\\'));
+                if let Some(f) = all.iter().find(|f| !f.dir.is_empty() && same(&f.dir)) {
+                    i.method = "found".into();
+                    i.version = install::best_version(f);
+                    i.tag.clear();
+                    i.uninstall = f.uninstall.clone();
+                    continue;
+                }
+                let v = install::folder_version(std::path::Path::new(&i.dir), &i.exe);
+                let cur = if i.tag.is_empty() { i.version.clone() } else { i.tag.clone() };
+                if !v.is_empty() && (cur.is_empty() || crate::ver::newer(&v, &cur)) {
+                    i.version = v;
+                    i.tag.clear();
+                }
+                continue;
+            }
+            let f = install::find(a, &all).map(|mut f| {
+                f.version = install::best_version(&f);
+                f
+            }).or_else(|| {
+                install::find(a, &links).map(|mut f| {
+                    // many exes keep a placeholder version: unknown is better than a false update
+                    f.version = install::folder_version(std::path::Path::new(&f.dir), &f.exe);
+                    f
+                })
+            });
             match (&mut a.inst, f) {
                 (None, Some(f)) => {
                     a.inst = Some(found_inst(f));
@@ -1368,7 +1543,7 @@ pub fn check_all(manual: bool) {
     detect_all();
     let lib = library::get();
     log.push(json!({ "tag": "ok", "key": "found", "n": lib.apps.iter().filter(|a| a.inst.is_some()).count() }));
-    let ids: Vec<String> = lib.apps.iter().filter(|a| a.kind == "github").map(|a| a.id.clone()).collect();
+    let ids: Vec<String> = lib.apps.iter().filter(|a| a.kind == "github" || a.kind == "page").map(|a| a.id.clone()).collect();
     let before: HashMap<String, String> = lib.apps.iter().filter_map(|a| Some((a.id.clone(), a.latest.as_ref()?.tag.clone()))).collect();
     let mut failed = 0;
     for (i, id) in ids.iter().enumerate() {
@@ -1488,7 +1663,7 @@ fn install_missing_kit() {
     if !config::get().kit_auto_install {
         return;
     }
-    let ids: Vec<String> = library::get().apps.iter().filter(|a| a.kit && (a.kind == "github" || a.kind == "winget") && a.inst.is_none() && a.id != crate::selfup::ID).map(|a| a.id.clone()).collect();
+    let ids: Vec<String> = library::get().apps.iter().filter(|a| a.kit && ["github", "winget", "page"].contains(&a.kind.as_str()) && a.inst.is_none() && a.id != crate::selfup::ID).map(|a| a.id.clone()).collect();
     for id in ids {
         if library::app(&id).is_some_and(|a| a.inst.is_none()) {
             install_app(&id, "", "");
@@ -1636,6 +1811,14 @@ fn refresh(id: &str) {
     if is_busy(id) {
         return;
     }
+    if app.kind == "page" {
+        set_busy(id, Some(("meta", -1.0)));
+        check_one(id);
+        exe_icon(id);
+        set_busy(id, None);
+        notify();
+        return;
+    }
     if app.kind == "link" {
         set_busy(id, Some(("site", -1.0)));
         link_refresh(id, &app.url);
@@ -1718,7 +1901,7 @@ fn install_app(id: &str, asset_name: &str, tag: &str) {
         }
         return;
     }
-    if is_busy(id) || app.kind != "github" {
+    if is_busy(id) || (app.kind != "github" && app.kind != "page") {
         return;
     }
     let latest_tag = app.latest.as_ref().map(|l| l.tag.clone()).unwrap_or_default();
@@ -1727,6 +1910,9 @@ fn install_app(id: &str, asset_name: &str, tag: &str) {
             check_one(id);
         }
         library::app(id).and_then(|a| a.latest)
+    } else if app.kind == "page" {
+        // a download page has only its current file
+        None
     } else {
         match gh::release_by_tag(&app.owner, &app.repo, tag) {
             Ok(r) => Some(r),
@@ -1897,7 +2083,7 @@ fn accept_bundle(apps: Vec<String>, tw: Vec<String>) {
 /// (start) What is installed now, icons, tweaks Windows put back, sync.
 /// Fills in the settings folders and keys of an installed app once (the user keeps or removes them).
 fn auto_paths(id: &str) {
-    let Some(a) = library::app(id).filter(|a| a.inst.is_some() && !a.bk_auto && a.kind == "github" && a.id != crate::selfup::ID) else { return };
+    let Some(a) = library::app(id).filter(|a| a.inst.is_some() && !a.bk_auto && (a.kind == "github" || a.kind == "page") && a.id != crate::selfup::ID) else { return };
     let (dirs, regs) = backup::initial(&a);
     library::touch_app(id, |x| {
         for d in dirs {

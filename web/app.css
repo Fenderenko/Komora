@@ -1127,3 +1127,25 @@ button.lrow:hover { background: var(--btn); }
 /* a group moved with the mouse */
 .n.gmove { background: var(--btn); box-shadow: 0 0 0 1px var(--stroke2), var(--shadow); z-index: 2; cursor: grabbing; }
 body.gmoving, body.gmoving * { cursor: grabbing !important; user-select: none; }
+.tw.btcard { align-items: flex-start; }
+.tw.btcard > .sw { margin-top: 4px; }
+.btl { display: grid; gap: 2px; margin-top: 10px; }
+.btd { display: flex; align-items: center; gap: 10px; min-height: 30px; font-size: 13px; }
+.btd > .i { font-size: 18px; color: var(--mu); }
+.btd .mono { font-size: 12px; min-width: 44px; text-align: right; }
+/* the small switch is a button's picture elsewhere; here it takes the click itself */
+.btd .sw.sm { pointer-events: auto; cursor: pointer; }
+/* the winget import: the list scrolls inside the card */
+.wgl { max-height: 380px; overflow: auto; margin-top: 10px; border: 1px solid var(--stroke); border-radius: 8px; padding: 4px; }
+.wgl .check .mono { font-size: 12px; }
+.wgl .check.dim { opacity: .55; cursor: default; }
+.wgsys summary { cursor: pointer; padding: 8px 4px; color: var(--mu); font-size: 13px; }
+/* one header height on every page: the title and one line under it, the buttons on the right */
+.phead { min-height: 58px; flex-wrap: nowrap; }
+.phead .grow { flex: 1; min-width: 0; }
+.phead .sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 20px; }
+.phead .pact { justify-content: flex-end; flex-shrink: 0; }
+.phead h1 .ghm { display: inline-flex; vertical-align: 2px; margin-right: 10px; }
+.page.set .btrow { padding-top: 0; }
+.page.set .btrow .btl { margin-top: 0; width: 100%; }
+.about .disclaim { font-size: 12px; margin: 12px 4px 0; line-height: 1.5; }

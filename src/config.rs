@@ -72,6 +72,12 @@ pub struct Config {
     pub setup_show: bool,
     /// optional VirusTotal API key, DPAPI-encrypted (secret.rs)
     pub vt_key_enc: String,
+    /// a tray icon with the charge of each Bluetooth device that reports one (btbatt.rs)
+    pub bt_tray: bool,
+    /// devices (container ids) left out of the tray
+    pub bt_off: Vec<String>,
+    /// a notification when a device in the tray runs low (20 % and 10 %)
+    pub bt_low: bool,
     /// version of the look the settings were made for (2 — the zinc and violet look of 0.5)
     pub look: u32,
     #[serde(flatten)]
@@ -125,6 +131,9 @@ impl Default for Config {
             setup_dir: String::new(),
             setup_show: false,
             vt_key_enc: String::new(),
+            bt_tray: false,
+            bt_off: Vec::new(),
+            bt_low: true,
             look: 0,
             rest: Default::default(),
         }
@@ -225,6 +234,11 @@ fn read() -> Config {
 
 pub fn get() -> Config {
     cell().lock().unwrap().clone()
+}
+
+/// Reads config.json again (the charge helper, after Komora changed it); nothing is written.
+pub fn reload() {
+    *cell().lock().unwrap() = read();
 }
 
 /// Changes the settings and writes them at once (small file, rare changes).

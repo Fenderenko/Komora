@@ -339,6 +339,87 @@ fn exported() -> Result<HashMap<String, String>, String> {
     Ok(m)
 }
 
+/// Parts of Windows and runtimes that winget lists among programs: offered unchecked in the import.
+const SYSTEM: [&str; 14] = [
+    "microsoft.vcredist",
+    "microsoft.dotnet",
+    "microsoft.windowsappruntime",
+    "microsoft.ui.xaml",
+    "microsoft.vclibs",
+    "microsoft.appinstaller",
+    "microsoft.edge",
+    "microsoft.directx",
+    "microsoft.onedrive",
+    "microsoft.gameinput",
+    "microsoft.windowssdk",
+    "microsoft.webview2",
+    "microsoft.xnaredist",
+    "nvidia.physx",
+];
+
+/// A winget id as winget writes them: "Publisher.Name[.More]", letters, digits and «.-_+».
+pub fn valid_id(id: &str) -> bool {
+    id.contains('.') && id.len() < 128 && id.chars().all(|c| c.is_ascii_alphanumeric() || ".-_+".contains(c))
+}
+
+/// Names of packages from the `winget list` table: columns start where the header's words do (any language);
+/// the id column may end with «…» when winget cut it.
+fn list_names(table: &str) -> HashMap<String, String> {
+    let lines: Vec<&str> = table.lines().collect();
+    let mut out = HashMap::new();
+    let Some(sep) = lines.iter().position(|l| l.trim().len() > 10 && l.trim().chars().all(|c| c == '-')) else { return out };
+    let Some(head) = sep.checked_sub(1).map(|i| lines[i]) else { return out };
+    let hc: Vec<char> = head.chars().collect();
+    let starts: Vec<usize> = (0..hc.len()).filter(|&i| !hc[i].is_whitespace() && (i == 0 || hc[i - 1].is_whitespace())).collect();
+    if starts.len() < 3 {
+        return out;
+    }
+    for l in &lines[sep + 1..] {
+        let c: Vec<char> = l.chars().collect();
+        if c.len() <= starts[1] {
+            continue;
+        }
+        let name: String = c[..starts[1].min(c.len())].iter().collect::<String>().trim().to_string();
+        let id: String = c[starts[1]..starts[2].min(c.len())].iter().collect::<String>().trim().to_string();
+        if !name.is_empty() && !id.is_empty() {
+            out.insert(id.to_lowercase(), name);
+        }
+    }
+    out
+}
+
+/// (worker; a few seconds) Programs of this PC that winget can install anywhere (its own source):
+/// (id, name, version, a part of Windows or a runtime).
+pub fn installed_list() -> Result<Vec<(String, String, String, bool)>, String> {
+    let tmp = std::env::temp_dir().join(format!("komora-winget-{}.json", crate::util::unix_ms()));
+    let tp = tmp.to_string_lossy().to_string();
+    let r = run(&["export", "-o", &tp, "--include-versions", "--source", "winget"]);
+    let text = std::fs::read_to_string(&tmp).unwrap_or_default();
+    let _ = std::fs::remove_file(&tmp);
+    r?;
+    let v: Value = serde_json::from_str(text.trim_start_matches('\u{feff}')).map_err(|_| "winget export gave no list".to_string())?;
+    let names = run(&["list", "--source", "winget"]).map(|(t, _)| list_names(&t)).unwrap_or_default();
+    let name_of = |id: &str| {
+        let k = id.to_lowercase();
+        names
+            .get(&k)
+            .or_else(|| names.iter().find(|(n, _)| n.ends_with('…') && k.starts_with(n.trim_end_matches('…'))).map(|(_, v)| v))
+            .cloned()
+            .unwrap_or_else(|| id.rsplit('.').next().unwrap_or(id).to_string())
+    };
+    let mut out: Vec<(String, String, String, bool)> = Vec::new();
+    for src in v["Sources"].as_array().into_iter().flatten() {
+        for p in src["Packages"].as_array().into_iter().flatten() {
+            let Some(id) = p["PackageIdentifier"].as_str().filter(|i| valid_id(i)) else { continue };
+            let ver = p["Version"].as_str().filter(|v| !v.eq_ignore_ascii_case("unknown") && !v.starts_with(['<', '>'])).unwrap_or("");
+            let k = id.to_lowercase();
+            out.push((id.to_string(), name_of(id), ver.to_string(), SYSTEM.iter().any(|s| k.starts_with(s))));
+        }
+    }
+    out.sort_by(|a, b| a.3.cmp(&b.3).then(a.1.to_lowercase().cmp(&b.1.to_lowercase())));
+    Ok(out)
+}
+
 /// Whether an entry of the Windows list is the program: the prefix is the whole name or is followed by a version,
 /// a bracket or a mark («MSI Afterburner 4.6.6», «HWiNFO® 64», «7-Zip 23.01 (x64)»), not by another word
 /// («Discord PTB», «Steamworks»).
@@ -398,7 +479,7 @@ fn exe_in(dir: &std::path::Path, name: &str) -> String {
 }
 
 /// The product version of an exe ("" — it has none).
-fn file_version(path: &str) -> String {
+pub fn file_version(path: &str) -> String {
     use windows::{
         Win32::Storage::FileSystem::{GetFileVersionInfoSizeW, GetFileVersionInfoW, VS_FIXEDFILEINFO, VerQueryValueW},
         core::{HSTRING, w},
@@ -543,7 +624,7 @@ pub fn lib_id(id: &str) -> String {
 /// programs not yet in the library go in (not those the user took out of it).
 fn sync_library() {
     let (vers, arp, upg, icons, scanned) = with(|s| {
-        let vers: HashMap<String, Option<String>> = CATALOG.iter().map(|(id, ..)| (id.to_lowercase(), inst_of(s, &id.to_lowercase()))).collect();
+        let vers: HashMap<String, Option<String>> = CATALOG.iter().map(|(id, ..)| id.to_lowercase()).chain(s.winget.keys().cloned()).map(|k| { let v = inst_of(s, &k); (k, v) }).collect();
         (vers, s.arp.clone(), s.upgrades.clone(), s.icons.clone(), s.scanned_at > 0)
     });
     if !scanned {
@@ -615,7 +696,8 @@ pub fn in_catalog(id: &str) -> bool {
 /// Installs or updates one package silently, a new install into `location` when given (not every installer takes
 /// it: the caller compares with where the program went); the scan afterwards refreshes the versions.
 pub fn install(id: &str, location: &str, progress: &(dyn Fn(&str, f32) + Sync)) -> Result<(), String> {
-    if !in_catalog(id) {
+    // the catalog's packages and those the user brought into the library from this or another PC
+    if !in_catalog(id) && !(valid_id(id) && crate::library::app(&lib_id(id)).is_some()) {
         return Err("not in the catalog".into());
     }
     let name = CATALOG.iter().find(|c| c.0.eq_ignore_ascii_case(id)).map(|c| c.1).unwrap_or(id);
@@ -718,6 +800,15 @@ mod tests {
     use super::*;
 
     #[test]
+    fn list_table() {
+        let t = "Name                 Id                       Version   Available\n--------------------------------------------------------------\n7-Zip 26.06 (x64)    7zip.7zip                26.06\nVisual Studio Comm…  Microsoft.VisualStudio.… 17.12     17.13\n";
+        let m = list_names(t);
+        assert_eq!(m.get("7zip.7zip").map(String::as_str), Some("7-Zip 26.06 (x64)"));
+        assert!(m.contains_key("microsoft.visualstudio.…"));
+        assert!(valid_id("Valve.Steam") && !valid_id("Valve Steam") && !valid_id("9NBLGGH4NNS1"));
+    }
+
+    #[test]
     fn upgrade_rows() {
         let t = "Name   Id   Version   Available   Source\n--------\nUbisoft Connect   Ubisoft.Connect   < 175.1.0.13416 175.1.0.13416   winget\nVLC media player   VideoLAN.VLC   3.0.23   3.0.24   winget\nSteam  Valve.Steam  2.10.91.91  winget\n";
         let m = upgrades(t);
@@ -749,6 +840,18 @@ mod tests {
         assert!(!arp_match("Steamworks Common Redistributables", "Steam"));
         assert!(!arp_match("Microsoft Windows Desktop Runtime - 9.0.1 (x64)", "Microsoft Windows Desktop Runtime - 8."));
         assert!(!arp_match("EA SPORTS FC 25", "EA"));
+    }
+
+    /// This PC's packages for the import: `cargo test -- --ignored live_import --nocapture`.
+    #[test]
+    #[ignore]
+    fn live_import() {
+        let t = std::time::Instant::now();
+        let l = installed_list().unwrap();
+        println!("{} packages in {:?}", l.len(), t.elapsed());
+        for (id, name, ver, sys) in l.iter().take(100) {
+            println!("{} | {id} | {ver}{}", name, if *sys { " | system" } else { "" });
+        }
     }
 
     /// Prints what this PC has from the catalog (the Windows list only; no winget, no network).

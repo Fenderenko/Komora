@@ -32,7 +32,7 @@ pub(crate) fn reg_str(root: HKEY, path: &str, name: &str) -> String {
     String::from_utf16_lossy(&buf[..end]).trim().to_string()
 }
 
-fn reg_num(root: HKEY, path: &str, name: &str) -> u64 {
+pub(crate) fn reg_num(root: HKEY, path: &str, name: &str) -> u64 {
     let (p, n) = (HSTRING::from(path), HSTRING::from(name));
     let mut v = 0u64;
     let mut len = 8u32;

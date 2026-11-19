@@ -46,6 +46,21 @@ fn norm(s: &str) -> String {
     s.trim().trim_start_matches(['v', 'V']).to_ascii_lowercase()
 }
 
+/// Do two versions count the same way? A year ("2024.11") and a release number ("3.2"), or one number
+/// ("v123", a build) and a dotted version, do not: comparing them says nothing.
+pub fn same_scheme(a: &str, b: &str) -> bool {
+    let (a, b) = (parts(a), parts(b));
+    if a.is_empty() || b.is_empty() {
+        return false;
+    }
+    (a[0] >= 1000) == (b[0] >= 1000) && (a.len() == 1) == (b.len() == 1)
+}
+
+/// The newer of two versions ("" counts as unknown).
+pub fn max(a: String, b: String) -> String {
+    if a.is_empty() || (!b.is_empty() && newer(&b, &a) && same_scheme(&a, &b)) { b } else { a }
+}
+
 /// A short form for the window: "v18.0.0" → "18.0.0".
 pub fn display(s: &str) -> String {
     let p = parts(s);
@@ -55,6 +70,17 @@ pub fn display(s: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn schemes() {
+        assert!(same_scheme("v9.13.5", "9.13.5.0"));
+        assert!(!same_scheme("v2024.11.05", "3.2.1"));
+        assert!(!same_scheme("build-812", "1.4.2"));
+        assert!(!same_scheme("v1.2", ""));
+        assert_eq!(max("9.13.4".into(), "9.13.5".into()), "9.13.5");
+        assert_eq!(max("".into(), "1.2".into()), "1.2");
+        assert_eq!(max("9.13.5".into(), "".into()), "9.13.5");
+    }
 
     #[test]
     fn parse() {

@@ -6,20 +6,26 @@
 mod actions;
 mod autostart;
 mod backup;
+mod battery;
+mod btbatt;
 mod bundle;
 mod config;
 mod dlg;
 mod dropbox;
 mod forge;
+mod glyph;
 mod gh;
 mod icon;
 mod imports;
 mod install;
 mod library;
+mod logi;
 mod link;
 mod net;
+mod page;
 mod secret;
 mod selfup;
+mod sony;
 mod stars;
 mod steamicons;
 mod tools;
@@ -63,9 +69,13 @@ pub const WM_EVENT: u32 = WM_APP + 4;
 pub const WM_BALLOON: u32 = WM_APP + 5;
 /// A self-update started the new exe: this process ends.
 pub const WM_RESTART: u32 = WM_APP + 6;
+/// The charge helper changed config.json (a device's icon closed from the tray): read it again.
+pub const WM_CFG_RELOAD: u32 = WM_APP + 7;
 
 const TIMER_TRAY: usize = 1;
 const TIMER_CHECK: usize = 2;
+/// The window has stayed hidden a minute: its WebView2 is let go (win::hide).
+pub const TIMER_FREE: usize = 3;
 
 static TASKBAR_CREATED: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
 
@@ -74,6 +84,11 @@ fn main() {
     let tray_only = std::env::args().any(|a| a == "--tray") && !after_update;
     unsafe {
         let _ = SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+    }
+    // the charge of devices in the tray, as a process of its own (battery.rs)
+    if std::env::args().any(|a| a == battery::ARG) {
+        battery::run();
+        return;
     }
     let _mutex = unsafe { CreateMutexW(None, false, w!(r"Local\KomoraSingleton")) };
     if unsafe { GetLastError() } == ERROR_ALREADY_EXISTS {
@@ -118,6 +133,7 @@ fn main() {
         SetTimer(Some(hwnd), TIMER_CHECK, 60_000, None);
     }
     actions::startup();
+    std::thread::spawn(battery::sync);
     if !tray_only {
         win::open();
     }
@@ -149,6 +165,10 @@ unsafe extern "system" fn wndproc(h: HWND, m: u32, wp: WPARAM, lp: LPARAM) -> LR
             tray::update();
         }
         WM_EVENT => win::push_events(),
+        WM_CFG_RELOAD => {
+            config::reload();
+            win::push_state();
+        }
         WM_BALLOON => {
             let (title, text) = std::mem::take(&mut *actions::BALLOON.lock().unwrap());
             if !text.is_empty() {
@@ -172,6 +192,14 @@ unsafe extern "system" fn wndproc(h: HWND, m: u32, wp: WPARAM, lp: LPARAM) -> LR
             }
         }
         WM_TIMER if wp.0 == TIMER_CHECK => actions::tick(),
+        WM_TIMER if wp.0 == TIMER_FREE => {
+            unsafe {
+                let _ = KillTimer(Some(h), TIMER_FREE);
+            }
+            if !win::shown() {
+                win::close();
+            }
+        }
         WM_ENDSESSION if wp.0 != 0 => {
             shutdown();
             std::process::exit(0);

@@ -3,7 +3,8 @@
 [Українська](README.uk.md) · **English**
 
 Your own storeroom of software for Windows 11. Keep the apps and links you use in one library — with groups, tags
-and notes — and install and update the apps right from their releases on GitHub, GitLab or Codeberg, or pick
+and notes — and install and update the apps right from their releases on GitHub, GitLab or Codeberg or from a site's
+own download page, or pick
 everyday programs for a PC from **Picks** and install them through winget. Mark the apps that belong on every PC of
 yours as **My kit**, and a new PC gets them in one click. Komora lives in the tray and checks for new versions by
 itself.
@@ -32,6 +33,18 @@ itself.
   streaming and media, utilities, browsers, runtimes — installed, updated and removed through winget, with the
   download's progress, a cancel button and a folder of your choice. What is already on the PC goes into the library by
   itself, with its version, icon and what winget tells about it.
+- **Programs already on this PC.** «Transfer» → «Programs on this PC» finds everything winget can install and brings
+  what you check into the library and the kit in one go — a new PC then installs it all. Programs installed outside
+  Komora are found by the Windows list and by Start menu and desktop shortcuts; their version is checked against the
+  program's own files, so an app that updated itself or keeps a placeholder version is not offered a false update. A
+  folder can be shown by hand when Komora cannot find it.
+- **Download pages.** A link to a site's download page (SimHub, Crew Chief and the like) becomes an app: Komora reads
+  the Windows files the page links to, installs the right one and offers a new file as an update. An archive holding
+  only a setup runs that setup.
+- **Device charge in the tray.** An icon with a charge bar for every device that reports its battery — Bluetooth
+  headphones, mice, keyboards and gamepads, Logitech mice and keyboards on their receivers, PlayStation controllers —
+  with its name and percent on hover and a note at 20 % and 10 %. It runs as a small process of its own and stays when
+  Komora is closed; each icon closes from its right-click menu.
 - **This PC.** The dashboard shows Windows, the processor (microarchitecture, cores, threads, L3), video cards (memory
   type, bus, video memory in use), memory modules, the board with its BIOS and every disk (model, NVMe or SATA, PCIe
   link, SSD or HDD, space) — live while it is open — with links to the makers' driver and BIOS pages. Versions and
@@ -80,11 +93,12 @@ Rust stable with the MSVC toolchain. The page of the window (`web/`) and its fon
 
 ## Status
 
-1.0.0. Tried for real: the library, GitHub search, update checks, portable installs, My kit, the bundle zip with
+1.1.0. Tried for real: the library, GitHub search, update checks, portable installs, My kit, the bundle zip with
 settings backups, the title bar, the dashboard's hardware details, finding installed programs of Picks and installing
-them through winget. Not yet tried on real systems: setups of every kind, updates and rollbacks, installs from GitLab
-and Codeberg, sync and sharing through a Gist, Komora's own update, the fixes, VirusTotal uploads. Reports are welcome
-in Issues.
+them through winget, the device charge in the tray (Bluetooth headphones and keyboards, a Logitech mouse on its
+receiver and cable). Not yet tried on real systems: setups of every kind, updates and rollbacks, installs from GitLab,
+Codeberg and download pages, the winget import on another PC, PlayStation controllers, sync and sharing through a Gist,
+Komora's own update, the fixes, VirusTotal uploads. Reports are welcome in Issues.
 
 ## Support
 
@@ -97,4 +111,7 @@ Komora is free. If it is useful to you, you can support it: [monobank jar](https
 ## License
 
 GPL-3.0 — see [LICENSE](LICENSE). The Geist and Geist Mono typefaces — SIL Open Font License 1.1
-([web/fonts/OFL.txt](web/fonts/OFL.txt)).
+([web/fonts/OFL.txt](web/fonts/OFL.txt)). Device icons — Material Symbols by Google (Apache-2.0) and Lucide (ISC); the
+details and the licence texts are in [THIRD_PARTY.md](THIRD_PARTY.md).
+
+Komora is an independent project. It is not affiliated with or endorsed by Microsoft, Valve, Sony, Logitech, Nintendo, GitHub, GitLab or any other company named in it; their names and trademarks belong to their owners and are used only to say what Komora works with.
