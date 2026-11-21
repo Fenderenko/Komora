@@ -7,8 +7,39 @@ Komora is GPL-3.0 (see [LICENSE](LICENSE)). It includes the following works of o
 | [Geist and Geist Mono](https://vercel.com/font) typefaces, Vercel | the window's fonts | SIL Open Font License 1.1 — [web/fonts/OFL.txt](web/fonts/OFL.txt) |
 | [Material Symbols](https://fonts.google.com/icons), Google | gamepad and keyboard icons of the device charge in the tray | Apache License 2.0 — below |
 | [Lucide](https://lucide.dev) icons | mouse, headphones and Bluetooth icons of the device charge; the GitHub and GitLab icons of the window | ISC License — below |
+| [razer-battery-report](https://github.com/xzeldon/razer-battery-report), Timofey Gelazoniya | the list of Razer mice and their battery request (src/mice_table.rs) | MIT License — below |
+| [steel-mouse](https://github.com/yurtemre7/steel-mouse), Emre Yurtseven | the list of SteelSeries mice and their battery request (src/mice_table.rs) | MIT License — below |
+| [vxe-r1-pro-max-battery](https://github.com/S1berla/vxe-r1-pro-max-battery), S1berla | the battery request of ATK / VXE mice (src/compx.rs) | MIT License — below |
+| [Linux-Arctis-Manager](https://github.com/elegos/Linux-Arctis-Manager), through Arcmix's device descriptions | the list of Arctis headsets and their battery request (src/headsets_table.rs) | GPL-3.0, as Komora |
 
 The icons are used as published or redrawn from their paths at the tray's size; they are not changed in meaning.
+The device lists are generated from those projects by tools/gen_mice.py and tools/gen_headsets.py.
+
+## razer-battery-report, steel-mouse, vxe-r1-pro-max-battery — MIT License
+
+```
+Copyright 2024 Timofey Gelazoniya (razer-battery-report)
+Copyright (c) 2023 Emre Yurtseven (steel-mouse)
+Copyright (c) 2026 S1berla (vxe-r1-pro-max-battery)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## Lucide — ISC License
 

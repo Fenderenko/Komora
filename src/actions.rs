@@ -118,6 +118,25 @@ fn set_busy(id: &str, stage: Option<(&str, f32)>) {
     }
 }
 
+/// A place in the window to show: told now, and once more when a page still loading says it is ready.
+static GO: Mutex<Option<(String, i64)>> = Mutex::new(None);
+
+pub fn go_to(to: &str) {
+    *GO.lock().unwrap() = Some((to.to_string(), util::unix()));
+    event(json!({ "t": "go", "to": to }));
+}
+
+/// Waits (up to 20 s) while only the app's data is being refreshed: an install clicked meanwhile goes on after it.
+fn wait_refresh(id: &str) {
+    for _ in 0..200 {
+        let quiet = BUSY.lock().unwrap().as_ref().and_then(|m| m.get(id)).is_some_and(|(s, _)| s == "meta" || s == "site");
+        if !quiet {
+            return;
+        }
+        std::thread::sleep(std::time::Duration::from_millis(100));
+    }
+}
+
 fn is_busy(id: &str) -> bool {
     BUSY.lock().unwrap().as_ref().is_some_and(|m| m.contains_key(id))
 }
@@ -139,12 +158,17 @@ fn winget_install(ids: Vec<String>, to: String) {
         }
         set_busy(&key, Some(("install", -1.0)));
         let name = crate::winget::CATALOG.iter().find(|c| c.0.eq_ignore_ascii_case(&id)).map(|c| c.1).unwrap_or("");
+        let before = library::app(&key);
+        let from = before.as_ref().and_then(|a| a.inst.as_ref()).map(|i| i.version.clone()).unwrap_or_default();
+        let target = before.as_ref().and_then(|a| a.latest.as_ref()).map(|l| l.tag.clone()).unwrap_or_default();
         let loc = if !to.is_empty() { to.clone() } else if !setup.is_empty() { std::path::Path::new(&setup).join(util::safe_name(name)).to_string_lossy().into_owned() } else { String::new() };
         let k2 = key.clone();
         let progress = move |stage: &str, pct: f32| set_busy(&k2, Some((stage, pct)));
         match crate::winget::install(&id, &loc, &progress) {
             Ok(()) => {
                 crate::winget::add_to_library(&id);
+                let to = library::app(&key).and_then(|a| a.inst).map(|i| i.version).filter(|v| !v.is_empty() && *v != from).unwrap_or(target.clone());
+                crate::hist::record(&key, if name.is_empty() { &id } else { name }, &from, &to);
                 // some installers keep their own folder whatever they are asked
                 let dir = crate::winget::installed_dir(&id);
                 if !loc.is_empty() && !dir.is_empty() && !dir.to_lowercase().starts_with(&loc.to_lowercase()) {
@@ -238,10 +262,19 @@ fn spawn(f: impl FnOnce() + Send + 'static) {
 pub fn on_page(v: &Value) {
     let id = str_of(v, "id").to_string();
     match str_of(v, "t") {
-        "ready" => notify(),
+        "ready" => {
+            notify();
+            // a place asked for while the page was loading (a device icon clicked with the window closed)
+            if let Some((to, at)) = GO.lock().unwrap().take()
+                && util::unix() - at < 20
+            {
+                event(json!({ "t": "go", "to": to }));
+            }
+        }
         "add" => {
             let (url, group) = (str_of(v, "url").to_string(), str_of(v, "group").to_string());
-            spawn(move || add(&url, &group));
+            let kit = v.get("kit").and_then(Value::as_bool).unwrap_or(config::get().kit_new);
+            spawn(move || add(&url, &group, kit));
         }
         "remove" => {
             let mut ids = strings(v, "ids");
@@ -281,6 +314,26 @@ pub fn on_page(v: &Value) {
         "refresh" => spawn(move || refresh(&id)),
         "pageSource" => spawn(move || page_source(&id)),
         "btScan" => crate::battery::reload(),
+        // a pick into «My kit» without installing it here: it comes on the next PC
+        "wgKit" => spawn(move || {
+            if crate::winget::in_catalog(&id) {
+                crate::winget::add_to_library(&id);
+                library::touch_app(&crate::winget::lib_id(&id), |a| a.kit = true);
+                notify();
+            }
+        }),
+        // a pick's new version left out of «Updates» ("" — shown again)
+        "wgSkip" => {
+            let ver = str_of(v, "ver").to_string();
+            config::update(|c| {
+                if ver.is_empty() {
+                    c.wg_skip.remove(&id.to_lowercase());
+                } else {
+                    c.wg_skip.insert(id.to_lowercase(), ver);
+                }
+            });
+            notify();
+        }
         // programs of this PC winget can install: a list to bring into the library
         "wgInstalled" => spawn(|| {
             let r = crate::winget::installed_list();
@@ -378,7 +431,7 @@ pub fn on_page(v: &Value) {
             let full = str_of(v, "full").to_string();
             spawn(move || {
                 if let Some((o, r)) = gh::parse_repo(&full) {
-                    add_github(&o, &r, "");
+                    add_github(&o, &r, "", config::get().kit_new);
                     library::touch_app(&repo_id(&o, &r), |a| a.kit = true);
                     notify();
                 }
@@ -388,7 +441,7 @@ pub fn on_page(v: &Value) {
             let full = str_of(v, "full").to_string();
             spawn(move || {
                 if let Some((o, r)) = gh::parse_repo(&full) {
-                    add_github(&o, &r, "");
+                    add_github(&o, &r, "", config::get().kit_new);
                     install_app(&repo_id(&o, &r), "", "");
                 }
             });
@@ -440,6 +493,7 @@ pub fn on_page(v: &Value) {
         }),
         // ---- tweaks
         "tweaks" => spawn(tweak_list),
+        "hist" => event(json!({ "t": "hist", "items": crate::hist::get() })),
         "tweak" => {
             let on = v.get("on").and_then(Value::as_bool).unwrap_or(true);
             spawn(move || {
@@ -530,23 +584,14 @@ pub fn on_page(v: &Value) {
             spawn(move || accept_bundle(apps, tw));
         }
         "wgScan" => spawn(crate::winget::scan),
-        // upkeep of «Tweaks»: sizes and startup programs, cleaning, switching a startup entry
-        "toolsScan" => spawn(|| event(json!({ "t": "tools", "sizes": crate::tools::sizes(), "startup": crate::tools::startup() }))),
+        // upkeep of «Tweaks»: sizes and cleaning
+        "toolsScan" => spawn(|| event(json!({ "t": "tools", "sizes": crate::tools::sizes() }))),
         "toolsClean" => {
             let what = str_of(v, "what").to_string();
             spawn(move || {
                 let freed = if what == "shader" { crate::tools::clean_shaders() } else { crate::tools::clean_temp() };
                 event(json!({ "t": "cleaned", "what": what, "freed": freed }));
-                event(json!({ "t": "tools", "sizes": crate::tools::sizes(), "startup": crate::tools::startup() }));
-            });
-        }
-        "startupSet" => {
-            let (sid, on) = (str_of(v, "id").to_string(), v.get("on").and_then(Value::as_bool).unwrap_or(true));
-            spawn(move || {
-                if let Err(e) = crate::tools::set_startup(&sid, on) {
-                    toast(&e, true);
-                }
-                event(json!({ "t": "tools", "sizes": Value::Null, "startup": crate::tools::startup() }));
+                event(json!({ "t": "tools", "sizes": crate::tools::sizes() }));
             });
         }
         // «My kit»: a group (with its programs and links), an author, a tweak in or out
@@ -1019,21 +1064,21 @@ fn pick_path(purpose: &str, id: &str) {
 
 // ---------------------------------------------------------------- adding
 
-fn add(raw: &str, group: &str) {
+fn add(raw: &str, group: &str, kit: bool) {
     let url = raw.trim();
     if url.is_empty() {
         return;
     }
     let g = group_id(group);
     if let Some((owner, repo)) = gh::parse_repo(url) {
-        add_github(&owner, &repo, &g);
+        add_github(&owner, &repo, &g, kit);
     } else {
         let url = if url.contains("://") { url.to_string() } else { format!("https://{url}") };
         if net::split_url(&url).is_none() || !url.contains('.') {
             toast("Не схоже на посилання", true);
             return;
         }
-        add_link(&url, &g);
+        add_link(&url, &g, kit);
     }
 }
 
@@ -1072,7 +1117,7 @@ fn apply_meta(a: &mut App, m: gh::Meta) {
     a.meta_at = util::unix();
 }
 
-fn add_github(owner: &str, repo: &str, group: &str) {
+fn add_github(owner: &str, repo: &str, group: &str, kit: bool) {
     let id = repo_id(owner, repo);
     if library::app(&id).is_some() {
         also_in(&id, group);
@@ -1086,7 +1131,7 @@ fn add_github(owner: &str, repo: &str, group: &str) {
             id: id.clone(),
             url: gh::web_url(owner, repo),
             kind: "github".into(),
-            kit: config::get().kit_new,
+            kit,
             owner: owner.into(),
             repo: repo.into(),
             name: repo.into(),
@@ -1303,7 +1348,7 @@ fn link_refresh(id: &str, url: &str) -> bool {
     }
 }
 
-fn add_link(url: &str, group: &str) {
+fn add_link(url: &str, group: &str, kit: bool) {
     let id = library::update(|l| {
         if let Some(a) = l.apps.iter().find(|a| a.url == url) {
             return Err(a.id.clone());
@@ -1315,7 +1360,7 @@ fn add_link(url: &str, group: &str) {
             id: id.clone(),
             url: url.into(),
             kind: "link".into(),
-            kit: config::get().kit_new,
+            kit,
             name: host.trim_start_matches("www.").to_string(),
             added: util::unix(),
             updated: util::unix(),
@@ -1893,6 +1938,7 @@ fn releases(id: &str) {
 
 /// (worker) Installs the latest release, or the release `tag` (an older one pins the app on it).
 fn install_app(id: &str, asset_name: &str, tag: &str) {
+    wait_refresh(id);
     let Some(app) = library::app(id) else { return };
     // a program of the picks goes through winget (the kit, «Update all» and the like come here too)
     if app.kind == "winget" {
@@ -1954,7 +2000,10 @@ fn install_app(id: &str, asset_name: &str, tag: &str) {
         let r = crate::selfup::update(&rel, &mut |stage, pct| set_busy(id, Some((stage, pct))));
         set_busy(id, None);
         match r {
-            Ok(()) => util::post_ui(crate::WM_RESTART, 0),
+            Ok(()) => {
+                crate::hist::record(id, "Komora", env!("CARGO_PKG_VERSION"), &rel.tag);
+                util::post_ui(crate::WM_RESTART, 0)
+            }
             Err(e) => {
                 logf!("self-update: {e}");
                 toast(&e, true);
@@ -1974,10 +2023,13 @@ fn install_app(id: &str, asset_name: &str, tag: &str) {
     });
     match res {
         Ok(inst) => {
+            let from = app.inst.as_ref().map(|i| if i.version.is_empty() { i.tag.clone() } else { i.version.clone() }).unwrap_or_default();
+            crate::hist::record(id, &app.name, &from, if inst.version.is_empty() { &rel.tag } else { &inst.version });
             library::update_app(id, |a| {
                 a.inst = Some(inst);
                 a.want = false;
                 a.error.clear();
+                a.skip.clear();
                 a.notified = rel.tag.clone();
                 if older {
                     a.pin = rel.tag.clone();
@@ -2021,6 +2073,7 @@ fn rollback(id: &str) {
 }
 
 fn uninstall(id: &str) {
+    wait_refresh(id);
     let Some(app) = library::app(id) else { return };
     if id == crate::selfup::ID {
         return;

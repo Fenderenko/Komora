@@ -8,17 +8,21 @@ mod autostart;
 mod backup;
 mod battery;
 mod btbatt;
+mod compx;
 mod bundle;
 mod config;
 mod dlg;
 mod dropbox;
 mod forge;
 mod glyph;
+mod headsets;
+mod hist;
 mod gh;
 mod icon;
 mod imports;
 mod install;
 mod library;
+mod mice;
 mod logi;
 mod link;
 mod net;
@@ -38,6 +42,7 @@ mod util;
 mod ver;
 mod vt;
 mod win;
+mod xinput;
 
 use windows::{
     Win32::{
@@ -82,6 +87,8 @@ static TASKBAR_CREATED: std::sync::atomic::AtomicU32 = std::sync::atomic::Atomic
 fn main() {
     let after_update = selfup::after_update();
     let tray_only = std::env::args().any(|a| a == "--tray") && !after_update;
+    // a device's charge icon was clicked: the window opens on the devices' switches
+    let devices = std::env::args().any(|a| a == "--devices");
     unsafe {
         let _ = SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
     }
@@ -97,7 +104,7 @@ fn main() {
                 let mut pid = 0u32;
                 GetWindowThreadProcessId(h, Some(&mut pid));
                 let _ = AllowSetForegroundWindow(pid);
-                let _ = PostMessageW(Some(h), WM_SHOW, WPARAM(0), LPARAM(0));
+                let _ = PostMessageW(Some(h), WM_SHOW, WPARAM(devices as usize), LPARAM(0));
             }
         }
         return;
@@ -136,6 +143,9 @@ fn main() {
     std::thread::spawn(battery::sync);
     if !tray_only {
         win::open();
+        if devices {
+            actions::go_to("devices");
+        }
     }
 
     let mut m = MSG::default();
@@ -182,7 +192,12 @@ unsafe extern "system" fn wndproc(h: HWND, m: u32, wp: WPARAM, lp: LPARAM) -> LR
             0x405 => win::open(),
             _ => {}
         },
-        WM_SHOW => win::open(),
+        WM_SHOW => {
+            win::open();
+            if wp.0 == 1 {
+                actions::go_to("devices");
+            }
+        }
         WM_RESTART => quit(),
         WM_TIMER if wp.0 == TIMER_TRAY => {
             if tray::add() {

@@ -6,43 +6,37 @@
 // ---------------------------------------------------------------- translations (key: Ukrainian text)
 
 const EN = {
-  'Пошук і команди': 'Search and commands', 'Додати': 'Add', 'Бібліотека': 'Library', 'Усі програми': 'All apps',
+  'Додати': 'Add', 'Бібліотека': 'Library',
   'Оновлення': 'Updates', 'Встановлені': 'Installed', 'Не встановлені': 'Not installed', 'Посилання': 'Links',
-  'Групи': 'Groups', 'Теги': 'Tags', 'Налаштування': 'Settings', 'Нова група': 'New group',
+  'Групи': 'Groups', 'Налаштування': 'Settings', 'Нова група': 'New group',
   'Створи групу й перетягни туди програми': 'Create a group and drag apps into it',
   'Перевіряю оновлення…': 'Checking for updates…', 'Перевірено': 'Checked', 'ще не перевіряли': 'not checked yet',
-  'наступна о': 'next at', 'Перевірити оновлення': 'Check for updates', 'Оновити все': 'Update all',
+  'Перевірити оновлення': 'Check for updates', 'Оновити все': 'Update all',
   'За назвою': 'By name', 'За групами': 'By group', 'Нещодавно додані': 'Recently added', 'Без групи': 'No group',
   'Тут порожньо': 'Nothing here', 'Обрано': 'Selected', 'Оновити': 'Update', 'У групу': 'To group', 'Прибрати': 'Remove',
-  'Скасувати': 'Cancel', 'Зберегти': 'Save', 'Видалити': 'Delete', 'Перейменувати': 'Rename', 'Колір': 'Colour',
+  'Скасувати': 'Cancel', 'Зберегти': 'Save', 'Видалити': 'Delete', 'Перейменувати': 'Rename',
   'Назва групи': 'Group name', 'Видалити групу?': 'Delete the group?', 'Програми лишаться в бібліотеці.': 'The apps stay in the library.',
   'Встановити': 'Install', 'Запустити': 'Launch', 'Відкрити': 'Open', 'Відкрити теку': 'Open folder', 'Відкрити на GitHub': 'Open on GitHub',
-  'Відкрити сайт': 'Open the site', 'Оновити дані': 'Refresh', 'Повернути попередню версію': 'Roll back to the previous version',
+  'Оновити дані': 'Refresh', 'Повернути попередню версію': 'Roll back to the previous version',
   'Закріпити версію': 'Pin this version', 'Відкріпити версію': 'Unpin the version', 'Видалити з ПК': 'Uninstall',
   'Прибрати з бібліотеки': 'Remove from the library', 'до': 'to', 'немає файлу для Windows': 'no Windows file',
   'немає релізів': 'no releases', 'не встановлено': 'not installed', 'встановлювач': 'installer', 'портативна': 'portable',
   'портативна (zip)': 'portable (zip)', 'знайдено в Windows': 'found in Windows', 'Встановлено': 'Installed',
   'Останній реліз': 'Latest release', 'Зірки': 'Stars', 'Спосіб': 'Method', 'Автоматично': 'Automatic', 'Встановлювач': 'Installer',
-  'Портативна': 'Portable', 'змінити': 'change', 'Групи й теги': 'Groups and tags', '+ група': '+ group', '+ тег': '+ tag',
-  'Огляд': 'Overview', 'Що нового': 'What’s new', 'Релізи': 'Releases', 'Нотатки': 'Notes', 'Завантаження…': 'Loading…',
+  'Портативна': 'Portable', 'Групи й теги': 'Groups and tags',
+  'Що нового': 'What’s new', 'Релізи': 'Releases', 'Нотатки': 'Notes', 'Завантаження…': 'Loading…',
   'README немає': 'No README', 'Опису змін немає': 'No release notes', 'На GitHub': 'On GitHub', 'тестовий': 'pre-release',
-  'Встановити цей файл': 'Install this file', 'Мої нотатки — навіщо ця програма, що налаштувати…': 'My notes — why I keep it, what to set up…',
+  'Мої нотатки — навіщо ця програма, що налаштувати…': 'My notes — why I keep it, what to set up…',
   'Спосіб встановлення': 'Install method', 'Закріпити на версії': 'Pin to a version', 'Пропустити реліз': 'Skip a release',
   'Пропущено': 'Skipped', 'Пропустити': 'Skip', 'Назва': 'Name', 'Тека': 'Folder', 'Сайт': 'Site', 'Додано': 'Added',
-  'Тема': 'Theme', 'Як у Windows': 'Same as Windows', 'Світла': 'Light', 'Темна': 'Dark', 'Мова': 'Language',
-  'Перевірка оновлень': 'Update checks', 'Вручну': 'Manually', 'год': 'h', 'Перевірити зараз': 'Check now',
-  'Сповіщення': 'Notifications', 'Сповіщати в треї про нові оновлення': 'Notify in the tray about new updates',
-  'Автозапуск': 'Start with Windows', 'Запускати з Windows у трей': 'Start with Windows, in the tray',
-  'Тека портативних програм': 'Folder for portable apps', 'Сюди розпаковуються програми без встановлювача.': 'Apps without a setup are unpacked here.',
-  'Токен GitHub': 'GitHub token', 'Прибрати токен': 'Remove token', 'Створити токен на GitHub': 'Create a token on GitHub',
-  'Без токена GitHub дає 60 запитів на годину, з токеном — 5000. Досить токена без жодних дозволів: Komora читає лише публічні репозиторії.':
-    'Without a token GitHub allows 60 requests per hour, with one 5000. A token without any permissions is enough: Komora reads public repositories only.',
-  'Токен збережено': 'Token saved', 'запитів': 'requests', 'Про програму': 'About', 'Автор': 'Author',
-  'Почни свою комору': 'Start your komora', 'Встав посилання на репозиторій GitHub або будь-який сайт — Komora підтягне назву, значок і опис.':
-    'Paste a link to a GitHub repository or any site — Komora fetches the name, icon and description.',
-  'Встав посилання на GitHub або сайт': 'Paste a link to GitHub or a site', 'Дії': 'Actions', 'Команди': 'Commands',
-  'Перейти': 'go to', 'дія': 'action', 'закрити': 'close', 'Тема: світла': 'Theme: light', 'Тема: темна': 'Theme: dark',
-  'Тема: як у Windows': 'Theme: like Windows', 'Показати оновлення': 'Show updates',
+  'Тема': 'Theme', 'Як у Windows': 'Same as Windows', 'Мова': 'Language',
+  'Вручну': 'Manually', 'год': 'h', 'Перевірити зараз': 'Check now',
+  'Сповіщення': 'Notifications',
+  'Токен GitHub': 'GitHub token', 'Створити токен на GitHub': 'Create a token on GitHub',
+  'запитів': 'requests', 'Про програму': 'About', 'Автор': 'Author',
+  'Почни свою комору': 'Start your komora',
+  'Встав посилання на GitHub або сайт': 'Paste a link to GitHub or a site',
+  'закрити': 'close',
   'Видалити програму з ПК?': 'Uninstall the app?', 'Портативна програма піде в Кошик.': 'The portable app goes to the Recycle Bin.',
   'Запуститься її деінсталятор.': 'Its uninstaller will start.', 'Прибрати з бібліотеки?': 'Remove from the library?',
   'Сама програма на ПК лишиться.': 'The app itself stays on the PC.', 'Усе актуальне': 'Everything is up to date',
@@ -53,8 +47,8 @@ const EN = {
   'Репозиторій не знайдено на GitHub': 'Repository not found on GitHub', 'У репозиторію немає релізів': 'The repository has no releases',
   'У релізі немає файлу для Windows': 'The release has no file for Windows', 'Програма ще є в списку Windows': 'The app is still in the Windows list',
   'Спробувати знову': 'Try again', 'архів': 'archived', 'щойно': 'just now', 'Нова група…': 'New group…',
-  'Нова назва': 'New name', 'Показати в бібліотеці': 'Show in the library', 'Додати тег': 'Add a tag',
-  'Встановлено:': 'Installed:', 'Оновлено:': 'Updated:', 'посилання': 'link', 'Програма закріплена на': 'The app is pinned to',
+  'Нова назва': 'New name',
+  'посилання': 'link', 'Програма закріплена на': 'The app is pinned to',
   'ще': 'more', 'Згорнути': 'Collapse', 'Дані': 'Data',
 };
 
@@ -62,83 +56,72 @@ Object.assign(EN, {
   'Пошук на GitHub': 'Search on GitHub', 'Шукати на GitHub': 'Search GitHub', 'Програми': 'Apps', 'GitHub': 'GitHub',
   'Оновлень немає': 'No updates', 'Усі встановлені програми актуальні.': 'All installed apps are up to date.',
   'Ще нічого не встановлено': 'Nothing installed yet', 'Тут будуть програми, які ти встановиш через Komora, і ті, що вже є у Windows.': 'Apps you install with Komora and the ones already in Windows show up here.',
-  'Усе встановлено': 'Everything is installed', 'Тут будуть програми з бібліотеки, яких ще немає на цьому ПК.': 'Apps of the library that are not on this PC yet show up here.',
-  'Посилань ще немає': 'No links yet', 'Додай сайт, відео чи статтю: встав посилання в «Додати».': 'Add a site, a video or an article: paste the link into “Add”.',
+  'Посилань ще немає': 'No links yet',
   'Група порожня': 'The group is empty', 'Перетягни сюди програми зі списку або додай групу на сторінці програми.': 'Drag apps here from the list or add the group on an app’s page.',
-  'Додати програму': 'Add an app', 'Додати посилання': 'Add a link', 'Знайти на GitHub': 'Find on GitHub',
-  'або знайди програми': 'or find apps', 'наступна': 'next', 'незабаром': 'soon', 'Щодня': 'Daily', 'Щотижня': 'Weekly',
-  'Щомісяця': 'Monthly', 'Ніколи': 'Never', 'Додано:': 'Added:', 'Закріплено на версії': 'Pinned to version',
-  'ще не встановлено': 'not installed yet', 'Встановити старішу версію?': 'Install an older version?',
+  'Додати програму': 'Add an app', 'Додати посилання': 'Add a link',
+  'наступна': 'next', 'незабаром': 'soon', 'Щодня': 'Daily', 'Щотижня': 'Weekly',
+  'Щомісяця': 'Monthly', 'Додано:': 'Added:', 'Закріплено на версії': 'Pinned to version',
+  'Встановити старішу версію?': 'Install an older version?',
   'Komora закріпить програму на ній, щоб не пропонувати оновлення. Відкріпити можна на сторінці програми.': 'Komora pins the app to it so updates are not offered. Unpin it on the app’s page.',
-  'Шукати репозиторії': 'Search repositories', 'Найкращі збіги': 'Best match', 'Більше зірок': 'Most stars', 'Нещодавно оновлені': 'Recently updated',
-  'Будь-яка мова': 'Any language', 'Будь-скільки зірок': 'Any stars', 'зірок': 'stars', 'Будь-коли': 'Any time', 'Оновлено за місяць': 'Updated this month',
-  'Оновлено за пів року': 'Updated in 6 months', 'Оновлено за рік': 'Updated this year', 'Набирає популярності': 'Trending',
+  'Найкращі збіги': 'Best match', 'Більше зірок': 'Most stars', 'Нещодавно оновлені': 'Recently updated',
+  'зірок': 'stars', 'Будь-коли': 'Any time',
+  'Набирає популярності': 'Trending',
   'Для Windows': 'For Windows', 'Утиліти трею': 'Tray utilities', 'Твіки Windows': 'Windows tweaks', 'Нові й живі': 'Fresh and active',
   'Знайдено': 'Found', 'Показати ще': 'Show more', 'Шукаю…': 'Searching…', 'Нічого не знайдено': 'Nothing found',
   'У бібліотеці': 'In the library', 'Відкрити в бібліотеці': 'Open in the library', 'Додати в бібліотеку': 'Add to the library',
-  'Мова програмування': 'Language', 'Оновлено': 'Updated', 'Реліз': 'Release', 'Обери репозиторій зі списку': 'Pick a repository from the list',
-  'Знайди програму на GitHub: введи, що шукаєш, або обери добірку.': 'Find an app on GitHub: type what you look for or pick a set.',
+  'Оновлено': 'Updated', 'Реліз': 'Release',
   'Ліміт пошуку GitHub: 10 запитів на хвилину без токена, 30 — з токеном.': 'GitHub search limit: 10 requests a minute without a token, 30 with one.',
-  'Як отримати токен:': 'How to get a token:', '1. На GitHub: Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.': '1. On GitHub: Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.',
-  '2. Repository access: «Public repositories». Дозволи (Permissions) не додавай — вони не потрібні.': '2. Repository access: “Public repositories”. Do not add permissions — none are needed.',
-  '3. Скопіюй токен і встав сюди. Він зберігається лише на цьому ПК, у config.json.': '3. Copy the token and paste it here. It stays on this PC only, in config.json.',
   'Перевстановити': 'Reinstall', 'Цей реліз встановлено': 'This release is installed',
 });
 
 Object.assign(EN, {
   'GitHub, сайт, відео YouTube, товар у магазині — будь-яке посилання': 'GitHub, a site, a YouTube video, a shop product — any link',
   'Windows скинула твіки:': 'Windows reset tweaks:', 'Ігри': 'Games', 'Імпорт': 'Import', 'Імпортувати': 'Import', 'Імпортую…': 'Importing…',
-  'Історія ціни': 'Price history', 'Їхні списки містять ідентифікатори пакетів, а не посилання на GitHub, тож перенести їх у Komora напряму не можна. Знайди потрібні програми в «Пошуку на GitHub».': 'Their lists hold package IDs, not GitHub links, so they cannot be moved into Komora directly. Find the apps in “GitHub search”.',
-  'Або PowerShell (необов’язково)': 'Or PowerShell (optional)', 'Автор (логін GitHub)': 'Author (GitHub login)', 'Без підпису': 'Unsigned', 'Без форків': 'Without forks',
-  'Безпека': 'Safety', 'Бібліотека однакова на всіх твоїх ПК: зміни зливаються, перемагає новіша. Встановлене не копіюється — інші ПК лише пропонують поставити.': 'The library is the same on all your PCs: changes merge, the newer one wins. Installed apps are not copied — other PCs offer to install them.',
-  'Вимкнути': 'Turn off', 'Встав посилання — додасться в групу': 'Paste a link — it goes into the group', 'Встановити вибрані': 'Install selected', 'Відео': 'Video',
-  'Відкрий набір з іншого ПК: Komora додасть усе в бібліотеку, встановить вибрані програми одна за одною, застосує твіки й поверне налаштування з копій.': 'Open a bundle from another PC: Komora adds everything to the library, installs the chosen apps one by one, applies tweaks and restores settings from backups.',
-  'Відкрити набір…': 'Open a bundle…', 'Відновити': 'Restore', 'Відновити налаштування?': 'Restore the settings?', 'Відновлюю налаштування': 'Restoring settings',
+  'Або PowerShell (необов’язково)': 'Or PowerShell (optional)', 'Без підпису': 'Unsigned', 'Без форків': 'Without forks',
+  'Безпека': 'Safety',
+  'Вимкнути': 'Turn off', 'Відео': 'Video',
+  'Відновити': 'Restore', 'Відновити налаштування?': 'Restore the settings?', 'Відновлюю налаштування': 'Restoring settings',
   'Готово з набору: програм': 'Done from the bundle: apps', 'Детальніше': 'Details', 'Додати в цю групу': 'Add to this group', 'Додати всі': 'Add all', 'Додати ключ': 'Add key',
   'Додати теку…': 'Add a folder…', 'Діє після виходу з облікового запису й повторного входу.': 'Takes effect after signing out and in again.',
   'Діє після перезапуску Провідника — кнопка вгорі сторінки.': 'Takes effect after restarting File Explorer — the button at the top.',
   'Експорт Obtainium (Налаштування → Експорт): посилання з нього — у бібліотеку.': 'An Obtainium export (Settings → Export): its links go into the library.',
-  'З копіями налаштувань (.zip)': 'With settings backups (.zip)', 'Закладок Chrome, Edge, Brave, Vivaldi чи Opera не знайдено': 'No Chrome, Edge, Brave, Vivaldi or Opera bookmarks found',
-  'Застосовано': 'Applied', 'Зберегти копію зараз': 'Back up now', 'Зберегти набір': 'Save a bundle', 'Знайдено на цьому ПК': 'Found on this PC', 'Знайти й налаштувати': 'Find and set up',
+  'Закладок Chrome, Edge, Brave, Vivaldi чи Opera не знайдено': 'No Chrome, Edge, Brave, Vivaldi or Opera bookmarks found',
+  'Застосовано': 'Applied', 'Зберегти копію зараз': 'Back up now', 'Знайдено на цьому ПК': 'Found on this PC',
   'Значення': 'Value', 'Значення реєстру': 'Registry values', 'Зірки GitHub': 'GitHub stars', 'Канал': 'Channel', 'Ключ має починатися з HKCU\\ або HKLM\\': 'The key must start with HKCU\\ or HKLM\\',
-  'Кожен твік можна скасувати: Komora пам’ятає, що було до нього. Після оновлень Windows Komora перевіряє, чи не скинуто твіки, і пропонує повернути.': 'Every tweak can be undone: Komora remembers what was there before. After Windows updates Komora checks whether tweaks were reset and offers to bring them back.',
   'Копію налаштувань збережено': 'Settings backed up', 'Копіюю налаштування': 'Backing up settings', 'Копії': 'Backups', 'Лише форки': 'Forks only', 'Магазин': 'Shop',
   'Миша й клавіатура': 'Mouse and keyboard', 'Можливо, є живий форк.': 'There may be a living fork.', 'Мої нотатки — навіщо це, що важливо…': 'My notes — why I keep it, what matters…',
-  'Мої твіки': 'My tweaks', 'Мій твік': 'My tweak', 'Набір з ПК': 'Bundle from PC', 'Набір збережено:': 'Bundle saved:',
-  'Набір — це бібліотека, групи, теги, нотатки й твіки одним файлом. З копіями налаштувань програм — zip.': 'A bundle is the library, groups, tags, notes and tweaks in one file. With the apps’ settings backups — a zip.',
+  'Мої твіки': 'My tweaks', 'Мій твік': 'My tweak', 'Набір збережено:': 'Bundle saved:',
   'Назва значення': 'Value name', 'Найпопулярніші форки. «Живіший» — оновлювався пізніше за оригінал.': 'The most popular forks. “More alive” — updated later than the original.',
-  'Налаштування відновлено': 'Settings restored', 'Нова група з назвою джерела': 'New group named after the source', 'Новий ПК і синхронізація': 'New PC and sync',
-  'Нічого не вибрано': 'Nothing chosen', 'Обрати теку…': 'Choose a folder…', 'Обрати файл…': 'Choose a file…', 'Обрати…': 'Choose…', 'Опис': 'Description', 'Остання копія': 'Last backup',
+  'Налаштування відновлено': 'Settings restored', 'Нова група з назвою джерела': 'New group named after the source',
+  'Нічого не вибрано': 'Nothing chosen', 'Обрати файл…': 'Choose a file…', 'Опис': 'Description', 'Остання копія': 'Last backup',
   'Панель завдань': 'Taskbar', 'Панель завдань і відкриті вікна Провідника зникнуть на кілька секунд.': 'The taskbar and open File Explorer windows disappear for a few seconds.',
-  'Перевірити на VirusTotal': 'Check on VirusTotal', 'Перезапустити': 'Restart', 'Перезапустити Провідник': 'Restart File Explorer', 'Перезапустити Провідник?': 'Restart File Explorer?',
-  'Платформа': 'Platform', 'По одному на рядок: GitHub, сайти, відео, товари.': 'One per line: GitHub, sites, videos, products.', 'Повернути': 'Bring back', 'Повернути всі': 'Bring all back',
-  'Показати закладки браузерів': 'Show browser bookmarks', 'Показати форки': 'Show forks', 'Посилання скопійовано': 'Link copied', 'Поставити вибране': 'Set up the chosen',
+  'Перезапустити': 'Restart', 'Перезапустити Провідник': 'Restart File Explorer', 'Перезапустити Провідник?': 'Restart File Explorer?',
+  'Платформа': 'Platform', 'По одному на рядок: GitHub, сайти, відео, товари.': 'One per line: GitHub, sites, videos, products.', 'Повернути': 'Bring back',
+  'Показати форки': 'Show forks', 'Посилання скопійовано': 'Link copied', 'Поставити вибране': 'Set up the chosen',
   'Потребує уваги': 'Needs attention', 'Потрібні права адміністратора': 'Needs administrator rights', 'Провідник': 'File Explorer', 'Пуск і пошук': 'Start and search',
   'Підпис пошкоджено': 'Broken signature', 'Підписано': 'Signed', 'Разом з форками': 'With forks', 'Реклама й приватність': 'Ads and privacy',
   'Репозиторії, яким ти поставив зірку, — у бібліотеку. Релізи підтягнуться під час перевірки (для багатьох зірок потрібен токен).': 'Repositories you starred go into the library. Releases come with the next check (many stars need a token).',
   'Свій твік': 'Own tweak', 'Синхронізовано': 'Synced', 'Синхронізовано: є зміни з іншого ПК': 'Synced: changes from another PC', 'Синхронізувати зараз': 'Sync now',
   'Система': 'System', 'Скасовано': 'Undone', 'Скрипт, що вмикає': 'Script that applies', 'Скрипт, що скасовує': 'Script that undoes',
-  'Спершу закрий програму: її файли налаштувань буде замінено копією.': 'Close the app first: its settings files are replaced by the backup.', 'Ставлю вибране — це може тривати.': 'Setting up the chosen — this may take a while.',
-  'Сторінка': 'Page', 'Стрічка релізів': 'Release feed', 'Твіки': 'Tweaks', 'Твіки Windows': 'Windows tweaks',
+  'Спершу закрий програму: її файли налаштувань буде замінено копією.': 'Close the app first: its settings files are replaced by the backup.',
+  'Сторінка': 'Page', 'Твіки': 'Tweaks', 'Твіки Windows': 'Windows tweaks',
   'Тека закладок разом із вкладеними — у бібліотеку: репозиторії як програми, решта як посилання.': 'A bookmarks folder with its subfolders goes into the library: repositories as apps, the rest as links.',
   'Теки й гілки реєстру з налаштуваннями програми. Кеші й журнали не копіюються; зберігаються 5 останніх копій.': 'Folders and registry keys with the app’s settings. Caches and logs are left out; the last 5 backups are kept.',
-  'Текст': 'Text', 'Тема: будь-яка': 'Topic: any', 'Тема GitHub': 'Topic', 'Тестові релізи': 'Pre-releases', 'Товар': 'Product', 'У бібліотеку': 'To the library', 'Українська': 'Українська',
-  'Усе вже встановлено': 'Everything is installed already', 'Файл релізу': 'Release file', 'Форки': 'Forks', 'Форків немає': 'No forks',
-  'Ці програми прийшли з синхронізації чи набору й ще не стоять тут.': 'These apps came with sync or a bundle and are not installed here yet.', 'Ціна': 'Price', 'Ціна знизилась:': 'Price dropped:',
-  'Через приватний GitHub Gist': 'Through a secret GitHub Gist', 'Через теку в хмарі (OneDrive, Google Drive, Dropbox…)': 'Through a cloud folder (OneDrive, Google Drive, Dropbox…)',
-  'Шукаю, де програма тримає налаштування…': 'Looking for where the app keeps its settings…', 'Ще значення': 'Another value', 'Ще не перевірено': 'Not checked yet', 'Ще не синхронізовано': 'Not synced yet',
-  'Що зберігати': 'What to back up', 'адміністратор': 'administrator', 'архів: автор більше не розвиває': 'archived: no longer developed', 'встановлено до Komora 0.3': 'installed before Komora 0.3',
-  'від першої': 'since the first', 'живіший': 'more alive', 'за тиждень': 'this week', 'звично для відкритих програм': 'common for open source apps', 'логін GitHub': 'GitHub login',
-  'найнижча': 'lowest', 'не вдалося': 'failed', 'не оновлювався понад рік': 'not updated for over a year', 'оновлено': 'updated', 'останній реліз понад 2 роки тому': 'last release over 2 years ago',
-  'перевіряється під час встановлення': 'checked during install', 'потрібен токен з дозволом Gists (Налаштування)': 'needs a token with the Gists permission (Settings)', 'пошкоджений підпис': 'broken signature',
+  'Текст': 'Text', 'Тестові релізи': 'Pre-releases', 'Товар': 'Product', 'У бібліотеку': 'To the library', 'Українська': 'Українська',
+  'Файл релізу': 'Release file', 'Форки': 'Forks', 'Форків немає': 'No forks',
+  'Шукаю, де програма тримає налаштування…': 'Looking for where the app keeps its settings…', 'Ще значення': 'Another value',
+  'Що зберігати': 'What to back up', 'адміністратор': 'administrator', 'архів: автор більше не розвиває': 'archived: no longer developed',
+  'живіший': 'more alive', 'за тиждень': 'this week', 'звично для відкритих програм': 'common for open source apps', 'логін GitHub': 'GitHub login',
+  'не вдалося': 'failed', 'не оновлювався понад рік': 'not updated for over a year', 'оновлено': 'updated', 'останній реліз понад 2 роки тому': 'last release over 2 years ago',
+  'пошкоджений підпис': 'broken signature',
   'пропонувати пре-релізи як оновлення': 'offer pre-releases as updates', 'після перезапуску Провідника': 'after restarting File Explorer', 'після повторного входу': 'after signing in again',
-  'скинуто Windows': 'reset by Windows', 'спершу додай токен у Налаштуваннях': 'add a token in Settings first', 'стежу за ціною': 'watching the price', 'твіків': 'tweaks', 'уже були': 'already there',
-  'уже так у Windows': 'already so in Windows', 'файл змінено після підпису': 'the file was changed after signing', 'форк': 'fork', 'форк від': 'fork of', 'ціни на сторінці не знайдено': 'no price found on the page',
-  'частина назви, напр. x64.zip — порожньо: автоматично': 'part of the name, e.g. x64.zip — empty: automatic', 'Дивитись': 'Watch', 'До магазину': 'To the shop',
-  'Перенести на інший ПК': 'Move to another PC', 'Поставити на цей ПК': 'Set up this PC', 'Було встановлено на іншому ПК': 'Installed on another PC', 'Синхронізація між ПК': 'Sync between PCs',
-  'Закладки браузера': 'Browser bookmarks', 'Список посилань': 'A list of links', 'winget і UniGetUI': 'winget and UniGetUI', 'Тека': 'Folder', 'Сайт': 'Site', 'Додано': 'Added',
-  'Копія налаштувань': 'Settings backup', 'Параметри': 'Options', 'Оновити дані': 'Refresh', 'Попередня версія': 'Previous version', 'Відкріпити': 'Unpin', 'Закріпити': 'Pin', 'Копіювати': 'Copy',
-  'Прибрати': 'Remove', 'Відкрити': 'Open', 'Новий ПК': 'New PC',
+  'скинуто Windows': 'reset by Windows', 'спершу додай токен у Налаштуваннях': 'add a token in Settings first', 'твіків': 'tweaks', 'уже були': 'already there',
+  'уже так у Windows': 'already so in Windows', 'файл змінено після підпису': 'the file was changed after signing', 'форк': 'fork',
+  'частина назви, напр. x64.zip — порожньо: автоматично': 'part of the name, e.g. x64.zip — empty: automatic', 'Дивитись': 'Watch',
+  'Поставити на цей ПК': 'Set up this PC',
+  'Закладки браузера': 'Browser bookmarks', 'Список посилань': 'A list of links', 'Тека': 'Folder', 'Сайт': 'Site', 'Додано': 'Added',
+  'Копія налаштувань': 'Settings backup', 'Параметри': 'Options', 'Оновити дані': 'Refresh', 'Відкріпити': 'Unpin', 'Закріпити': 'Pin', 'Копіювати': 'Copy',
+  'Прибрати': 'Remove', 'Відкрити': 'Open', 
 });
 
 // English messages of the app side (network, installs) in Ukrainian
@@ -151,8 +134,6 @@ Object.assign(EN, {
   'Архіви': 'Archives',
   'Браузер': 'Browser',
   'Браузери': 'Browsers',
-  'Бібліотеки для ігор і програм': 'Libraries for games and apps',
-  'Відеокарта': 'Video card',
   'Відтворює будь-яке відео': 'Plays any video',
   'Він входить до «Інсталятора застосунків» (App Installer) з Microsoft Store.': 'It comes with App Installer from Microsoft Store.',
   'Голос і чати': 'Voice and chats',
@@ -214,8 +195,6 @@ Object.assign(EN, {
   'Сіро-біла': 'Grey and white',
   'Біла': 'White',
   'Пісок': 'Sand',
-  'Темна тема': 'Dark theme',
-  'Світла тема': 'Light theme',
   'Назва цього ПК у Komora': 'This PC’s name in Komora',
   'Для Огляду, синхронізації й наборів. Порожньо — ім’я комп’ютера у Windows': 'For the dashboard, sync and bundles. Empty — the computer’s name in Windows',
   'Оновлювати автоматично': 'Update automatically',
@@ -228,17 +207,14 @@ Object.assign(EN, {
   'Скасувати встановлення': 'Cancel the install',
   'Встановлення скасовано': 'The install is cancelled',
   'Логін GitHub або посилання на профіль GitHub, GitLab чи Codeberg': 'A GitHub login or a GitHub, GitLab or Codeberg profile link',
-  'Встановити все': 'Install all',
   'Значки ігор Steam': 'Steam game icons',
   'Коли гру переносять на інший диск, її ярлик на робочому столі стає білим. Komora знаходить гру в бібліотеках Steam і повертає значок.': 'When a game moves to another disk, its desktop shortcut turns white. Komora finds the game in the Steam libraries and brings the icon back.',
   'Полагодити зараз': 'Fix now',
-  'Самі після перевірки': 'By itself after a check',
   'Значки повернуто': 'Icons brought back',
   'ігор не знайдено': 'games not found',
   'Усі значки Steam на місці': 'All Steam icons are in place',
   'Шукаю ігри в бібліотеках Steam…': 'Looking for the games in the Steam libraries…',
   'працює': 'up',
-  'Додати групу в набір': 'Add the group to the kit',
   'Нова програма чи посилання…': 'A new app or link…',
   'Сторінка winget': 'winget page',
   'Лагодити автоматично': 'Fix automatically',
@@ -255,7 +231,6 @@ Object.assign(EN, {
   'Очищаю…': 'Cleaning…',
   'Звільнено': 'Freed',
   'Що повернути після перевстановлення Windows чи на новому ПК': 'What comes back after reinstalling Windows or on a new PC',
-  'Що повернути після перевстановлення Windows чи на новому ПК. Синхронізація й файл набору несуть лише це.': 'What comes back after reinstalling Windows or on a new PC. Sync and the kit’s file carry only this.',
   'Нове одразу в набір': 'New things straight into the kit',
   'Програми, посилання, групи, автори й твіки, які додаєш, одразу потрапляють у набір': 'The apps, links, groups, authors and tweaks you add go into the kit at once',
   'Додати групу': 'Add a group',
@@ -285,8 +260,6 @@ Object.assign(EN, {
   'Швидкий пошук': 'Quick search',
   'Встановити набір': 'Install the kit',
   'Усе з набору вже встановлено': 'Everything of the kit is installed already',
-  'Можна перевстановлювати Windows': 'Windows can be reinstalled',
-  'Перед перевстановленням Windows': 'Before reinstalling Windows',
   'Синхронізацію не налаштовано — набір є лише на цьому ПК': 'Sync is not set up — the kit is only on this PC',
   'Налаштувати': 'Set up',
   'Встановлені, але не в наборі': 'Installed but not in the kit',
@@ -305,12 +278,11 @@ Object.assign(EN, {
   'Твої програми й посилання: Komora ставить їх, оновлює й переносить на новий ПК': 'Your programs and links: Komora installs them, updates them and moves them to a new PC',
   'Як Komora працює на цьому ПК: перевірки, теки, вигляд, ключі й дані': 'How Komora works on this PC: checks, folders, look, keys and data',
   'Пристрої': 'Devices', 'Зараз жоден пристрій не повідомляє заряд.': 'No device reports its charge right now.',
-  'Окремий значок у треї для кожного пристрою, що повідомляє заряд: Bluetooth, миші й клавіатури Logitech, геймпади PlayStation. Наведи на значок — назва й відсоток.': 'A tray icon for each device that reports its charge: Bluetooth, Logitech mice and keyboards, PlayStation controllers. Point at the icon for its name and percent.',
+  'Окремий значок у треї для кожного пристрою, що повідомляє заряд: Bluetooth, миші й клавіатури Logitech, миші Razer, SteelSeries і ATK / VXE, гарнітури Arctis, геймпади PlayStation і Xbox. Наведи на значок — назва й відсоток.': 'A tray icon for each device that reports its charge: Bluetooth, Logitech mice and keyboards, Razer, SteelSeries and ATK / VXE mice, Arctis headsets, PlayStation and Xbox controllers. Hover the icon for the name and percent.',
   'Сповіщення про низький заряд': 'Low charge notifications', 'При 20 % і при 10 % — раз на розряд, лише для пристроїв зі значком у треї': 'At 20 % and at 10 % — once per discharge, only for devices with a tray icon',
   'Сторонні компоненти': 'Third-party components', 'Шрифт Geist (OFL), значки Material Symbols (Apache-2.0) і Lucide (ISC)': 'The Geist typeface (OFL), Material Symbols (Apache-2.0) and Lucide (ISC) icons',
-  'Komora — незалежний проєкт. Вона не пов’язана з Microsoft, Valve, Sony, Logitech, Nintendo, GitHub, GitLab чи іншими згаданими компаніями й не схвалена ними; їхні назви й торгові марки належать власникам.': 'Komora is an independent project. It is not affiliated with or endorsed by Microsoft, Valve, Sony, Logitech, Nintendo, GitHub, GitLab or any other company named in it; their names and trademarks belong to their owners.',
-  'Заряд пристроїв у треї': 'Device charge in the tray', 'Вказати іншу теку встановлення…': 'Choose another install folder…', 'Уже встановлено — вказати теку…': 'Already installed — choose its folder…', 'Програму знайдено в теці': 'The app was found in the folder', 'Значок у треї': 'Tray icon', 
-  
+  'Komora — незалежний проєкт. Вона не пов’язана з Microsoft, Valve, Sony, Logitech, Razer, SteelSeries, Nintendo, GitHub, GitLab чи іншими згаданими компаніями й не схвалена ними; їхні назви й торгові марки належать власникам.': 'Komora is an independent project. It is not affiliated with or endorsed by Microsoft, Valve, Sony, Logitech, Razer, SteelSeries, Nintendo, GitHub, GitLab or any other company named in it; their names and trademarks belong to their owners.',
+  'Заряд пристроїв у треї': 'Device charge in the tray', 'Вказати іншу теку встановлення…': 'Choose another install folder…', 'Уже встановлено — вказати теку…': 'Already installed — choose its folder…', 'Програму знайдено в теці': 'The app was found in the folder', 'Значок у треї': 'Tray icon',
   'Сторінка завантаження': 'Download page', 'Файли': 'Files', 'Перевірити сторінку': 'Check the page', 'Зробити знову посиланням': 'Make it a link again',
   'Файли для Windows, на які посилається сторінка. Komora перевіряє її разом з оновленнями: новий файл — нова версія.': 'Windows files the page links to. Komora checks it with the updates: a new file is a new version.',
   'На сторінці є файл для Windows': 'The page has a Windows file', 'Встановлювати звідси': 'Install from here', 'На сторінці немає файлу для Windows': 'The page has no Windows file',
@@ -336,8 +308,6 @@ Object.assign(EN, {
   'Драйвери відеокарти й чипсета та BIOS материнської плати беруться з сайтів виробників. BIOS Komora не прошиває: онови його за інструкцією виробника.': 'Video card and chipset drivers and the motherboard BIOS come from the makers’ sites. Komora never flashes a BIOS: update it by the maker’s instructions.',
   'Драйвери й BIOS': 'Drivers and BIOS',
   'Драйвери й залізо': 'Drivers and hardware',
-  'Драйвери й основні програми для цього ПК: ставляться й оновлюються через winget': 'Drivers and everyday programs for this PC, installed and updated through winget',
-  'Залізо': 'Hardware',
   'Запис і стрім': 'Recording and streaming',
   'Здоров’я дисків (SMART)': 'Disk health (SMART)',
   'Корисні дрібниці від Microsoft': 'Handy extras from Microsoft',
@@ -345,7 +315,6 @@ Object.assign(EN, {
   'Лічильник FPS і обмеження кадрів в іграх': 'FPS counter and frame limit in games',
   'Магазин Epic Games': 'Epic Games store',
   'Магазин і бібліотека ігор': 'Game store and library',
-  'Материнська плата': 'Motherboard',
   'Месенджер': 'Messenger',
   'Миттєвий пошук файлів': 'Instant file search',
   'Музика': 'Music',
@@ -363,13 +332,10 @@ Object.assign(EN, {
   'Температури, напруги, вентилятори': 'Temperatures, voltages, fans',
   'Усе про відеокарту та її датчики': 'Everything about the video card and its sensors',
   'Утиліти': 'Utilities',
-  'Чипсет': 'Chipset',
   'Швидкість дисків': 'Disk speed',
   'автор · Komora на GitHub': 'author · Komora on GitHub',
   'вільно з': 'free of', 'вільно': 'free', 'біт': 'bit', 'МТ/с': 'MT/s',
   'драйвер': 'driver',
-  'Оновлювати самі': 'Update by themselves',
-  'Ставити на новому ПК': 'Install on a new PC',
 });
 
 const UK_ERR = [
@@ -512,37 +478,34 @@ const fmtNum = n => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace('
 // ---------------------------------------------------------------- 0.4 strings
 Object.assign(EN, {
   'Огляд': 'Dashboard', 'посилання не відкривається': 'the link does not open', 'Шукати в бібліотеці й на GitHub': 'Search the library and GitHub', 'Перевіряю': 'Checking',
-  'Додати програму чи посилання': 'Add an app or a link', 'Мій набір': 'My kit', 'знайти': 'find', 'Знайти нове': 'Find new', 'Автори': 'Authors', 'групи': 'groups', 'теги': 'tags',
-  'у бібліотеці': 'in the library', 'встановлено': 'installed', 'ціна у вішлісті знизилась': 'a wishlist price dropped', 'Усе спокійно': 'All quiet',
-  'Windows скинула твіки': 'Windows reset tweaks', 'Усі оновлення': 'All updates', 'Встановлюються по черзі; портативні лишають попередню версію для відкату': 'Installed one by one; portable apps keep the previous version for a rollback',
-  'Закріплено': 'Pinned', 'є': 'there is', 'Диск': 'Disk', 'портативні програми': 'portable apps', 'Зірки за тиждень': 'Stars this week', 'найбільше': 'most:',
-  'рахую з першого тижня': 'counting from the first week', 'нових репозиторіїв немає': 'no new repositories', 'стеж за улюбленими авторами': 'follow your favourite authors',
-  'журнал перевірки': 'check log', 'Усе з набору стоїть': 'Everything of the kit is installed', 'Вішліст': 'Wishlist', 'без змін': 'no change', 'Релізи бібліотеки': 'Releases of the library',
-  '30 днів': '30 days', 'Нове від авторів': 'New from authors', 'перевірено': 'checked', 'не вдалося перевірити': 'could not be checked', 'Windows скинула твік': 'Windows reset a tweak',
-  'або': 'or', 'Набір з іншого ПК': 'A bundle from another PC', 'не відкривається': 'does not open', 'набір': 'kit', 'Встановити відсутні': 'Install the missing',
-  'Група': 'Group', 'Програми, які мають бути на кожному твоєму ПК': 'Apps that belong on every PC of yours', 'Стоять на цьому ПК': 'Installed on this PC', 'Оновити до': 'Update to',
+  'Додати програму чи посилання': 'Add an app or a link', 'Мій набір': 'My kit', 'Знайти нове': 'Find new', 'Автори': 'Authors', 'групи': 'groups', 'теги': 'tags',
+  'встановлено': 'installed',
+  'Windows скинула твіки': 'Windows reset tweaks', 'Усі оновлення': 'All updates',
+  'Закріплено': 'Pinned', 'є': 'there is', 'найбільше': 'most:',
+  'Усе з набору стоїть': 'Everything of the kit is installed',
+  'Нове від авторів': 'New from authors', 'перевірено': 'checked', 'не вдалося перевірити': 'could not be checked', 'Windows скинула твік': 'Windows reset a tweak',
+  'або': 'or', 'Набір з іншого ПК': 'A bundle from another PC', 'не відкривається': 'does not open', 'набір': 'kit',
+  'Група': 'Group', 'Оновити до': 'Update to',
   'група': 'group', 'тег': 'tag', 'Інші версії': 'Other versions', 'Ще': 'More',
   'антивірусів позначили файл. Часто це хибна тривога для відкритих програм, але подивись звіт.': 'antivirus engines flagged the file. For open source apps this is often a false alarm, but look at the report.',
-  'Звіт': 'Report', 'закріплено': 'pinned', 'форків': 'forks', 'Мови': 'Languages', 'оновлюється з даними': 'comes with a refresh', 'ще не налаштовано': 'not set up yet',
-  'як пропонує встановлювач': 'where the setup proposes', 'Увімкнено для всіх у Налаштуваннях': 'On for every app in Settings', 'Без підпису — звично для відкритих програм.': 'Unsigned — common for open source apps.',
+  'Звіт': 'Report', 'закріплено': 'pinned', 'форків': 'forks', 'Мови': 'Languages', 'ще не налаштовано': 'not set up yet',
+  'як пропонує встановлювач': 'where the setup proposes', 'Без підпису — звично для відкритих програм.': 'Unsigned — common for open source apps.',
   'Підпис пошкоджено: файл змінено після підпису.': 'Broken signature: the file was changed after signing.', 'Встановлено до Komora 0.3 — не перевірено.': 'Installed before Komora 0.3 — not checked.',
-  'Підпис і контрольна сума перевіряються під час встановлення.': 'The signature and the checksum are checked during the install.', 'SHA-256 збігся з релізом.': 'SHA-256 matches the release.',
+  'Підпис і контрольна сума перевіряються під час встановлення.': 'The signature and the checksum are checked during the install.',
   'аналізує…': 'analysing…', 'VirusTotal ще не бачив цей файл.': 'VirusTotal has not seen this file yet.', 'Покаже файл у Провіднику й відкриє сторінку завантаження VirusTotal': 'Shows the file in File Explorer and opens the VirusTotal upload page',
-  'Завантажити на перевірку': 'Upload for a scan', 'файл': 'file', 'тип': 'type', 'тека': 'folder', 'Порівняти з': 'Compare with', 'Тека встановлення': 'Install folder', 'Огляд…': 'Browse…',
-  'Як у Налаштуваннях': 'As in Settings', 'Посилання не відкривається': 'The link does not open', 'з': 'since', 'із': 'of', 'Перевірити': 'Check', 'Найнижча': 'Lowest', 'разом з оновленнями': 'with the update checks',
-  'раз на тиждень': 'once a week', 'знайдено': 'found', 'Шукати': 'Search', 'нещодавні': 'recent', 'Лише додати в бібліотеку': 'Only add to the library', 'Ліцензія': 'Licence',
+  'Завантажити на перевірку': 'Upload for a scan', 'файл': 'file', 'тека': 'folder', 'Порівняти з': 'Compare with', 'Тека встановлення': 'Install folder', 'Огляд…': 'Browse…',
+  'Як у Налаштуваннях': 'As in Settings', 'Посилання не відкривається': 'The link does not open', 'з': 'since', 'із': 'of', 'Перевірити': 'Check', 'разом з оновленнями': 'with the update checks',
+  'знайдено': 'found', 'Шукати': 'Search', 'нещодавні': 'recent', 'Ліцензія': 'Licence',
   'Нові репозиторії тих, за ким стежиш, — під час кожної перевірки': 'New repositories of the people you follow — on every check', 'Логін GitHub або посилання на профіль': 'GitHub login or profile link',
   'Стежити': 'Follow', 'Ще ні за ким не стежиш': 'You follow nobody yet', 'Стежити можна зі сторінки програми (меню ⋯) або тут за логіном.': 'Follow from an app’s page (the ⋯ menu) or here by login.',
   'організація': 'organisation', 'Не стежити': 'Unfollow', 'Нові репозиторії': 'New repositories', 'Переглянуто': 'Seen', 'нове': 'new', 'Публічних репозиторіїв немає': 'No public repositories',
-  'Кожен можна скасувати — Komora пам’ятає, що було до нього.': 'Each can be undone — Komora remembers what was there before.', 'Komora перевіряє твіки після кожного запуску й перевірки оновлень.': 'Komora checks the tweaks after every start and update check.',
-  'було увімкнено': 'was on', 'увімкнено': 'on', 'вимкнено': 'off', 'Змінити': 'Change',
-  'Бібліотека, групи, теги, нотатки, твіки й копії налаштувань — на будь-який твій ПК.': 'The library, groups, tags, notes, tweaks and settings backups — on any PC of yours.',
-  'Один файл із усім. З копіями налаштувань програм — zip.': 'One file with everything. With the apps’ settings backups — a zip.', 'З копіями налаштувань · .zip': 'With settings backups · .zip',
-  'ще не синхронізовано': 'not synced yet', 'Синхронізація': 'Sync', 'Тека в хмарі': 'A cloud folder', 'Приватний GitHub Gist': 'A secret GitHub Gist', 'потрібен токен з дозволом Gists': 'needs a token with the Gists permission',
+  'Кожен можна скасувати — Komora пам’ятає, що було до нього.': 'Each can be undone — Komora remembers what was there before.',
+  'увімкнено': 'on', 'вимкнено': 'off', 'Змінити': 'Change',
+  'ще не синхронізовано': 'not synced yet', 'Синхронізація': 'Sync', 'Приватний GitHub Gist': 'A secret GitHub Gist', 'потрібен токен з дозволом Gists': 'needs a token with the Gists permission',
   'Вимкнено': 'Off', 'лише набір у файл': 'only a bundle file', 'Зміни зливаються, перемагає новіша. Встановлене не копіюється — інші ПК лише пропонують поставити.': 'Changes merge, the newer one wins. Installed apps are not copied — other PCs offer to install them.',
   'По одній програмі; налаштування повертаються з копій одразу після встановлення': 'One app at a time; settings come back from backups right after the install', 'Ставлю набір з': 'Setting up the bundle from',
-  'готово': 'done', 'у черзі': 'queued', 'Твіки з набору': 'Tweaks of the bundle', 'Прийшло із синхронізацією чи набору': 'Came with sync or a bundle', 'Як пропонує встановлювач': 'Where the setup proposes',
-  'Вигляд': 'Appearance', 'Світла — теплий папір, темна — графіт': 'Light — warm paper, dark — graphite', 'Перетягни сюди програми, щоб додати їх у набір': 'Drop apps here to add them to the kit', 'Зберегти набір (.zip)': 'Save the kit (.zip)', 'На цьому ПК': 'On this PC', 'Оновлювати програми набору самі': 'Update the kit’s apps by themselves', 'Після кожної перевірки нові версії програм набору ставляться без твого кліку': 'After every check new versions of the kit’s apps install without a click', 'На новому ПК ставити набір самі': 'Install the kit by itself on a new PC', 'Коли набір приходить із синхронізації чи набору, відсутні програми встановлюються самі': 'When the kit arrives with sync or a bundle, the missing apps install by themselves', 'Копії налаштувань програм набору завжди їдуть у zip-набір із «Перенесення».': 'Settings backups of the kit’s apps always go into the zip bundle from “Transfer”.', 'Додай програму кнопкою з позначкою набору — у рядку бібліотеки, на сторінці програми чи в результатах пошуку GitHub. Або перетягни програми на «Мій набір» у меню.': 'Add an app with the kit button — in a library row, on the app’s page or in GitHub search results. Or drop apps on “My kit” in the menu.', 'Додано в мій набір': 'Added to my kit', 'Додати в бібліотеку й у мій набір': 'Add to the library and to my kit', 'Файл .zip: бібліотека, групи, теги, нотатки, твіки й сама Komora.exe. На новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.': 'A .zip file: the library, groups, tags, notes, tweaks and Komora.exe itself. On a new PC unpack it, start Komora.exe and open this zip.', 'З налаштуваннями програм': 'With the apps’ settings', 'копій ще немає': 'no backups yet', 'Синхронізація не вдалася': 'Sync failed', 'Відкрити «Перенесення»': 'Open “Transfer”', 'помилка': 'error', 'Прибрати з набору': 'In my kit — click to remove', 'Додати в мій набір': 'Add to my kit', 'У моєму наборі': 'In my kit', 'Той самий токен, що й у Налаштуваннях: для Gist йому потрібен дозвіл Gists (Read and write).': 'The same token as in Settings: for a Gist it needs the Gists permission (Read and write).', 'Перенесення': 'Transfer', 'На інший ПК чи після перевстановлення Windows: бібліотека, групи, теги, нотатки, твіки й копії налаштувань.': 'To another PC or after reinstalling Windows: the library, groups, tags, notes, tweaks and settings backups.', 'Нові версії програм, які стоять на цьому ПК. Перевіряються за розкладом зі сторінки «Оновлення».': 'New versions of the apps on this PC. Checked on the schedule set on the Updates page.', 'Програми й посилання, з якими щось не так: архівний чи покинутий проєкт, пошкоджений підпис, посилання не відкривається.': 'Apps and links with something wrong: an archived or abandoned project, a broken signature, a link that does not open.', 'Що знайшла остання перевірка оновлень.': 'What the last update check found.', 'Програми, які мають бути на кожному твоєму ПК. Познач програму «У мій набір» на її сторінці.': 'Apps that belong on every PC of yours. Mark an app “To my kit” on its page.', 'Нові релізи програм із бібліотеки за останні 30 днів, зокрема не встановлених.': 'New releases of the library’s apps over the last 30 days, installed or not.', 'Нові репозиторії авторів, за якими стежиш (Знайти → Автори).': 'New repositories of the authors you follow (Find → Authors).', 'Один файл, щоб забрати бібліотеку на інший ПК чи на чисту Windows.': 'One file to take the library to another PC or a clean Windows.', 'Бібліотека сама оновлюється на всіх твоїх ПК: через приватний GitHub Gist або Dropbox. Перемагають новіші зміни; програми не встановлюються самі — інший ПК лише пропонує їх.': 'The library keeps itself the same on all your PCs: through a secret GitHub Gist or Dropbox. Newer changes win; apps do not install by themselves — the other PC only offers them.', 'Усі програми й посилання в бібліотеці': 'All apps and links in the library', 'Програми, налаштування яких Komora копіює (теки й гілки реєстру)': 'Apps whose settings Komora backs up (folders and registry keys)', 'Застосовані твіки Windows': 'Applied Windows tweaks', 'Програми з новою версією': 'Apps with a new version', 'Або імпортуй багато:': 'Or import many:', 'Добірки': 'Sets', 'Сортування': 'Sort', 'Будь-яка': 'Any', 'Будь-скільки': 'Any number', 'За місяць': 'Within a month', 'За пів року': 'Within half a year', 'За рік': 'Within a year', 'Автор GitHub': 'GitHub author', 'будь-хто': 'anyone', 'Нещодавні': 'Recent', 'Коли автор востаннє змінював код': 'When the author last changed the code', 'Додаю й встановлюю…': 'Adding and installing…', 'Зберегти бібліотеку': 'Save the library', 'Файл .komora: програми, посилання, групи, теги, нотатки й твіки.': 'A .komora file: apps, links, groups, tags, notes and tweaks.', 'Повний набір для нового ПК': 'A full bundle for a new PC', 'Файл .zip: усе те саме, копії налаштувань програм і сама Komora.exe. На новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.': 'A .zip file: all the same, the apps’ settings backups and Komora.exe itself. On a new PC unpack it, start Komora.exe and open this zip.', 'Зберегти .zip': 'Save .zip', 'Відкрити набір': 'Open a bundle', 'Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V).': 'A .komora or .zip file — or paste a link to a shared bundle (Ctrl+V).', 'Відкрити…': 'Open…', 'Посиланням (секретний Gist) або текстом — інший відкриє його в Komora.': 'As a link (secret Gist) or as text — someone else opens it in Komora.', 'синхронізацію вимкнено': 'sync is off', 'Конфігурації': 'Configs', 'програм з копіями налаштувань': 'apps with settings backups', 'копій налаштувань ще немає': 'no settings backups yet', 'готові до встановлення': 'ready to install', 'усе актуальне': 'all up to date', 'активні': 'active', 'Копії налаштувань програм самі': 'Settings backups by themselves', 'Теки налаштувань знаходяться самі; копія — перед кожним оновленням і раз на день, якщо файли змінилися': 'Settings folders are found by themselves; a backup before every update and once a day when the files changed', 'увійдено · тека Apps/Komora': 'signed in · folder Apps/Komora', 'увійти через сайт Dropbox': 'sign in on the Dropbox site', 'ще не налаштовано в цій збірці': 'not set up in this build yet', '1. Відкрий Dropbox і дозволь Komora доступ лише до її теки. 2. Скопіюй код, який покаже Dropbox, і встав сюди.': '1. Open Dropbox and allow Komora its own folder only. 2. Copy the code Dropbox shows and paste it here.', 'Відкрити Dropbox': 'Open Dropbox', 'код з Dropbox': 'code from Dropbox', 'Підтвердити': 'Confirm', 'Для Dropbox потрібен ключ застосунку Dropbox — його додасть автор у наступній збірці.': 'Dropbox needs a Dropbox app key — the author adds it in a coming build.', 'Вийти з Dropbox': 'Sign out of Dropbox', 'Поділитися': 'Share', 'Поділитися…': 'Share…', 'Посиланням (секретний Gist)': 'As a link (secret Gist)', 'Потрібен токен GitHub з дозволом Gists — Налаштування → Ключі': 'Needs a GitHub token with the Gists permission — Settings → Keys', 'Створюю посилання…': 'Creating the link…', 'Копіювати як текст': 'Copy as text', 'Скопійовано — встав куди завгодно; Komora прочитає цей текст через Ctrl+V': 'Copied — paste it anywhere; Komora reads such text back with Ctrl+V', 'Поділитися групою…': 'Share the group…', 'Посилання готове': 'The link is ready', 'Його скопійовано. Хто вставить його в Komora (Ctrl+V), побачить список і поставить, що захоче.': 'It is copied. Whoever pastes it into Komora (Ctrl+V) sees the list and installs what they want.', 'Гаразд': 'OK', 'Відкриваю спільний набір…': 'Opening the shared bundle…', 'Відновити': 'Restore', 'Розгорнути': 'Maximize', 'Згорнути': 'Minimize', 'Закрити': 'Close', 'Знайти': 'Find', 'Тег': 'Tag', 'Загальне': 'General', 'Підтримати Komora': 'Support Komora', 'Komora безкоштовна. Якщо вона тобі корисна — банка monobank.': 'Komora is free. If it is useful to you — a monobank jar.', 'Підтримати': 'Support', 'Файл набору': 'Bundle file', 'Бібліотека, групи, теги, нотатки й твіки одним файлом. Zip несе ще копії налаштувань програм і саму Komora.exe: на новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.': 'The library, groups, tags, notes and tweaks in one file. A zip also carries the apps’ settings backups and Komora.exe itself: on a new PC unpack it, start Komora.exe and open this zip.', 'Перевіряти': 'Check', 'Перевіряю…': 'Checking…', 'останній': 'latest', 'Темна — обсидіан, світла — сіро-біла': 'Dark — obsidian, light — grey and white', 'Є оновлення': 'Has updates', 'Актуально': 'Up to date', 'Без ключа — пошук за SHA-256 на сайті VirusTotal.': 'Without a key — a lookup by SHA-256 on the VirusTotal site.', 'Без токена': 'No token', 'Безпека й цілісність': 'Safety and integrity', 'Встав (Ctrl+V) чи перетягни у вікно посилання на репозиторій або будь-яку сторінку. Або імпортуй відразу багато:': 'Paste (Ctrl+V) or drop into the window a link to a repository or any page. Or import many at once:', 'Встановлені встановлювачем або знайдені у Windows': 'Installed by a setup or found in Windows', 'Встановлювачі': 'Installers', 'Відео, статті, товари з історією ціни': 'Videos, articles, products with price history', 'ГРУПИ': 'GROUPS', 'Доступно': 'Available', 'Дійсний': 'Valid', 'Закладки': 'Bookmarks', 'Зірки й форки': 'Stars and forks', 'КОПІЇ': 'BACKUPS', 'Картки': 'Cards', 'Каталог твіків Windows': 'Windows tweak catalog', 'Комора': 'Komora', 'ЛОКАЛЬНО': 'LOCAL', 'МІЙ НАБІР': 'MY KIT', 'МЕНЮ ІНСТРУМЕНТІВ': 'TOOLS', 'Моніторинг оновлень': 'Update monitoring', 'Моніторинг оновлень і трей': 'Update monitoring and tray', 'Набір': 'Bundle', 'Не встановлено': 'Not installed', 'Немає': 'None', 'Нові версії встановлених програм': 'New versions of installed apps', 'Один файл із усім. Zip несе ще копії налаштувань програм і саму Komora.exe: на новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.': 'One file with everything. A zip also carries the apps’ settings backups and Komora.exe itself: on a new PC unpack it, start Komora.exe and open this zip.', 'Оновити всі': 'Update all', 'Оновлення готові': 'Updates ready', 'Оновлення знайдено': 'Update found', 'ПОМИЛКА': 'ERROR', 'ПРОГРАМИ': 'APPS', 'Портативні': 'Portable', 'Поточний стан': 'Current state', 'Пошкоджено': 'Broken', 'Прогрес': 'Progress', 'Підтримати проєкт': 'Support the project', 'РОБОЧИЙ ПРОСТІР': 'WORKSPACE', 'Репозиторії': 'Repositories', 'Розпаковані Komora в теку переносних програм': 'Unpacked by Komora into the portable apps folder', 'Сама Komora теж є в бібліотеці й у кожному наборі — на іншому ПК вона оновлюватиметься, як решта програм.': 'Komora itself is in the library and in every bundle too — on another PC it updates like the other apps.', 'Скопійовано': 'Copied', 'Список': 'List', 'ТВІКИ': 'TWEAKS', 'ТЕГИ': 'TAGS', 'Твіки та оновлення': 'Tweaks and updates', 'Тестові версії (pre-release) для всіх': 'Pre-releases for all apps', 'ФІЛЬТР': 'FILTER', 'Це сама Komora. Вона завжди є в бібліотеці й у кожному наборі: на іншому ПК оновлюватиметься, як решта програм. «Оновити» завантажить новий Komora.exe, замінить ним цей і перезапустить програму.': 'This is Komora itself. It is always in the library and in every bundle: on another PC it updates like the other apps. “Update” downloads the new Komora.exe, puts it in place of this one and restarts.', 'ШВИДКІ ФІЛЬТРИ': 'QUICK FILTERS', 'Швидкий пошук у коморі, тегах і на GitHub': 'Quick search in the library, tags and GitHub', 'Швидкий імпорт до комори': 'Quick import', 'активних': 'active', 'виявлень': 'detections', 'вручну': 'manual', 'джерел': 'sources', 'для цього ПК': 'for this PC', 'запущена зараз': 'running now', 'застосовано': 'applied', 'збіг з релізом': 'matches the release', 'з’явиться після встановлення': 'appears after an install', 'лише в .zip': 'only in a .zip', 'на кожен ПК': 'for every PC', 'перевіряю…': 'checking…', 'посилань': 'links', 'програм': 'apps', 'реліз': 'release', 'реєстр і PowerShell': 'registry and PowerShell', 'тиждень': 'week', 'із': 'of', 'Працює': 'Running', 'Токен GitHub задано': 'A GitHub token is set', 'Без токена GitHub дає 60 запитів на годину. Додати токен — у Налаштуваннях': 'Without a token GitHub allows 60 requests an hour. Add a token in Settings', 'Підпис, SHA-256 і VirusTotal перевіряються під час кожного встановлення': 'The signature, SHA-256 and VirusTotal are checked on every install', 'Підпис і SHA-256 перевіряються під час кожного встановлення; VirusTotal — з ключем у Налаштуваннях': 'The signature and SHA-256 are checked on every install; VirusTotal — with a key in Settings', 'Як налаштувати Gist': 'How to set up the Gist', 'Відкрий сторінку нового токена на GitHub (посилання нижче) і ввійди у свій обліковий запис.': 'Open the page of a new token on GitHub (the link below) and sign in.', 'Token name — будь-яка назва, наприклад Komora. Expiration — скільки житиме токен: коли мине, синхронізація зупиниться й знадобиться новий.': 'Token name — any name, Komora for example. Expiration — how long the token lives: when it ends, sync stops and a new one is needed.', 'Repository access — «Public repositories»: доступ до твоїх репозиторіїв Komora не потрібен.': 'Repository access — “Public repositories”: Komora needs no access to your repositories.', 'Permissions → Account → Gists → Read and write.': 'Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен (github_pat_…) і встав його тут, у поле «Токен GitHub» під «Приватний GitHub Gist».': 'Generate token, copy it (github_pat_…) and paste it in Settings → Keys → GitHub token.', 'Тут обери «Приватний GitHub Gist». Komora сама створить секретний Gist із файлом komora-sync.json або знайде наявний.': 'Choose “Secret GitHub Gist” here. Komora creates a secret Gist with komora-sync.json itself, or finds the one there is.', 'На іншому ПК зроби те саме з тим самим обліковим записом GitHub — Komora знайде той самий Gist.': 'On another PC do the same with the same GitHub account — Komora finds the same Gist.', 'Секретний Gist не видно в списках і пошуку, але відкрити його може кожен, хто має посилання. Токени й ключі в синхронізацію не потрапляють.': 'A secret Gist is not listed or searchable, but anyone with its link can open it. Tokens and keys never go into sync.', 'Як працює тека в хмарі': 'How the cloud folder works', 'Обери теку, яку синхронізує OneDrive, Google Drive чи Dropbox (кнопки вище знаходять їх самі).': 'Pick a folder that OneDrive, Google Drive or Dropbox syncs (the buttons above find them).', 'Komora пише туди komora-sync.json і щохвилини дивиться, чи його не змінив інший ПК.': 'Komora writes komora-sync.json there and looks every minute whether another PC changed it.', 'На іншому ПК обери ту саму теку тієї самої хмари.': 'On another PC pick the same folder of the same cloud.', 'Як отримати токен': 'How to get a token', 'Створи токен на GitHub (посилання нижче): назва — будь-яка, Repository access — «Public repositories».': 'Create a token on GitHub (the link below): any name, Repository access — “Public repositories”.', 'Для ліміту запитів дозволи не потрібні. Для синхронізації через Gist — Permissions → Account → Gists → Read and write.': 'The request limit needs no permissions. Sync through a Gist needs Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен і встав сюди → Зберегти.': 'Generate token, copy it, paste it here → Save.', 'Як отримати ключ': 'How to get a key', 'Зареєструйся на virustotal.com — це безкоштовно.': 'Sign up on virustotal.com — it is free.', 'Відкрий свій профіль → API key (посилання нижче) і скопіюй ключ.': 'Open your profile → API key (the link below) and copy the key.', 'Встав сюди → Зберегти. Безкоштовний ключ дає 4 запити на хвилину й 500 на день — Komora чекає сама.': 'Paste it here → Save. A free key allows 4 requests a minute and 500 a day — Komora waits by itself.', 
+  'готово': 'done', 'у черзі': 'queued', 'Твіки з набору': 'Tweaks of the bundle', 'Як пропонує встановлювач': 'Where the setup proposes',
+  'Вигляд': 'Appearance', 'Перетягни сюди програми, щоб додати їх у набір': 'Drop apps here to add them to the kit', 'Додано в мій набір': 'Added to my kit', 'Додати в бібліотеку й у мій набір': 'Add to the library and to my kit', 'З налаштуваннями програм': 'With the apps’ settings', 'копій ще немає': 'no backups yet', 'Синхронізація не вдалася': 'Sync failed', 'Відкрити «Перенесення»': 'Open “Transfer”', 'Прибрати з набору': 'In my kit — click to remove', 'Додати в мій набір': 'Add to my kit', 'У моєму наборі': 'In my kit', 'Той самий токен, що й у Налаштуваннях: для Gist йому потрібен дозвіл Gists (Read and write).': 'The same token as in Settings: for a Gist it needs the Gists permission (Read and write).', 'Перенесення': 'Transfer', 'Нові версії програм, які стоять на цьому ПК. Перевіряються за розкладом зі сторінки «Оновлення».': 'New versions of the apps on this PC. Checked on the schedule set on the Updates page.', 'Або імпортуй багато:': 'Or import many:', 'Сортування': 'Sort', 'Будь-яка': 'Any', 'Будь-скільки': 'Any number', 'За місяць': 'Within a month', 'За пів року': 'Within half a year', 'За рік': 'Within a year', 'будь-хто': 'anyone', 'Нещодавні': 'Recent', 'Коли автор востаннє змінював код': 'When the author last changed the code', 'Додаю й встановлюю…': 'Adding and installing…', 'Зберегти .zip': 'Save .zip', 'Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V).': 'A .komora or .zip file — or paste a link to a shared bundle (Ctrl+V).', 'Відкрити…': 'Open…', 'Посиланням (секретний Gist) або текстом — інший відкриє його в Komora.': 'As a link (secret Gist) or as text — someone else opens it in Komora.', 'Копії налаштувань програм самі': 'Settings backups by themselves', 'Теки налаштувань знаходяться самі; копія — перед кожним оновленням і раз на день, якщо файли змінилися': 'Settings folders are found by themselves; a backup before every update and once a day when the files changed', 'увійдено · тека Apps/Komora': 'signed in · folder Apps/Komora', 'увійти через сайт Dropbox': 'sign in on the Dropbox site', 'ще не налаштовано в цій збірці': 'not set up in this build yet', '1. Відкрий Dropbox і дозволь Komora доступ лише до її теки. 2. Скопіюй код, який покаже Dropbox, і встав сюди.': '1. Open Dropbox and allow Komora its own folder only. 2. Copy the code Dropbox shows and paste it here.', 'Відкрити Dropbox': 'Open Dropbox', 'код з Dropbox': 'code from Dropbox', 'Підтвердити': 'Confirm', 'Для Dropbox потрібен ключ застосунку Dropbox — його додасть автор у наступній збірці.': 'Dropbox needs a Dropbox app key — the author adds it in a coming build.', 'Вийти з Dropbox': 'Sign out of Dropbox', 'Поділитися': 'Share', 'Поділитися…': 'Share…', 'Посиланням (секретний Gist)': 'As a link (secret Gist)', 'Потрібен токен GitHub з дозволом Gists — Налаштування → Ключі': 'Needs a GitHub token with the Gists permission — Settings → Keys', 'Створюю посилання…': 'Creating the link…', 'Копіювати як текст': 'Copy as text', 'Скопійовано — встав куди завгодно; Komora прочитає цей текст через Ctrl+V': 'Copied — paste it anywhere; Komora reads such text back with Ctrl+V', 'Поділитися групою…': 'Share the group…', 'Посилання готове': 'The link is ready', 'Його скопійовано. Хто вставить його в Komora (Ctrl+V), побачить список і поставить, що захоче.': 'It is copied. Whoever pastes it into Komora (Ctrl+V) sees the list and installs what they want.', 'Гаразд': 'OK', 'Відкриваю спільний набір…': 'Opening the shared bundle…', 'Відновити': 'Restore', 'Розгорнути': 'Maximize', 'Згорнути': 'Minimize', 'Закрити': 'Close', 'Знайти': 'Find', 'Тег': 'Tag', 'Загальне': 'General', 'Перевіряти': 'Check', 'Перевіряю…': 'Checking…', 'останній': 'latest', 'Без ключа — пошук за SHA-256 на сайті VirusTotal.': 'Without a key — a lookup by SHA-256 on the VirusTotal site.', 'Без токена': 'No token', 'Встановлювачі': 'Installers', 'Доступно': 'Available', 'Дійсний': 'Valid', 'Закладки': 'Bookmarks', 'Набір': 'Bundle', 'Не встановлено': 'Not installed', 'Немає': 'None', 'Портативні': 'Portable', 'Пошкоджено': 'Broken', 'Репозиторії': 'Repositories', 'Скопійовано': 'Copied', 'Список': 'List', 'Це сама Komora. Вона завжди є в бібліотеці й у кожному наборі: на іншому ПК оновлюватиметься, як решта програм. «Оновити» завантажить новий Komora.exe, замінить ним цей і перезапустить програму.': 'This is Komora itself. It is always in the library and in every bundle: on another PC it updates like the other apps. “Update” downloads the new Komora.exe, puts it in place of this one and restarts.', 'виявлень': 'detections', 'вручну': 'manual', 'джерел': 'sources', 'для цього ПК': 'for this PC', 'запущена зараз': 'running now', 'застосовано': 'applied', 'збіг з релізом': 'matches the release', 'з’явиться після встановлення': 'appears after an install', 'посилань': 'links', 'програм': 'apps', 'реліз': 'release', 'тиждень': 'week', 'із': 'of', 'Як налаштувати Gist': 'How to set up the Gist', 'Відкрий сторінку нового токена на GitHub (посилання нижче) і ввійди у свій обліковий запис.': 'Open the page of a new token on GitHub (the link below) and sign in.', 'Token name — будь-яка назва, наприклад Komora. Expiration — скільки житиме токен: коли мине, синхронізація зупиниться й знадобиться новий.': 'Token name — any name, Komora for example. Expiration — how long the token lives: when it ends, sync stops and a new one is needed.', 'Repository access — «Public repositories»: доступ до твоїх репозиторіїв Komora не потрібен.': 'Repository access — “Public repositories”: Komora needs no access to your repositories.', 'Permissions → Account → Gists → Read and write.': 'Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен (github_pat_…) і встав його тут, у поле «Токен GitHub» під «Приватний GitHub Gist».': 'Generate token, copy it (github_pat_…) and paste it in Settings → Keys → GitHub token.', 'Тут обери «Приватний GitHub Gist». Komora сама створить секретний Gist із файлом komora-sync.json або знайде наявний.': 'Choose “Secret GitHub Gist” here. Komora creates a secret Gist with komora-sync.json itself, or finds the one there is.', 'На іншому ПК зроби те саме з тим самим обліковим записом GitHub — Komora знайде той самий Gist.': 'On another PC do the same with the same GitHub account — Komora finds the same Gist.', 'Секретний Gist не видно в списках і пошуку, але відкрити його може кожен, хто має посилання. Токени й ключі в синхронізацію не потрапляють.': 'A secret Gist is not listed or searchable, but anyone with its link can open it. Tokens and keys never go into sync.', 'Як отримати токен': 'How to get a token', 'Створи токен на GitHub (посилання нижче): назва — будь-яка, Repository access — «Public repositories».': 'Create a token on GitHub (the link below): any name, Repository access — “Public repositories”.', 'Для ліміту запитів дозволи не потрібні. Для синхронізації через Gist — Permissions → Account → Gists → Read and write.': 'The request limit needs no permissions. Sync through a Gist needs Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен і встав сюди → Зберегти.': 'Generate token, copy it, paste it here → Save.', 'Як отримати ключ': 'How to get a key', 'Зареєструйся на virustotal.com — це безкоштовно.': 'Sign up on virustotal.com — it is free.', 'Відкрий свій профіль → API key (посилання нижче) і скопіюй ключ.': 'Open your profile → API key (the link below) and copy the key.', 'Встав сюди → Зберегти. Безкоштовний ключ дає 4 запити на хвилину й 500 на день — Komora чекає сама.': 'Paste it here → Save. A free key allows 4 requests a minute and 500 a day — Komora waits by itself.',
   'Перевіряти оновлення': 'Check for updates', 'Тестові версії (pre-release)': 'Pre-releases', 'Для всіх програм; окремо можна ввімкнути на сторінці програми': 'For every app; each app can also have them on its page',
   'Сповіщення Windows': 'Windows notifications', 'Нові версії, нове від авторів, скинуті твіки': 'New versions, news of authors, reset tweaks', 'Запускати разом із Windows': 'Start with Windows',
   'Згорнутою в трей': 'Minimised to the tray', 'Тека переносних програм': 'Folder for portable apps', 'Сюди розпаковуються zip і окремі .exe': 'Zips and standalone .exe files go here',
@@ -559,12 +522,58 @@ Object.assign(EN, {
   'Не пропускати': 'Do not skip', 'Шукаю автора…': 'Looking for the author…', 'Не стежити?': 'Unfollow?', 'Оновлюю…': 'Refreshing…', 'Ключ збережено': 'Key saved', 'Прибрати ключ?': 'Remove the key?',
   'Відпусти — посилання додасться в бібліотеку': 'Drop — the link goes into the library', 'У буфері немає посилання': 'No link in the clipboard', 'Нові репозиторії авторів:': 'New repositories of authors:',
   'Оновлюю дані сайту': 'Refreshing the site', 'Перевіряю на VirusTotal': 'Checking on VirusTotal',
-  'Познач на сторінці програми «У мій набір» те, що має бути на кожному ПК, — тут з’явиться кнопка «Встановити відсутні».': 'Mark “To my kit” on the page of an app that belongs on every PC — a button “Install the missing” appears here.',
   'Додай сайт, відео чи товар: Ctrl+V у вікні або кнопка «Додати».': 'Add a site, a video or a product: Ctrl+V in the window or the “Add” button.',
-  'Усі': 'All', 'Застосовані': 'Applied', 'Скинуті Windows': 'Reset by Windows', 'Мої': 'Mine', 'автоматично': 'automatic', 
-  'Прибрати з набору': 'Remove from the kit', 'У мій набір': 'To my kit', 'у моєму наборі': 'in my kit', 'у мій набір': 'to my kit', 'Порівняти зміни на GitHub': 'Compare the changes on GitHub', 'Реліз на GitHub': 'The release on GitHub',
-  'увімкнено для всіх у Налаштуваннях': 'on for every app in Settings', 'Сховати': 'Hide', 'Показати': 'Show', 'Встановити всі': 'Install all', 'Нещодавні й з оновленнями': 'Recent and with updates',
-  'Набір порожній': 'The kit is empty', 'Усю групу в мій набір': 'The whole group to my kit', 'Прибрати групу з набору': 'Remove the group from the kit', 'Позиція': 'Item',
+  'Усі': 'All', 'Застосовані': 'Applied', 'Скинуті Windows': 'Reset by Windows', 'Мої': 'Mine', 'автоматично': 'automatic',
+  'Прибрати з набору': 'Remove from the kit', 'У мій набір': 'To my kit', 'у мій набір': 'to my kit', 'Порівняти зміни на GitHub': 'Compare the changes on GitHub', 'Реліз на GitHub': 'The release on GitHub',
+  'увімкнено для всіх у Налаштуваннях': 'on for every app in Settings', 'Сховати': 'Hide', 'Показати': 'Show', 'Нещодавні й з оновленнями': 'Recent and with updates',
+  'Набір порожній': 'The kit is empty', 
+});
+// ---------------------------------------------------------------- 1.2 strings
+Object.assign(EN, {
+  'Zip із самою Komora.exe: на новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.': 'A zip with Komora.exe itself: on the new PC unpack it, run Komora.exe and open this zip.',
+  '«Мій набір» сам оновлюється на всіх твоїх ПК через приватний GitHub Gist. Перемагають новіші зміни; програми не встановлюються самі — інший ПК лише пропонує їх.': '«My kit» updates itself on all your PCs through a private GitHub Gist. Newer changes win; apps do not install by themselves — another PC only offers them.',
+  'Або встав посилання на GitHub чи сайт': 'Or paste a GitHub or website link',
+  'Бібліотеки': 'Libraries',
+  'Виправлення': 'Fixes',
+  'Відкрий файл перенесення або підключи синхронізацію — Komora запропонує поставити твій набір.': 'Open a transfer file or connect sync — Komora will offer to install your kit.',
+  'Відкрити файл перенесення': 'Open a transfer file',
+  'Додати в мій набір — встановиться на новому ПК': 'Add to my kit — it installs on a new PC',
+  'З бібліотеки': 'From the library',
+  'Забери програми, які вже стоять, і познач, що має повертатися на кожен твій ПК.': 'Take in the apps already installed and mark what should come back on every PC of yours.',
+  'Закрити файл': 'Close the file',
+  'Зберегти файл перенесення': 'Save a transfer file',
+  'Лише набір': 'Only the kit',
+  'На інший ПК чи після перевстановлення Windows: синхронізація «Мого набору», файл перенесення, програми з цього ПК.': 'To another PC or after reinstalling Windows: sync of «My kit», a transfer file, the apps of this PC.',
+  'Новий чи перевстановлений ПК': 'A new or reinstalled PC',
+  'Один zip, щоб забрати набір чи всю бібліотеку на інший ПК або на чисту Windows.': 'One zip to take the kit or the whole library to another PC or a clean Windows.',
+  'Познач рюкзаком у списку чи на сторінці програми те, що має бути на кожному ПК, — тут з’явиться кнопка «Встановити набір».': 'Mark with the backpack, in a list or on an app’s page, what should be on every PC — the «Install kit» button appears here.',
+  'Правила набору': 'Kit rules',
+  'Програми встановляться по одній, твіки з файлу застосуються.': 'Apps install one by one; tweaks from the file are applied.',
+  'Уся бібліотека': 'The whole library',
+  'Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V). Що поставити, вибереш у «Моєму наборі».': 'A .komora or .zip file — or paste a shared kit link (Ctrl+V). You choose what to install in «My kit».',
+  'Файл перенесення': 'Transfer file',
+  'Це мій ПК': 'This is my PC',
+  'Як часто Komora сама шукає нові версії': 'How often Komora looks for new versions by itself',
+  'було на іншому ПК': 'was on another PC',
+  'з добірки': 'from the picks',
+  'з набору': 'from the kit',
+  'з файлу': 'from the file',
+  'на цьому ПК': 'on this PC',
+  'твік з файлу': 'tweak from the file',
+  'Журнал': 'History',
+  'Показати все': 'Show all',
+  'Йде зараз': 'In progress',
+  'Нове від авторів, за якими стежиш': 'New from the authors you follow',
+  'Перевірити встановлене': 'Check what is installed',
+  'Підпис': 'Signature',
+  'Розмір': 'Size',
+  'Стан': 'State',
+  'Фільтри': 'Filters',
+  'програм встановлено': 'apps installed',
+  'Пропустити версію': 'Skip version',
+  'Пропущені версії': 'Skipped versions',
+  'версію пропущено в «Оновленнях»': 'version skipped in «Updates»',
+  'з’явиться знову, коли вийде новіша': 'it shows again when a newer one comes out',
 });
 UK_ERR.push(
   [/^no file for Windows on the page$/, 'На сторінці немає файлу для Windows'],
@@ -616,7 +625,7 @@ const nwk = (n, k) => nw(n, W[k][0], W[k][1], k);
 // ---------------------------------------------------------------- colours
 
 /** The accent: violet, [dark theme, light theme]. */
-const ACCENT = ['#a78bfa', '#7c3aed'];
+const ACCENT = ['#8b5cf6', '#7c3aed'];
 const dark = () => document.documentElement.dataset.theme !== 'light';
 function hashHue(s) {
   let h = 0;
@@ -644,8 +653,8 @@ function applyAccent() {
   const c = ACCENT[dark() ? 0 : 1];
   const st = document.documentElement.style;
   st.setProperty('--acc', c);
-  st.setProperty('--acc-text', c);
-  st.setProperty('--on-acc', dark() ? '#18181b' : '#ffffff');
+  st.setProperty('--acc-text', dark() ? '#b8a2fb' : c);
+  st.setProperty('--on-acc', '#ffffff');
   // the selected section: a deeper fill of the accent with white text
   const [h, sat] = rgb2hsl(hex2rgb(c));
   st.setProperty('--acc-fill', dark() ? rgbHex(hsl2rgb(h, Math.min(1, sat * 0.9), 0.5)) : c);
@@ -946,12 +955,14 @@ function renderNav() {
   h += n('all', 'box', t('Бібліотека'), cnt(a.length));
   const kitApps = a.filter(x => x.kit && INSTALLABLE(x));
   h += `<div class="n kitnav ${tool === 'kit' ? 'on' : ''}" data-view="kit" data-kitdrop="1" title="${esc(t('Перетягни сюди програми, щоб додати їх у набір'))}">${ic('kit')}<span class="nm">${t('Мій набір')}</span>${kitApps.length ? `<span class="cnt mono">${kitApps.filter(x => x.inst).length}/${kitApps.length}</span>` : ''}</div>`;
-  h += n('updates', 'download', t('Оновлення'), badge(S.updates.length + wgUpdates().length, 'warn'));
+  h += n('newpc', 'cloud', t('Перенесення'), st.err ? `<span class="cnt" style="color:var(--err)">${ic('warn')}</span>` : '');
+  h += n('updates', 'download', t('Оновлення'), badge(updCount(), 'warn'));
+  h += '<div class="ngap"></div>';
   h += n('pc', 'pc', t('Добірка'));
   // «Find» opens the tab used last
-  h += `<div class="n ${tool === 'discover' ? 'on' : ''}" data-view="${esc(store.get('hub', 'discover') === 'authors' ? 'authors' : 'discover')}">${ic('find')}<span class="nm">${t('Знайти')}</span>${badge(authors().reduce((s2, x) => s2 + (x.news?.length || 0), 0))}</div>`;
+  h += `<div class="n ${tool === 'discover' ? 'on' : ''}" data-view="${esc(store.get('hub', 'discover') === 'authors' ? 'authors' : 'discover')}">${ic('find')}<span class="nm">${t('Знайти')}</span><span title="${esc(t('Нове від авторів, за якими стежиш'))}">${badge(authors().reduce((s2, x) => s2 + (x.news?.length || 0), 0))}</span></div>`;
+  h += '<div class="ngap"></div>';
   h += n('tweaks', 'tool', t('Твіки'), badge(S.resets, 'warn'));
-  h += n('newpc', 'cloud', t('Перенесення'), st.err ? `<span class="cnt" style="color:var(--err)">${ic('warn')}</span>` : '');
   h += `<div class="nh ${fold.groups ? 'fold' : ''}" data-fold="groups"><span class="t">${t('Групи')}</span><button data-act="newGroup" title="${esc(t('Нова група'))}">${ic('add')}</button><i class="i chev">${I.chevD}</i></div>`;
   if (!fold.groups) {
     for (const g of groups())
@@ -1033,20 +1044,14 @@ function dashboard() {
   if (!apps().length) return welcome();
   const a = apps();
   const upd = a.filter(isUpd);
-  const bits = [];
-  if (S.resets) bits.push(nwk(S.resets, 'reset'));
-  let h = `<div class="page wide dash">${phead(t('Огляд'), esc(bits.join(' · ')))}`;
+  const wu = wgUpdates();
+  let h = `<div class="page wide dash">${phead(t('Огляд'), esc(statusText()))}`;
   if (S.resets) {
     if (tweakList === null) { tweakList = []; post({ t: 'tweaks' }); }
     const names = (tweakList || []).filter(x => x.status === 'reset').map(tweakName);
-    h += `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('Windows скинула твіки')}</b> <span class="m">${esc(names.join(', '))}</span></div><button class="btn sm" data-act="tweakFix">${t('Повернути')}</button></div>`;
+    h += `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('Windows скинула твіки')}</b> <span class="m">${esc(names.join(', '))}</span></div><button class="btn sm upd soft" data-act="tweakFix">${t('Повернути')}</button></div>`;
   }
-  // this PC: Windows, processor, video, memory, disks; and where the library syncs to
   const st = S.sync || {};
-  const where = S.cfg.syncDbx ? 'Dropbox' : S.cfg.syncGist ? 'GitHub Gist' : S.cfg.syncDir ? t('тека') : '';
-  if (where && st.err) h = h.replace('<div class="phead">', `<div class="info err"><span class="sign">!</span><div class="grow"><b>${t('Синхронізація не вдалася')}</b> <span class="m">${esc(msg(st.err))}</span></div><button class="btn sm" data-view="newpc">${t('Відкрити «Перенесення»')}</button></div><div class="phead">`);
-  const syncPill = !where ? '' : st.err ? `<span class="bdg err">● ${esc(where)} · ${t('помилка')}</span>` : `<span class="bdg ok">● ${esc(where)}${st.okAt ? ' · ' + esc(ago(new Date(st.okAt * 1000).toISOString())) : ''}</span>`;
-  h += sysCard(syncPill);
   h += '<div class="grid2 eq">';
   const kit = a.filter(x => x.kit);
   // my kit: whether Windows can be reinstalled now — the kit saved elsewhere, nothing installed left outside it
@@ -1063,30 +1068,35 @@ function dashboard() {
     const counts = part([[gk.length, 'app'], [kit.filter(x => x.kind === 'link').length, 'link'], [groups().filter(g => kit.some(x => x.groups.includes(g.id))).length, 'group']]);
     const counts2 = part([[authors().filter(x => x.kit).length, 'author'], [kitTweaks().length, 'tweak']]);
     h += `<section class="card kitcard kc kready"><div class="row"><h2 class="big grow">${ic('kit')} ${t('Мій набір')}</h2><button class="btn sm" data-view="kit">${t('Відкрити')} ${ic('chevR')}</button></div>`;
-    h += '<div class="kr-list">';
-    h += where ? (st.err ? li(false, `${t('Синхронізація не вдалася')} · ${esc(where)}`, `<button class="btn sm" data-view="newpc">${t('Відкрити «Перенесення»')}</button>`) : li(true, `${t('Синхронізовано')} · ${esc(where)}${st.okAt ? ' · ' + esc(ago(new Date(st.okAt * 1000).toISOString())) : ''}`))
-      : li(null, t('Синхронізацію не налаштовано — набір є лише на цьому ПК'), `<button class="btn sm" data-view="newpc">${t('Налаштувати')}</button><button class="btn sm" data-act="exportKit">${ic('save')} .zip</button>`);
-    h += counts ? li(true, esc(counts)) : li(null, t('Набір порожній'));
-    if (counts2) h += li(true, esc(counts2));
+    const facts = [synced ? `${t('Синхронізовано')} · ${where}${st.okAt ? ' · ' + ago(new Date(st.okAt * 1000).toISOString()) : ''}` : '', counts, counts2].filter(Boolean).join(' · ');
+    h += `<div class="m kinfo">${esc(facts || t('Набір порожній'))}</div><div class="kr-list">`;
+    const rows0 = h.length;
+    if (where && st.err) h += li(false, `${t('Синхронізація не вдалася')} · ${esc(where)}`, `<button class="btn sm" data-view="newpc">${t('Відкрити «Перенесення»')}</button>`);
+    if (!where) h += li(null, t('Синхронізацію не налаштовано — набір є лише на цьому ПК'), `<button class="btn sm" data-view="newpc">${t('Налаштувати')}</button><button class="btn sm" data-act="exportKit">${ic('save')} .zip</button>`);
     if (outside.length) h += li(null, `${t('Встановлені, але не в наборі')}: ${esc(nwk(outside.length, 'app'))}`, `<button class="btn sm" data-act="kitAddInstalled" title="${esc(outside.map(x => x.name).join(', '))}">${ic('add')} ${t('Додати')}</button>`);
     if (missing.length) h += li(null, `${t('Ще не встановлено на цьому ПК')}: ${esc(nwk(missing.length, 'app'))}`, `<button class="btn sm acc" data-act="kitInstall">${ic('download')} ${t('Встановити набір')}</button>`);
+    if (h.length === rows0 && counts) h += li(true, t('Усе з набору стоїть'));
     h += '</div>';
-    if (gk.length) h += `<div class="kicons">${gk.slice().sort(byName).map(x => `<span class="ki ${x.inst ? '' : 'off'}" data-open="${esc(x.id)}" title="${esc(x.name + (x.inst ? '' : ' · ' + t('не встановлено')))}">${iconHtml(x, 'sm')}</span>`).join('')}</div>`;
     h += '</section>';
   }
   // updates
-  h += `<section class="card" style="display:flex;flex-direction:column"><h2 class="big">${t('Оновлення')}${hint('Нові версії програм, які стоять на цьому ПК. Перевіряються за розкладом зі сторінки «Оновлення».')}<span class="mono">${upd.length ? `${upd.length} · ${fmtSize(upd.reduce((s, x) => s + (S.picks?.[x.id]?.size || 0), 0))}` : ''}</span></h2>`;
-  if (upd.length) {
+  h += `<section class="card" style="display:flex;flex-direction:column"><h2 class="big">${t('Оновлення')}${hint('Нові версії програм, які стоять на цьому ПК. Перевіряються за розкладом зі сторінки «Оновлення».')}<span class="mono">${upd.length + wu.length ? `${upd.length + wu.length} · ${fmtSize(upd.reduce((s, x) => s + (S.picks?.[x.id]?.size || 0), 0))}` : ''}</span></h2>`;
+  const bad = a.filter(x => health(x).length);
+  if (upd.length || wu.length) {
     for (const x of upd.slice(0, 5)) {
       const b = busyOf(x.id), pick = S.picks?.[x.id];
       h += `<div class="qrow" style="padding:8px 0;cursor:pointer" data-open="${esc(x.id)}">${iconHtml(x, 'sm')}<div style="flex:1;min-width:0"><div class="row" style="gap:8px"><b>${esc(x.name)}</b>${mono(`<span class="m">${esc(x.inst.version || verOf(x.inst.tag))} → </span>${esc(verOf(x.latest.tag))}`)}</div><div class="m" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(b ? stageText(b) : [pick && fmtSize(pick.size), ago(x.latest.date)].filter(Boolean).join(' · '))}</div></div></div>`;
     }
-    h += `<div class="row" style="margin-top:auto;padding-top:12px">${upd.length > 5 ? `<a class="alink" data-view="updates">${t('Усі оновлення')} (${upd.length})</a>` : ''}<span class="grow"></span><button class="btn acc" data-act="updateAll">${t('Оновити все')}</button></div>`;
+    for (const x of wu.slice(0, Math.max(0, 5 - upd.length))) {
+      const tile = x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name, 'sm') : letterTile(x.name, 'sm');
+      h += `<div class="qrow" style="padding:8px 0;cursor:pointer" data-view="updates">${tile}<div style="flex:1;min-width:0"><div class="row" style="gap:8px"><b>${esc(x.name)}</b>${mono(`<span class="m">${esc(x.inst)} → </span>${esc(x.latest)}`)}</div><div class="m">${t('з добірки')}</div></div></div>`;
+    }
+    h += `<div class="row" style="margin-top:auto;padding-top:12px">${upd.length + wu.length > 5 ? `<a class="alink" data-view="updates">${t('Усі оновлення')} (${upd.length + wu.length})</a>` : ''}${bad.length ? `<a class="alink" data-view="updates" style="margin-left:12px;color:var(--warn)">${t('Потребує уваги')} · ${bad.length}</a>` : ''}<span class="grow"></span><button class="btn upd" data-act="updateAll">${t('Оновити все')}</button></div>`;
   } else {
     h += `<div style="margin:auto 0;padding:14px 0;text-align:center"><div class="num" style="color:var(--ok)">✓</div><div style="font-weight:600;margin-top:2px">${t('Усе актуальне')}</div><div class="m">${esc(statusText())}</div><button class="btn sm" style="margin-top:10px" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t('Перевірити зараз')}</button></div>`;
   }
   h += '</section>';
-  return h + '</div></div>';
+  return h + '</div>' + sysCard('') + '</div>';
 }
 /** The makers' driver pages (Komora never flashes a BIOS: the board maker's page and instructions are for that). */
 const GPU_PAGE = { nvidia: ['https://www.nvidia.com/en-us/drivers/', 'NVIDIA'], amd: ['https://www.amd.com/en/support/download/drivers.html', 'AMD'], intel: ['https://www.intel.com/content/www/us/en/support/detect.html', 'Intel'] };
@@ -1114,7 +1124,8 @@ function sysCard(right) {
   const sr = y.serials || {};
   const serLine = v => (v ? `<span class="m ser1 ${showSerials ? '' : 'blur'}" ${showSerials ? cp(v) : `title="${esc(v)}"`}>${ic('shield')}<span class="sv">${esc(v)}</span></span>` : '');
   const dur = s => { const d = Math.floor(s / 86400), hh = Math.floor(s % 86400 / 3600), mm = Math.floor(s % 3600 / 60); return d ? `${d} ${ue('д', 'd')} ${hh} ${ue('год', 'h')}` : `${hh} ${ue('год', 'h')} ${mm} ${ue('хв', 'min')}`; };
-  let h = `<section class="card sys"><div class="row wrap" style="gap:10px"><h2 class="big grow">${ic('pc')} ${esc(S.pc || 'PC')} <button class="btn ico flat" data-act="pcName" title="${esc(t('Назва цього ПК у Komora'))}">${ic('edit')}</button></h2>${right}</div><div class="sgrid">`;
+  let h = `<section class="card sys"><div class="row wrap" style="gap:10px"><h2 class="big grow">${ic('pc')} ${esc(S.pc || 'PC')} <button class="btn ico flat" data-act="pcName" title="${esc(t('Назва цього ПК у Komora'))}">${ic('edit')}</button></h2>${right}<button class="btn ico flat pcfold ${store.get('pcFold', true) ? '' : 'on'}" data-act="pcFold" title="${esc(t(store.get('pcFold', true) ? 'Розгорнути' : 'Згорнути'))}">${ic('chevD')}</button></div><div class="sgrid">`;
+  if (store.get('pcFold', true)) return h.replace('<div class="sgrid">', `<div class="pcline m">${esc([y.windows, cpuShort((y.cpu || {}).name), (y.gpus || [])[0]?.name, y.ram && fmtSize(y.ram), ...(y.volumes || []).filter(v => /^C/i.test(v.letter || '')).map(v => `${v.letter} ${Math.round((v.total - v.free) / v.total * 100)} %`)].filter(Boolean).join(' · '))}</div>`) + '</section>';
   h += fact('Windows', y.windows || 'Windows', '', line([[y.build, true], S.arch]), line([y.installed ? `${t('Встановлено')} ${dateOf(y.installed)}` : '', y.uptime ? `${t('працює')} ${dur(y.uptime)}` : '']), serLine(sr.pc));
   const c = y.cpu || {};
   const cpuV = /amd/i.test(c.name || '') ? 'amd' : /intel/i.test(c.name || '') ? 'intel' : '';
@@ -1164,10 +1175,15 @@ function logLine(l) {
   const tag = l.tag === 'cmd' ? '❯' : l.tag;
   return `<div><span class="${esc(l.tag)}">${esc(tag)}</span> ${esc(text)}</div>`;
 }
+/** The first start: two ways — gather the programs of this PC, or bring a kit made on another one. */
 function welcome() {
-  return `<div class="empty"><span class="mark">${MARK}</span><div class="big">${t('Почни свою комору')}</div><div class="m" style="font-size:13px">${t('Встав посилання на репозиторій GitHub або будь-який сайт — Komora підтягне назву, значок і опис.')}</div>
-  <div class="row" style="margin-top:18px"><input class="inp" id="firstUrl" placeholder="${esc(t('Встав посилання на GitHub або сайт'))}"><button class="btn acc" data-act="firstAdd">${t('Додати')}</button></div>
-  <div class="ex"><span class="m">${t('або')}</span><button class="btn sm" data-view="discover">${ic('disc')} ${t('Знайти нове')}</button><button class="btn sm" data-act="importMenu">${ic('importI')} ${t('Імпорт')}</button><button class="btn sm" data-view="newpc">${ic('pc')} ${t('Набір з іншого ПК')}</button></div></div>`;
+  const way = (icon, title, d, btns) => `<section class="card way"><div class="row" style="gap:10px"><span class="fic">${ic(icon)}</span><h2 class="big">${t(title)}</h2></div><div class="m" style="margin:6px 0 12px">${t(d)}</div><div class="row wrap">${btns}</div></section>`;
+  return `<div class="empty welcome"><span class="mark">${MARK}</span><div class="big">${t('Почни свою комору')}</div>
+  <div class="grid2 eq" style="margin-top:18px;text-align:left">
+    ${way('pc', 'Це мій ПК', 'Забери програми, які вже стоять, і познач, що має повертатися на кожен твій ПК.', `<button class="btn acc" data-act="wgFindGo">${ic('pc')} ${t('Програми з цього ПК')}</button><button class="btn" data-view="pc">${ic('apps')} ${t('Добірка')}</button>`)}
+    ${way('importI', 'Новий чи перевстановлений ПК', 'Відкрий файл перенесення або підключи синхронізацію — Komora запропонує поставити твій набір.', `<button class="btn acc" data-act="openBundle">${ic('importI')} ${t('Відкрити файл перенесення')}</button><button class="btn" data-view="newpc">${ic('cloud')} ${t('Синхронізація')}</button>`)}
+  </div>
+  <div class="row" style="margin-top:18px"><input class="inp" id="firstUrl" placeholder="${esc(t('Або встав посилання на GitHub чи сайт'))}"><button class="btn" data-act="firstAdd">${t('Додати')}</button></div></div>`;
 }
 
 // ---------------------------------------------------------------- lists of the library
@@ -1201,10 +1217,10 @@ function rowHtml(a, mode = 'lib') {
   if (b && (b.stage === 'queued' || b.stage === 'download')) act = cancelBtn(a.id);
   else if (mode === 'kit') act = '';
   else if (!b && isUpd(a) && mode !== 'upd') act = '';
-  else if (!b && isUpd(a)) act = `<button class="btn sm act warnb" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
+  else if (!b && isUpd(a)) act = `<button class="btn sm ico flat" data-act="skipId" data-id="${esc(a.id)}" title="${esc(`${t('Пропустити версію')} ${verOf(a.latest.tag)} — ${t('з’явиться знову, коли вийде новіша')}`)}">${ic('eyeOff')}</button><button class="btn sm act upd soft" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
   else if (!b && a.kind === 'winget' && !a.inst) act = `<span class="split"><button class="btn sm act" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Встановити')}</span></button><button class="btn sm ico" data-act="wgInstallTo" data-id="${esc(a.repo)}" title="${esc(t('Встановити в…'))}">${ic('chevD')}</button></span>`;
   else if (!b && (a.kind === 'github' || a.kind === 'page') && !a.inst && S.picks?.[a.id]) act = `<button class="btn sm act" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Встановити')}</span></button>`;
-  if (KITABLE(a)) act += `<button class="btn sm ico kitt ${a.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(a.id)}" title="${esc(t(a.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(a.kit)}</button>`;
+  if (KITABLE(a) && mode !== 'upd') act += `<button class="btn sm ico kitt ${a.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(a.id)}" title="${esc(t(a.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(a.kit)}</button>`;
   const pills = health(a).length ? `<span class="pill warn">!</span>` : '';
   return `<div class="r ${a.id === cursor ? 'on' : ''} ${multi.has(a.id) ? 'multi' : ''}" data-id="${esc(a.id)}" draggable="true">${iconHtml(a)}<div class="tx"><div class="nm"><span>${esc(a.name)}</span>${pills}</div><div class="ds">${rowDesc(a)}</div></div><div class="meta">${rowMeta(a)}</div><div class="acts2">${act}</div>${bar}</div>`;
 }
@@ -1218,10 +1234,11 @@ function libToolbar() {
   const nPicks = a.filter(x => x.kind === 'winget').length;
   h += f('all', t('Усі'), hidePicks ? a.length - nPicks : a.length, 'apps');
   h += f('apps', t('З репозиторіїв'), a.filter(x => x.kind === 'github' || x.kind === 'page').length, 'code');
-  if (nPicks) h += f('picks', t('Добірка'), nPicks, 'pc');
+  if (nPicks) h += f('picks', t('З добірки'), nPicks, 'pc');
   h += f('links', t('Посилання'), a.filter(x => x.kind === 'link').length, 'link');
   h += '<span class="fsep"></span>';
-  for (const [k, l, icon] of [['on', 'Встановлені', 'check'], ['off', 'Не встановлені', 'download']]) h += `<button class="fchip ${instFilterOf() === k ? 'on' : ''}" data-act="instFilter" data-f="${k}">${ic(icon)}${t(l)}</button>`;
+  const instF = instFilterOf();
+  h += `<button class="fchip pick ${instF ? 'on' : ''}" data-act="instPick">${ic(instF === 'off' ? 'download' : 'check')}${t(instF === 'on' ? 'Встановлені' : instF === 'off' ? 'Не встановлені' : 'Стан')}${ic('chevD')}</button>`;
   if (allTags().length) h += `<button class="fchip pick ${view.startsWith('tag:') ? 'on' : ''}" data-act="tagPick">${esc(view.startsWith('tag:') ? viewTitle() : t('Тег'))}${ic('chevD')}</button>`;
   h += '</div><div class="tools">';
   if (a.some(x => x.kind === 'winget')) h += `<button class="btn ico flat ${hidePicks ? 'on' : ''}" data-act="hidePicks" title="${esc(t(hidePicks ? 'Показувати програми з добірки в «Усі» й групах' : 'Ховати програми з добірки з «Усі» й груп'))}">${ic(hidePicks ? 'eyeOff' : 'eye')}</button>`;
@@ -1234,7 +1251,7 @@ function listPage() {
   const inGroup = view.startsWith('g:');
   let h = '<div class="page wide">';
   if (inGroup) h += phead(`<span class="ghm">${groupMark(groups().find(g => g.id === view.slice(2)) || {})}</span>${esc(viewTitle())}`, `${t('Група')} · <span class="mono">${items.length}</span>`, `${groupHeadKit(view.slice(2))}<button class="btn" data-act="addToGroupPick">${ic('add')} ${t('Додати в цю групу')}</button><button class="btn ico" data-act="groupCtx" title="${esc(t('Група'))}">${ic('more')}</button>`);
-  else h += phead(esc(viewTitle()), t('Твої програми й посилання: Komora ставить їх, оновлює й переносить на новий ПК')) + libToolbar();
+  else h += phead(esc(viewTitle()), apps().length ? '' : t('Твої програми й посилання: Komora ставить їх, оновлює й переносить на новий ПК')) + libToolbar();
   if (!items.length) return h + emptyView() + '</div>';
   h += '<div class="list">';
   for (const x of listModel()) h += x.id ? rowHtml(x) : `<div class="gt ${x.sub ? 'sub' : ''}">${x.grp ? groupMark(x) : ''}${esc(x.title)}${x.count ? `<span class="mono">${x.count}</span>` : ''}</div>`;
@@ -1250,7 +1267,7 @@ function listPage() {
 function reposTabs() {
   const tab = (on, attrs, icon, label, extra = '') => `<button class="${on ? 'on' : ''}" ${attrs}>${icon}<span>${esc(label)}</span>${extra ? `<span class="mono cnt">${extra}</span>` : ''}</button>`;
   const repo = view === 'discover';
-  return `<div class="hubtabs">${tab(repo && disc.site !== 'gitlab', 'data-act="hubSite" data-site="github"', `<i class="i">${GH_SVG}</i>`, 'GitHub')}${tab(repo && disc.site === 'gitlab', 'data-act="hubSite" data-site="gitlab"', `<i class="i">${GL_SVG}</i>`, 'GitLab')}${tab(view === 'authors' || page?.k === 'author', 'data-view="authors"', ic('user'), t('Автори'), authors().length || '')}</div>`;
+  return `<div class="tabs top" role="tablist">${tab(repo && disc.site !== 'gitlab', 'data-act="hubSite" data-site="github"', `<i class="i">${GH_SVG}</i>`, 'GitHub')}${tab(repo && disc.site === 'gitlab', 'data-act="hubSite" data-site="gitlab"', `<i class="i">${GL_SVG}</i>`, 'GitLab')}${tab(view === 'authors' || page?.k === 'author', 'data-view="authors"', ic('user'), t('Автори'), authors().length || '')}</div>`;
 }
 
 // ---------------------------------------------------------------- «For PC»: everyday programs through winget
@@ -1260,19 +1277,21 @@ let wgAsked = false;
 let pickCat = store.get('pickCat', '');
 const WG_ICON = { hw: 'pc', games: 'play', chat: 'note', media: 'video', tools: 'tool', web: 'globe', runtime: 'box' };
 // the dashboard's memory, video memory and disks: read again every 3 s while it is on screen
-setInterval(() => { if (S && view === 'home' && !page && document.visibilityState === 'visible') post({ t: 'sysLive' }); }, 3000);
+setInterval(() => { if (S && view === 'home' && !page && document.visibilityState === 'visible' && !store.get('pcFold', true)) post({ t: 'sysLive' }); }, 3000);
 /** What winget tells about each package (`winget show`), asked once per run. */
 const wgInfo = {};
-/** Upkeep of «Tweaks»: { sizes: {shader, temp}, startup: [...] }; null — not asked yet. */
+/** Upkeep of «Tweaks»: { sizes: {shader, temp} }; null — not asked yet. */
 let toolsInfo = null;
 /** The folder picked for a program of the picks before its install ("Install to…"). */
 const wgLoc = {};
 /** The cancel button of an install that is queued or downloading. */
 const cancelBtn = id => `<button class="btn sm cancelb" data-act="cancel" data-id="${esc(id)}" title="${esc(t('Скасувати встановлення'))}">${ic('x')}<span class="lbl">${t('Скасувати')}</span></button>`;
-const wgAllUpdates = () => (S?.winget?.items || []).filter(x => x.has && x.latest);
+const wgAllUpdates = () => (S?.winget?.items || []).filter(x => x.has && x.latest && x.skip !== x.latest);
 /** winget updates of packages outside the library (the library's own are in S.updates). */
 const wgUpdates = () => wgAllUpdates().filter(x => !appById('wg:' + x.id));
-const WG_CATS = { hw: 'Драйвери й залізо', games: 'Ігри', chat: 'Спілкування', media: 'Стрім і медіа', tools: 'Утиліти', web: 'Браузери', runtime: 'Бібліотеки для ігор і програм' };
+/** Every update the PC has: the library's and the picks' outside it (one number on the sidebar, the dashboard and «Update all»). */
+const updCount = () => (S?.updates.length || 0) + wgUpdates().length;
+const WG_CATS = { hw: 'Драйвери й залізо', games: 'Ігри', chat: 'Спілкування', media: 'Стрім і медіа', tools: 'Утиліти', web: 'Браузери', runtime: 'Бібліотеки' };
 const WG_DESC = {
   'Wagnardsoft.DisplayDriverUninstaller': 'Повністю прибирає драйвер відеокарти перед чистим встановленням',
   'Guru3D.Afterburner': 'Розгін і криві вентиляторів відеокарти',
@@ -1363,13 +1382,14 @@ function wgRow(x, where = 'pick') {
   if (b) st = esc(b.stage === 'install' && x.has ? t('Оновлення') + '…' : stageText(b));
   else if (x.has && x.latest) {
     st = `<i class="sdot warn"></i>${esc(x.inst)} → <span class="up">${esc(x.latest)}</span>`;
-    if (where === 'upd') act = `<button class="btn sm act warnb" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
+    act = `${where === 'upd' ? `<button class="btn sm ico flat" data-act="wgSkip" data-id="${esc(x.id)}" data-v="${esc(x.latest)}" title="${esc(`${t('Пропустити версію')} ${x.latest} — ${t('з’явиться знову, коли вийде новіша')}`)}">${ic('eyeOff')}</button>` : ''}<button class="btn sm act upd soft" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
   } else if (x.has) st = `<i class="sdot ok"></i>${esc(x.inst || t('встановлено'))}`;
   else {
     st = `<i class="sdot"></i>${t('не встановлено')}`;
     act = `<span class="split"><button class="btn sm act" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Встановити')}</span></button><button class="btn sm ico" data-act="wgInstallTo" data-id="${esc(x.id)}" title="${esc(t('Встановити в…'))}">${ic('chevD')}</button></span>`;
   }
-  if (x.has && !b && where === 'pick') act = `<span class="okc">${ic('check')} ${t('Встановлено')}</span>`;
+  if (x.has && !x.latest && !b && where === 'pick') act = '';
+  if (where === 'pick' && !b) act += lib ? `<button class="btn sm ico kitt ${lib.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(lib.id)}" title="${esc(t(lib.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(lib.kit)}</button>` : `<button class="btn sm ico kitt" data-act="wgKit" data-id="${esc(x.id)}" title="${esc(t('Додати в мій набір — встановиться на новому ПК'))}">${kitIcon(false)}</button>`;
   if (b && (b.stage === 'queued' || b.stage === 'download')) act = cancelBtn('wg:' + x.id);
   const loc = !x.has && !b && wgLoc[x.id] ? `<div class="loc mono" title="${esc(wgLoc[x.id])}">→ ${esc(wgLoc[x.id])} <button class="btn ico flat xs" data-act="wgLocClear" data-id="${esc(x.id)}" title="${esc(t('Як пропонує встановлювач'))}">${ic('x')}</button></div>` : '';
   const tile = x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name) : letterTile(x.name);
@@ -1384,7 +1404,7 @@ function wgAppPage(a) {
   const b = busyOf(a.id);
   const st = b ? (b.stage === 'install' && a.inst ? t('Оновлення') + '…' : stageText(b)) : isUpd(a) ? `${a.inst.version} → ${verOf(a.latest.tag)}` : a.inst ? a.inst.version : t('не встановлено');
   let act = '';
-  if (!b && isUpd(a)) act = `<button class="btn acc" data-act="installId" data-id="${esc(a.id)}">${ic('download')} ${t('Оновити')}</button>`;
+  if (!b && isUpd(a)) act = `<button class="btn upd" data-act="installId" data-id="${esc(a.id)}">${ic('download')} ${t('Оновити')}</button>`;
   else if (!b && !a.inst) act = `<span class="split"><button class="btn acc" data-act="installId" data-id="${esc(a.id)}">${ic('download')} ${t('Встановити')}</button><button class="btn acc ico" data-act="wgInstallTo" data-id="${esc(a.repo)}" title="${esc(t('Встановити в…'))}">${ic('chevD')}</button></span>`;
   if (!b && a.inst?.exe) act += `<button class="btn" data-act="launchId" data-id="${esc(a.id)}">${ic('play')} ${t('Запустити')}</button>`;
   return `<div class="page">${crumb(a.name)}<div class="ahead">${iconHtml(a, 'lg')}<div class="tx"><h1 title="${esc(a.name)}">${esc(a.name)}</h1><div class="src mono">winget · ${esc(a.repo)}</div><div class="stl mono">${esc(st)}</div><div class="desc">${esc(t(WG_DESC[a.repo] || ''))}</div>${chipsHtml(a)}</div><div class="row" style="align-self:flex-start">${act}${wgInfo[a.repo]?.homepage ? `<button class="btn" data-act="openUrl" data-url="${esc(wgInfo[a.repo].homepage)}">${t('Сайт')} ${ic('open')}</button>` : ''}<button class="btn ico" data-act="appMore" title="${esc(t('Ще'))}">${ic('more')}</button></div></div>${b ? progHtml(b) + (b.stage === 'queued' || b.stage === 'download' ? `<div class="row" style="margin-top:6px">${cancelBtn(b.key)}</div>` : '') : ''}${wgInfoHtml(a.repo)}</div>`;
@@ -1438,7 +1458,7 @@ function boardUrl(maker, model) {
 function pcPage() {
   const W = S.winget || { items: [] };
   if (W.avail && !W.at && !W.scanning && !wgAsked) { wgAsked = true; post({ t: 'wgScan' }); }
-  let h = `<div class="page narrow">${phead(t('Добірка'), t('Перевірені програми для ПК: ставляться одним кліком і далі оновлюються з бібліотеки'), W.avail ? `<button class="btn" data-act="wgScan" ${W.scanning ? 'disabled' : ''}>${ic('refresh')} ${t(W.scanning ? 'Перевіряю…' : 'Перевірити зараз')}</button>` : '')}`;
+  let h = `<div class="page narrow">${phead(t('Добірка'), t('Перевірені програми для ПК: ставляться одним кліком і далі оновлюються з бібліотеки'), W.avail ? `<button class="btn" data-act="wgScan" ${W.scanning ? 'disabled' : ''}>${ic('refresh')} ${t(W.scanning ? 'Перевіряю…' : 'Перевірити встановлене')}</button>` : '')}`;
   if (!W.avail) return h + `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('winget не знайдено')}</b> <span class="m">${t('Він входить до «Інсталятора застосунків» (App Installer) з Microsoft Store.')}</span></div><button class="btn sm" data-act="openUrl" data-url="https://apps.microsoft.com/detail/9nblggh4nns1">Microsoft Store ${ic('open')}</button></div></div>`;
   if (W.err) h += `<div class="info err"><span class="sign">!</span><div class="grow"><b>winget</b> <span class="m">${esc(msg(W.err))}</span></div></div>`;
   if (!W.at && W.scanning) h += `<div class="m" style="padding:14px 4px">${t('Дивлюся, що вже встановлено…')}</div>`;
@@ -1454,6 +1474,41 @@ function pcPage() {
 }
 
 /** «My kit»: the apps that belong on every PC — how many are here, the missing in one click, what the kit does by itself. */
+/** «Set up this PC»: what the kit misses here, what another PC had and an opened file — one list, one button; and
+ *  the queue while it is set up. Empty when only the kit misses something: the header's «Install the kit» does that. */
+function restoreHtml() {
+  const a = apps();
+  let h = '';
+  // setting up from a bundle: the queue
+  if (bundleRun) {
+    const ids = bundleRun.ids;
+    const done = ids.filter(id => appById(id)?.inst).length;
+    const cur = ids.find(id => busyOf(id) && busyOf(id).stage !== 'queued');
+    h += `<section class="card pad0 s2"><div class="row" style="padding:14px 18px;border-bottom:1px solid var(--div)"><div class="grow"><h2 class="big">${t('Ставлю набір з')} ${esc(bundleRun.pc || '?')}</h2><div class="m">${t('По одній програмі; налаштування повертаються з копій одразу після встановлення')}</div></div><span class="mono">${done} / ${ids.length}</span></div><div style="height:3px;background:var(--div)"><div style="width:${ids.length ? (done / ids.length) * 100 : 0}%;height:3px;background:var(--acc)"></div></div><div class="grid2" style="gap:0">`;
+    for (const id of ids) {
+      const a = appById(id), b = busyOf(id);
+      const [sign, col, state] = a?.inst ? ['✓', 'var(--ok)', t('готово')] : id === cur ? ['›', 'var(--acc)', stageText(b)] : a?.error ? ['×', 'var(--err)', t('не вдалося')] : ['·', 'var(--mu)', t('у черзі')];
+      h += `<div class="qrow"><span class="sign" style="color:${col}">${sign}</span><span class="grow">${esc(a?.name || id)}</span><span class="mono" style="font-size:12px;color:${col}">${esc(state)}</span></div>`;
+    }
+    h += '</div>';
+    if (bundleRun.tweaks.length) h += `<div class="row wrap" style="padding:12px 18px"><b>${t('Твіки з набору')}</b>${bundleRun.tweaks.map(id => `<span class="chip">${esc(tweakName(id))}</span>`).join('')}</div>`;
+    h += '</section>';
+  }
+  const miss = a.filter(x => x.kit && INSTALLABLE(x) && !x.inst);
+  const offered = a.filter(x => INSTALLABLE(x) && x.wasInstalled && !x.inst && !x.kit);
+  if (!offered.length && !bundlePrev) return h;
+  const want = bundlePrev ? bundlePrev.apps.filter(x => ['github', 'winget', 'page'].includes(x.kind) && x.was && !x.here) : [];
+  const row = (attr, id, name, note) => `<label class="check"><input type="checkbox" ${attr}="${esc(id)}" checked><span class="grow">${esc(name)}</span><span class="m">${esc(note)}</span></label>`;
+  h += `<section class="card s2" id="restore"><h2 class="big">${t('Поставити на цей ПК')}<span class="mono">${miss.length + offered.length + want.length}</span></h2><div class="m">${t('Програми встановляться по одній, твіки з файлу застосуються.')}</div><div class="wgl">`;
+  h += miss.map(x => row('data-ri', x.id, x.name, t('з набору'))).join('');
+  h += offered.map(x => row('data-ri', x.id, x.name, t('було на іншому ПК'))).join('');
+  if (bundlePrev) {
+    h += want.map(x => row('data-bi', x.id, x.name, `${t('з файлу')} · ${bundlePrev.pc || '?'}`)).join('');
+    h += bundlePrev.tweaks.map(id => row('data-bt', id, tweakName(id), t('твік з файлу'))).join('');
+  }
+  h += `</div><div class="row wrap" style="margin-top:12px"><button class="btn acc" data-act="restoreGo">${ic('download')} ${t('Поставити вибране')}</button>${bundlePrev ? `<button class="btn" data-act="dropBundle">${t('Закрити файл')}</button>` : ''}</div></section>`;
+  return h;
+}
 function kitPage() {
   if (tweakList === null) { tweakList = []; post({ t: 'tweaks' }); }
   const a = apps();
@@ -1462,14 +1517,15 @@ function kitPage() {
   const miss = prog.filter(x => !x.inst);
   const c = S.cfg;
   const tgl = (key, label, tip) => `<button class="tgl" data-act="cfgSw" data-key="${key}" title="${esc(t(tip))}"><span class="sw sm ${c[key] ? 'on' : ''}"></span>${t(label)}</button>`;
-  const pill = prog.length ? `<span class="kpill ${miss.length ? '' : 'ok'}" title="${esc(`${t('На цьому ПК')}: ${here} ${t('із')} ${prog.length}`)}">${miss.length ? '' : ic('check')}${here}/${prog.length}</span>` : '';
+  const restore = restoreHtml();
   // always there: on a new PC it installs the kit, here it says everything is in place
   const get = `<button class="btn acc" data-act="kitInstall" ${miss.length ? '' : `disabled title="${esc(t('Усе з набору вже встановлено'))}"`}>${ic('download')} ${t('Встановити набір')}${miss.length ? ` (${miss.length})` : ''}</button>`;
-  let h = `<div class="page">${phead(t('Мій набір'), t('Що повернути після перевстановлення Windows чи на новому ПК. Синхронізація й файл набору несуть лише це.'), get + pill)}`;
+  const sub = `${t('Що повернути після перевстановлення Windows чи на новому ПК')}${prog.length ? ` · ${here} ${t('із')} ${prog.length} ${t('програм встановлено')}` : ''}`;
+  const acts = (restore.includes('id="restore"') ? '' : get) + `<button class="btn" data-act="kitRules">${ic('settings')} ${t('Правила набору')}</button>`;
+  let h = `<div class="page kitp">${phead(t('Мій набір'), esc(sub), acts)}${restore}`;
   const outGroups = groups().filter(g => groupKit(g.id).of && !groupInKit(g.id));
-  h += `<div class="kitbar">${tgl('kitAutoUpdate', 'Оновлювати автоматично', 'Нові версії програм набору ставляться самі після кожної перевірки оновлень')}${tgl('kitAutoInstall', 'Ставити відсутні автоматично', 'Коли набір з’являється на цьому ПК — через синхронізацію чи файл набору, — програми, яких тут немає, встановлюються без твого кліку')}${tgl('kitNew', 'Нове одразу в набір', 'Програми, посилання, групи, автори й твіки, які додаєш, одразу потрапляють у набір')}<span class="grow"></span>${outGroups.length ? `<button class="btn sm" data-act="kitAdd" data-kind="group">${ic('group')} ${t('Додати групу')}</button>` : ''}<button class="btn sm" data-act="exportKit" title="${esc(t('Копії налаштувань програм набору завжди їдуть у zip-набір із «Перенесення».'))}">${ic('save')} ${t('Зберегти набір (.zip)')}</button></div>`;
   // the kit's own bar: by source or by group, installed or not
-  h += `<div class="toolbar kitf pin"><div class="filters"><span class="flabel">${t('Групувати')}</span>${[['src', 'За джерелом', 'apps'], ['grp', 'За групами', 'layers']].map(([k, l, icon]) => `<button class="fchip ${kitBy === k ? 'on' : ''}" data-act="kitBy" data-by="${k}">${ic(icon)}${t(l)}</button>`).join('')}<span class="fsep"></span>${[['on', 'Встановлені', 'check'], ['off', 'Не встановлені', 'download']].map(([k, l, icon]) => `<button class="fchip ${instFilterOf('kit') === k ? 'on' : ''}" data-act="instFilter" data-f="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div></div>`;
+  h += `<div class="toolbar kitf pin"><div class="filters"><span class="flabel">${t('Групувати')}</span><div class="seg">${[['src', 'За джерелом', 'apps'], ['grp', 'За групами', 'layers']].map(([k, l, icon]) => `<button class="${kitBy === k ? 'on' : ''}" data-act="kitBy" data-by="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div><span class="fsep"></span>${[['on', 'Встановлені', 'check'], ['off', 'Не встановлені', 'download']].map(([k, l, icon]) => `<button class="fchip ${instFilterOf('kit') === k ? 'on' : ''}" data-act="instFilter" data-f="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div>${outGroups.length ? `<div class="tools"><button class="btn ico" data-act="kitAdd" data-kind="group" title="${esc(t('Додати групу'))}">${ic('group')}</button></div>` : ''}</div>`;
   // sections of rows: a heading that folds, its count, «+» to add from the library (a group has ✕ to take it out)
   const head = (key, icon, title, n, tail) => `<div class="sect ksect" data-act="kitFold" data-k="${esc(key)}"><i class="i chev ${kitFold[key] ? 'fold' : ''}">${I.chevD}</i>${icon}<span>${esc(title)}</span><span class="mono">${n}</span><span class="grow"></span>${tail}</div>`;
   const add = kind => `<button class="btn ico flat" data-act="kitAdd" data-kind="${kind}" title="${esc(t('Додати в набір'))}">${ic('add')}</button>`;
@@ -1509,15 +1565,15 @@ function updatesPage() {
   const upd = a.filter(isUpd);
   const c = S.cfg;
   const sel = `<select class="inp" data-cfg="checkHours" style="width:auto">${[[24, 'Щодня'], [168, 'Щотижня'], [720, 'Щомісяця'], [0, 'Вручну']].map(([v, l]) => `<option value="${v}" ${+c.checkHours === v ? 'selected' : ''}>${esc(t(l))}</option>`).join('')}</select>`;
-  let h = `<div class="page narrow">${phead(t('Оновлення'), esc(statusText()), `<button class="btn" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t(S.checking ? 'Перевіряю…' : 'Перевірити зараз')}</button><span class="m">${t('Перевіряти')}</span>${sel}${upd.length ? `<button class="btn acc" data-act="updateAll">${t('Оновити все')} (${upd.length})</button>` : ''}`)}`;
-  if (S.resets) {
-    if (tweakList === null) { tweakList = []; post({ t: 'tweaks' }); }
-    const names = (tweakList || []).filter(x => x.status === 'reset').map(tweakName);
-    h += `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('Windows скинула твіки')}</b> <span class="m">${esc(names.join(', '))}</span></div><button class="btn sm" data-act="tweakFix">${t('Повернути')}</button></div>`;
-  }
   const wu = wgUpdates();
-  if (upd.length) h += '<div class="list">' + upd.map(x => rowHtml(x, 'upd')).join('') + '</div>';
-  if (wu.length) h += `<div class="sect">${t('Добірка')} · ${wu.length}</div><div class="list">${wu.map(x => wgRow(x, 'upd')).join('')}</div>`;
+  const all = upd.length + wu.length;
+  let h = `<div class="page narrow">${phead(t('Оновлення'), esc(statusText()), `<button class="btn" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t(S.checking ? 'Перевіряю…' : 'Перевірити зараз')}</button>${all ? `<button class="btn upd" data-act="updateAll">${t('Оновити все')} (${all})</button>` : ''}`)}`;
+  const running = x => { const b = busyOf(x.id); return b && !quietBusy(b); };
+  const runU = upd.filter(running), runW = wu.filter(x => busyOf('wg:' + x.id));
+  if (runU.length || runW.length) h += `<div class="sect">${t('Йде зараз')} · ${runU.length + runW.length}</div><div class="list">${runU.map(x => rowHtml(x, 'upd')).join('')}${runW.map(x => wgRow(x, 'upd')).join('')}</div>`;
+  const restU = upd.filter(x => !running(x)), restW = wu.filter(x => !busyOf('wg:' + x.id));
+  if (restU.length) h += `<div class="sect">${t('З бібліотеки')} · ${restU.length}</div><div class="list">${restU.map(x => rowHtml(x, 'upd')).join('')}</div>`;
+  if (restW.length) h += `<div class="sect">${t('З добірки')} · ${restW.length}</div><div class="list">${restW.map(x => wgRow(x, 'upd')).join('')}</div>`;
   if (!upd.length && !wu.length) {
     const pinned = a.filter(x => x.pin && x.inst && x.latest && x.latest.tag !== x.pin);
     h += `<div class="empty" style="margin:40px auto"><span class="mark" style="background:var(--ok-bg);color:var(--ok)"><i class="i">${I.check}</i></span><div class="big">${t('Усе актуальне')}</div>${pinned.length ? `<div class="m">${t('Закріплено')}: ${pinned.map(x => `${esc(x.name)} ${esc(verOf(x.pin))} (${t('є')} ${esc(verOf(x.latest.tag))})`).join(', ')}</div>` : ''}</div>`;
@@ -1525,10 +1581,37 @@ function updatesPage() {
   const bad = a.filter(x => health(x).length);
   if (bad.length) {
     h += `<div class="sect">${t('Потребує уваги')} · ${bad.length}</div><div class="list">`;
-    for (const x of bad) h += `<div class="r" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds">${esc(health(x).join(' · '))}</div></div></div>`;
+    for (const x of bad) h += `<div class="r" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds">${esc(health(x).join(' · '))}</div></div><div class="acts2"><span class="btn sm">${t('Відкрити')} ${ic('chevR')}</span></div></div>`;
     h += '</div>';
   }
-  return h + '</div>';
+  // versions left out by hand: one click brings each back
+  const sk = a.filter(x => x.skip && x.inst && x.latest?.tag === x.skip);
+  const skw = (S.winget?.items || []).filter(x => x.has && x.latest && x.skip === x.latest);
+  if (sk.length || skw.length) {
+    h += `<div class="sect">${t('Пропущені версії')} · ${sk.length + skw.length}</div><div class="list">`;
+    for (const x of sk) h += `<div class="r" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.inst.version || verOf(x.inst.tag))} → ${esc(verOf(x.skip))}</div></div><div class="acts2"><button class="btn sm" data-act="unskipId" data-id="${esc(x.id)}">${t('Не пропускати')}</button></div></div>`;
+    for (const x of skw) h += `<div class="r wg">${x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name) : letterTile(x.name)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.inst)} → ${esc(x.latest)}</div></div><div class="acts2"><button class="btn sm" data-act="wgSkip" data-id="${esc(x.id)}" data-v="">${t('Не пропускати')}</button></div></div>`;
+    h += '</div>';
+  }
+  return h + histHtml() + '</div>';
+}
+
+/** What Komora installed and updated, the newest first (asked for each time «Updates» opens). */
+let histList = null, histAll = false;
+function histHtml() {
+  if (histList === null) { histList = undefined; post({ t: 'hist' }); }
+  const list = histList || [];
+  if (!list.length) return '';
+  const shown = histAll ? list : list.slice(0, 15);
+  let h = `<div class="sect">${t('Журнал')} · ${list.length}</div><div class="list hist">`;
+  for (const x of shown) {
+    const ap = appById(x.id);
+    const ver = x.from ? `${esc(verOf(x.from))} → ${esc(verOf(x.to))}` : `${t('встановлено')} ${esc(verOf(x.to))}`;
+    h += `<div class="r" ${ap ? `data-id="${esc(ap.id)}"` : ''}>${ap ? iconHtml(ap) : `<span class="ic">${ic('box')}</span>`}<div class="tx"><div class="nm"><span>${esc(ap?.name || x.name)}</span></div><div class="ds mono">${ver}</div></div><span class="m hwhen" title="${esc(new Date(x.at * 1000).toLocaleString(L))}">${esc(ago(new Date(x.at * 1000).toISOString()))}</span></div>`;
+  }
+  h += '</div>';
+  if (list.length > shown.length) h += `<div class="row" style="margin-top:8px"><a class="alink" data-act="histAll">${t('Показати все')} (${list.length})</a></div>`;
+  return h;
 }
 
 function emptyView() {
@@ -1536,7 +1619,7 @@ function emptyView() {
   const E = {
     updates: ['check', 'Оновлень немає', 'Усі встановлені програми актуальні.'],
     installed: ['installed', 'Ще нічого не встановлено', 'Тут будуть програми, які ти встановиш через Komora, і ті, що вже є у Windows.'],
-    kit: ['kit', 'Набір порожній', 'Познач на сторінці програми «У мій набір» те, що має бути на кожному ПК, — тут з’явиться кнопка «Встановити відсутні».'],
+    kit: ['kit', 'Набір порожній', 'Познач рюкзаком у списку чи на сторінці програми те, що має бути на кожному ПК, — тут з’явиться кнопка «Встановити набір».'],
     links: ['link', 'Посилань ще немає', 'Додай сайт, відео чи товар: Ctrl+V у вікні або кнопка «Додати».'],
     group: ['group', 'Група порожня', 'Перетягни сюди програми зі списку або додай групу на сторінці програми.'],
   }[g] ?? ['apps', 'Тут порожньо', ''];
@@ -1551,21 +1634,25 @@ function emptyView() {
 
 /** Installed outside Komora, and neither Windows nor the app's files tell a version. */
 const unknownVer = a => (a.kind === 'github' || a.kind === 'page') && !!a.inst && !a.inst.tag && !a.inst.version && a.inst.method !== 'self';
+/** Busy only with a refresh of its data (GitHub, the site): the app's buttons stay as they are. */
+const quietBusy = b => b && (b.stage === 'meta' || b.stage === 'site');
 function primary(a) {
   const b = busyOf(a.id);
-  if (b) return { busy: b, icon: 'download', label: stageText(b) };
+  if (b && !quietBusy(b)) return { busy: b, icon: 'download', label: stageText(b) };
   if (a.kind === 'link') {
     const k = a.linkKind;
     return { icon: k === 'video' ? 'play' : 'open', label: t(k === 'video' ? 'Дивитись' : 'Відкрити'), fn: () => post({ t: 'open', url: a.url }) };
   }
   const pick = S.picks?.[a.id];
-  if (isUpd(a)) return { icon: 'download', label: `${t('Оновити до')} ${verOf(a.latest.tag)}`, fn: () => post({ t: 'install', id: a.id }) };
+  if (isUpd(a)) return { icon: 'download', upd: true, label: `${t('Оновити до')} ${verOf(a.latest.tag)}`, fn: () => post({ t: 'install', id: a.id }) };
+  // a version skipped on «Updates»: not offered there, but here it is one click away
+  if (a.inst && a.skip && a.latest?.tag === a.skip && a.inst.tag !== a.skip && !a.pin) return { icon: 'download', upd: true, label: `${t('Оновити до')} ${verOf(a.skip)}`, note: t('версію пропущено в «Оновленнях»'), fn: () => post({ t: 'install', id: a.id }) };
   if (!a.inst && a.latest && pick) return { icon: 'download', label: t('Встановити'), note: [fmtSize(pick.size), kindLabel(pick.kind)].filter(Boolean).join(' · '), fn: () => post({ t: 'install', id: a.id }) };
   if (!a.inst && a.kind === 'page') return { icon: 'globe', label: t('Відкрити сторінку'), note: t('немає файлу для Windows'), fn: () => post({ t: 'open', url: a.url }) };
   if (!a.inst) return { icon: 'globe', label: onSite('Відкрити на GitHub', siteOf(a.owner)), note: a.latest ? t('немає файлу для Windows') : t('немає релізів'), fn: () => post({ t: 'open', url: a.url }) };
   // found on the PC without a version Komora can trust: the newest release is one click away, but it is not
   // counted as an update
-  if (unknownVer(a) && a.latest?.tag && S.picks?.[a.id]) return { icon: 'download', label: `${t('Оновити до')} ${verOf(a.latest.tag)}`, note: t('версію не визначено'), fn: () => post({ t: 'install', id: a.id }) };
+  if (unknownVer(a) && a.latest?.tag && S.picks?.[a.id]) return { icon: 'download', upd: true, label: `${t('Оновити до')} ${verOf(a.latest.tag)}`, note: t('версію не визначено'), fn: () => post({ t: 'install', id: a.id }) };
   if (a.inst.exe) return { icon: 'play', label: t('Запустити'), fn: () => post({ t: 'launch', id: a.id }) };
   return { icon: 'folder', label: t('Відкрити теку'), fn: () => post({ t: 'folder', id: a.id }) };
 }
@@ -1585,16 +1672,17 @@ function appPage(a) {
   const self = inst?.method === 'self';
   const upd = isUpd(a);
   const state = upd ? `<span class="warnc">${esc(inst.version || verOf(inst.tag))} → ${esc(verOf(lt.tag))}</span>` : inst ? `<span class="okc">●</span> ${esc(inst.version || verOf(inst.tag) || t('версію не визначено'))} · ${esc(methodLabel(inst.method))}` : `${t('не встановлено')}${lt ? ` · ${t('останній')} ${esc(verOf(lt.tag))}` : ''}`;
-  let h = `<div class="page">${crumb(a.name)}<div class="ahead">${iconHtml(a, 'lg')}<div class="tx"><h1 title="${esc(a.name)}">${esc(a.name)}</h1><div class="src">${a.kind === 'page' ? `${t('Сторінка завантаження')} · <a data-act="openUrl" data-url="${esc(a.url)}">${esc(hostOf(a.url))}</a>` : `<a data-act="openUrl" data-url="${esc(a.url)}">${esc(a.owner)}/${esc(a.repo)}</a> · ★ ${fmtNum(a.stars || 0)}${a.license ? ' · ' + esc(a.license) : ''}`}</div><div class="stl mono">${state}</div>${a.desc ? `<div class="desc">${esc(a.desc)}</div>` : ''}${chipsHtml(a)}</div>`;
+  let h = `<div class="page">${crumb(a.name)}<div class="ahead">${iconHtml(a, 'lg')}<div class="tx"><h1 title="${esc(a.name)}">${esc(a.name)}</h1><div class="src">${a.kind === 'page' ? `${t('Сторінка завантаження')} · <a data-act="openUrl" data-url="${esc(a.url)}">${esc(hostOf(a.url))}</a>` : `<a data-act="openUrl" data-url="${esc(a.url)}">${esc(a.owner)}/${esc(a.repo)}</a> · ★ ${fmtNum(a.stars || 0)}${a.license ? ' · ' + esc(a.license) : ''}`}</div><div class="stl mono">${state}${quietBusy(busyOf(a.id)) ? ` <span class="m refr">${ic('refresh')} ${esc(stageText(busyOf(a.id)))}</span>` : ''}</div>${a.desc ? `<div class="desc">${esc(a.desc)}</div>` : ''}${chipsHtml(a)}</div>`;
   h += '<div><div class="acts">';
   if (inst?.exe && !self && !p.busy && p.label !== t('Запустити')) h += `<button class="btn" data-act="launch">${t('Запустити')}</button>`;
-  h += `<div class="split"><button class="btn acc" data-act="primary" ${p.busy ? 'disabled' : ''}>${ic(p.icon)} ${esc(p.label)}</button>${a.kind === 'github' && !self ? `<button class="btn acc ico" data-act="versions" title="${esc(t('Інші версії'))}">${ic('chevD')}</button>` : ''}</div>`;
+  const pc = p.upd ? 'upd' : 'acc';
+  h += `<div class="split"><button class="btn ${pc}" data-act="primary" ${p.busy ? 'disabled' : ''}>${ic(p.icon)} ${esc(p.label)}</button>${a.kind === 'github' && !self ? `<button class="btn ${pc} ico" data-act="versions" title="${esc(t('Інші версії'))}">${ic('chevD')}</button>` : ''}</div>`;
   if (!self) h += `<button class="btn kitbtn ${a.kit ? 'on' : ''}" data-act="kit" title="${esc(t('Що повернути після перевстановлення Windows чи на новому ПК'))}">${kitIcon(a.kit)} ${t(a.kit ? 'У моєму наборі' : 'У мій набір')}</button>`;
   // the author: followed with one button (a GitHub, GitLab or Codeberg account)
-  if (!self && a.kind === 'github') { const fol = authors().some(x => x.login.toLowerCase() === a.owner.toLowerCase()); h += `<button class="btn" data-act="followOwner" data-login="${esc(a.owner)}" title="${esc(a.owner)}">${ic('user')} ${t(fol ? 'Стежиш' : 'Стежити')}</button>`; }
   h += `<button class="btn ico" data-act="appMore" title="${esc(t('Ще'))}">${ic('more')}</button></div>`;
   if (p.busy) h += progHtml(p.busy);
   else if (p.note) h += `<div class="m" style="margin-top:6px;text-align:right">${esc(p.note)}</div>`;
+  h += factsHtml(a);
   h += '</div></div>';
   // only what asks for an action
   h += '<div style="margin-top:14px">';
@@ -1608,6 +1696,21 @@ function appPage(a) {
   h += '</div>';
   h += `${tabsHtml(a)}<div class="card" style="margin-top:12px">${paneHtml(a)}</div>`;
   return h + '</div>';
+}
+/** A few facts beside the app's buttons: how and where it is installed, its signature and VirusTotal, the release. */
+function factsHtml(a) {
+  const i = a.inst, lt = a.latest, pick = S.picks?.[a.id];
+  const rows = [];
+  if (i) {
+    rows.push([t('Спосіб'), esc(methodLabel(i.method))]);
+    if (i.dir) rows.push([t('Тека'), `<a class="alink mono" data-act="folder" title="${esc(i.dir)}">${esc(i.dir.split(/[\\/]/).filter(Boolean).slice(-2).join('\\'))}</a>`]);
+    if (i.signed) rows.push([t('Підпис'), i.signed === 'trusted' ? `<span class="okc">${esc(i.signer || t('Дійсний'))}</span>` : i.signed === 'bad' ? `<span class="errc">${t('Пошкоджено')}</span>` : t('Немає')]);
+    if (i.vt === 'done') rows.push(['VirusTotal', `<span class="${i.vtHits ? 'errc' : 'okc'}">${i.vtHits} / ${i.vtTotal}</span>`]);
+    if (i.at) rows.push([t('Встановлено'), esc(dateOf(i.at))]);
+  }
+  if (lt?.date) rows.push([t('Реліз'), `${esc(verOf(lt.tag))} · ${esc(ago(lt.date))}`]);
+  if (pick?.size && (!i || isUpd(a))) rows.push([t('Розмір'), esc(fmtSize(pick.size))]);
+  return rows.length ? `<div class="afacts">${rows.map(([k, v]) => `<span class="m">${k}</span><span>${v}</span>`).join('')}</div>` : '';
 }
 function safetyCard(a) {
   const i = a.inst;
@@ -1856,15 +1959,18 @@ function repoRow(it, extra = '') {
     + (la ? `<button class="btn sm ico kitt ${la.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(la.id)}" title="${esc(t(la.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(la.kit)}</button>` : `<button class="btn sm ico kitt" data-act="addKit" data-full="${esc(it.full)}" title="${esc(t('Додати в бібліотеку й у мій набір'))}">${kitIcon(false)}</button>`);
   return `<div class="r" data-full="${esc(it.full)}">${avatarHtml(it.avatar, it.owner)}<div class="tx"><div class="nm"><span>${esc(it.name)}</span>${extra}${it.fork ? `<span class="pill">${t('форк')}</span>` : ''}${it.archived ? `<span class="pill">${t('архів')}</span>` : ''}<span class="m" style="font-weight:400">${esc(it.owner)}</span></div><div class="ds">${esc(it.desc || it.full)}</div></div><div class="meta">★ ${fmtNum(it.stars)}${gain}<br><span class="m" title="${esc(t('Коли автор востаннє змінював код'))}">${esc([it.lang, it.pushed && `${t('оновлено')} ${ago(it.pushed)}`].filter(Boolean).join(' · '))}</span></div><div class="acts2">${act}</div></div>`;
 }
+/** «Find»: the detailed filters are folded behind one button; the number of the changed ones is on it. */
+let discOpen = store.get('discOpen', false);
+const discChanged = () => [disc.sort !== 'best' && disc.sort, disc.lang, disc.stars, disc.updated, disc.topic, disc.fork, disc.owner, disc.license].filter(Boolean).length;
 function discoverPage() {
   if (!disc.ran && !disc.loading) { disc.ran = true; setTimeout(() => discSearch(), 0); }
   const opt = (v, l, cur) => `<option value="${esc(v)}" ${String(cur) === String(v) ? 'selected' : ''}>${esc(l)}</option>`;
   const SITE = disc.site === 'gitlab' ? 'GitLab' : 'GitHub';
   let h = `<div class="page narrow">${phead(t('Знайти нове'), `${onSite('Пошук на GitHub', SITE)}${disc.total ? ' · ' + mono(disc.total.toLocaleString(L)) + ' ' + t('знайдено') : ''}`)}${reposTabs()}`;
-  h += `<div class="pin dpin"><div class="row"><label class="search grow"><span class="mono prompt">❯</span><input id="dq" value="${esc(disc.q)}" placeholder="${esc(onSite('Шукати на GitHub', SITE))}" spellcheck="false"></label><button class="btn acc" data-act="discGo">${ic('search')} ${t('Шукати')}</button></div>`;
+  h += `<div class="pin dpin"><div class="row"><label class="search grow"><span class="mono prompt">❯</span><input id="dq" value="${esc(disc.q)}" placeholder="${esc(onSite('Шукати на GitHub', SITE))}" spellcheck="false"></label><button class="btn acc" data-act="discGo">${ic('search')} ${t('Шукати')}</button><button class="btn ${discOpen ? 'on' : ''}" data-act="discFilters">${ic('sort')} ${t('Фільтри')}${discChanged() ? ` (${discChanged()})` : ''}</button>${SITE === 'GitHub' ? hint('Ліміт пошуку GitHub: 10 запитів на хвилину без токена, 30 — з токеном.') : ''}</div>`;
   const fld = (label, ctl, icon) => `<label class="dfld"><span class="dl">${icon ? ic(icon) : ''}${label}</span>${ctl}</label>`;
   h += `<div class="dpre"><span class="dl">${t('Швидкий пошук')}</span><div class="filters">${PRESETS.map(([l, p]) => `<button class="fchip ${Object.entries(p).every(([k, v]) => String(disc[k]) === String(v)) ? 'on' : ''}" data-act="preset" data-p="${esc(l)}">${t(l)}</button>`).join('')}</div></div>`;
-  h += `<div class="dgrid">
+  if (discOpen) h += `<div class="dgrid">
     ${fld(t('Сортування'), `<select class="inp" data-f="sort">${opt('best', t('Найкращі збіги'), disc.sort)}${opt('stars', t('Більше зірок'), disc.sort)}${opt('updated', t('Нещодавно оновлені'), disc.sort)}</select>`, 'sort')}
     ${fld(t('Мова'), `<select class="inp" data-f="lang">${opt('', t('Будь-яка'), disc.lang)}${LANGS.map(x => opt(x, x, disc.lang)).join('')}</select>`, 'code')}
     ${fld(t('Зірки'), `<select class="inp" data-f="stars">${opt('', t('Будь-скільки'), disc.stars)}${['10', '100', '1000', '10000'].map(x => opt(x, `${(+x).toLocaleString(L)}+`, disc.stars)).join('')}</select>`, 'star')}
@@ -1873,7 +1979,8 @@ function discoverPage() {
     ${fld(t('Форки'), `<select class="inp" data-f="fork">${opt('', t('Без форків'), disc.fork)}${opt('true', t('Разом з форками'), disc.fork)}${opt('only', t('Лише форки'), disc.fork)}</select>`, 'fork')}
     ${fld(t('Автор'), `<input class="inp" data-f="owner" value="${esc(disc.owner)}" placeholder="${esc(t('будь-хто'))}">`, 'user')}
     ${fld(t('Ліцензія'), `<select class="inp" data-f="license" ${SITE === 'GitHub' ? '' : 'disabled title="' + esc(t('GitLab не шукає за ліцензією')) + '"'}>${opt('', t('Будь-яка'), disc.license)}${['mit', 'gpl-3.0', 'apache-2.0', 'bsd-3-clause', 'mpl-2.0', 'unlicense'].map(x => opt(x, x.toUpperCase(), disc.license)).join('')}</select>`, 'shield')}
-  </div></div>`;
+  </div>`;
+  h += '</div>';
   if (hist.length) h += `<div class="dpre"><span class="dl">${t('Нещодавні')}</span>${hist.map(q => `<span class="chip" data-act="histQ" data-q="${esc(q)}" title="${esc(t('Права кнопка — прибрати'))}">${esc(q)}</span>`).join('')}</div>`;
   h += '<div class="list" style="margin-top:16px">';
   if (disc.err) h += `<div class="info err"><span class="sign">!</span><div class="grow">${esc(msg(disc.err))}</div></div>`;
@@ -1881,7 +1988,7 @@ function discoverPage() {
   for (const it of disc.items) h += repoRow(it);
   if (disc.loading) h += `<div class="nothing">${t('Шукаю…')}</div>`;
   else if (disc.items.length && disc.items.length < Math.min(disc.total, 1000)) h += `<button class="btn more" data-act="discMore">${t('Показати ще')}</button>`;
-  h += `</div>${SITE === 'GitHub' ? `<div class="m" style="margin-top:12px">${t('Ліміт пошуку GitHub: 10 запитів на хвилину без токена, 30 — з токеном.')}</div>` : ''}`;
+  h += '</div>';
   return h + '</div>';
 }
 /** Images of a README that are not badges: the first is the banner, the next ones are screenshots. */
@@ -1972,6 +2079,8 @@ function authorPage() {
 
 let tweakList = null;
 const tweakBusy = new Set();
+/** «Tweaks» tab: "tw" — tweaks, "fix" — fixes, "run" — programs starting with Windows. */
+let tweakTab = store.get('tweakTab', 'tw') === 'fix' ? 'fix' : 'tw';
 let tweakFilter = 'all';
 const TCATS = [['explorer', 'Провідник', 'folder'], ['taskbar', 'Панель завдань', 'apps'], ['start', 'Пуск і пошук', 'search'], ['privacy', 'Реклама й приватність', 'shield'], ['input', 'Миша й клавіатура', 'edit'], ['games', 'Ігри', 'play'], ['system', 'Система', 'settings'], ['custom', 'Мої твіки', 'tool']];
 function tweakName(x) {
@@ -1984,12 +2093,13 @@ function tweaksPage() {
   const isOn = x => x.status === 'on' || x.status === 'already';
   const reset = tweakList.filter(x => x.status === 'reset');
   const F = { all: () => true, on: x => x.status === 'on', reset: x => x.status === 'reset', custom: x => x.custom };
-  let h = `<div class="page narrow">${phead(t('Твіки Windows'), t('Кожен можна скасувати — Komora пам’ятає, що було до нього.'), `<button class="btn" data-act="explorer">${ic('restart')} ${t('Перезапустити Провідник')}</button><button class="btn acc" data-act="tweakNew">${ic('add')} ${t('Свій твік')}</button>`)}`;
-  h += `<div class="filters pin">${[['all', 'Усі'], ['on', 'Застосовані'], ['reset', 'Скинуті Windows'], ['custom', 'Мої']].map(([k, l]) => `<button class="fchip ${tweakFilter === k ? 'on' : ''}" data-act="tweakFilter" data-f="${k}">${ic({ all: 'apps', on: 'check', reset: 'warn', custom: 'user' }[k])}${t(l)}<span class="mono">${tweakList.filter(F[k]).length}</span></button>`).join('')}</div>`;
+  let h = `<div class="page narrow">${phead(t('Твіки'), t('Кожен можна скасувати — Komora пам’ятає, що було до нього.'), `<button class="btn" data-act="explorer">${ic('restart')} ${t('Перезапустити Провідник')}</button>${tweakTab === 'tw' ? `<button class="btn acc" data-act="tweakNew">${ic('add')} ${t('Свій твік')}</button>` : ''}`)}`;
+  h += `<div class="tabs top" role="tablist">${[['tw', 'Твіки'], ['fix', 'Виправлення']].map(([k, l]) => `<button class="${tweakTab === k ? 'on' : ''}" data-act="tweakTab" data-tab="${k}">${t(l)}</button>`).join('')}</div>`;
+  if (tweakTab === 'tw') h += `<div class="filters pin">${[['all', 'Усі'], ['on', 'Застосовані'], ['reset', 'Скинуті Windows'], ['custom', 'Мої']].map(([k, l]) => `<button class="fchip ${tweakFilter === k ? 'on' : ''}" data-act="tweakFilter" data-f="${k}">${ic({ all: 'apps', on: 'check', reset: 'warn', custom: 'user' }[k])}${t(l)}<span class="mono">${tweakList.filter(F[k]).length}</span></button>`).join('')}</div>`;
   // Steam's game shortcuts that lost their icon (the game moved to another disk)
-  if (S.steam && tweakFilter === 'all') h += `<div class="tw steamfix" style="margin-top:14px"><i class="i">${I.pc}</i><div class="tx"><div class="nm"><span>${t('Значки ігор Steam')}</span></div><div class="d">${t('Коли гру переносять на інший диск, її ярлик на робочому столі стає білим. Komora знаходить гру в бібліотеках Steam і повертає значок.')}</div></div><button class="btn" data-act="steamIconsFix">${ic('tool')} ${t('Полагодити зараз')}</button><span class="m" title="${esc(t('Щоразу, коли Komora перевіряє оновлення'))}">${t('Лагодити автоматично')}</span><span class="sw ${S.cfg.steamIcons ? 'on' : ''}" role="switch" aria-checked="${!!S.cfg.steamIcons}" data-act="cfgSw" data-key="steamIcons"></span></div>`;
-  if (tweakFilter === 'all') {
-    if (toolsInfo === null) { toolsInfo = {}; post({ t: 'toolsScan' }); }
+  if (tweakTab === 'fix' && toolsInfo === null) { toolsInfo = {}; post({ t: 'toolsScan' }); }
+  if (S.steam && tweakTab === 'fix') h += `<div class="tw steamfix" style="margin-top:14px"><i class="i">${I.pc}</i><div class="tx"><div class="nm"><span>${t('Значки ігор Steam')}</span></div><div class="d">${t('Коли гру переносять на інший диск, її ярлик на робочому столі стає білим. Komora знаходить гру в бібліотеках Steam і повертає значок.')}</div></div><button class="btn" data-act="steamIconsFix">${ic('tool')} ${t('Полагодити зараз')}</button><span class="m" title="${esc(t('Щоразу, коли Komora перевіряє оновлення'))}">${t('Лагодити автоматично')}</span><span class="sw ${S.cfg.steamIcons ? 'on' : ''}" role="switch" aria-checked="${!!S.cfg.steamIcons}" data-act="cfgSw" data-key="steamIcons"></span></div>`;
+  if (tweakTab === 'fix') {
     const sz = toolsInfo.sizes || {};
     const tool = (icon, title, d, size, what) => `<div class="tw tool"><i class="i">${I[icon]}</i><div class="tx"><div class="nm"><span>${t(title)}</span>${size != null ? `<span class="pill mono">${esc(fmtSize(size) || '0')}</span>` : ''}</div><div class="d">${t(d)}</div></div><button class="btn" data-act="toolsClean" data-what="${what}" ${size ? '' : 'disabled'}>${ic('del')} ${t('Очистити')}</button></div>`;
     h += tool('pc', 'Кеш шейдерів відеокарти', 'NVIDIA, AMD, Intel і DirectX: допомагає від підвисань після оновлення драйвера. Гра збере шейдери знову під час першого запуску.', sz.shader, 'shader');
@@ -2001,35 +2111,31 @@ function tweaksPage() {
     h += fix('shield', 'Системні файли Windows', 'Перевіряє й відновлює пошкоджені файли Windows (sfc, потім DISM). Відкриється вікно з поступом; це триває 10–30 хвилин.', 'sfc', 'Перевірити', 'shield', true);
     h += tool('box', 'Тимчасові файли', 'Тимчасова тека Windows, завантаження winget і Komora старші за добу. Файли, які зараз використовуються, лишаються.', sz.temp, 'temp');
   }
-  if (reset.length) h += `<div class="info warn" style="margin-top:14px"><span class="sign">!</span><div class="grow"><b>${t('Windows скинула твіки:')} ${esc(reset.map(tweakName).join(', '))}.</b> <span class="m">${t('Komora перевіряє твіки після кожного запуску й перевірки оновлень.')}</span></div><button class="btn sm" data-act="tweakFix">${t('Повернути всі')}</button></div>`;
   let sectN = 0;
-  for (const [cat, title, icon] of TCATS) {
+  for (const [cat, title, icon] of tweakTab === 'tw' ? TCATS : []) {
     const list = tweakList.filter(x => x.cat === cat && F[tweakFilter](x));
     if (!list.length) continue;
     const all = tweakList.filter(x => x.cat === cat);
     const act = all.filter(isOn).length;
     sectN += 1;
-    h += `<div class="sect tsect"><span><span class="acc">${String(sectN).padStart(2, '0')} //</span> ${t(title)}</span><span class="mono ${act === all.length ? 'okc' : ''}">${act} ${t('із')} ${all.length} ${t('активні')}</span></div>`;
+    h += `<div class="sect tsect"><span>${t(title)}</span><span class="mono">${act}/${all.length}</span></div>`;
     for (const x of list) {
       const busy = tweakBusy.has(x.id);
       const tag = '';
       const after = { explorer: t('після перезапуску Провідника'), logon: t('після повторного входу') }[x.restart] || '';
-      const [stCls, stTxt] = x.status === 'reset' ? ['warn', t('скинуто Windows')] : x.status === 'already' ? ['acc', t('уже так у Windows')] : isOn(x) ? ['ok', t('застосовано')] : ['', t('вимкнено')];
-      const state = `<i class="sdot ${stCls}"></i>${stTxt}`;
+      // the switch tells on / off; the text only what it cannot
+      const [stCls, stTxt] = x.status === 'reset' ? ['warn', t('скинуто Windows')] : x.status === 'already' ? ['acc', t('уже так у Windows')] : ['', ''];
+      const state = stTxt ? `<i class="sdot ${stCls}"></i>${stTxt}` : '';
       h += `<div class="tw"><i class="i">${I[icon]}</i><div class="tx"><div class="nm"><span>${esc(tweakName(x))}</span>${tag}${x.admin ? `<span class="pill mono">admin</span>` : ''}</div><div class="d">${esc(desc(x))}${after ? ' · ' + esc(after) : ''}</div></div>`;
       if (x.custom) h += `<button class="btn sm ico flat" data-act="tweakEdit" data-id="${esc(x.id)}" title="${esc(t('Змінити'))}">${ic('edit')}</button>`;
       const tk = kitTweaks().includes(x.id);
       h += `<button class="btn sm ico kitt ${tk ? 'on' : ''}" data-act="kitTweak" data-id="${esc(x.id)}" title="${esc(t(tk ? 'Прибрати з набору' : 'Повертати після перевстановлення Windows'))}">${kitIcon(tk)}</button>`;
-      h += `<span class="st">${state}</span>`;
-      if (x.status === 'reset' && !busy) h += `<button class="btn sm" data-act="tweakOn" data-id="${esc(x.id)}">${t('Повернути')}</button>`;
+      if (state) h += `<span class="st">${state}</span>`;
+      if (x.status === 'reset' && !busy) h += `<button class="btn sm upd soft" data-act="tweakOn" data-id="${esc(x.id)}">${t('Повернути')}</button>`;
       h += `<span class="sw ${isOn(x) ? 'on' : ''} ${busy ? 'busy' : ''}" role="switch" aria-checked="${isOn(x)}" data-act="tweakSw" data-id="${esc(x.id)}" data-on="${isOn(x) ? 1 : ''}"></span></div>`;
     }
   }
   // programs that start with Windows (switched as Task Manager does)
-  if (tweakFilter === 'all' && toolsInfo?.startup?.length) {
-    h += `<div class="sect tsect"><span>${t('Автозапуск')}</span><span class="mono">${toolsInfo.startup.filter(x => x.on).length} ${t('із')} ${toolsInfo.startup.length} ${t('активні')}</span></div>`;
-    for (const x of toolsInfo.startup) h += `<div class="tw su"><i class="i">${I.play}</i><div class="tx"><div class="nm"><span>${esc(x.name)}</span>${x.admin ? `<span class="pill mono">admin</span>` : ''}</div><div class="d mono" title="${esc(x.cmd)}">${esc(x.exe || x.cmd)}</div></div><span class="sw ${x.on ? 'on' : ''}" role="switch" aria-checked="${!!x.on}" data-act="startupSw" data-id="${esc(x.id)}"></span></div>`;
-  }
   return h + '</div>';
 }
 function tweakEditor(x) {
@@ -2063,6 +2169,8 @@ function tweakEditor(x) {
 // ---------------------------------------------------------------- another PC and sync
 
 let bundlePrev = null; // an opened bundle: { pc, at, apps, tweaks }
+/** What the transfer file carries: "kit" or "all". */
+let expScope = store.get('expScope', 'kit');
 /** Programs of this PC winget can install, for the import: null, { loading }, or { items, err }. */
 let wgImp = null;
 let wgImpKit = true;
@@ -2111,27 +2219,27 @@ function newPcPage() {
   const offered = apps().filter(a => INSTALLABLE(a) && a.wasInstalled && !a.inst);
   const mode = c.syncDir ? 'dir' : c.syncDbx ? 'dropbox' : dbxForm ? 'dropbox' : c.syncGist ? 'gist' : 'off';
   const st = S.sync || {};
-  let h = `<div class="page narrow">${phead(t('Перенесення'), t('На інший ПК чи після перевстановлення Windows: бібліотека, групи, теги, нотатки, твіки й копії налаштувань.'))}<div class="grid2 eq">`;
+  let h = `<div class="page narrow">${phead(t('Перенесення'), t('На інший ПК чи після перевстановлення Windows: синхронізація «Мого набору», файл перенесення, програми з цього ПК.'))}<div class="grid2 eq">`;
   // take everything to another PC
   const applied = (tweakList || []).filter(x => x.status === 'on' || x.status === 'reset').length;
   if (bkInfo === null) { bkInfo = undefined; post({ t: 'bkSize' }); }
-  const frow = (icon, title, d, btn) => `<div class="frow"><span class="fic">${ic(icon)}</span><div class="tx"><div class="ft">${title}</div><div class="m">${d}</div></div>${btn}</div>`;
-  h += `<section class="card"><h2 class="big">${t('Файл набору')}${hint('Один файл, щоб забрати бібліотеку на інший ПК чи на чисту Windows.')}</h2><div class="fl">
-    ${frow('box', t('Зберегти набір'), t('Файл .zip: бібліотека, групи, теги, нотатки, твіки й сама Komora.exe. На новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.'), `<button class="btn acc" data-act="export" data-zip="1">${t('Зберегти .zip')}</button>`)}
-    <label class="bkw line"><span class="sw ${bkWith ? 'on' : ''}" role="switch" aria-checked="${bkWith}" data-act="bkWith"></span>${t('З налаштуваннями програм')}<span class="mono m">${bkInfo ? (bkInfo.apps ? `${nwk(bkInfo.apps, 'app')} · ${fmtSize(bkInfo.size) || '0'}` : t('копій ще немає')) : '…'}</span></label>
+  const frow = (icon, title, d, btn, more = '') => `<div class="frow"><span class="fic">${ic(icon)}</span><div class="tx"><div class="ft">${title}</div><div class="m">${d}</div>${more}</div>${btn}</div>`;
+  const scope = [['kit', 'Лише набір'], ['all', 'Уся бібліотека']].map(([v, l]) => `<button class="${expScope === v ? 'on' : ''}" data-act="expScope" data-v="${v}">${t(l)}</button>`).join('');
+  h += `<section class="card"><h2 class="big">${t('Файл перенесення')}${hint('Один zip, щоб забрати набір чи всю бібліотеку на інший ПК або на чисту Windows.')}</h2><div class="fl">
+    ${frow('box', t('Зберегти файл перенесення'), t('Zip із самою Komora.exe: на новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.'), `<button class="btn acc" data-act="exportGo">${t('Зберегти .zip')}</button>`, `<div class="xopts"><div class="scope"><div class="seg">${scope}</div></div><label class="bkw line"><span class="sw ${bkWith ? 'on' : ''}" role="switch" aria-checked="${bkWith}" data-act="bkWith"></span>${t('З налаштуваннями програм')}<span class="mono m">${bkInfo ? (bkInfo.apps ? `${nwk(bkInfo.apps, 'app')} · ${fmtSize(bkInfo.size) || '0'}` : t('копій ще немає')) : '…'}</span></label></div>`)}
     ${frow('pc', t('Програми з цього ПК'), t('Знайде встановлені програми, які winget уміє ставити. Додай їх у бібліотеку й набір — на новому ПК вони встануть одним кліком.'), `<button class="btn" data-act="wgFind" ${wgImp?.loading ? 'disabled' : ''}>${t('Знайти…')}</button>`)}
-    ${frow('importI', t('Відкрити набір'), t('Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V).'), `<button class="btn" data-act="openBundle">${t('Відкрити…')}</button>`)}
+    ${frow('importI', t('Відкрити файл перенесення'), t('Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V). Що поставити, вибереш у «Моєму наборі».'), `<button class="btn" data-act="openBundle">${t('Відкрити…')}</button>`)}
     ${frow('link', t('Поділитися'), t('Посиланням (секретний Gist) або текстом — інший відкриє його в Komora.'), `<button class="btn" data-act="shareAll">${t('Поділитися…')}</button>`)}
   </div></section>`;
   // sync
   const stTxt = st.err ? `<span style="color:var(--err)">● ${esc(msg(st.err))}</span>` : st.okAt ? `<span style="color:var(--ok)">● ${esc(shortAgo(st.okAt))}</span>` : mode === 'off' ? '' : `<span class="m">${t('ще не синхронізовано')}</span>`;
   const radio = (k, name, note, noteMono) => `<div class="radio ${mode === k ? 'on' : ''}" data-act="syncMode" data-mode="${k}"><span class="o"></span><span><span>${name}</span><br><span class="${noteMono ? 'mono ' : ''}m">${note}</span></span></div>`;
-  h += `<section class="card"><h2 class="big">${t('Синхронізація')}${hint('Бібліотека сама оновлюється на всіх твоїх ПК: через приватний GitHub Gist або Dropbox. Перемагають новіші зміни; програми не встановлюються самі — інший ПК лише пропонує їх.')}<span class="mono" style="font-size:12px">${stTxt}</span></h2><div style="margin-top:8px">`;
+  h += `<section class="card"><h2 class="big">${t('Синхронізація')}${hint('«Мій набір» сам оновлюється на всіх твоїх ПК через приватний GitHub Gist. Перемагають новіші зміни; програми не встановлюються самі — інший ПК лише пропонує їх.')}<span class="mono" style="font-size:12px">${stTxt}</span></h2><div style="margin-top:8px">`;
   if (mode === 'dir') h += radio('dir', t('Тека'), esc(c.syncDir + '\\komora-sync.json'), true);
   const gistTok = () => { const r = S.rate; return keyRow('token', t('Токен GitHub'), c.hasToken, 'github_pat_…', r ? `<span class="mono" style="font-size:12px;color:${r.remaining > 10 ? 'var(--ok)' : 'var(--warn)'}">● ${r.remaining} / ${r.limit}</span>` : '', esc(t('Той самий токен, що й у Налаштуваннях: для Gist йому потрібен дозвіл Gists (Read and write).')), `<a class="alink" style="font-size:12px" data-act="openUrl" data-url="${TOKEN_URL}">${t('Створити токен на GitHub')} →</a>`); };
   h += radio('gist', t('Приватний GitHub Gist'), esc(c.hasToken ? t('потрібен токен з дозволом Gists') : t('спершу додай токен у Налаштуваннях')));
   if (mode === 'gist' || (S.sync?.err && c.syncGist)) h += `<div class="dbx">${gistTok()}</div>`;
-  h += radio('dropbox', 'Dropbox', esc(c.hasDbx ? t('увійдено · тека Apps/Komora') : c.dbxAvail ? t('увійти через сайт Dropbox') : t('ще не налаштовано в цій збірці')));
+  if (c.dbxAvail || c.hasDbx) h += radio('dropbox', 'Dropbox', esc(c.hasDbx ? t('увійдено · тека Apps/Komora') : c.dbxAvail ? t('увійти через сайт Dropbox') : t('ще не налаштовано в цій збірці')));
   if (mode === 'dropbox' && !c.hasDbx) {
     h += c.dbxAvail
       ? `<div class="dbx"><div class="m">${t('1. Відкрий Dropbox і дозволь Komora доступ лише до її теки. 2. Скопіюй код, який покаже Dropbox, і встав сюди.')}</div><div class="row" style="margin-top:8px"><button class="btn sm" data-act="dbxBegin">${ic('open')} ${t('Відкрити Dropbox')}</button><input class="inp mono" id="dbxCode" placeholder="${esc(t('код з Dropbox'))}" style="max-width:260px;height:26px"><button class="btn sm acc" data-act="dbxFinish">${t('Підтвердити')}</button></div></div>`
@@ -2143,7 +2251,7 @@ function newPcPage() {
   if (mode !== 'off') h += `<div class="row" style="margin-top:12px"><button class="btn sm" data-act="syncNow">${ic('refresh')} ${t('Синхронізувати зараз')}</button></div>`;
   h += '</section>';
   // how-tos in a card of their own: open, they would stretch the cards of the row
-  h += `<section class="card s2 howtos one">${howto('Як налаштувати Gist', ['Відкрий сторінку нового токена на GitHub (посилання нижче) і ввійди у свій обліковий запис.', 'Token name — будь-яка назва, наприклад Komora. Expiration — скільки житиме токен: коли мине, синхронізація зупиниться й знадобиться новий.', 'Repository access — «Public repositories»: доступ до твоїх репозиторіїв Komora не потрібен.', 'Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен (github_pat_…) і встав його тут, у поле «Токен GitHub» під «Приватний GitHub Gist».', 'Тут обери «Приватний GitHub Gist». Komora сама створить секретний Gist із файлом komora-sync.json або знайде наявний.', 'На іншому ПК зроби те саме з тим самим обліковим записом GitHub — Komora знайде той самий Gist.'],
+  if (mode === 'gist') h += `<section class="card s2 howtos one">${howto('Як налаштувати Gist', ['Відкрий сторінку нового токена на GitHub (посилання нижче) і ввійди у свій обліковий запис.', 'Token name — будь-яка назва, наприклад Komora. Expiration — скільки житиме токен: коли мине, синхронізація зупиниться й знадобиться новий.', 'Repository access — «Public repositories»: доступ до твоїх репозиторіїв Komora не потрібен.', 'Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен (github_pat_…) і встав його тут, у поле «Токен GitHub» під «Приватний GitHub Gist».', 'Тут обери «Приватний GitHub Gist». Komora сама створить секретний Gist із файлом komora-sync.json або знайде наявний.', 'На іншому ПК зроби те саме з тим самим обліковим записом GitHub — Komora знайде той самий Gist.'],
     `<div class="m">${t('Секретний Gist не видно в списках і пошуку, але відкрити його може кожен, хто має посилання. Токени й ключі в синхронізацію не потрапляють.')}</div><div class="row wrap" style="margin-top:8px;gap:16px"><a class="alink" data-act="openUrl" data-url="${TOKEN_URL}">${t('Створити токен на GitHub')} →</a></div>`)}</section>`;
   // programs of this PC to bring into the library
   if (wgImp) {
@@ -2157,35 +2265,6 @@ function newPcPage() {
       h += `<div class="wgl">${apps.map(row).join('')}${sys.length ? `<details class="wgsys"><summary>${t('Системні компоненти')} (${sys.length})</summary>${sys.map(row).join('')}</details>` : ''}</div>`;
       h += `<div class="row wrap" style="margin-top:12px"><button class="btn acc" data-act="wgImportGo">${ic('add')} ${t('Додати вибране')}</button><label class="bkw line"><span class="sw ${wgImpKit ? 'on' : ''}" role="switch" aria-checked="${wgImpKit}" data-act="wgImpKit"></span>${t('Одразу в мій набір')}</label><span class="grow"></span><button class="btn" data-act="wgImpClose">${t('Скасувати')}</button></div>`;
     }
-    h += '</section>';
-  }
-  // an opened bundle: what to set up
-  if (bundlePrev) {
-    const want = bundlePrev.apps.filter(a => ['github', 'winget', 'page'].includes(a.kind) && a.was && !a.here);
-    h += `<section class="card s2"><h2 class="big">${t('Набір з ПК')} ${esc(bundlePrev.pc || '?')}<span class="mono">${esc(ago(bundlePrev.at))}</span></h2><div class="grid2" style="margin-top:10px">
-      <div><div style="font-weight:600">${t('Встановити')} (${want.length})</div><div style="max-height:300px;overflow:auto;margin-top:4px">${want.map(a => `<label class="check"><input type="checkbox" data-bi="${esc(a.id)}" checked>${esc(a.name)}</label>`).join('') || `<div class="m">${t('Усе вже встановлено')}</div>`}</div></div>
-      <div><div style="font-weight:600">${t('Твіки')} (${bundlePrev.tweaks.length})</div><div style="max-height:300px;overflow:auto;margin-top:4px">${bundlePrev.tweaks.map(id => `<label class="check"><input type="checkbox" data-bt="${esc(id)}" checked>${esc(tweakName(id))}</label>`).join('') || `<div class="m">—</div>`}</div></div></div>
-      <div class="row" style="margin-top:12px"><button class="btn acc" data-act="acceptBundle">${t('Поставити вибране')}</button><button class="btn" data-act="dropBundle">${t('Скасувати')}</button><span class="m">${t('По одній програмі; налаштування повертаються з копій одразу після встановлення')}</span></div></section>`;
-  }
-  // setting up from a bundle: the queue
-  if (bundleRun) {
-    const ids = bundleRun.ids;
-    const done = ids.filter(id => appById(id)?.inst).length;
-    const cur = ids.find(id => busyOf(id) && busyOf(id).stage !== 'queued');
-    h += `<section class="card pad0 s2"><div class="row" style="padding:14px 18px;border-bottom:1px solid var(--div)"><div class="grow"><h2 class="big">${t('Ставлю набір з')} ${esc(bundleRun.pc || '?')}</h2><div class="m">${t('По одній програмі; налаштування повертаються з копій одразу після встановлення')}</div></div><span class="mono">${done} / ${ids.length}</span></div><div style="height:3px;background:var(--div)"><div style="width:${ids.length ? (done / ids.length) * 100 : 0}%;height:3px;background:var(--acc)"></div></div><div class="grid2" style="gap:0">`;
-    for (const id of ids) {
-      const a = appById(id), b = busyOf(id);
-      const [sign, col, state] = a?.inst ? ['✓', 'var(--ok)', t('готово')] : id === cur ? ['›', 'var(--acc)', stageText(b)] : a?.error ? ['×', 'var(--err)', t('не вдалося')] : ['·', 'var(--mu)', t('у черзі')];
-      h += `<div class="qrow"><span class="sign" style="color:${col}">${sign}</span><span class="grow">${esc(a?.name || id)}</span><span class="mono" style="font-size:12px;color:${col}">${esc(state)}</span></div>`;
-    }
-    h += '</div>';
-    if (bundleRun.tweaks.length) h += `<div class="row wrap" style="padding:12px 18px"><b>${t('Твіки з набору')}</b>${bundleRun.tweaks.map(id => `<span class="chip">${esc(tweakName(id))}</span>`).join('')}</div>`;
-    h += '</section>';
-  }
-  // installed on another PC
-  if (offered.length) {
-    h += `<section class="card s2"><div class="row wrap"><div class="grow" style="min-width:280px"><div style="font-weight:600">${t('Було встановлено на іншому ПК')} · ${offered.length}</div><div class="m" style="font-size:12.5px">${t('Прийшло із синхронізацією чи набору')}: ${esc(offered.slice(0, 6).map(a => a.name).join(', '))}${offered.length > 6 ? '…' : ''}</div></div><button class="btn" data-act="offeredToggle">${t(offeredOpen ? 'Сховати' : 'Показати')}</button><button class="btn acc" data-act="installOffered">${t(offered.length === 1 ? 'Встановити' : 'Встановити всі')}</button></div>`;
-    if (offeredOpen) h += `<div style="margin-top:10px;max-height:280px;overflow:auto">${offered.map(a => `<label class="check"><input type="checkbox" data-oi="${esc(a.id)}" checked>${esc(a.name)} <span class="m">${esc(busyOf(a.id) ? stageText(busyOf(a.id)) : '')}</span></label>`).join('')}</div>`;
     h += '</section>';
   }
   return h + '</div></div>';
@@ -2208,6 +2287,7 @@ function settingsPage() {
   h += row(t('Тема'), '', `<div class="looks">${['dark', 'light'].flatMap(kind => Object.entries(LOOKS[kind]).map(([k, p]) => look(kind, k, p))).join('')}</div>`);
   h += row(t('Мова'), '', sel('lang', c.lang, [['auto', 'Як у Windows'], ['uk', 'Українська'], ['en', 'English'], ['de', 'Deutsch'], ['fr', 'Français'], ['es', 'Español'], ['pt', 'Português'], ['pl', 'Polski'], ['it', 'Italiano'], ['tr', 'Türkçe']]));
   h += `<div class="sect">${t('Загальне')}</div>`;
+  h += row(t('Перевіряти оновлення'), t('Як часто Komora сама шукає нові версії'), sel('checkHours', c.checkHours, [[24, 'Щодня'], [168, 'Щотижня'], [720, 'Щомісяця'], [0, 'Вручну']]));
   h += row(t('Тестові версії (pre-release)'), t('Для всіх програм; окремо можна ввімкнути на сторінці програми'), sw('preAll', c.preAll));
   h += row(t('Сповіщення Windows'), t('Нові версії, нове від авторів, скинуті твіки'), sw('notify', c.notify));
   h += row(t('Копії налаштувань програм самі'), t('Теки налаштувань знаходяться самі; копія — перед кожним оновленням і раз на день, якщо файли змінилися'), sw('autoBackup', c.autoBackup));
@@ -2217,8 +2297,8 @@ function settingsPage() {
   h += pathRow(t('Тека для встановлювачів'), t('Inno Setup і NSIS отримують цю теку, MSI — якщо підтримує; порожньо — як пропонує встановлювач'), c.setupDir, 'setupDir', t('як пропонує встановлювач'), true);
   h += row(t('Показувати вікно встановлювача'), t('Вимкнено — тихе встановлення'), sw('setupShow', c.setupShow));
   // devices with a battery: a tray icon each, and a note when the charge runs low
-  h += `<div class="sect">${t('Пристрої')}</div>`;
-  h += row(t('Заряд пристроїв у треї'), t('Окремий значок у треї для кожного пристрою, що повідомляє заряд: Bluetooth, миші й клавіатури Logitech, геймпади PlayStation. Наведи на значок — назва й відсоток.'), sw('btTray', c.btTray));
+  h += `<div class="sect" id="setDev">${t('Пристрої')}</div>`;
+  h += row(t('Заряд пристроїв у треї'), t('Окремий значок у треї для кожного пристрою, що повідомляє заряд: Bluetooth, миші й клавіатури Logitech, миші Razer, SteelSeries і ATK / VXE, гарнітури Arctis, геймпади PlayStation і Xbox. Наведи на значок — назва й відсоток.'), sw('btTray', c.btTray));
   if (c.btTray) {
     const bt = S.bt || [];
     h += `<div class="srow col btrow">${bt.length ? `<div class="btl">${bt.map(d => `<div class="btd"><i class="i">${DEV_I[d.kind] || DEV_I.bt}</i><span class="grow">${esc(d.name)}</span><span class="mono ${d.charging ? 'acc' : d.pct <= 20 ? 'errc' : 'm'}" title="${esc(d.charging ? t('заряджається') : '')}">${d.charging ? '⚡ ' : ''}${d.pct} %</span><span class="sw sm ${d.tray ? 'on' : ''}" role="switch" aria-checked="${!!d.tray}" data-act="btDev" data-id="${esc(d.id)}" title="${esc(t('Значок у треї'))}"></span></div>`).join('')}</div>` : `<div class="d">${t('Зараз жоден пристрій не повідомляє заряд.')}</div>`}</div>`;
@@ -2234,7 +2314,7 @@ function settingsPage() {
     <button class="lrow" data-act="openUrl" data-url="https://github.com/Fenderenko/Komora"><span class="li gh">${GH_SVG}</span><span class="tx"><b>Fenderenko</b><span class="m">${t('автор · Komora на GitHub')}</span></span>${ic('open')}</button>
     <button class="lrow" data-act="openUrl" data-url="https://github.com/Fenderenko/Komora/blob/main/THIRD_PARTY.md"><span class="li">${ic('box')}</span><span class="tx"><b>${t('Сторонні компоненти')}</b><span class="m">${t('Шрифт Geist (OFL), значки Material Symbols (Apache-2.0) і Lucide (ISC)')}</span></span>${ic('open')}</button>
     <div class="lrow"><span class="li">${ic('folder')}</span><span class="tx"><b>${t('Тека даних')}</b><span class="m mono path2">${esc(S.dataDir || '')}</span></span><button class="btn sm" data-act="openPath" data-path="${esc(S.dataDir || '')}">${t('Відкрити теку')}</button></div></div>`;
-  h += `<div class="m disclaim">${t('Komora — незалежний проєкт. Вона не пов’язана з Microsoft, Valve, Sony, Logitech, Nintendo, GitHub, GitLab чи іншими згаданими компаніями й не схвалена ними; їхні назви й торгові марки належать власникам.')}</div>`;
+  h += `<div class="m disclaim">${t('Komora — незалежний проєкт. Вона не пов’язана з Microsoft, Valve, Sony, Logitech, Razer, SteelSeries, Nintendo, GitHub, GitLab чи іншими згаданими компаніями й не схвалена ними; їхні назви й торгові марки належать власникам.')}</div>`;
   h += '</div></div>';
   return h;
 }
@@ -2374,7 +2454,7 @@ function showMenu(x, y, items) {
   closeOverlay();
   const m = document.createElement('div');
   m.className = 'menu';
-  m.innerHTML = items.map((it, i) => it === '-' ? '<hr>' : it.head ? `<div class="mh">${esc(it.head)}</div>` : `<button data-i="${i}" class="${it.danger ? 'danger' : ''}">${it.mark ? it.mark : it.dot ? `<span style="width:9px;height:9px;border-radius:3px;background:${esc(it.dot)}"></span>` : it.icon ? ic(it.icon) : ''}<span>${esc(it.label)}</span>${it.check ? `<i class="i ck">${I.check}</i>` : ''}</button>`).join('');
+  m.innerHTML = items.map((it, i) => it === '-' ? '<hr>' : it.head ? `<div class="mh">${esc(it.head)}</div>` : `<button data-i="${i}" class="${it.danger ? 'danger' : ''} ${it.sub ? 'two' : ''}">${it.sw ? `<span class="sw sm ${it.on ? 'on' : ''}"></span>` : it.mark ? it.mark : it.dot ? `<span style="width:9px;height:9px;border-radius:3px;background:${esc(it.dot)}"></span>` : it.icon ? ic(it.icon) : ''}${it.sub ? `<span class="mtx"><span>${esc(it.label)}</span><span class="m">${esc(it.sub)}</span></span>` : `<span>${esc(it.label)}</span>`}${it.check ? `<i class="i ck">${I.check}</i>` : ''}</button>`).join('');
   document.body.append(m);
   const r = m.getBoundingClientRect();
   m.style.left = Math.max(8, Math.min(x, innerWidth - r.width - 8)) + 'px';
@@ -2388,6 +2468,7 @@ function showMenu(x, y, items) {
     if (!it.keep) closeOverlay();
     it.fn?.();
     // a toggled item of a menu that stays open: its check follows
+    if (it.sw) { it.on = !it.on; b.querySelector('.sw')?.classList.toggle('on', it.on); }
     if (it.toggle) { it.check = !it.check; b.querySelector('.ck')?.remove(); if (it.check) b.insertAdjacentHTML('beforeend', `<i class="i ck">${I.check}</i>`); }
   });
   overlay = m;
@@ -2469,17 +2550,22 @@ function openAdd(text = '', group = view.startsWith('g:') ? view.slice(2) : '') 
   closeFly();
   const v = document.createElement('div');
   v.className = 'veil';
-  const gname = groups().find(g => g.id === group)?.name;
-  v.innerHTML = `<div class="pal"><div class="pin">${ic('add')}<input placeholder="${esc(gname ? `${t('Встав посилання — додасться в групу')} «${gname}»` : t('Встав посилання на GitHub або сайт'))}" spellcheck="false"><span class="kbd mono">Esc</span></div><div class="res"></div><div class="imps"><span class="m">${t('Або імпортуй багато:')}</span><button class="btn sm" data-imp="stars">${ic('star')} ${t('Зірки GitHub')}</button><button class="btn sm" data-imp="obtainium">Obtainium</button><button class="btn sm" data-imp="bookmarks">${ic('globe')} ${t('Закладки')}</button><button class="btn sm" data-imp="list">${ic('list')} ${t('Список')}</button><button class="btn sm" data-imp="bundle">${ic('importI')} ${t('Набір')}</button></div><div class="foot"><span>Enter ${t('додати')}</span><span>Esc ${t('закрити')}</span><span class="grow"></span><span>${t('Посилання також можна вставити Ctrl+V у вікні чи перетягнути з браузера')}</span></div></div>`;
+  let selG = groups().some(g => g.id === group) ? group : '', kitOn = !!S.cfg.kitNew;
+  const gname = () => groups().find(g => g.id === selG)?.name;
+  v.innerHTML = `<div class="pal"><div class="pin">${ic('add')}<input placeholder="${esc(t('Встав посилання на GitHub або сайт'))}" spellcheck="false"><span class="kbd mono">Esc</span></div><div class="res"></div><div class="dest"></div><div class="imps"><span class="m">${t('Або імпортуй багато:')}</span><button class="btn sm" data-imp="stars">${ic('star')} ${t('Зірки GitHub')}</button><button class="btn sm" data-imp="obtainium">Obtainium</button><button class="btn sm" data-imp="bookmarks">${ic('globe')} ${t('Закладки')}</button><button class="btn sm" data-imp="list">${ic('list')} ${t('Список')}</button><button class="btn sm" data-imp="bundle">${ic('importI')} ${t('Набір')}</button></div><div class="foot"><span>Enter ${t('додати')}</span><span>Esc ${t('закрити')}</span><span class="grow"></span><span>${t('Посилання також можна вставити Ctrl+V у вікні чи перетягнути з браузера')}</span></div></div>`;
   document.body.append(v);
   overlay = v;
   const inp = $('input', v);
   inp.value = text;
+  // where it goes: no group or one of them, and the kit (by default — the «new things into the kit» rule)
+  const drawDest = () => {
+    $('.dest', v).innerHTML = `<span class="m">${t('Група')}</span><span class="chip ${selG ? '' : 'on'}" data-g="">${t('Без групи')}</span>${groups().map(g => `<span class="chip ${selG === g.id ? 'on' : ''}" data-g="${esc(g.id)}"><span class="dot" style="background:${esc(g.color || '#8d9099')}"></span>${esc(g.name)}</span>`).join('')}<span class="grow"></span><label class="kitsw" data-kit><span class="sw sm ${kitOn ? 'on' : ''}"></span>${t('У мій набір')}</label>`;
+  };
   const draw = () => {
     const q = inp.value.trim();
     const had = q && apps().find(a => a.url.toLowerCase().replace(/\/$/, '') === q.toLowerCase().replace(/\/$/, '') || (a.kind === 'github' && /github\.com\//i.test(q) && q.toLowerCase().includes(`github.com/${a.owner}/${a.repo}`.toLowerCase())));
     $('.res', v).innerHTML = had ? `<div class="it on" data-had="${esc(had.id)}">${iconHtml(had, 'sm')}<span class="grow">${t('Уже в бібліотеці')}: <b>${esc(had.name)}</b></span><span class="alink">${t('Відкрити')} →</span></div>`
-      : q && looksLikeLink(q) ? `<div class="it on">${ic('add')}<span class="grow">${t('Додати')} ${esc(q)}${gname ? ' → ' + esc(gname) : ''}</span><span class="mono m">Enter</span></div>`
+      : q && looksLikeLink(q) ? `<div class="it on">${ic('add')}<span class="grow">${t('Додати')} ${esc(q)} → ${esc([t('Бібліотека'), gname() && `«${gname()}»`, kitOn && t('Мій набір')].filter(Boolean).join(' · '))}</span><span class="mono m">Enter</span></div>`
       : `<div class="it">${ic('link')}<span class="grow m">${t('GitHub, сайт, відео YouTube, товар у магазині — будь-яке посилання')}</span></div>`;
   };
   const go2 = () => {
@@ -2487,15 +2573,19 @@ function openAdd(text = '', group = view.startsWith('g:') ? view.slice(2) : '') 
     const had = $('[data-had]', v);
     closeOverlay();
     if (had) openApp(had.dataset.had);
-    else if (q && looksLikeLink(q)) post({ t: 'add', url: q, group });
+    else if (q && looksLikeLink(q)) post({ t: 'add', url: q, group: selG, kit: kitOn });
   };
   inp.addEventListener('input', draw);
   inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go2(); } else if (e.key === 'Escape') closeOverlay(); });
   v.addEventListener('click', e => {
     const imp = e.target.closest('[data-imp]')?.dataset.imp;
     if (imp) { closeOverlay(); ({ stars: importStars, obtainium: importObtainium, bookmarks: importBookmarks, list: () => importText(), bundle: () => { go('newpc'); post({ t: 'openBundle' }); } })[imp](); return; }
+    const gc = e.target.closest('[data-g]');
+    if (gc) { selG = gc.dataset.g; drawDest(); draw(); inp.focus(); return; }
+    if (e.target.closest('[data-kit]')) { e.preventDefault(); kitOn = !kitOn; drawDest(); draw(); inp.focus(); return; }
     if (e.target === v) closeOverlay(); else if (e.target.closest('.it.on')) go2();
   });
+  drawDest();
   draw();
   inp.focus();
 }
@@ -2571,7 +2661,11 @@ function lightbox(src) {
 
 // ---------------------------------------------------------------- actions
 
-function updateAll() { for (const id of S.updates) post({ t: 'install', id }); }
+function updateAll() {
+  for (const id of S.updates) post({ t: 'install', id });
+  const w = wgUpdates().map(x => x.id);
+  if (w.length) post({ t: 'wgInstall', ids: w, to: '' });
+}
 const edit = (id, patch) => post({ t: 'edit', id, patch });
 async function confirmUninstall(a) {
   const r = await dialog({ title: t('Видалити програму з ПК?'), text: `${a.name}. ${a.inst?.method === 'portable' ? t('Портативна програма піде в Кошик.') : t('Запуститься її деінсталятор.')}`, ok: t('Видалити з ПК'), danger: true });
@@ -2818,6 +2912,8 @@ document.addEventListener('click', e => {
     case 'addKit': post({ t: 'addKit', full: b.dataset.full }); b.classList.add('on'); toast(t('Додано в мій набір')); break;
     case 'exportKit': post({ t: 'export', zip: true, withBk: bkWith, kitOnly: true }); break;
     case 'groupPick': menuAt(b, [...groups().map(g => ({ label: g.name, dot: g.color || '#8d9099', check: view === 'g:' + g.id, fn: () => setView('g:' + g.id) })), '-', { icon: 'add', label: t('Нова група…'), fn: () => newGroup('') }]); break;
+    case 'discFilters': discOpen = !discOpen; store.set('discOpen', discOpen); renderMain(true); break;
+    case 'instPick': menuAt(b, [['', 'Усі'], ['on', 'Встановлені'], ['off', 'Не встановлені']].map(([k, l]) => ({ label: t(l), check: instFilterOf() === k, fn: () => { instFilters = { ...instFilters, [view]: k }; store.set('instFilters', instFilters); render(); } }))); break;
     case 'tagPick': menuAt(b, allTags().slice(0, 30).map(([tg, c]) => ({ label: `#${tg} · ${c}`, check: view === 'tag:' + tg, fn: () => setView('tag:' + tg) }))); break;
     case 'openRepo': case 'openLink': post({ t: 'open', url: a.url }); break;
     case 'openUrl': post({ t: 'open', url: b.dataset.url }); break;
@@ -2847,6 +2943,10 @@ document.addEventListener('click', e => {
     case 'appSet': edit(a.id, { [b.dataset.key]: b.dataset.val }); break;
     case 'appClearDir': edit(a.id, { setupDir: '' }); break;
     case 'updateAll': updateAll(); break;
+    case 'skipId': { const ap = appById(b.dataset.id); if (ap?.latest) { edit(ap.id, { skip: ap.latest.tag }); toast(`${t('Пропущено')}: ${ap.name} ${verOf(ap.latest.tag)}`); } break; }
+    case 'wgSkip': post({ t: 'wgSkip', id: b.dataset.id, ver: b.dataset.v || '' }); if (b.dataset.v) toast(`${t('Пропущено')}: ${b.dataset.v}`); break;
+    case 'unskipId': edit(b.dataset.id, { skip: '' }); break;
+    case 'histAll': histAll = true; renderMain(true); break;
     case 'wgScan': post({ t: 'wgScan' }); break;
     case 'wgInstall': post({ t: 'wgInstall', ids: [b.dataset.id], to: wgLoc[b.dataset.id] || '' }); delete wgLoc[b.dataset.id]; break;
     case 'wgLocClear': delete wgLoc[b.dataset.id]; renderMain(true); break;
@@ -2864,7 +2964,6 @@ document.addEventListener('click', e => {
     case 'addToGroupPick': addToGroupMenu(b); break;
     case 'look': post({ t: 'cfg', key: 'theme', val: b.dataset.kind }); post({ t: 'cfg', key: b.dataset.kind === 'dark' ? 'darkLook' : 'lightLook', val: b.dataset.val }); break;
     case 'toolsClean': post({ t: 'toolsClean', what: b.dataset.what }); toast(t('Очищаю…')); break;
-    case 'startupSw': post({ t: 'startupSet', id: b.dataset.id, on: !b.classList.contains('on') }); b.classList.toggle('on'); break;
     case 'pickCat': pickCat = b.dataset.c; store.set('pickCat', pickCat); renderMain(true); break;
     case 'kitAddInstalled': for (const x of apps().filter(x => INSTALLABLE(x) && x.inst && !x.kit)) edit(x.id, { kit: true }); toast(t('Додано в мій набір')); break;
     case 'instFilter': instFilters = { ...instFilters, [view]: instFilterOf() === b.dataset.f ? '' : b.dataset.f }; store.set('instFilters', instFilters); render(); break;
@@ -2921,6 +3020,27 @@ document.addEventListener('click', e => {
     case 'export': post({ t: 'export', zip: !!b.dataset.zip, withBk: bkWith }); break;
     case 'openBundle': if (tweakList === null) { tweakList = []; post({ t: 'tweaks' }); } post({ t: 'openBundle' }); break;
     case 'dropBundle': bundlePrev = null; renderMain(); break;
+    case 'restoreGo': {
+      const q = at => [...document.querySelectorAll(`#restore [${at}]:checked`)].map(x => x.getAttribute(at));
+      const ids = q('data-ri'), bi = q('data-bi'), bt = q('data-bt');
+      if (bundlePrev) { post({ t: 'acceptBundle', install: bi, tweaks: bt }); bundleRun = { pc: bundlePrev.pc, ids: bi, tweaks: bt }; }
+      bundlePrev = null;
+      if (ids.length) post({ t: 'installMany', ids });
+      renderMain();
+      break;
+    }
+    case 'kitRules': {
+      const c = S.cfg;
+      const r = (key, label, tip) => ({ label: t(label), sub: t(tip), sw: true, on: !!c[key], keep: true, fn: () => post({ t: 'cfg', key, val: !c[key] }) });
+      menuAt(b, [r('kitAutoUpdate', 'Оновлювати автоматично', 'Нові версії програм набору ставляться самі після кожної перевірки оновлень'), r('kitAutoInstall', 'Ставити відсутні автоматично', 'Коли набір з’являється на цьому ПК — через синхронізацію чи файл набору, — програми, яких тут немає, встановлюються без твого кліку'), r('kitNew', 'Нове одразу в набір', 'Програми, посилання, групи, автори й твіки, які додаєш, одразу потрапляють у набір')], true);
+      break;
+    }
+    case 'pcFold': store.set('pcFold', !store.get('pcFold', true)); renderMain(true); break;
+    case 'expScope': expScope = b.dataset.v; store.set('expScope', expScope); renderMain(true); break;
+    case 'exportGo': post({ t: 'export', zip: true, withBk: bkWith, kitOnly: expScope === 'kit' }); break;
+    case 'tweakTab': tweakTab = b.dataset.tab; store.set('tweakTab', tweakTab); renderMain(true); break;
+    case 'wgKit': post({ t: 'wgKit', id: b.dataset.id }); break;
+    case 'wgFindGo': go('newpc'); wgImp = { loading: true }; post({ t: 'wgInstalled' }); renderMain(); break;
     case 'wgFind': wgImp = { loading: true }; post({ t: 'wgInstalled' }); renderMain(); setTimeout(() => $('#wgImp')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }), 50); break;
     case 'wgImpKit': wgImpKit = !wgImpKit; renderMain(); break;
     case 'wgImpClose': wgImp = null; renderMain(); break;
@@ -3157,7 +3277,7 @@ function onMessage(m) {
     case 'sys': if (S) { S.sys = m.data; if (view === 'home' && !page) renderMain(); } break;
     case 'wgInfo': wgInfo[m.id] = m.info || { err: m.err || 'no data' }; renderMain(); break;
     case 'wgLoc': wgLoc[m.id] = m.path; renderMain(true); break;
-    case 'tools': toolsInfo = { sizes: m.sizes ?? toolsInfo?.sizes, startup: m.startup }; if (view === 'tweaks') renderMain(); break;
+    case 'tools': toolsInfo = { sizes: m.sizes ?? toolsInfo?.sizes }; if (view === 'tweaks') renderMain(); break;
     case 'cleaned': toast(`${t('Звільнено')} ${fmtSize(m.freed) || '0'}`); break;
     case 'fixed': toast(m.err ? msg(m.err) : t({ time: 'Годинник синхронізовано', dns: 'Кеш DNS очищено', store: 'Microsoft Store скидається — він відкриється сам', wu: 'Кеш оновлень Windows очищено', sfc: 'Перевірка запущена в окремому вікні' }[m.what] || 'Готово'), !!m.err); break;
     case 'steamIcons': toast(m.fixed ? `${t('Значки повернуто')}: ${m.fixed}${m.lost ? ` · ${t('ігор не знайдено')}: ${m.lost}` : ''}` : m.lost ? `${t('ігор не знайдено')}: ${m.lost}` : t('Усі значки Steam на місці')); break;
@@ -3208,7 +3328,7 @@ function onMessage(m) {
     case 'restoreDone': toast(m.err ? msg(m.err) : t('Налаштування відновлено'), !!m.err); break;
     case 'exported': toast(m.err ? msg(m.err) : `${t('Набір збережено:')} ${m.path}`, !!m.err); break;
     case 'bkSize': bkInfo = { apps: m.apps, size: m.size }; if (view === 'newpc') renderMain(); break;
-    case 'bundle': bundlePrev = m.preview; if (view !== 'newpc' || page) go('newpc'); else renderMain(); break;
+    case 'bundle': bundlePrev = m.preview; if (view !== 'kit' || page) go('kit'); else renderMain(); break;
     case 'bundleDone':
       toast(`${t('Готово з набору: програм')} ${m.apps}, ${t('твіків')} ${m.tweaks}${m.failed ? ` · ${t('не вдалося')}: ${m.failed}` : ''}`, !!m.failed);
       if (bundleRun) bundleRun.done = true;
@@ -3218,11 +3338,24 @@ function onMessage(m) {
     case 'bookmarks': if (bmWait) { bmWait = null; bookmarksDialog(m.tree || []); } break;
     case 'imported': toast(`${t('Додано:')} ${m.added}${m.had ? ` · ${t('уже були')}: ${m.had}` : ''}`); break;
     case 'installed':
+      histList = null;
       toast(`${t('Готово')}: ${appById(m.id)?.name ?? ''}`);
       if (m.pinned) toast(`${t('Закріплено на версії')} ${verOf(m.pinned)}`);
       delete rels[m.id];
       break;
-    case 'added': toast(`${t('Додано:')} ${m.name}`); break;
+    case 'go':
+      if (m.to === 'devices') {
+        go('settings');
+        requestAnimationFrame(() => { const el = $('#setDev'); if (el) { el.scrollIntoView({ block: 'start' }); el.classList.add('flash'); } });
+      }
+      break;
+    case 'hist': histList = m.items || []; if (view === 'updates' && !page) renderMain(true); break;
+    case 'added': {
+      const ap = appById(m.id);
+      const gs = (ap?.groups || []).map(id => groups().find(g => g.id === id)?.name).filter(Boolean);
+      toast([`${t('Додано в бібліотеку')}: ${m.name}`, ...gs.map(n => `«${n}»`), ap?.kit && t('Мій набір')].filter(Boolean).join(' · '));
+      break;
+    }
     case 'ghResults':
       if (typeof m.seq === 'string' && m.seq.startsWith('fly:')) {
         fly.gh[m.seq.slice(4)] = m.err ? { err: m.err, items: [] } : { items: m.items || [], total: m.total };

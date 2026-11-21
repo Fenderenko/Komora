@@ -78,6 +78,8 @@ pub struct Config {
     pub bt_off: Vec<String>,
     /// a notification when a device in the tray runs low (20 % and 10 %)
     pub bt_low: bool,
+    /// versions of picks outside the library left out of «Updates» (lower-case winget id → version)
+    pub wg_skip: std::collections::HashMap<String, String>,
     /// version of the look the settings were made for (2 — the zinc and violet look of 0.5)
     pub look: u32,
     #[serde(flatten)]
@@ -134,6 +136,7 @@ impl Default for Config {
             bt_tray: false,
             bt_off: Vec::new(),
             bt_low: true,
+            wg_skip: Default::default(),
             look: 0,
             rest: Default::default(),
         }

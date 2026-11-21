@@ -42,9 +42,11 @@ itself.
   the Windows files the page links to, installs the right one and offers a new file as an update. An archive holding
   only a setup runs that setup.
 - **Device charge in the tray.** An icon with a charge bar for every device that reports its battery — Bluetooth
-  headphones, mice, keyboards and gamepads, Logitech mice and keyboards on their receivers, PlayStation controllers —
-  with its name and percent on hover and a note at 20 % and 10 %. It runs as a small process of its own and stays when
-  Komora is closed; each icon closes from its right-click menu.
+  headphones, mice, keyboards and gamepads, Logitech mice and keyboards on their receivers, ATK and VXE mice, Razer and
+  SteelSeries mice, SteelSeries Arctis headsets, PlayStation and Xbox controllers — with its name and percent on hover
+  and a note at 20 % and 10 %; a device that is switched off leaves the tray. A click opens Komora at the switches of the
+  devices. It runs as a small process of its own and stays when Komora is closed; each icon closes from its right-click
+  menu.
 - **This PC.** The dashboard shows Windows, the processor (microarchitecture, cores, threads, L3), video cards (memory
   type, bus, video memory in use), memory modules, the board with its BIOS and every disk (model, NVMe or SATA, PCIe
   link, SSD or HDD, space) — live while it is open — with links to the makers' driver and BIOS pages. Versions and
@@ -56,7 +58,8 @@ itself.
   apps, pinned versions, skipped releases, a rollback for portable apps, older releases in one click. Komora updates
   itself the same way.
 - **Checks on a timer.** Daily, weekly or monthly, with conditional requests (ETag), a Windows notification and a log
-  of what was found. Pre-releases for one app or for all.
+  of what was found. Pre-releases for one app or for all. «Updates» keeps a history of the versions installed, and a
+  version can be skipped there — it stays one click away on the app's own page.
 - **Safety.** Authenticode signature, SHA-256 against the release, VirusTotal: a lookup by hash, and with your free
   API key every install is checked and unknown files are uploaded.
 - **One search.** The library, groups and tags and GitHub at once from the title bar; «Find» — Picks, GitHub search with
@@ -93,11 +96,12 @@ Rust stable with the MSVC toolchain. The page of the window (`web/`) and its fon
 
 ## Status
 
-1.1.0. Tried for real: the library, GitHub search, update checks, portable installs, My kit, the bundle zip with
+1.2.0. Tried for real: the library, GitHub search, update checks, portable installs, My kit, the bundle zip with
 settings backups, the title bar, the dashboard's hardware details, finding installed programs of Picks and installing
 them through winget, the device charge in the tray (Bluetooth headphones and keyboards, a Logitech mouse on its
-receiver and cable). Not yet tried on real systems: setups of every kind, updates and rollbacks, installs from GitLab,
-Codeberg and download pages, the winget import on another PC, PlayStation controllers, sync and sharing through a Gist,
+receiver and cable, an ATK mouse next to it). Not yet tried on real systems: setups of every kind, updates and
+rollbacks, installs from GitLab, Codeberg and download pages, the winget import on another PC, PlayStation and Xbox
+controllers, Razer and SteelSeries mice, sync and sharing through a Gist,
 Komora's own update, the fixes, VirusTotal uploads. Reports are welcome in Issues.
 
 ## Support
@@ -114,4 +118,4 @@ GPL-3.0 — see [LICENSE](LICENSE). The Geist and Geist Mono typefaces — SIL O
 ([web/fonts/OFL.txt](web/fonts/OFL.txt)). Device icons — Material Symbols by Google (Apache-2.0) and Lucide (ISC); the
 details and the licence texts are in [THIRD_PARTY.md](THIRD_PARTY.md).
 
-Komora is an independent project. It is not affiliated with or endorsed by Microsoft, Valve, Sony, Logitech, Nintendo, GitHub, GitLab or any other company named in it; their names and trademarks belong to their owners and are used only to say what Komora works with.
+Komora is an independent project. It is not affiliated with or endorsed by Microsoft, Valve, Sony, Logitech, Razer, SteelSeries, ATK, Nintendo, GitHub, GitLab or any other company named in it; their names and trademarks belong to their owners and are used only to say what Komora works with.

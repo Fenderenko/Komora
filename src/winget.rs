@@ -686,7 +686,16 @@ fn count_installed() -> usize {
 /// Catalog packages installed here that have a newer version and are not in the library (the library counts its own).
 pub fn update_count() -> usize {
     let lib = crate::library::get();
-    with(|s| CATALOG.iter().filter(|(id, ..)| s.upgrades.contains_key(&id.to_lowercase()) && inst_of(s, &id.to_lowercase()).is_some() && !lib.apps.iter().any(|a| a.id == lib_id(id))).count())
+    let skip = crate::config::get().wg_skip;
+    with(|s| {
+        CATALOG
+            .iter()
+            .filter(|(id, ..)| {
+                let k = id.to_lowercase();
+                s.upgrades.get(&k).is_some_and(|v| skip.get(&k) != Some(v)) && inst_of(s, &k).is_some() && !lib.apps.iter().any(|a| a.id == lib_id(id))
+            })
+            .count()
+    })
 }
 
 pub fn in_catalog(id: &str) -> bool {
@@ -782,13 +791,14 @@ pub fn uninstall(app: &crate::library::App) -> Result<bool, String> {
 
 /// The page's view: whether winget exists, the scan, and every catalog package with its versions and icon.
 pub fn json() -> Value {
+    let skip = crate::config::get().wg_skip;
     with(|s| {
         let items: Vec<Value> = CATALOG
             .iter()
             .map(|(id, name, cat, ..)| {
                 let k = id.to_lowercase();
                 let inst = inst_of(s, &k);
-                json!({ "id": id, "name": name, "cat": cat, "has": inst.is_some(), "inst": inst.unwrap_or_default(), "latest": s.upgrades.get(&k).cloned().unwrap_or_default(), "icon": s.icons.get(&k).cloned().unwrap_or_default() })
+                json!({ "id": id, "name": name, "cat": cat, "has": inst.is_some(), "inst": inst.unwrap_or_default(), "latest": s.upgrades.get(&k).cloned().unwrap_or_default(), "skip": skip.get(&k).cloned().unwrap_or_default(), "icon": s.icons.get(&k).cloned().unwrap_or_default() })
             })
             .collect();
         json!({ "avail": available(), "scanning": s.scanning, "at": s.scanned_at, "err": s.err, "items": items })

@@ -102,7 +102,7 @@ impl Hid {
         Some(n)
     }
 
-    fn write(&self, buf: &[u8]) -> bool {
+    pub(crate) fn write(&self, buf: &[u8]) -> bool {
         let mut ov = OVERLAPPED { hEvent: self.ev, ..Default::default() };
         unsafe {
             let _ = ResetEvent(self.ev);
@@ -229,6 +229,12 @@ pub fn listen() {
                 let connection = n >= 7 && b[0] == 0x10 && b[2] == 0x41;
                 let event = n >= 20 && b[0] == 0x11 && b[2] != 0 && b[2] != 0xFF && b[3] & 0x0F == 0;
                 if connection || event {
+                    // a device turned on: its empty slot is asked again at once, not after the probe interval
+                    if connection {
+                        if let Some(c) = CACHE.lock().unwrap().as_mut() {
+                            c.probed.remove(&path);
+                        }
+                    }
                     crate::btbatt::wake();
                 }
             }
@@ -318,7 +324,9 @@ pub fn scan() -> Vec<Dev> {
         } else {
             vec![0xFF]
         };
-        let probe = cache.probed.get(&path).is_none_or(|t| t.elapsed() > Duration::from_secs(600));
+        // a receiver with no device known yet (asleep when first asked) is probed every minute, others every 10 min
+        let every = if cache.known.keys().any(|(p, _)| *p == path) { 600 } else { 60 };
+        let probe = cache.probed.get(&path).is_none_or(|t| t.elapsed() > Duration::from_secs(every));
         if probe {
             cache.probed.insert(path.clone(), Instant::now());
         }

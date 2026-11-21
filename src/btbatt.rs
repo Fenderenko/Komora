@@ -397,10 +397,14 @@ fn refresh() {
     let mut devs = scan();
     // Logitech devices on their receivers and Sony controllers; one also on Bluetooth is shown once
     crate::logi::listen();
-    for d in crate::logi::scan().into_iter().chain(crate::sony::scan()) {
+    for d in crate::logi::scan().into_iter().chain(crate::sony::scan()).chain(crate::compx::scan()).chain(crate::headsets::scan()).chain(crate::mice::scan()) {
         if !devs.iter().any(|x| x.name.eq_ignore_ascii_case(&d.name)) {
             devs.push(d);
         }
+    }
+    // an Xbox pad on Bluetooth is already listed by its own name: XInput would show it twice
+    if !devs.iter().any(|x| x.kind == "pad" && x.name.to_ascii_lowercase().contains("xbox")) {
+        devs.extend(crate::xinput::scan());
     }
     let mut st = STATE.lock().unwrap();
     let changed = !st.scanned || st.devs != devs;

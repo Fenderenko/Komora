@@ -109,9 +109,9 @@ unsafe extern "system" fn wndproc(h: HWND, m: u32, wp: WPARAM, lp: LPARAM) -> LR
                 btbatt::wake();
             }
         }
-        // a click on a device's icon opens Komora (its settings live there); the right one — the device's menu
+        // a click on a device's icon opens Komora on the devices' switches; the right one — the device's menu
         crate::WM_TRAY => match (lp.0 & 0xffff) as u32 {
-            WM_LBUTTONUP => spawn(&[]),
+            WM_LBUTTONUP => spawn(&["--devices"]),
             WM_RBUTTONUP | WM_CONTEXTMENU => menu(h, wp.0 as u32),
             _ => {}
         },
@@ -153,7 +153,7 @@ fn menu(h: HWND, uid: u32) {
         let _ = PostMessageW(Some(h), WM_NULL, WPARAM(0), LPARAM(0));
         let _ = DestroyMenu(m);
         match cmd {
-            ID_OPEN => spawn(&[]),
+            ID_OPEN => spawn(&["--devices"]),
             ID_CLOSE => {
                 // Komora may have changed the file since: from it, not from this copy
                 config::reload();
