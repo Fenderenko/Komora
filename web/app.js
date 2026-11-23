@@ -9,7 +9,6 @@ const EN = {
   'Додати': 'Add', 'Бібліотека': 'Library',
   'Оновлення': 'Updates', 'Встановлені': 'Installed', 'Не встановлені': 'Not installed', 'Посилання': 'Links',
   'Групи': 'Groups', 'Налаштування': 'Settings', 'Нова група': 'New group',
-  'Створи групу й перетягни туди програми': 'Create a group and drag apps into it',
   'Перевіряю оновлення…': 'Checking for updates…', 'Перевірено': 'Checked', 'ще не перевіряли': 'not checked yet',
   'Перевірити оновлення': 'Check for updates', 'Оновити все': 'Update all',
   'За назвою': 'By name', 'За групами': 'By group', 'Нещодавно додані': 'Recently added', 'Без групи': 'No group',
@@ -209,7 +208,6 @@ Object.assign(EN, {
   'Логін GitHub або посилання на профіль GitHub, GitLab чи Codeberg': 'A GitHub login or a GitHub, GitLab or Codeberg profile link',
   'Значки ігор Steam': 'Steam game icons',
   'Коли гру переносять на інший диск, її ярлик на робочому столі стає білим. Komora знаходить гру в бібліотеках Steam і повертає значок.': 'When a game moves to another disk, its desktop shortcut turns white. Komora finds the game in the Steam libraries and brings the icon back.',
-  'Полагодити зараз': 'Fix now',
   'Значки повернуто': 'Icons brought back',
   'ігор не знайдено': 'games not found',
   'Усі значки Steam на місці': 'All Steam icons are in place',
@@ -217,8 +215,6 @@ Object.assign(EN, {
   'працює': 'up',
   'Нова програма чи посилання…': 'A new app or link…',
   'Сторінка winget': 'winget page',
-  'Лагодити автоматично': 'Fix automatically',
-  'Щоразу, коли Komora перевіряє оновлення': 'Every time Komora checks for updates',
   'GitLab не шукає за ліцензією': 'GitLab does not search by licence',
   'Без кольору': 'No colour',
   'Без значка — кольоровий квадрат': 'No icon — a coloured square',
@@ -262,8 +258,6 @@ Object.assign(EN, {
   'Усе з набору вже встановлено': 'Everything of the kit is installed already',
   'Синхронізацію не налаштовано — набір є лише на цьому ПК': 'Sync is not set up — the kit is only on this PC',
   'Налаштувати': 'Set up',
-  'Встановлені, але не в наборі': 'Installed but not in the kit',
-  'Ще не встановлено на цьому ПК': 'Not installed on this PC yet',
   'Групувати': 'Group by',
   'За джерелом': 'By source',
   'у наборі': 'in the kit',
@@ -480,9 +474,8 @@ Object.assign(EN, {
   'Огляд': 'Dashboard', 'посилання не відкривається': 'the link does not open', 'Шукати в бібліотеці й на GitHub': 'Search the library and GitHub', 'Перевіряю': 'Checking',
   'Додати програму чи посилання': 'Add an app or a link', 'Мій набір': 'My kit', 'Знайти нове': 'Find new', 'Автори': 'Authors', 'групи': 'groups', 'теги': 'tags',
   'встановлено': 'installed',
-  'Windows скинула твіки': 'Windows reset tweaks', 'Усі оновлення': 'All updates',
+  'Windows скинула твіки': 'Windows reset tweaks',
   'Закріплено': 'Pinned', 'є': 'there is', 'найбільше': 'most:',
-  'Усе з набору стоїть': 'Everything of the kit is installed',
   'Нове від авторів': 'New from authors', 'перевірено': 'checked', 'не вдалося перевірити': 'could not be checked', 'Windows скинула твік': 'Windows reset a tweak',
   'або': 'or', 'Набір з іншого ПК': 'A bundle from another PC', 'не відкривається': 'does not open', 'набір': 'kit',
   'Група': 'Group', 'Оновити до': 'Update to',
@@ -505,7 +498,7 @@ Object.assign(EN, {
   'Вимкнено': 'Off', 'лише набір у файл': 'only a bundle file', 'Зміни зливаються, перемагає новіша. Встановлене не копіюється — інші ПК лише пропонують поставити.': 'Changes merge, the newer one wins. Installed apps are not copied — other PCs offer to install them.',
   'По одній програмі; налаштування повертаються з копій одразу після встановлення': 'One app at a time; settings come back from backups right after the install', 'Ставлю набір з': 'Setting up the bundle from',
   'готово': 'done', 'у черзі': 'queued', 'Твіки з набору': 'Tweaks of the bundle', 'Як пропонує встановлювач': 'Where the setup proposes',
-  'Вигляд': 'Appearance', 'Перетягни сюди програми, щоб додати їх у набір': 'Drop apps here to add them to the kit', 'Додано в мій набір': 'Added to my kit', 'Додати в бібліотеку й у мій набір': 'Add to the library and to my kit', 'З налаштуваннями програм': 'With the apps’ settings', 'копій ще немає': 'no backups yet', 'Синхронізація не вдалася': 'Sync failed', 'Відкрити «Перенесення»': 'Open “Transfer”', 'Прибрати з набору': 'In my kit — click to remove', 'Додати в мій набір': 'Add to my kit', 'У моєму наборі': 'In my kit', 'Той самий токен, що й у Налаштуваннях: для Gist йому потрібен дозвіл Gists (Read and write).': 'The same token as in Settings: for a Gist it needs the Gists permission (Read and write).', 'Перенесення': 'Transfer', 'Нові версії програм, які стоять на цьому ПК. Перевіряються за розкладом зі сторінки «Оновлення».': 'New versions of the apps on this PC. Checked on the schedule set on the Updates page.', 'Або імпортуй багато:': 'Or import many:', 'Сортування': 'Sort', 'Будь-яка': 'Any', 'Будь-скільки': 'Any number', 'За місяць': 'Within a month', 'За пів року': 'Within half a year', 'За рік': 'Within a year', 'будь-хто': 'anyone', 'Нещодавні': 'Recent', 'Коли автор востаннє змінював код': 'When the author last changed the code', 'Додаю й встановлюю…': 'Adding and installing…', 'Зберегти .zip': 'Save .zip', 'Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V).': 'A .komora or .zip file — or paste a link to a shared bundle (Ctrl+V).', 'Відкрити…': 'Open…', 'Посиланням (секретний Gist) або текстом — інший відкриє його в Komora.': 'As a link (secret Gist) or as text — someone else opens it in Komora.', 'Копії налаштувань програм самі': 'Settings backups by themselves', 'Теки налаштувань знаходяться самі; копія — перед кожним оновленням і раз на день, якщо файли змінилися': 'Settings folders are found by themselves; a backup before every update and once a day when the files changed', 'увійдено · тека Apps/Komora': 'signed in · folder Apps/Komora', 'увійти через сайт Dropbox': 'sign in on the Dropbox site', 'ще не налаштовано в цій збірці': 'not set up in this build yet', '1. Відкрий Dropbox і дозволь Komora доступ лише до її теки. 2. Скопіюй код, який покаже Dropbox, і встав сюди.': '1. Open Dropbox and allow Komora its own folder only. 2. Copy the code Dropbox shows and paste it here.', 'Відкрити Dropbox': 'Open Dropbox', 'код з Dropbox': 'code from Dropbox', 'Підтвердити': 'Confirm', 'Для Dropbox потрібен ключ застосунку Dropbox — його додасть автор у наступній збірці.': 'Dropbox needs a Dropbox app key — the author adds it in a coming build.', 'Вийти з Dropbox': 'Sign out of Dropbox', 'Поділитися': 'Share', 'Поділитися…': 'Share…', 'Посиланням (секретний Gist)': 'As a link (secret Gist)', 'Потрібен токен GitHub з дозволом Gists — Налаштування → Ключі': 'Needs a GitHub token with the Gists permission — Settings → Keys', 'Створюю посилання…': 'Creating the link…', 'Копіювати як текст': 'Copy as text', 'Скопійовано — встав куди завгодно; Komora прочитає цей текст через Ctrl+V': 'Copied — paste it anywhere; Komora reads such text back with Ctrl+V', 'Поділитися групою…': 'Share the group…', 'Посилання готове': 'The link is ready', 'Його скопійовано. Хто вставить його в Komora (Ctrl+V), побачить список і поставить, що захоче.': 'It is copied. Whoever pastes it into Komora (Ctrl+V) sees the list and installs what they want.', 'Гаразд': 'OK', 'Відкриваю спільний набір…': 'Opening the shared bundle…', 'Відновити': 'Restore', 'Розгорнути': 'Maximize', 'Згорнути': 'Minimize', 'Закрити': 'Close', 'Знайти': 'Find', 'Тег': 'Tag', 'Загальне': 'General', 'Перевіряти': 'Check', 'Перевіряю…': 'Checking…', 'останній': 'latest', 'Без ключа — пошук за SHA-256 на сайті VirusTotal.': 'Without a key — a lookup by SHA-256 on the VirusTotal site.', 'Без токена': 'No token', 'Встановлювачі': 'Installers', 'Доступно': 'Available', 'Дійсний': 'Valid', 'Закладки': 'Bookmarks', 'Набір': 'Bundle', 'Не встановлено': 'Not installed', 'Немає': 'None', 'Портативні': 'Portable', 'Пошкоджено': 'Broken', 'Репозиторії': 'Repositories', 'Скопійовано': 'Copied', 'Список': 'List', 'Це сама Komora. Вона завжди є в бібліотеці й у кожному наборі: на іншому ПК оновлюватиметься, як решта програм. «Оновити» завантажить новий Komora.exe, замінить ним цей і перезапустить програму.': 'This is Komora itself. It is always in the library and in every bundle: on another PC it updates like the other apps. “Update” downloads the new Komora.exe, puts it in place of this one and restarts.', 'виявлень': 'detections', 'вручну': 'manual', 'джерел': 'sources', 'для цього ПК': 'for this PC', 'запущена зараз': 'running now', 'застосовано': 'applied', 'збіг з релізом': 'matches the release', 'з’явиться після встановлення': 'appears after an install', 'посилань': 'links', 'програм': 'apps', 'реліз': 'release', 'тиждень': 'week', 'із': 'of', 'Як налаштувати Gist': 'How to set up the Gist', 'Відкрий сторінку нового токена на GitHub (посилання нижче) і ввійди у свій обліковий запис.': 'Open the page of a new token on GitHub (the link below) and sign in.', 'Token name — будь-яка назва, наприклад Komora. Expiration — скільки житиме токен: коли мине, синхронізація зупиниться й знадобиться новий.': 'Token name — any name, Komora for example. Expiration — how long the token lives: when it ends, sync stops and a new one is needed.', 'Repository access — «Public repositories»: доступ до твоїх репозиторіїв Komora не потрібен.': 'Repository access — “Public repositories”: Komora needs no access to your repositories.', 'Permissions → Account → Gists → Read and write.': 'Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен (github_pat_…) і встав його тут, у поле «Токен GitHub» під «Приватний GitHub Gist».': 'Generate token, copy it (github_pat_…) and paste it in Settings → Keys → GitHub token.', 'Тут обери «Приватний GitHub Gist». Komora сама створить секретний Gist із файлом komora-sync.json або знайде наявний.': 'Choose “Secret GitHub Gist” here. Komora creates a secret Gist with komora-sync.json itself, or finds the one there is.', 'На іншому ПК зроби те саме з тим самим обліковим записом GitHub — Komora знайде той самий Gist.': 'On another PC do the same with the same GitHub account — Komora finds the same Gist.', 'Секретний Gist не видно в списках і пошуку, але відкрити його може кожен, хто має посилання. Токени й ключі в синхронізацію не потрапляють.': 'A secret Gist is not listed or searchable, but anyone with its link can open it. Tokens and keys never go into sync.', 'Як отримати токен': 'How to get a token', 'Створи токен на GitHub (посилання нижче): назва — будь-яка, Repository access — «Public repositories».': 'Create a token on GitHub (the link below): any name, Repository access — “Public repositories”.', 'Для ліміту запитів дозволи не потрібні. Для синхронізації через Gist — Permissions → Account → Gists → Read and write.': 'The request limit needs no permissions. Sync through a Gist needs Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен і встав сюди → Зберегти.': 'Generate token, copy it, paste it here → Save.', 'Як отримати ключ': 'How to get a key', 'Зареєструйся на virustotal.com — це безкоштовно.': 'Sign up on virustotal.com — it is free.', 'Відкрий свій профіль → API key (посилання нижче) і скопіюй ключ.': 'Open your profile → API key (the link below) and copy the key.', 'Встав сюди → Зберегти. Безкоштовний ключ дає 4 запити на хвилину й 500 на день — Komora чекає сама.': 'Paste it here → Save. A free key allows 4 requests a minute and 500 a day — Komora waits by itself.',
+  'Вигляд': 'Appearance', 'Перетягни сюди програми, щоб додати їх у набір': 'Drop apps here to add them to the kit', 'Додано в мій набір': 'Added to my kit', 'Додати в бібліотеку й у мій набір': 'Add to the library and to my kit', 'З налаштуваннями програм': 'With the apps’ settings', 'копій ще немає': 'no backups yet', 'Синхронізація не вдалася': 'Sync failed', 'Прибрати з набору': 'In my kit — click to remove', 'Додати в мій набір': 'Add to my kit', 'У моєму наборі': 'In my kit', 'Той самий токен, що й у Налаштуваннях: для Gist йому потрібен дозвіл Gists (Read and write).': 'The same token as in Settings: for a Gist it needs the Gists permission (Read and write).', 'Перенесення': 'Transfer', 'Або імпортуй багато:': 'Or import many:', 'Сортування': 'Sort', 'Будь-яка': 'Any', 'Будь-скільки': 'Any number', 'За місяць': 'Within a month', 'За пів року': 'Within half a year', 'За рік': 'Within a year', 'будь-хто': 'anyone', 'Нещодавні': 'Recent', 'Коли автор востаннє змінював код': 'When the author last changed the code', 'Додаю й встановлюю…': 'Adding and installing…', 'Зберегти .zip': 'Save .zip', 'Файл .komora чи .zip — або встав посилання на спільний набір (Ctrl+V).': 'A .komora or .zip file — or paste a link to a shared bundle (Ctrl+V).', 'Відкрити…': 'Open…', 'Посиланням (секретний Gist) або текстом — інший відкриє його в Komora.': 'As a link (secret Gist) or as text — someone else opens it in Komora.', 'Копії налаштувань програм самі': 'Settings backups by themselves', 'Теки налаштувань знаходяться самі; копія — перед кожним оновленням і раз на день, якщо файли змінилися': 'Settings folders are found by themselves; a backup before every update and once a day when the files changed', 'увійдено · тека Apps/Komora': 'signed in · folder Apps/Komora', 'увійти через сайт Dropbox': 'sign in on the Dropbox site', 'ще не налаштовано в цій збірці': 'not set up in this build yet', '1. Відкрий Dropbox і дозволь Komora доступ лише до її теки. 2. Скопіюй код, який покаже Dropbox, і встав сюди.': '1. Open Dropbox and allow Komora its own folder only. 2. Copy the code Dropbox shows and paste it here.', 'Відкрити Dropbox': 'Open Dropbox', 'код з Dropbox': 'code from Dropbox', 'Підтвердити': 'Confirm', 'Для Dropbox потрібен ключ застосунку Dropbox — його додасть автор у наступній збірці.': 'Dropbox needs a Dropbox app key — the author adds it in a coming build.', 'Вийти з Dropbox': 'Sign out of Dropbox', 'Поділитися': 'Share', 'Поділитися…': 'Share…', 'Посиланням (секретний Gist)': 'As a link (secret Gist)', 'Потрібен токен GitHub з дозволом Gists — Налаштування → Ключі': 'Needs a GitHub token with the Gists permission — Settings → Keys', 'Створюю посилання…': 'Creating the link…', 'Копіювати як текст': 'Copy as text', 'Скопійовано — встав куди завгодно; Komora прочитає цей текст через Ctrl+V': 'Copied — paste it anywhere; Komora reads such text back with Ctrl+V', 'Поділитися групою…': 'Share the group…', 'Посилання готове': 'The link is ready', 'Його скопійовано. Хто вставить його в Komora (Ctrl+V), побачить список і поставить, що захоче.': 'It is copied. Whoever pastes it into Komora (Ctrl+V) sees the list and installs what they want.', 'Гаразд': 'OK', 'Відкриваю спільний набір…': 'Opening the shared bundle…', 'Відновити': 'Restore', 'Розгорнути': 'Maximize', 'Згорнути': 'Minimize', 'Закрити': 'Close', 'Знайти': 'Find', 'Тег': 'Tag', 'Загальне': 'General', 'Перевіряти': 'Check', 'Перевіряю…': 'Checking…', 'останній': 'latest', 'Без ключа — пошук за SHA-256 на сайті VirusTotal.': 'Without a key — a lookup by SHA-256 on the VirusTotal site.', 'Без токена': 'No token', 'Встановлювачі': 'Installers', 'Доступно': 'Available', 'Дійсний': 'Valid', 'Закладки': 'Bookmarks', 'Набір': 'Bundle', 'Не встановлено': 'Not installed', 'Немає': 'None', 'Портативні': 'Portable', 'Пошкоджено': 'Broken', 'Репозиторії': 'Repositories', 'Скопійовано': 'Copied', 'Список': 'List', 'Це сама Komora. Вона завжди є в бібліотеці й у кожному наборі: на іншому ПК оновлюватиметься, як решта програм. «Оновити» завантажить новий Komora.exe, замінить ним цей і перезапустить програму.': 'This is Komora itself. It is always in the library and in every bundle: on another PC it updates like the other apps. “Update” downloads the new Komora.exe, puts it in place of this one and restarts.', 'виявлень': 'detections', 'вручну': 'manual', 'джерел': 'sources', 'для цього ПК': 'for this PC', 'запущена зараз': 'running now', 'застосовано': 'applied', 'збіг з релізом': 'matches the release', 'з’явиться після встановлення': 'appears after an install', 'посилань': 'links', 'програм': 'apps', 'реліз': 'release', 'тиждень': 'week', 'із': 'of', 'Як налаштувати Gist': 'How to set up the Gist', 'Відкрий сторінку нового токена на GitHub (посилання нижче) і ввійди у свій обліковий запис.': 'Open the page of a new token on GitHub (the link below) and sign in.', 'Token name — будь-яка назва, наприклад Komora. Expiration — скільки житиме токен: коли мине, синхронізація зупиниться й знадобиться новий.': 'Token name — any name, Komora for example. Expiration — how long the token lives: when it ends, sync stops and a new one is needed.', 'Repository access — «Public repositories»: доступ до твоїх репозиторіїв Komora не потрібен.': 'Repository access — “Public repositories”: Komora needs no access to your repositories.', 'Permissions → Account → Gists → Read and write.': 'Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен (github_pat_…) і встав його тут, у поле «Токен GitHub» під «Приватний GitHub Gist».': 'Generate token, copy it (github_pat_…) and paste it in Settings → Keys → GitHub token.', 'Тут обери «Приватний GitHub Gist». Komora сама створить секретний Gist із файлом komora-sync.json або знайде наявний.': 'Choose “Secret GitHub Gist” here. Komora creates a secret Gist with komora-sync.json itself, or finds the one there is.', 'На іншому ПК зроби те саме з тим самим обліковим записом GitHub — Komora знайде той самий Gist.': 'On another PC do the same with the same GitHub account — Komora finds the same Gist.', 'Секретний Gist не видно в списках і пошуку, але відкрити його може кожен, хто має посилання. Токени й ключі в синхронізацію не потрапляють.': 'A secret Gist is not listed or searchable, but anyone with its link can open it. Tokens and keys never go into sync.', 'Як отримати токен': 'How to get a token', 'Створи токен на GitHub (посилання нижче): назва — будь-яка, Repository access — «Public repositories».': 'Create a token on GitHub (the link below): any name, Repository access — “Public repositories”.', 'Для ліміту запитів дозволи не потрібні. Для синхронізації через Gist — Permissions → Account → Gists → Read and write.': 'The request limit needs no permissions. Sync through a Gist needs Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен і встав сюди → Зберегти.': 'Generate token, copy it, paste it here → Save.', 'Як отримати ключ': 'How to get a key', 'Зареєструйся на virustotal.com — це безкоштовно.': 'Sign up on virustotal.com — it is free.', 'Відкрий свій профіль → API key (посилання нижче) і скопіюй ключ.': 'Open your profile → API key (the link below) and copy the key.', 'Встав сюди → Зберегти. Безкоштовний ключ дає 4 запити на хвилину й 500 на день — Komora чекає сама.': 'Paste it here → Save. A free key allows 4 requests a minute and 500 a day — Komora waits by itself.',
   'Перевіряти оновлення': 'Check for updates', 'Тестові версії (pre-release)': 'Pre-releases', 'Для всіх програм; окремо можна ввімкнути на сторінці програми': 'For every app; each app can also have them on its page',
   'Сповіщення Windows': 'Windows notifications', 'Нові версії, нове від авторів, скинуті твіки': 'New versions, news of authors, reset tweaks', 'Запускати разом із Windows': 'Start with Windows',
   'Згорнутою в трей': 'Minimised to the tray', 'Тека переносних програм': 'Folder for portable apps', 'Сюди розпаковуються zip і окремі .exe': 'Zips and standalone .exe files go here',
@@ -530,15 +523,15 @@ Object.assign(EN, {
 });
 // ---------------------------------------------------------------- 1.2 strings
 Object.assign(EN, {
+  'Створи групу й перетягни туди програми': 'Create a group and drag apps into it',
+  'Показати всі': 'Show all',
   'Zip із самою Komora.exe: на новому ПК розпакуй, запусти Komora.exe й відкрий цей zip.': 'A zip with Komora.exe itself: on the new PC unpack it, run Komora.exe and open this zip.',
   '«Мій набір» сам оновлюється на всіх твоїх ПК через приватний GitHub Gist. Перемагають новіші зміни; програми не встановлюються самі — інший ПК лише пропонує їх.': '«My kit» updates itself on all your PCs through a private GitHub Gist. Newer changes win; apps do not install by themselves — another PC only offers them.',
   'Або встав посилання на GitHub чи сайт': 'Or paste a GitHub or website link',
   'Бібліотеки': 'Libraries',
-  'Виправлення': 'Fixes',
   'Відкрий файл перенесення або підключи синхронізацію — Komora запропонує поставити твій набір.': 'Open a transfer file or connect sync — Komora will offer to install your kit.',
   'Відкрити файл перенесення': 'Open a transfer file',
   'Додати в мій набір — встановиться на новому ПК': 'Add to my kit — it installs on a new PC',
-  'З бібліотеки': 'From the library',
   'Забери програми, які вже стоять, і познач, що має повертатися на кожен твій ПК.': 'Take in the apps already installed and mark what should come back on every PC of yours.',
   'Закрити файл': 'Close the file',
   'Зберегти файл перенесення': 'Save a transfer file',
@@ -560,11 +553,9 @@ Object.assign(EN, {
   'з файлу': 'from the file',
   'на цьому ПК': 'on this PC',
   'твік з файлу': 'tweak from the file',
-  'Журнал': 'History',
   'Показати все': 'Show all',
   'Йде зараз': 'In progress',
   'Нове від авторів, за якими стежиш': 'New from the authors you follow',
-  'Перевірити встановлене': 'Check what is installed',
   'Підпис': 'Signature',
   'Розмір': 'Size',
   'Стан': 'State',
@@ -574,6 +565,108 @@ Object.assign(EN, {
   'Пропущені версії': 'Skipped versions',
   'версію пропущено в «Оновленнях»': 'version skipped in «Updates»',
   'з’явиться знову, коли вийде новіша': 'it shows again when a newer one comes out',
+  'GitHub і VirusTotal': 'GitHub and VirusTotal',
+  'NVIDIA, AMD, Intel і DirectX': 'NVIDIA, AMD, Intel and DirectX',
+  'sfc, потім DISM': 'sfc, then DISM',
+  'Є оновлення': 'Update available',
+  'Ігри, перенесені на інший диск': 'Games moved to another disk',
+  'Історія оновлень': 'Update history',
+  'Автор GitHub': 'GitHub author',
+  'Актуально': 'Up to date',
+  'Бібліотека програм': 'App library',
+  'Вибрати': 'Select',
+  'Вибрати всі': 'Select all',
+  'Встав посилання на репозиторій GitHub, GitLab чи Codeberg або сторінку — воно одразу потрапить у набір.': 'Paste a link to a GitHub, GitLab or Codeberg repository or a page — it goes straight into the kit.',
+  'Встановити вибрані': 'Install selected',
+  'Встановлено програм': 'Apps installed',
+  'Відкотити': 'Roll back',
+  'Відкрити в Store': 'Open in Store',
+  'Відкрити всю бібліотеку': 'Open the whole library',
+  'Відкрити набір': 'Open the kit',
+  'Головна': 'Home',
+  'Головне меню': 'Main',
+  'Готовність до перевстановлення ПК': 'Ready to reinstall this PC',
+  'Групи набору': 'Groups of the kit',
+  'Дані про залізо ще збираються': 'Gathering the hardware details',
+  'Детальніше й твіки': 'Details and tweaks',
+  'Джерела': 'Sources',
+  'Дивлюся…': 'Looking…',
+  'Для нового чи перевстановленого ПК': 'For a new or reinstalled PC',
+  'Додати в один клік': 'Add in one click',
+  'Доступні оновлення': 'Updates available',
+  'Дії': 'Actions',
+  'Залізо цього ПК, виправлення в один клік і твіки Windows, які можна скасувати': 'This PC’s hardware, one-click fixes and Windows tweaks you can undo',
+  'Заряд мишей, клавіатур, навушників і геймпадів у треї': 'The charge of mice, keyboards, headphones and gamepads in the tray',
+  'Заряд мишей, клавіатур, навушників і геймпадів — значком у треї.': 'The charge of mice, keyboards, headphones and gamepads — as an icon in the tray.',
+  'Заряд пристроїв': 'Device charge',
+  'Зняти вибір': 'Clear selection',
+  'Каталог': 'Catalog',
+  'Каталогу': 'the Catalog',
+  'Категорія': 'Category',
+  'Кожен файл перевіряється перед встановленням': 'Every file is checked before it installs',
+  'Кожне — один клік; позначені admin просять дозволу Windows': 'One click each; those marked admin ask Windows for permission',
+  'Коли набір приходить із синхронізації чи файлу, відсутні програми встановлюються самі': 'When the kit arrives with sync or a file, the missing apps install by themselves',
+  'Куди ставляться програми й чи показувати встановлювач': 'Where apps install and whether the installer is shown',
+  'Набір і бібліотека однакові на всіх твоїх ПК': 'The kit and the library are the same on all your PCs',
+  'Назва й джерело': 'Name and source',
+  'Не встановлено на цьому ПК': 'Not installed on this PC',
+  'Оновити встановлені': 'Update installed',
+  'Оновлювати набір самі': 'Update the kit by itself',
+  'Оновлюється сама': 'Updates by itself',
+  'Останні додані й встановлені програми': 'Apps added and installed lately',
+  'Очікують встановлення': 'Waiting to install',
+  'Перевірений підпис': 'Verified signature',
+  'Перевірити, що встановлено': 'Check what is installed',
+  'Перевірки, сповіщення, копії налаштувань, автозапуск': 'Checks, notifications, settings backups, start with Windows',
+  'Перенесення і синхронізація': 'Transfer and sync',
+  'Повернути значки': 'Bring the icons back',
+  'Показано': 'Shown',
+  'Потребують оновлення': 'Need an update',
+  'Пошук серед програм добірки, winget ID чи призначення': 'Search the picks by name, winget ID or purpose',
+  'Пошук у наборі': 'Search the kit',
+  'Програма / winget ID': 'App / winget ID',
+  'Програми, посилання, автори й твіки, які повертаються одним кліком після чистої Windows чи на новому ПК.': 'Apps, links, authors and tweaks that come back in one click on a clean Windows or a new PC.',
+  'Підпис Authenticode, SHA-256 проти релізу, а з ключем — VirusTotal. Файл із пошкодженим підписом не встановлюється.': 'Authenticode signature, SHA-256 against the release and, with a key, VirusTotal. A file with a broken signature is not installed.',
+  'Підписані': 'Signed',
+  'Після кожної перевірки нові версії програм набору ставляться без твого кліку': 'After every check, new versions of the kit’s apps install without your click',
+  'Розклад': 'Schedule',
+  'Сайт не відкривається чи веде на старе місце': 'A site will not open or leads to an old place',
+  'Система та дані': 'System and data',
+  'Склад набору': 'What the kit holds',
+  'Скопіювати характеристики': 'Copy the specs',
+  'Ставити на новому ПК': 'Install on a new PC',
+  'Стежу за твіками': 'Watching the tweaks',
+  'Теги': 'Tags',
+  'Тема, тло й мова вікна': 'Theme, background and language of the window',
+  'Тут поки порожньо': 'Nothing here yet',
+  'У наборі': 'In the kit',
+  'Усі виправлення й твіки': 'All fixes and tweaks',
+  'Фільтр за назвою, автором, тегом': 'Filter by name, author, tag',
+  'Цей ПК і залізо': 'This PC and hardware',
+  'Цей ПК і твіки': 'This PC and tweaks',
+  'Швидке додавання до набору': 'Quick add to the kit',
+  'Швидкий доступ': 'Quick access',
+  'Швидкі виправлення': 'Quick fixes',
+  'Що Komora встановила й оновила на цьому ПК': 'What Komora installed and updated on this PC',
+  'або обери з': 'or pick from',
+  'без ключа': 'no key',
+  'без підпису': 'unsigned',
+  'бракує': 'missing',
+  'версію пропущено': 'version skipped',
+  'встановлених': 'installed',
+  'встановлено, але не в наборі': 'installed but not in the kit',
+  'готовності': 'ready',
+  'з ключем': 'with a key',
+  'записів': 'entries',
+  'помилка': 'error',
+  'програм актуальні': 'apps up to date',
+  'програм набору стоять на цьому ПК': 'kit apps are on this PC',
+  'підписано': 'signed',
+  'після кожного запуску й перевірки оновлень Komora дивиться, чи Windows не скинула їх, і пропонує повернути.': 'after every start and update check Komora looks whether Windows reset them and offers to bring them back.',
+  'синхронізовано': 'synced',
+  'тека в хмарі': 'cloud folder',
+  'у треї': 'in the tray',
+  'усього': 'in all',
 });
 UK_ERR.push(
   [/^no file for Windows on the page$/, 'На сторінці немає файлу для Windows'],
@@ -664,7 +757,7 @@ function applyAccent() {
 /** The themes: every surface given outright, with clear steps between the window, the cards and the buttons. */
 const LOOKS = {
   dark: {
-    obsidian: { base: '#121216', layer: '#0d0d10', card: '#1a1a20', btn: '#24242c', 'btn-h': '#2f2f39', field: '#111115', stroke: '#2a2a33', stroke2: '#3b3b47', div: '#22222a', fly: '#1e1e25', term: '#0a0a0c', 'term-line': '#22222a', bar: '#0d0d10' },
+    obsidian: { base: '#09090b', layer: '#0c0c0f', card: '#121215', btn: '#1b1b1f', 'btn-h': '#232328', field: '#0f0f12', stroke: '#27272a', stroke2: '#3f3f46', div: '#1c1c20', fly: '#18181b', term: '#070708', 'term-line': '#1c1c20', bar: '#09090b' },
     graphite: { base: '#1e1e1e', layer: '#171717', card: '#262626', btn: '#303030', 'btn-h': '#3b3b3b', field: '#1b1b1b', stroke: '#363636', stroke2: '#4a4a4a', div: '#2d2d2d', fly: '#2b2b2b', term: '#121212', 'term-line': '#2d2d2d', bar: '#171717' },
     midnight: { base: '#121a29', layer: '#0d1420', card: '#172235', btn: '#213049', 'btn-h': '#2a3b58', field: '#101827', stroke: '#26344b', stroke2: '#364866', div: '#1d293d', fly: '#1b273a', term: '#0a0f19', 'term-line': '#1d293d', bar: '#0d1420' },
   },
@@ -683,8 +776,12 @@ function lookOf(d = dark()) {
 function applyBg() {
   const st = document.documentElement.style;
   for (const k of ['base', 'layer', 'card', 'btn', 'btn-h', 'field', 'stroke', 'stroke2', 'div', 'fly', 'term', 'term-line', 'bar', 'fg', 'mu', 'mu2']) st.removeProperty('--' + k);
-  for (const [k, v] of Object.entries(lookOf())) st.setProperty('--' + k, v);
+  // cards are glass over the page: the violet and green glows of the main area shine through them
+  const glass = dark() ? { card: 0.7, btn: 0.78, 'btn-h': 0.85 } : { card: 0.74, btn: 0.82, 'btn-h': 0.9 };
+  for (const [k, v] of Object.entries(lookOf())) st.setProperty('--' + k, k in glass ? hexA(v, glass[k]) : v);
 }
+/** "#rrggbb" with an alpha, as rgb(). */
+const hexA = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgb(${n >> 16} ${(n >> 8) & 255} ${n & 255} / ${a})`; };
 
 /** The letter tile of an app without an icon: a muted tile in the hue of its name. */
 function tileColors(name) {
@@ -791,7 +888,7 @@ function health(a) {
 }
 const TITLES = { home: 'Огляд', all: 'Бібліотека', apps: 'З репозиторіїв', picks: 'З добірки', updates: 'Оновлення', installed: 'Встановлені', portable: 'Портативні', setup: 'Встановлювачі', kit: 'Мій набір', pc: 'Добірка', links: 'Посилання', discover: 'Знайти', authors: 'Автори', tweaks: 'Твіки', newpc: 'Перенесення', settings: 'Налаштування' };
 /** The tool of the sidebar a view belongs to (the Stitch layout: library, repositories, sync, tweaks and updates). */
-const toolOf = v => v === 'kit' ? 'kit' : (isList(v) && !v.startsWith('g:')) ? 'all' : ['discover', 'authors'].includes(v) ? 'discover' : v;
+const toolOf = v => v === 'kit' ? 'kit' : isList(v) && !v.startsWith('g:') ? 'all' : ['discover', 'authors', 'pc'].includes(v) ? 'pc' : v;
 function viewTitle(v = view) {
   if (TITLES[v]) return t(TITLES[v]);
   if (v.startsWith('g:')) return groups().find(g => g.id === v.slice(2))?.name ?? '';
@@ -824,8 +921,11 @@ const SRC = x => (x.kind === 'github' || x.kind === 'page' ? 0 : x.kind === 'win
 const SRC_TITLE = ['З репозиторіїв', 'З добірки', 'Посилання'];
 /** Rows of a list in display order: [{title?, color?, count?}, app…]; by source (repositories, picks, links), updates first
  *  in each, pinned apps after the others. */
+/** The library's own filter (name, owner, description, tags), «» — none. */
+let libQ = '';
+const libMatch = x => { if (!libQ) return true; const q = libQ.toLowerCase(); return [x.name, x.owner, x.repo, x.desc, ...(x.tags || [])].some(s => (s || '').toLowerCase().includes(q)); };
 function listModel() {
-  const a = viewApps().slice();
+  const a = viewApps().filter(libMatch);
   const self = x => x.id === SELF_ID;
   if (sortBy === 'added') a.sort((x, y) => self(y) - self(x) || SRC(x) - SRC(y) || y.added - x.added);
   else a.sort((x, y) => self(y) - self(x) || SRC(x) - SRC(y) || (isUpd(y) - isUpd(x)) || (!!x.pin - !!y.pin) || byName(x, y));
@@ -918,9 +1018,10 @@ function renderTop() {
   $('.brand .mark').innerHTML = MARK;
   $('.brand .ver').textContent = String(S.ver).split('.').slice(0, 2).join('.');
   $('#q').placeholder = t('Шукати в бібліотеці й на GitHub');
-  const ab = `<i class="i">${I.add}</i><span class="lbl2">${t('Додати')}</span>`;
-  if ($('#addBtn').innerHTML !== ab) $('#addBtn').innerHTML = ab;
-  $('#addBtn').title = t('Додати програму чи посилання') + ' (Ctrl+N, Ctrl+V)';
+  // the charge of the devices that report it; a click — their switches in «Settings»
+  const bt = S.bt || [];
+  const hb = bt.length ? `<button class="hbat" data-act="goDevices" title="${esc(bt.map(d => `${d.name} — ${d.pct} %${d.charging ? ' · ' + t('заряджається') : ''}`).join('\n'))}">${bt.slice(0, 4).map(d => `<span class="hb ${d.charging ? 'chg' : d.pct <= 20 ? 'low' : ''}"><i class="i">${DEV_I[d.kind] || DEV_I.bt}</i><span class="mono">${d.pct}%</span></span>`).join('')}</button>` : '';
+  if ($('#hbat').innerHTML !== hb) $('#hbat').innerHTML = hb;
 }
 /** "2h", "3d" — the time since a moment, short. */
 function shortAgo(unix) {
@@ -951,18 +1052,17 @@ function renderNav() {
   const cnt = c => (c ? `<span class="cnt mono">${c}</span>` : '');
   const badge = (c, cls = '') => (c ? `<span class="badge ${cls} mono">${c}</span>` : '');
   const st = S.sync || {};
-  let h = n('home', 'home', t('Огляд'));
-  h += n('all', 'box', t('Бібліотека'), cnt(a.length));
+  const news = authors().reduce((s2, x) => s2 + (x.news?.length || 0), 0);
   const kitApps = a.filter(x => x.kit && INSTALLABLE(x));
-  h += `<div class="n kitnav ${tool === 'kit' ? 'on' : ''}" data-view="kit" data-kitdrop="1" title="${esc(t('Перетягни сюди програми, щоб додати їх у набір'))}">${ic('kit')}<span class="nm">${t('Мій набір')}</span>${kitApps.length ? `<span class="cnt mono">${kitApps.filter(x => x.inst).length}/${kitApps.length}</span>` : ''}</div>`;
-  h += n('newpc', 'cloud', t('Перенесення'), st.err ? `<span class="cnt" style="color:var(--err)">${ic('warn')}</span>` : '');
+  let h = `<div class="nsec">${t('Головне меню')}</div>`;
+  h += n('home', 'home', t('Головна'));
+  h += `<div class="n kitnav ${tool === 'kit' ? 'on' : ''}" data-view="kit" data-kitdrop="1" title="${esc(t('Перетягни сюди програми, щоб додати їх у набір'))}">${ic('kit')}<span class="nm">${t('Мій набір')}</span>${cnt(kitApps.length ? `${kitApps.filter(x => x.inst).length}/${kitApps.length}` : '')}</div>`;
+  h += n('pc', 'pc', t('Каталог'), news ? `<span title="${esc(t('Нове від авторів, за якими стежиш'))}">${badge(news)}</span>` : '');
+  h += n('all', 'box', t('Бібліотека програм'), cnt(a.length));
   h += n('updates', 'download', t('Оновлення'), badge(updCount(), 'warn'));
-  h += '<div class="ngap"></div>';
-  h += n('pc', 'pc', t('Добірка'));
-  // «Find» opens the tab used last
-  h += `<div class="n ${tool === 'discover' ? 'on' : ''}" data-view="${esc(store.get('hub', 'discover') === 'authors' ? 'authors' : 'discover')}">${ic('find')}<span class="nm">${t('Знайти')}</span><span title="${esc(t('Нове від авторів, за якими стежиш'))}">${badge(authors().reduce((s2, x) => s2 + (x.news?.length || 0), 0))}</span></div>`;
-  h += '<div class="ngap"></div>';
-  h += n('tweaks', 'tool', t('Твіки'), badge(S.resets, 'warn'));
+  h += `<div class="nsec">${t('Система та дані')}</div>`;
+  h += n('tweaks', 'tool', t('Цей ПК і твіки'), badge(S.resets, 'warn'));
+  h += n('newpc', 'cloud', t('Перенесення і синхронізація'), st.err ? `<span class="cnt" style="color:var(--err)">${ic('warn')}</span>` : '');
   h += `<div class="nh ${fold.groups ? 'fold' : ''}" data-fold="groups"><span class="t">${t('Групи')}</span><button data-act="newGroup" title="${esc(t('Нова група'))}">${ic('add')}</button><i class="i chev">${I.chevD}</i></div>`;
   if (!fold.groups) {
     for (const g of groups())
@@ -978,7 +1078,7 @@ function renderStatus() {}
 
 /** The main area: rebuilt only when its content changed and the user is not typing in it. */
 function renderMain(force = false) {
-  if (dragIds.length) { renderLater = true; return; }
+  if (dragIds.length || dragGroup) { renderLater = true; return; }
   const el = $('#main');
   const focus = document.activeElement;
   if (!force && focus && el.contains(focus) && /INPUT|TEXTAREA|SELECT/.test(focus.tagName) && focus.type !== 'checkbox') return;
@@ -1004,8 +1104,8 @@ function renderMain(force = false) {
 const _norm = document.createElement('template');
 /** The header of a page: its title, one line under it (always there: every page's filters start at the same
  *  height) and the page's own buttons on the right. */
-function phead(title, sub = '', actions = '') {
-  return `<div class="phead"><div class="grow"><h1>${title}</h1><div class="sub">${sub || '&nbsp;'}</div></div>${actions ? `<div class="row wrap pact">${actions}</div>` : ''}</div>`;
+function phead(title, sub = '', actions = '', eyebrow = '') {
+  return `<div class="phead"><div class="grow">${eyebrow ? `<div class="eyebrow mono">${eyebrow}</div>` : ''}<h1>${title}</h1><div class="sub">${sub || '&nbsp;'}</div></div>${actions ? `<div class="row wrap pact">${actions}</div>` : ''}</div>`;
 }
 function mainHtml() {
   const h = mainRaw();
@@ -1040,63 +1140,96 @@ const progHtml = b => { const det = b.pct >= 0 && b.stage === 'download'; return
 
 // ---------------------------------------------------------------- the first start
 
+/** What installs right now, as one strip with its progress; `only` narrows it to some ids (the picks). */
+function runStrip(only = () => true) {
+  const ids = Object.keys(S.busy || {}).filter(id => only(id) && ['download', 'verify', 'install', 'unpack', 'queued'].includes(S.busy[id].stage));
+  const run = ids.find(id => S.busy[id].stage !== 'queued') || ids[0];
+  if (!run) return '';
+  const b = busyOf(run);
+  const ap = appById(run);
+  const wg = (S.winget?.items || []).find(x => 'wg:' + x.id === run);
+  const name = ap?.name || wg?.name || run;
+  const det = b.pct >= 0 && b.stage === 'download';
+  const more = ids.length > 1 ? `<span class="pill mono">+${ids.length - 1} ${t('у черзі')}</span>` : '';
+  return `<section class="card hrun">${ap ? iconHtml(ap, 'sm') : wg?.icon ? picTile('icons/' + encodeURIComponent(wg.icon), wg.name, 'sm') : `<span class="ic sm">${ic('download')}</span>`}<div class="grow"><div class="row" style="gap:8px"><b>${esc(name)}</b>${ap?.latest ? `<span class="pill mono">${esc(verOf(ap.latest.tag))}</span>` : ''}${more}</div><div class="m">${esc(stageText(b))}${wg ? ` · <span class="mono">${esc(wg.id)}</span>` : ''}</div></div><span class="pbar wide"><i style="width:${det ? Math.round(b.pct * 100) : 30}%"></i></span>${det ? `<span class="mono m">${Math.round(b.pct * 100)}%</span>` : ''}${b.stage === 'queued' || b.stage === 'download' ? cancelBtn(run) : ''}</section>`;
+}
+/** The tab of «Quick access» on «Home»: recent, kit, updates. */
+let homeTab = store.get('homeTab', 'recent');
 function dashboard() {
   if (!apps().length) return welcome();
   const a = apps();
   const upd = a.filter(isUpd);
   const wu = wgUpdates();
-  let h = `<div class="page wide dash">${phead(t('Огляд'), esc(statusText()))}`;
+  const st = S.sync || {};
+  const where = S.cfg.syncDbx ? 'Dropbox' : S.cfg.syncGist ? 'GitHub Gist' : S.cfg.syncDir ? t('тека в хмарі') : '';
+  let h = `<div class="page wide dash home">`;
   if (S.resets) {
     if (tweakList === null) { tweakList = []; post({ t: 'tweaks' }); }
     const names = (tweakList || []).filter(x => x.status === 'reset').map(tweakName);
     h += `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('Windows скинула твіки')}</b> <span class="m">${esc(names.join(', '))}</span></div><button class="btn sm upd soft" data-act="tweakFix">${t('Повернути')}</button></div>`;
   }
-  const st = S.sync || {};
-  h += '<div class="grid2 eq">';
-  const kit = a.filter(x => x.kit);
-  // my kit: whether Windows can be reinstalled now — the kit saved elsewhere, nothing installed left outside it
+  // the hero: is this PC ready to be reinstalled — the kit saved elsewhere, its groups installed, nothing left outside
   {
+    const kit = a.filter(x => x.kit);
     const gk = kit.filter(INSTALLABLE);
     const missing = gk.filter(x => !x.inst);
     const outside = a.filter(x => INSTALLABLE(x) && x.inst && !x.kit);
-    const st = S.sync || {};
-    const where = S.cfg.syncDbx ? 'Dropbox' : S.cfg.syncGist ? 'GitHub Gist' : S.cfg.syncDir ? t('тека') : '';
     const synced = where && !st.err;
-    const li = (ok, text, btn = '') => `<div class="kr-li ${ok === true ? 'ok' : ok === false ? 'bad' : 'warn'}">${ic(ok === true ? 'check' : 'warn')}<span class="grow">${text}</span>${btn}</div>`;
-    // only what there is: no «0 links»
     const part = list => list.filter(([n]) => n > 0).map(([n, k]) => nwk(n, k)).join(' · ');
-    const counts = part([[gk.length, 'app'], [kit.filter(x => x.kind === 'link').length, 'link'], [groups().filter(g => kit.some(x => x.groups.includes(g.id))).length, 'group']]);
-    const counts2 = part([[authors().filter(x => x.kit).length, 'author'], [kitTweaks().length, 'tweak']]);
-    h += `<section class="card kitcard kc kready"><div class="row"><h2 class="big grow">${ic('kit')} ${t('Мій набір')}</h2><button class="btn sm" data-view="kit">${t('Відкрити')} ${ic('chevR')}</button></div>`;
-    const facts = [synced ? `${t('Синхронізовано')} · ${where}${st.okAt ? ' · ' + ago(new Date(st.okAt * 1000).toISOString()) : ''}` : '', counts, counts2].filter(Boolean).join(' · ');
-    h += `<div class="m kinfo">${esc(facts || t('Набір порожній'))}</div><div class="kr-list">`;
-    const rows0 = h.length;
-    if (where && st.err) h += li(false, `${t('Синхронізація не вдалася')} · ${esc(where)}`, `<button class="btn sm" data-view="newpc">${t('Відкрити «Перенесення»')}</button>`);
-    if (!where) h += li(null, t('Синхронізацію не налаштовано — набір є лише на цьому ПК'), `<button class="btn sm" data-view="newpc">${t('Налаштувати')}</button><button class="btn sm" data-act="exportKit">${ic('save')} .zip</button>`);
-    if (outside.length) h += li(null, `${t('Встановлені, але не в наборі')}: ${esc(nwk(outside.length, 'app'))}`, `<button class="btn sm" data-act="kitAddInstalled" title="${esc(outside.map(x => x.name).join(', '))}">${ic('add')} ${t('Додати')}</button>`);
-    if (missing.length) h += li(null, `${t('Ще не встановлено на цьому ПК')}: ${esc(nwk(missing.length, 'app'))}`, `<button class="btn sm acc" data-act="kitInstall">${ic('download')} ${t('Встановити набір')}</button>`);
-    if (h.length === rows0 && counts) h += li(true, t('Усе з набору стоїть'));
-    h += '</div>';
+    const counts = part([[gk.length, 'app'], [kit.filter(x => x.kind === 'link').length, 'link'], [authors().filter(x => x.kit).length, 'author'], [kitTweaks().length, 'tweak']]);
+    const pillTxt = synced ? `${t('Синхронізовано')} · ${where}${st.okAt ? ' · ' + ago(new Date(st.okAt * 1000).toISOString()) : ''}` : where ? `${t('Синхронізація не вдалася')} · ${where}` : t('Синхронізацію не налаштовано — набір є лише на цьому ПК');
+    h += `<section class="hero"><div class="hero-top"><span class="hpill ${synced ? 'ok' : where ? 'err' : 'warn'}"><i class="dot ${synced ? 'ok' : where ? 'err' : 'warn'}"></i>${esc(pillTxt)}</span>${S.cfg.gistId ? `<span class="mono m">Gist ${esc(S.cfg.gistId.slice(0, 4))}…${esc(S.cfg.gistId.slice(-4))}</span>` : ''}</div>`;
+    h += `<div class="hero-main"><div class="grow"><h1>${t('Готовність до перевстановлення ПК')}</h1><div class="sub">${esc(counts ? `${t('Мій набір')}: ${counts}` : t('Набір порожній'))}</div></div><div class="row wrap hero-act"><button class="btn" data-act="exportKit">${ic('save')} ${t('Зберегти .zip')}</button>${missing.length ? `<button class="btn acc" data-act="kitInstall">${ic('download')} ${t('Встановити набір')} (${missing.length})</button>` : `<button class="btn acc" data-view="kit">${ic('kit')} ${t('Відкрити набір')}</button>`}</div></div>`;
+    // the kit's groups as tiles: ready when all of their kit apps stand here
+    const gs = groups().filter(g => kit.some(x => x.groups.includes(g.id)));
+    if (gs.length) {
+      h += `<div class="eyebrow mono hg">${ic('layers')} ${t('Групи набору')}</div><div class="htiles">`;
+      for (const g of gs.slice(0, 6)) {
+        const m = gk.filter(x => x.groups.includes(g.id));
+        const miss = m.filter(x => !x.inst).length;
+        h += `<button class="htile" data-view="g:${esc(g.id)}">${groupMark(g)}<span class="tx"><b>${esc(g.name)}</b><span class="m mono">${esc(nwk(m.length || kit.filter(x => x.groups.includes(g.id)).length, m.length ? 'app' : 'link'))}</span></span><span class="stp ${miss ? 'warn' : 'ok'}">${miss ? `${t('бракує')} ${miss}` : t('Готово')}</span></button>`;
+      }
+      h += '</div>';
+    }
+    if (outside.length) h += `<div class="hnote">${ic('add')}<span class="grow"><b>${esc(nwk(outside.length, 'app'))}</b> ${t('встановлено, але не в наборі')}</span><button class="alink" data-act="kitAddInstalled" title="${esc(outside.map(x => x.name).join(', '))}">${t('Додати в один клік')} ${ic('chevR')}</button></div>`;
     h += '</section>';
   }
-  // updates
-  h += `<section class="card" style="display:flex;flex-direction:column"><h2 class="big">${t('Оновлення')}${hint('Нові версії програм, які стоять на цьому ПК. Перевіряються за розкладом зі сторінки «Оновлення».')}<span class="mono">${upd.length + wu.length ? `${upd.length + wu.length} · ${fmtSize(upd.reduce((s, x) => s + (S.picks?.[x.id]?.size || 0), 0))}` : ''}</span></h2>`;
-  const bad = a.filter(x => health(x).length);
-  if (upd.length || wu.length) {
-    for (const x of upd.slice(0, 5)) {
-      const b = busyOf(x.id), pick = S.picks?.[x.id];
-      h += `<div class="qrow" style="padding:8px 0;cursor:pointer" data-open="${esc(x.id)}">${iconHtml(x, 'sm')}<div style="flex:1;min-width:0"><div class="row" style="gap:8px"><b>${esc(x.name)}</b>${mono(`<span class="m">${esc(x.inst.version || verOf(x.inst.tag))} → </span>${esc(verOf(x.latest.tag))}`)}</div><div class="m" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(b ? stageText(b) : [pick && fmtSize(pick.size), ago(x.latest.date)].filter(Boolean).join(' · '))}</div></div></div>`;
-    }
-    for (const x of wu.slice(0, Math.max(0, 5 - upd.length))) {
-      const tile = x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name, 'sm') : letterTile(x.name, 'sm');
-      h += `<div class="qrow" style="padding:8px 0;cursor:pointer" data-view="updates">${tile}<div style="flex:1;min-width:0"><div class="row" style="gap:8px"><b>${esc(x.name)}</b>${mono(`<span class="m">${esc(x.inst)} → </span>${esc(x.latest)}`)}</div><div class="m">${t('з добірки')}</div></div></div>`;
-    }
-    h += `<div class="row" style="margin-top:auto;padding-top:12px">${upd.length + wu.length > 5 ? `<a class="alink" data-view="updates">${t('Усі оновлення')} (${upd.length + wu.length})</a>` : ''}${bad.length ? `<a class="alink" data-view="updates" style="margin-left:12px;color:var(--warn)">${t('Потребує уваги')} · ${bad.length}</a>` : ''}<span class="grow"></span><button class="btn upd" data-act="updateAll">${t('Оновити все')}</button></div>`;
-  } else {
-    h += `<div style="margin:auto 0;padding:14px 0;text-align:center"><div class="num" style="color:var(--ok)">✓</div><div style="font-weight:600;margin-top:2px">${t('Усе актуальне')}</div><div class="m">${esc(statusText())}</div><button class="btn sm" style="margin-top:10px" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t('Перевірити зараз')}</button></div>`;
+  // four numbers: installed, updates, this PC, the devices' charge
+  {
+    const inst = a.filter(x => x.inst);
+    const by = [['GitHub', inst.filter(x => x.kind === 'github' || x.kind === 'page').length], [t('Добірка'), inst.filter(x => x.kind === 'winget').length], [t('Портативні'), inst.filter(x => x.inst.method === 'portable').length], [t('Встановлювач'), inst.filter(x => x.kind !== 'winget' && !['portable', 'self'].includes(x.inst.method)).length]];
+    h += `<div class="hcards">`;
+    h += `<section class="card hc"><div class="hk">${t('Встановлено програм')}</div><div class="hv mono">${inst.length}</div><div class="hsplit">${by.map(([k, n]) => `<span><i class="dot acc"></i>${esc(k)}<b class="mono">${n}</b></span>`).join('')}</div></section>`;
+    const n = upd.length + wu.length;
+    const bad = a.filter(x => health(x).length);
+    h += `<section class="card hc ${n ? 'hupd' : ''}"><div class="hk">${t('Доступні оновлення')}${n ? `<span class="pill warn mono">${n}</span>` : ''}</div>${n ? `<div class="hv mono warnc">${n}</div><div class="m">${esc([...upd.map(x => x.name), ...wu.map(x => x.name)].slice(0, 3).join(', '))}${n > 3 ? '…' : ''}</div><div class="hfoot"><button class="btn upd" data-act="updateAll">${ic('download')} ${t('Оновити все')} (${n})</button></div>` : `<div class="hv okc">${ic('check')}</div><div class="m">${t('Усе актуальне')} · ${esc(statusText())}</div><div class="hfoot"><button class="btn" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t('Перевірити зараз')}</button></div>`}${bad.length ? `<button class="alink warnc hattn" data-view="updates">${t('Потребує уваги')} · ${bad.length}</button>` : ''}</section>`;
+    const y = S.sys;
+    h += `<section class="card hc"><div class="hk">${t('Цей ПК і залізо')}<span class="mono m">${esc(S.pc || '')}</span></div>${y ? `<div class="hfacts">${[['CPU', cpuShort((y.cpu || {}).name)], ['GPU', (y.gpus || [])[0]?.name], ['RAM', y.ram ? fmtSize(y.ram) + (y.mem?.type ? ' ' + y.mem.type : '') : ''], ['OS', y.windows]].filter(([, v]) => v).map(([k, v]) => `<div><span class="mono acck">${k}</span><span class="v" title="${esc(v)}">${esc(v)}</span></div>`).join('')}</div>` : `<div class="m">${t('Дані про залізо ще збираються')}</div>`}<div class="hfoot"><button class="alink" data-view="tweaks">${t('Детальніше й твіки')} ${ic('chevR')}</button></div></section>`;
+    const bt = S.bt || [];
+    h += `<section class="card hc"><div class="hk">${t('Заряд пристроїв')}${S.cfg.btTray ? `<span class="pill ok mono">${t('у треї')}</span>` : ''}</div>`;
+    if (bt.length) h += `<div class="hbt">${bt.slice(0, 4).map(d => `<div class="hbd"><div class="row"><i class="i">${DEV_I[d.kind] || DEV_I.bt}</i><span class="grow">${esc(d.name)}</span><b class="mono ${d.charging ? 'acck' : d.pct <= 20 ? 'errc' : ''}">${d.pct}%</b></div><span class="pbar"><i style="width:${d.pct}%;background:${d.charging ? 'var(--acc)' : d.pct <= 20 ? 'var(--err)' : 'var(--ok)'}"></i></span></div>`).join('')}</div>`;
+    else h += `<div class="m">${t(S.cfg.btTray ? 'Зараз жоден пристрій не повідомляє заряд.' : 'Заряд мишей, клавіатур, навушників і геймпадів — значком у треї.')}</div>`;
+    h += `<div class="hfoot"><button class="alink" data-act="goDevices">${t('Пристрої')} ${ic('chevR')}</button></div></section>`;
+    h += '</div>';
   }
-  h += '</section>';
-  return h + '</div>' + sysCard('') + '</div>';
+  h += runStrip();
+  // quick access to apps on the left; fixes and sync on the right
+  h += '<div class="hbottom"><section class="hq">';
+  const tabs = [['recent', 'Нещодавні', a.length], ['kit', 'Мій набір', a.filter(x => x.kit && KITABLE(x)).length], ['upd', 'Оновлення', upd.length]];
+  h += `<div class="row hqh"><div class="grow"><h2 class="big">${t('Швидкий доступ')}</h2><div class="m">${t('Останні додані й встановлені програми')}</div></div><div class="tabs">${tabs.map(([k, l, c]) => `<button class="${homeTab === k ? 'on' : ''}" data-act="homeTab" data-tab="${k}">${t(l)} <span class="mono m">${c}</span></button>`).join('')}</div></div>`;
+  const pool = homeTab === 'kit' ? a.filter(x => x.kit && KITABLE(x)) : homeTab === 'upd' ? upd : a.filter(x => x.id !== SELF_ID);
+  const recent = pool.slice().sort((x, y) => Math.max(y.added || 0, y.inst?.at || 0) - Math.max(x.added || 0, x.inst?.at || 0)).slice(0, 5);
+  h += recent.length ? `<div class="list">${recent.map(x => rowHtml(x, 'home')).join('')}</div>` : `<div class="m" style="padding:16px 4px">${t('Тут поки порожньо')}</div>`;
+  h += `<button class="alink hall" data-view="all">${t('Відкрити всю бібліотеку')} (${a.length}) ${ic('chevR')}</button></section><div class="hside">`;
+  h += `<section class="card"><div class="hk">${t('Швидкі виправлення')}</div>`;
+  const fx = (icon, title, d, attrs) => `<button class="hfix" ${attrs}><i class="i">${I[icon]}</i><span class="tx"><b>${t(title)}</b><span class="m">${t(d)}</span></span>${ic('play')}</button>`;
+  h += fx('pc', 'Кеш шейдерів відеокарти', 'NVIDIA, AMD, Intel і DirectX', 'data-act="toolsClean" data-what="shader"');
+  h += fx('globe', 'Кеш DNS', 'Сайт не відкривається чи веде на старе місце', 'data-act="fix" data-what="dns"');
+  h += fx('shield', 'Системні файли Windows', 'sfc, потім DISM', 'data-act="fix" data-what="sfc"');
+  if (S.steam) h += fx('pc', 'Значки ігор Steam', 'Ігри, перенесені на інший диск', 'data-act="steamIconsFix"');
+  h += `<button class="btn hall2" data-view="tweaks">${t('Усі виправлення й твіки')} ${ic('chevR')}</button></section>`;
+  h += `<section class="card"><div class="hk">${t('Синхронізація')}${where ? `<span class="pill mono ${st.err ? 'warn' : 'ok'}">${esc(where)}</span>` : ''}</div><div class="m">${esc(where ? st.err ? msg(st.err) : `${t('Набір і бібліотека однакові на всіх твоїх ПК')}${st.okAt ? ' · ' + ago(new Date(st.okAt * 1000).toISOString()) : ''}` : t('Синхронізацію не налаштовано — набір є лише на цьому ПК'))}</div><div class="hfoot">${where ? `<button class="btn sm" data-act="syncNow">${ic('refresh')} ${t('Синхронізувати зараз')}</button>` : `<button class="btn sm" data-view="newpc">${t('Налаштувати')}</button>`}</div></section>`;
+  return h + '</div></div></div>';
 }
 /** The makers' driver pages (Komora never flashes a BIOS: the board maker's page and instructions are for that). */
 const GPU_PAGE = { nvidia: ['https://www.nvidia.com/en-us/drivers/', 'NVIDIA'], amd: ['https://www.amd.com/en/support/download/drivers.html', 'AMD'], intel: ['https://www.intel.com/content/www/us/en/support/detect.html', 'Intel'] };
@@ -1105,7 +1238,7 @@ let showSerials = false;
 /** «AMD Ryzen 7 7800X3D 8-Core Processor» → «AMD Ryzen 7 7800X3D». */
 const cpuShort = n => (n || '').replace(/\((R|TM)\)/gi, '').replace(/\s+\d+-Core Processor|\s+Processor|\s+CPU.*$/i, '').replace(/\s+/g, ' ').trim();
 /** The dashboard's card of this PC: drivers and BIOS on the makers' pages; versions and codes are copied by a click. */
-function sysCard(right) {
+function sysCard(right, full = false) {
   const y = S.sys;
   if (!y) return '';
   const pct = (used, total) => (total ? Math.min(100, Math.round(used / total * 100)) : 0);
@@ -1125,7 +1258,7 @@ function sysCard(right) {
   const serLine = v => (v ? `<span class="m ser1 ${showSerials ? '' : 'blur'}" ${showSerials ? cp(v) : `title="${esc(v)}"`}>${ic('shield')}<span class="sv">${esc(v)}</span></span>` : '');
   const dur = s => { const d = Math.floor(s / 86400), hh = Math.floor(s % 86400 / 3600), mm = Math.floor(s % 3600 / 60); return d ? `${d} ${ue('д', 'd')} ${hh} ${ue('год', 'h')}` : `${hh} ${ue('год', 'h')} ${mm} ${ue('хв', 'min')}`; };
   let h = `<section class="card sys"><div class="row wrap" style="gap:10px"><h2 class="big grow">${ic('pc')} ${esc(S.pc || 'PC')} <button class="btn ico flat" data-act="pcName" title="${esc(t('Назва цього ПК у Komora'))}">${ic('edit')}</button></h2>${right}<button class="btn ico flat pcfold ${store.get('pcFold', true) ? '' : 'on'}" data-act="pcFold" title="${esc(t(store.get('pcFold', true) ? 'Розгорнути' : 'Згорнути'))}">${ic('chevD')}</button></div><div class="sgrid">`;
-  if (store.get('pcFold', true)) return h.replace('<div class="sgrid">', `<div class="pcline m">${esc([y.windows, cpuShort((y.cpu || {}).name), (y.gpus || [])[0]?.name, y.ram && fmtSize(y.ram), ...(y.volumes || []).filter(v => /^C/i.test(v.letter || '')).map(v => `${v.letter} ${Math.round((v.total - v.free) / v.total * 100)} %`)].filter(Boolean).join(' · '))}</div>`) + '</section>';
+  if (!full && store.get('pcFold', true)) return h.replace('<div class="sgrid">', `<div class="pcline m">${esc([y.windows, cpuShort((y.cpu || {}).name), (y.gpus || [])[0]?.name, y.ram && fmtSize(y.ram), ...(y.volumes || []).filter(v => /^C/i.test(v.letter || '')).map(v => `${v.letter} ${Math.round((v.total - v.free) / v.total * 100)} %`)].filter(Boolean).join(' · '))}</div>`) + '</section>';
   h += fact('Windows', y.windows || 'Windows', '', line([[y.build, true], S.arch]), line([y.installed ? `${t('Встановлено')} ${dateOf(y.installed)}` : '', y.uptime ? `${t('працює')} ${dur(y.uptime)}` : '']), serLine(sr.pc));
   const c = y.cpu || {};
   const cpuV = /amd/i.test(c.name || '') ? 'amd' : /intel/i.test(c.name || '') ? 'intel' : '';
@@ -1216,49 +1349,108 @@ function rowHtml(a, mode = 'lib') {
   let act = '';
   if (b && (b.stage === 'queued' || b.stage === 'download')) act = cancelBtn(a.id);
   else if (mode === 'kit') act = '';
-  else if (!b && isUpd(a) && mode !== 'upd') act = '';
-  else if (!b && isUpd(a)) act = `<button class="btn sm ico flat" data-act="skipId" data-id="${esc(a.id)}" title="${esc(`${t('Пропустити версію')} ${verOf(a.latest.tag)} — ${t('з’явиться знову, коли вийде новіша')}`)}">${ic('eyeOff')}</button><button class="btn sm act upd soft" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
+  else if (!b && isUpd(a) && mode === 'upd') act = `<button class="btn sm ico flat" data-act="skipId" data-id="${esc(a.id)}" title="${esc(`${t('Пропустити версію')} ${verOf(a.latest.tag)} — ${t('з’явиться знову, коли вийде новіша')}`)}">${ic('eyeOff')}</button><button class="btn sm act upd soft" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
+  else if (!b && isUpd(a)) act = `<button class="btn sm act upd soft" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
   else if (!b && a.kind === 'winget' && !a.inst) act = `<span class="split"><button class="btn sm act" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Встановити')}</span></button><button class="btn sm ico" data-act="wgInstallTo" data-id="${esc(a.repo)}" title="${esc(t('Встановити в…'))}">${ic('chevD')}</button></span>`;
   else if (!b && (a.kind === 'github' || a.kind === 'page') && !a.inst && S.picks?.[a.id]) act = `<button class="btn sm act" data-act="installId" data-id="${esc(a.id)}">${ic('download')}<span class="lbl">${t('Встановити')}</span></button>`;
-  if (KITABLE(a) && mode !== 'upd') act += `<button class="btn sm ico kitt ${a.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(a.id)}" title="${esc(t(a.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(a.kit)}</button>`;
+  else if (!b && (mode === 'lib' || mode === 'home') && a.inst && a.inst.method !== 'self') act = `<button class="btn sm act" data-act="launchId" data-id="${esc(a.id)}">${ic('play')}<span class="lbl">${t('Запустити')}</span></button>`;
+  else if (!b && (mode === 'lib' || mode === 'home') && a.kind === 'link') act = `<button class="btn sm act" data-act="openUrl" data-url="${esc(a.url)}">${ic('open')}<span class="lbl">${t('Відкрити')}</span></button>`;
+  const kit = KITABLE(a) && mode !== 'upd' ? `<button class="btn sm ico kitt ${a.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(a.id)}" title="${esc(t(a.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(a.kit)}</button>` : '';
   const pills = health(a).length ? `<span class="pill warn">!</span>` : '';
-  return `<div class="r ${a.id === cursor ? 'on' : ''} ${multi.has(a.id) ? 'multi' : ''}" data-id="${esc(a.id)}" draggable="true">${iconHtml(a)}<div class="tx"><div class="nm"><span>${esc(a.name)}</span>${pills}</div><div class="ds">${rowDesc(a)}</div></div><div class="meta">${rowMeta(a)}</div><div class="acts2">${act}</div>${bar}</div>`;
+  const cls = `r ${a.id === cursor ? 'on' : ''} ${multi.has(a.id) ? 'multi' : ''}`;
+  if (mode === 'lib') {
+    const more = `<button class="btn sm ico flat" data-act="rowMenu" data-id="${esc(a.id)}" title="${esc(t('Ще'))}">${ic('more')}</button>`;
+    return `<div class="${cls} trow" data-id="${esc(a.id)}" draggable="true"><button class="cbx ${multi.has(a.id) ? 'on' : ''}" data-act="rowPick" data-id="${esc(a.id)}" title="${esc(t('Вибрати'))}">${ic('check')}</button><div class="c-name">${iconHtml(a)}<div class="tx"><div class="nm"><span>${esc(a.name)}</span>${srcPill(a)}${pills}</div><div class="ds">${rowDesc(a)}</div></div></div><div class="c-ver mono">${verCell(a)}</div><div class="c-st">${stateCell(a)}</div><div class="c-sig">${sigCell(a)}</div><div class="c-kit">${kit}</div><div class="acts2">${act}${more}</div>${bar}</div>`;
+  }
+  return `<div class="${cls}" data-id="${esc(a.id)}" draggable="true">${iconHtml(a)}<div class="tx"><div class="nm"><span>${esc(a.name)}</span>${pills}</div><div class="ds">${rowDesc(a)}</div></div><div class="meta">${rowMeta(a)}</div><div class="acts2">${act}${kit}</div>${bar}</div>`;
+}
+/** The source of a library entry as a small label of the table. */
+const srcPill = a => `<span class="spill">${esc(a.kind === 'winget' ? t('Добірка') : a.kind === 'link' ? t({ video: 'Відео', product: 'Товар' }[a.linkKind] || 'Посилання') : a.kind === 'page' ? t('Сторінка') : a.site ? (a.site.startsWith('gitlab') ? 'GitLab' : 'Codeberg') : 'GitHub')}</span>`;
+/** The version column: what is installed, or the latest release. */
+function verCell(a) {
+  if (a.kind === 'link') return `<span class="m">${esc(hostOf(a.url))}</span>`;
+  const cur = a.inst ? a.inst.version || verOf(a.inst.tag) : '';
+  if (isUpd(a)) return `<span class="old">${esc(cur)}</span> → <span class="up">${esc(verOf(a.latest.tag))}</span>`;
+  if (a.inst) return esc(cur || '—') + (a.pin ? ` <span class="pinm" title="${esc(t('Закріплено на версії'))}">${ic('pin')}</span>` : '');
+  return `<span class="m">${esc(a.latest ? verOf(a.latest.tag) : '—')}</span>`;
+}
+/** The update state column. */
+function stateCell(a) {
+  const b = busyOf(a.id);
+  if (b) return `<span class="stp acc">${esc(stageText(b))}</span>`;
+  if (a.kind === 'link') return a.dead ? `<span class="stp err">${t('не відкривається')}</span>` : a.linkKind === 'product' && a.price ? `<span class="stp">${esc(a.price)}</span>` : `<span class="stp">${t('посилання')}</span>`;
+  if (a.error && !a.inst) return `<span class="stp err" title="${esc(msg(a.error))}">${t('помилка')}</span>`;
+  if (isUpd(a)) return `<span class="stp warn">${t('Є оновлення')}</span>`;
+  if (a.inst && a.skip && a.latest?.tag === a.skip) return `<span class="stp">${t('версію пропущено')}</span>`;
+  if (a.inst) return `<span class="stp ok">${t('Актуально')}</span>`;
+  return `<span class="stp">${t('не встановлено')}</span>`;
+}
+/** The signature column: Authenticode and VirusTotal of the installed file. */
+function sigCell(a) {
+  const i = a.inst;
+  if (!i || a.kind === 'winget') return '<span class="m">—</span>';
+  const vt = i.vt === 'done' ? ` <span class="mono ${i.vtHits ? 'errc' : 'okc'}">VT ${i.vtHits}/${i.vtTotal}</span>` : '';
+  if (i.signed === 'trusted') return `<span class="okc" title="${esc(i.signer || '')}">${ic('shield')} ${t('підписано')}</span>${vt}`;
+  if (i.signed === 'bad') return `<span class="errc">${ic('warn')} ${t('пошкоджений підпис')}</span>${vt}`;
+  if (i.signed === 'unsigned') return `<span class="m">${t('без підпису')}</span>${vt}`;
+  return vt || '<span class="m">—</span>';
 }
 
 const layout = 'list';
 /** One row of filters over the library; the layout and the sort on the right. */
 function libToolbar() {
   const a = apps();
-  const f = (v, label, c, icon) => `<button class="fchip ${view === v ? 'on' : ''}" data-view="${v}">${icon ? ic(icon) : ''}${esc(label)}${c ? `<span class="mono">${c}</span>` : ''}</button>`;
-  let h = '<div class="toolbar"><div class="filters">';
+  const f = (v, label, c) => `<button class="${view === v ? 'on' : ''}" data-view="${v}">${esc(label)}${c ? `<span class="mono">${c}</span>` : ''}</button>`;
   const nPicks = a.filter(x => x.kind === 'winget').length;
-  h += f('all', t('Усі'), hidePicks ? a.length - nPicks : a.length, 'apps');
-  h += f('apps', t('З репозиторіїв'), a.filter(x => x.kind === 'github' || x.kind === 'page').length, 'code');
-  if (nPicks) h += f('picks', t('З добірки'), nPicks, 'pc');
-  h += f('links', t('Посилання'), a.filter(x => x.kind === 'link').length, 'link');
-  h += '<span class="fsep"></span>';
+  let h = '<div class="lbar card"><div class="lrow1">';
+  h += `<label class="lq">${ic('find')}<input id="libQ" value="${esc(libQ)}" placeholder="${esc(t('Фільтр за назвою, автором, тегом'))}" spellcheck="false" autocomplete="off">${libQ ? `<button data-act="libQx" title="${esc(t('Очистити'))}">${ic('x')}</button>` : ''}</label>`;
+  h += '<div class="seg">';
+  h += f('all', t('Усі'), hidePicks ? a.length - nPicks : a.length);
+  h += f('apps', t('З репозиторіїв'), a.filter(x => x.kind === 'github' || x.kind === 'page').length);
+  if (nPicks) h += f('picks', t('З добірки'), nPicks);
+  h += f('links', t('Посилання'), a.filter(x => x.kind === 'link').length);
+  h += '</div><span class="grow"></span>';
   const instF = instFilterOf();
-  h += `<button class="fchip pick ${instF ? 'on' : ''}" data-act="instPick">${ic(instF === 'off' ? 'download' : 'check')}${t(instF === 'on' ? 'Встановлені' : instF === 'off' ? 'Не встановлені' : 'Стан')}${ic('chevD')}</button>`;
-  if (allTags().length) h += `<button class="fchip pick ${view.startsWith('tag:') ? 'on' : ''}" data-act="tagPick">${esc(view.startsWith('tag:') ? viewTitle() : t('Тег'))}${ic('chevD')}</button>`;
-  h += '</div><div class="tools">';
-  if (a.some(x => x.kind === 'winget')) h += `<button class="btn ico flat ${hidePicks ? 'on' : ''}" data-act="hidePicks" title="${esc(t(hidePicks ? 'Показувати програми з добірки в «Усі» й групах' : 'Ховати програми з добірки з «Усі» й груп'))}">${ic(hidePicks ? 'eyeOff' : 'eye')}</button>`;
+  const inst = a.filter(x => INSTALLABLE(x) && x.inst).length, notInst = a.filter(x => INSTALLABLE(x) && !x.inst).length;
+  h += `<div class="seg ist">${[['on', 'Встановлені', inst], ['off', 'Не встановлені', notInst]].map(([k, l, c]) => `<button class="${instF === k ? 'on' : ''}" data-act="instFilter" data-f="${k}" title="${esc(t(instF === k ? 'Показати всі' : l))}">${t(l)}<span class="mono">${c}</span></button>`).join('')}</div>`;
+  if (a.some(x => x.kind === 'winget')) h += `<button class="btn ico flat ${hidePicks ? 'on' : ''}" data-act="hidePicks" title="${esc(t(hidePicks ? 'Показувати програми з добірки в «Усі» й групах' : 'Ховати програми з добірки з «Усі» й груп'))}">${ic('eyeOff')}</button>`;
   h += `<button class="btn ico flat" data-act="sort" title="${esc(t({ name: 'За назвою', group: 'За групами', added: 'Нещодавно додані' }[sortBy]))}">${ic('sort')}</button>`;
-  return h + '</div></div>';
+  h += '</div>';
+  const tags = allTags();
+  if (tags.length) h += `<div class="lrow2"><span class="lk">${t('Теги')}</span><div class="gstrip">${tags.slice(0, 24).map(([tg, c]) => `<button class="tchip ${view === 'tag:' + tg ? 'on' : ''}" data-view="${view === 'tag:' + tg ? 'all' : 'tag:' + esc(tg)}">#${esc(tg)} <span class="mono">${c}</span></button>`).join('')}</div></div>`;
+  return h + '</div>';
 }
 function listPage() {
   if (!apps().length && view === 'all') return welcome();
   const items = visibleOrder();
+  const a = apps();
   const inGroup = view.startsWith('g:');
-  let h = '<div class="page wide">';
-  if (inGroup) h += phead(`<span class="ghm">${groupMark(groups().find(g => g.id === view.slice(2)) || {})}</span>${esc(viewTitle())}`, `${t('Група')} · <span class="mono">${items.length}</span>`, `${groupHeadKit(view.slice(2))}<button class="btn" data-act="addToGroupPick">${ic('add')} ${t('Додати в цю групу')}</button><button class="btn ico" data-act="groupCtx" title="${esc(t('Група'))}">${ic('more')}</button>`);
-  else h += phead(esc(viewTitle()), apps().length ? '' : t('Твої програми й посилання: Komora ставить їх, оновлює й переносить на новий ПК')) + libToolbar();
+  let h = '<div class="page wide lib">';
+  const acts = `<button class="btn" data-act="importMenu">${ic('importI')} ${t('Імпорт')}</button><button class="btn acc" data-act="addNew">${ic('add')} ${t('Додати програму чи посилання')}</button>`;
+  if (inGroup) h += phead(`<span class="ghm">${groupMark(groups().find(g => g.id === view.slice(2)) || {})}</span>${esc(viewTitle())}`, `${t('Група')} · <span class="mono">${items.length}</span>`, `${groupHeadKit(view.slice(2))}<button class="btn" data-act="addToGroupPick">${ic('add')} ${t('Додати в цю групу')}</button><button class="btn ico" data-act="groupCtx" title="${esc(t('Група'))}">${ic('more')}</button>`, t('Бібліотека програм'));
+  else h += phead(`${t('Бібліотека програм')} <span class="hcount mono">${a.length}</span>`, t('Твої програми й посилання: Komora ставить їх, оновлює й переносить на новий ПК'), acts);
+  if (!inGroup) {
+    const inst = a.filter(x => x.inst);
+    const kitN = a.filter(x => x.kit && KITABLE(x)).length;
+    const signed = inst.filter(x => x.inst.signed === 'trusted').length;
+    const src = [['GitHub', a.filter(x => x.kind === 'github' || x.kind === 'page').length], [t('Добірка'), a.filter(x => x.kind === 'winget').length], [t('Посилання'), a.filter(x => x.kind === 'link').length]];
+    h += `<div class="stats">
+      <button class="stat" data-view="updates"><span class="sk">${t('Потребують оновлення')}${ic('download')}</span><span class="sv mono ${S.updates.length ? 'warnc' : ''}">${S.updates.length}</span></button>
+      <button class="stat" data-view="kit"><span class="sk">${t('У моєму наборі')}${ic('kit')}</span><span class="sv mono">${kitN}<small>/ ${a.length}</small></span></button>
+      <div class="stat"><span class="sk">${t('Перевірений підпис')}${ic('shield')}</span><span class="sv mono okc">${signed}<small>/ ${inst.length} ${t('встановлених')}</small></span></div>
+      <div class="stat"><span class="sk">${t('Джерела')}${ic('layers')}</span><span class="srcs">${src.map(([k, n]) => `<span class="mono"><b>${n}</b> ${esc(k)}</span>`).join('')}</span></div>
+    </div>`;
+  }
+  h += libToolbar();
   if (!items.length) return h + emptyView() + '</div>';
-  h += '<div class="list">';
+  const allOn = items.length && items.every(x => multi.has(x.id));
+  h += `<div class="list ltable"><div class="thead"><button class="cbx ${allOn ? 'on' : ''}" data-act="pickAll" title="${esc(t('Вибрати всі'))}">${ic('check')}</button><span>${t('Назва й джерело')}</span><span class="c-ver">${t('Версія')}</span><span class="c-st">${t('Стан')}</span><span class="c-sig">${t('Підпис')}</span><span>${t('Набір')}</span><span class="rt">${t('Дії')}</span></div>`;
   for (const x of listModel()) h += x.id ? rowHtml(x) : `<div class="gt ${x.sub ? 'sub' : ''}">${x.grp ? groupMark(x) : ''}${esc(x.title)}${x.count ? `<span class="mono">${x.count}</span>` : ''}</div>`;
-  h += '</div>';
-  if (multi.size > 1) {
-    const allKit = [...multi].map(appById).every(a => a?.kit);
-    h += `<div class="bulk"><span class="mono">${t('Обрано')} ${multi.size}</span><span class="grow"></span><button class="btn sm" data-act="bulkKit">${ic('kit')} ${t(allKit ? 'Прибрати з набору' : 'У мій набір')}</button><button class="btn sm" data-act="bulkGroup">${t('У групу')}</button><button class="btn sm" data-act="bulkShare">${ic('link')} ${t('Поділитися')}</button><button class="btn sm danger" data-act="bulkRemove">${t('Прибрати')}</button></div>`;
+  h += `</div><div class="lfoot m mono">${t('Показано')} ${items.length} / ${a.length}</div>`;
+  if (multi.size) {
+    const allKit = [...multi].map(appById).every(x => x?.kit);
+    const anyUpd = [...multi].map(appById).some(x => x && isUpd(x));
+    h += `<div class="bulk"><span class="bsel"><i class="dot acc"></i>${t('Обрано')} <b class="mono">${multi.size}</b></span><button class="btn sm" data-act="bulkKit">${ic('kit')} ${t(allKit ? 'Прибрати з набору' : 'У мій набір')}</button>${anyUpd ? `<button class="btn sm upd" data-act="bulkUpdate">${ic('download')} ${t('Оновити')}</button>` : ''}<button class="btn sm" data-act="bulkGroup">${ic('layers')} ${t('У групу')}</button><button class="btn sm" data-act="bulkShare">${ic('link')} ${t('Поділитися')}</button><button class="btn sm danger" data-act="bulkRemove">${t('Прибрати')}</button><button class="btn sm ico flat" data-act="pickNone" title="${esc(t('Зняти вибір'))}">${ic('x')}</button></div>`;
   }
   return h + '</div>';
 }
@@ -1267,7 +1459,8 @@ function listPage() {
 function reposTabs() {
   const tab = (on, attrs, icon, label, extra = '') => `<button class="${on ? 'on' : ''}" ${attrs}>${icon}<span>${esc(label)}</span>${extra ? `<span class="mono cnt">${extra}</span>` : ''}</button>`;
   const repo = view === 'discover';
-  return `<div class="tabs top" role="tablist">${tab(repo && disc.site !== 'gitlab', 'data-act="hubSite" data-site="github"', `<i class="i">${GH_SVG}</i>`, 'GitHub')}${tab(repo && disc.site === 'gitlab', 'data-act="hubSite" data-site="gitlab"', `<i class="i">${GL_SVG}</i>`, 'GitLab')}${tab(view === 'authors' || page?.k === 'author', 'data-view="authors"', ic('user'), t('Автори'), authors().length || '')}</div>`;
+  const news = authors().reduce((s2, x) => s2 + (x.news?.length || 0), 0);
+  return `<div class="tabs top" role="tablist">${tab(view === 'pc' && !page, 'data-view="pc"', ic('pc'), t('Добірка'))}${tab(repo && disc.site !== 'gitlab', 'data-act="hubSite" data-site="github"', `<i class="i">${GH_SVG}</i>`, 'GitHub')}${tab(repo && disc.site === 'gitlab', 'data-act="hubSite" data-site="gitlab"', `<i class="i">${GL_SVG}</i>`, 'GitLab')}${tab(view === 'authors' || page?.k === 'author', 'data-view="authors"', ic('user'), t('Автори'), news ? `+${news}` : authors().length || '')}</div>`;
 }
 
 // ---------------------------------------------------------------- «For PC»: everyday programs through winget
@@ -1277,7 +1470,7 @@ let wgAsked = false;
 let pickCat = store.get('pickCat', '');
 const WG_ICON = { hw: 'pc', games: 'play', chat: 'note', media: 'video', tools: 'tool', web: 'globe', runtime: 'box' };
 // the dashboard's memory, video memory and disks: read again every 3 s while it is on screen
-setInterval(() => { if (S && view === 'home' && !page && document.visibilityState === 'visible' && !store.get('pcFold', true)) post({ t: 'sysLive' }); }, 3000);
+setInterval(() => { if (S && view === 'tweaks' && !page && document.visibilityState === 'visible') post({ t: 'sysLive' }); }, 3000);
 /** What winget tells about each package (`winget show`), asked once per run. */
 const wgInfo = {};
 /** Upkeep of «Tweaks»: { sizes: {shader, temp} }; null — not asked yet. */
@@ -1382,7 +1575,7 @@ function wgRow(x, where = 'pick') {
   if (b) st = esc(b.stage === 'install' && x.has ? t('Оновлення') + '…' : stageText(b));
   else if (x.has && x.latest) {
     st = `<i class="sdot warn"></i>${esc(x.inst)} → <span class="up">${esc(x.latest)}</span>`;
-    act = `${where === 'upd' ? `<button class="btn sm ico flat" data-act="wgSkip" data-id="${esc(x.id)}" data-v="${esc(x.latest)}" title="${esc(`${t('Пропустити версію')} ${x.latest} — ${t('з’явиться знову, коли вийде новіша')}`)}">${ic('eyeOff')}</button>` : ''}<button class="btn sm act upd soft" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
+    act = `${where === 'upd' ? `<button class="btn sm" data-act="wgSkip" data-id="${esc(x.id)}" data-v="${esc(x.latest)}" title="${esc(`${t('Пропустити версію')} ${x.latest} — ${t('з’явиться знову, коли вийде новіша')}`)}">${t('Пропустити')}</button>` : ''}<button class="btn sm act upd soft" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
   } else if (x.has) st = `<i class="sdot ok"></i>${esc(x.inst || t('встановлено'))}`;
   else {
     st = `<i class="sdot"></i>${t('не встановлено')}`;
@@ -1455,22 +1648,59 @@ function boardUrl(maker, model) {
   return `https://www.bing.com/search?q=${encodeURIComponent(`${maker} ${model} BIOS`)}`;
 }
 /** «Picks» in «Find»: everyday programs for a PC through winget; what of them is installed is in the library. */
+/** «Catalog»: the picks chosen to install at once (winget ids), the layout and a filter. */
+const pickSel = new Set();
+
+let pickQ = '';
 function pcPage() {
   const W = S.winget || { items: [] };
   if (W.avail && !W.at && !W.scanning && !wgAsked) { wgAsked = true; post({ t: 'wgScan' }); }
-  let h = `<div class="page narrow">${phead(t('Добірка'), t('Перевірені програми для ПК: ставляться одним кліком і далі оновлюються з бібліотеки'), W.avail ? `<button class="btn" data-act="wgScan" ${W.scanning ? 'disabled' : ''}>${ic('refresh')} ${t(W.scanning ? 'Перевіряю…' : 'Перевірити встановлене')}</button>` : '')}`;
-  if (!W.avail) return h + `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('winget не знайдено')}</b> <span class="m">${t('Він входить до «Інсталятора застосунків» (App Installer) з Microsoft Store.')}</span></div><button class="btn sm" data-act="openUrl" data-url="https://apps.microsoft.com/detail/9nblggh4nns1">Microsoft Store ${ic('open')}</button></div></div>`;
+  const ups = W.items.filter(x => x.has && x.latest && x.skip !== x.latest);
+  const sel = [...pickSel].filter(id => W.items.some(x => x.id === id && !x.has));
+  const acts = `${W.avail ? `<button class="btn" data-act="wgScan" ${W.scanning ? 'disabled' : ''}>${ic('refresh')} ${t(W.scanning ? 'Дивлюся…' : 'Перевірити, що встановлено')}</button>` : ''}${ups.length ? `<button class="btn upd" data-act="wgUpdateAll">${ic('download')} ${t('Оновити встановлені')} (${ups.length})</button>` : ''}<button class="btn acc" data-act="pickInstall" ${sel.length ? '' : 'disabled'}>${ic('download')} ${t('Встановити вибрані')}${sel.length ? ` (${sel.length})` : ''}</button>`;
+  let h = `<div class="page wide cat">${phead(t('Каталог'), t('Перевірені програми для ПК: ставляться одним кліком і далі оновлюються з бібліотеки'), acts, `winget · ${W.items.length} ${t('програм')}`)}${reposTabs()}`;
+  if (!W.avail) return h + `<div class="info warn"><span class="sign">!</span><div class="grow"><b>${t('winget не знайдено')}</b> <span class="m">${t('Він входить до «Інсталятора застосунків» (App Installer) з Microsoft Store.')}</span></div><button class="btn sm" data-act="openUrl" data-url="ms-windows-store://pdp/?productid=9NBLGGH4NNS1">${t('Відкрити в Store')}</button></div></div>`;
   if (W.err) h += `<div class="info err"><span class="sign">!</span><div class="grow"><b>winget</b> <span class="m">${esc(msg(W.err))}</span></div></div>`;
   if (!W.at && W.scanning) h += `<div class="m" style="padding:14px 4px">${t('Дивлюся, що вже встановлено…')}</div>`;
-  // the categories as buttons: one at a time, or all
+  // search, categories and the layout
   const cats = Object.entries(WG_CATS).filter(([cat]) => W.items.some(x => x.cat === cat));
-  if (cats.length) h += `<div class="filters pcats pin">${[['', 'Усі', 'apps'], ...cats.map(([k, l]) => [k, l, WG_ICON[k]])].map(([k, l, icon]) => `<button class="fchip ${pickCat === k ? 'on' : ''}" data-act="pickCat" data-c="${k}">${ic(icon)}${t(l)}<span class="mono">${k ? W.items.filter(x => x.cat === k).length : W.items.length}</span></button>`).join('')}</div>`;
-  for (const [cat, title] of Object.entries(WG_CATS)) {
-    if (pickCat && cat !== pickCat) continue;
-    const items = W.items.filter(x => x.cat === cat);
-    if (items.length) h += `<div class="sect">${t(title)}</div><div class="list">${items.map(x => wgRow(x)).join('')}</div>`;
+  const qm = x => !pickQ || [x.name, x.id, t(WG_DESC[x.id] || '')].some(s => (s || '').toLowerCase().includes(pickQ.toLowerCase()));
+  h += `<div class="cbar"><label class="lq wide">${ic('find')}<input id="pickQ" value="${esc(pickQ)}" placeholder="${esc(t('Пошук серед програм добірки, winget ID чи призначення'))}" spellcheck="false" autocomplete="off">${pickQ ? `<button data-act="pickQx" title="${esc(t('Очистити'))}">${ic('x')}</button>` : '<span class="kbd mono">Esc</span>'}</label></div>`;
+  if (cats.length) h += `<div class="filters pcats">${[['', 'Усі', 'apps'], ...cats.map(([k, l]) => [k, l, WG_ICON[k]])].map(([k, l, icon]) => `<button class="fchip ${pickCat === k ? 'on' : ''}" data-act="pickCat" data-c="${k}">${ic(icon)}${t(l)}<span class="mono">${k ? W.items.filter(x => x.cat === k).length : W.items.length}</span></button>`).join('')}</div>`;
+  h += runStrip(id => id.startsWith('wg:'));
+  const shown = W.items.filter(x => (!pickCat || x.cat === pickCat) && qm(x));
+  if (!shown.length && W.items.length) h += `<div class="empty"><div class="m">${t('Нічого не знайдено')}</div></div>`;
+  if (shown.length) {
+    const canSel = shown.filter(x => !x.has);
+    const allOn = canSel.length && canSel.every(x => pickSel.has(x.id));
+    h += `<div class="list ltable ptable"><div class="thead"><button class="cbx ${allOn ? 'on' : ''}" data-act="pickSelAll" title="${esc(t('Вибрати всі'))}">${ic('check')}</button><span>${t('Програма / winget ID')}</span><span>${t('Категорія')}</span><span class="c-ds">${t('Опис')}</span><span>${t('Версія')}</span><span class="rt">${t('Дії')}</span></div>`;
+    for (const x of shown) h += wgTRow(x);
+    h += '</div>';
   }
+  if (sel.length) h += `<div class="bulk"><span class="bsel"><i class="dot acc"></i>${t('Обрано')} <b class="mono">${sel.length}</b></span><button class="btn sm acc" data-act="pickInstall">${ic('download')} ${t('Встановити вибрані')}</button><button class="btn sm" data-act="pickKit">${ic('kit')} ${t('У мій набір')}</button><button class="btn sm ico flat" data-act="pickSelNone" title="${esc(t('Зняти вибір'))}">${ic('x')}</button></div>`;
   return h + '</div>';
+}
+/** The pick's buttons: install (with a folder), update, cancel; the kit mark. */
+function wgActs(x) {
+  const b = busyOf('wg:' + x.id);
+  const lib = appById('wg:' + x.id);
+  if (b && (b.stage === 'queued' || b.stage === 'download')) return cancelBtn('wg:' + x.id);
+  if (b) return '';
+  let act = '';
+  if (x.has && x.latest) act = `<button class="btn sm act upd soft" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Оновити')}</span></button>`;
+  else if (!x.has) act = `<span class="split"><button class="btn sm act acc" data-act="wgInstall" data-id="${esc(x.id)}">${ic('download')}<span class="lbl">${t('Встановити')}</span></button><button class="btn sm ico acc" data-act="wgInstallTo" data-id="${esc(x.id)}" title="${esc(t('Встановити в…'))}">${ic('chevD')}</button></span>`;
+  act += lib ? `<button class="btn sm ico kitt ${lib.kit ? 'on' : ''}" data-act="kitId" data-id="${esc(lib.id)}" title="${esc(t(lib.kit ? 'Прибрати з набору' : 'Додати в мій набір'))}">${kitIcon(lib.kit)}</button>` : `<button class="btn sm ico kitt" data-act="wgKit" data-id="${esc(x.id)}" title="${esc(t('Додати в мій набір'))}">${kitIcon(false)}</button>`;
+  return act;
+}
+const wgTile = (x, cls = '') => (x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name, cls) : letterTile(x.name, cls));
+const wgVer = x => (x.has && x.latest ? `<span class="old">${esc(x.inst)}</span> → <span class="up">${esc(x.latest)}</span>` : x.has ? esc(x.inst || t('встановлено')) : '<span class="m">—</span>');
+/** A pick as a row of the table. */
+function wgTRow(x) {
+  const b = busyOf('wg:' + x.id);
+  const lib = appById('wg:' + x.id);
+  const det = b && b.stage === 'download' && b.pct >= 0;
+  const open = lib ? `data-open="${esc(lib.id)}"` : `data-wg="${esc(x.id)}"`;
+  return `<div class="r wg trow ${pickSel.has(x.id) ? 'multi' : ''}" ${open}>${!x.has && !b ? `<button class="cbx ${pickSel.has(x.id) ? 'on' : ''}" data-act="pickSel" data-id="${esc(x.id)}" title="${esc(t('Вибрати'))}">${ic('check')}</button>` : '<span></span>'}<div class="c-name">${wgTile(x, 'sm')}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.id)}</div></div></div><div><span class="spill">${esc(t(WG_CATS[x.cat] || x.cat))}</span></div><div class="c-ds ds">${esc(t(WG_DESC[x.id] || ''))}</div><div class="c-ver mono">${wgVer(x)}</div><div class="acts2">${wgActs(x)}</div>${b ? `<span class="bar ${det ? '' : 'ind'}"><i style="width:${det ? Math.round(b.pct * 100) : 30}%"></i></span>` : ''}</div>`;
 }
 
 /** «My kit»: the apps that belong on every PC — how many are here, the missing in one click, what the kit does by itself. */
@@ -1520,17 +1750,32 @@ function kitPage() {
   const restore = restoreHtml();
   // always there: on a new PC it installs the kit, here it says everything is in place
   const get = `<button class="btn acc" data-act="kitInstall" ${miss.length ? '' : `disabled title="${esc(t('Усе з набору вже встановлено'))}"`}>${ic('download')} ${t('Встановити набір')}${miss.length ? ` (${miss.length})` : ''}</button>`;
-  const sub = `${t('Що повернути після перевстановлення Windows чи на новому ПК')}${prog.length ? ` · ${here} ${t('із')} ${prog.length} ${t('програм встановлено')}` : ''}`;
-  const acts = (restore.includes('id="restore"') ? '' : get) + `<button class="btn" data-act="kitRules">${ic('settings')} ${t('Правила набору')}</button>`;
-  let h = `<div class="page kitp">${phead(t('Мій набір'), esc(sub), acts)}${restore}`;
+  const sub = t('Програми, посилання, автори й твіки, які повертаються одним кліком після чистої Windows чи на новому ПК.');
+  const kitIds = a.filter(x => x.kit && KITABLE(x)).map(x => x.id);
+  const acts = `<button class="btn" data-act="kitShare" ${kitIds.length ? '' : 'disabled'}>${ic('link')} ${t('Поділитися')}</button><button class="btn" data-act="exportKit">${ic('save')} ${t('Зберегти .zip')}</button>` + (restore.includes('id="restore"') ? '' : get) + `<button class="btn ico" data-act="kitRules" title="${esc(t('Правила набору'))}">${ic('settings')}</button>`;
+  let h = `<div class="page wide kitp">${phead(t('Мій набір'), esc(sub), acts, t('Для нового чи перевстановленого ПК'))}${restore}`;
+  // readiness: what of the kit stands here, as one bar; the sync on the right
+  {
+    const links = a.filter(x => x.kit && x.kind === 'link').length;
+    const tw = kitTweaks().length;
+    const total = prog.length + links + tw + authors().filter(x => x.kit).length;
+    const pct = prog.length ? Math.round(here / prog.length * 100) : 100;
+    const st = S.sync || {};
+    const where = S.cfg.syncDbx ? 'Dropbox' : S.cfg.syncGist ? 'GitHub Gist' : S.cfg.syncDir ? t('тека в хмарі') : '';
+    const seg = (n, cls) => (n ? `<i class="${cls}" style="flex:${n}"></i>` : '');
+    h += `<div class="kready2"><section class="card kr1"><div class="row" style="gap:14px;align-items:flex-start"><span class="kshield">${ic('shield')}</span><div class="grow"><div class="row" style="gap:8px"><b class="kpct">${pct}% ${t('готовності')}</b>${where && !st.err ? `<span class="pill ok mono">${t('синхронізовано')}</span>` : ''}</div><div class="m">${prog.length ? `${here} ${t('із')} ${prog.length} ${t('програм набору стоять на цьому ПК')}` : t('Набір порожній')}</div></div></div>`;
+    h += `<div class="kline"><span class="m mono">${t('Склад набору')}</span><span class="m mono">${total} ${t('усього')}</span></div><div class="kbar">${seg(here, 'a')}${seg(miss.length, 'b')}${seg(tw, 'c')}${seg(links, 'd')}</div>`;
+    h += `<div class="klegend"><span><i class="dot acc"></i>${here} ${t('встановлено')}</span><span><i class="dot"></i>${miss.length} ${t('бракує')}</span><span><i class="dot ok"></i>${esc(nwk(tw, 'tweak'))}</span><span><i class="dot" style="background:var(--mu)"></i>${esc(nwk(links, 'link'))}</span></div></section>`;
+    h += `<section class="card kr2"><div class="hk">${t('Синхронізація')}${where ? `<span class="pill mono ${st.err ? 'warn' : 'ok'}">${esc(where)}</span>` : ''}</div><div class="m">${esc(where ? st.err ? msg(st.err) : `${t('Набір і бібліотека однакові на всіх твоїх ПК')}${st.okAt ? ' · ' + ago(new Date(st.okAt * 1000).toISOString()) : ''}` : t('Синхронізацію не налаштовано — набір є лише на цьому ПК'))}</div><div class="kopts">${tgl('kitAutoUpdate', 'Оновлювати набір самі', 'Після кожної перевірки нові версії програм набору ставляться без твого кліку')}${tgl('kitAutoInstall', 'Ставити на новому ПК', 'Коли набір приходить із синхронізації чи файлу, відсутні програми встановлюються самі')}</div><button class="alink" data-view="newpc">${t('Перенесення і синхронізація')} ${ic('chevR')}</button></section></div>`;
+  }
   const outGroups = groups().filter(g => groupKit(g.id).of && !groupInKit(g.id));
   // the kit's own bar: by source or by group, installed or not
-  h += `<div class="toolbar kitf pin"><div class="filters"><span class="flabel">${t('Групувати')}</span><div class="seg">${[['src', 'За джерелом', 'apps'], ['grp', 'За групами', 'layers']].map(([k, l, icon]) => `<button class="${kitBy === k ? 'on' : ''}" data-act="kitBy" data-by="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div><span class="fsep"></span>${[['on', 'Встановлені', 'check'], ['off', 'Не встановлені', 'download']].map(([k, l, icon]) => `<button class="fchip ${instFilterOf('kit') === k ? 'on' : ''}" data-act="instFilter" data-f="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div>${outGroups.length ? `<div class="tools"><button class="btn ico" data-act="kitAdd" data-kind="group" title="${esc(t('Додати групу'))}">${ic('group')}</button></div>` : ''}</div>`;
+  h += `<div class="toolbar kitf pin"><div class="filters"><span class="flabel">${t('Групувати')}</span><div class="seg">${[['src', 'За джерелом', 'apps'], ['grp', 'За групами', 'layers']].map(([k, l, icon]) => `<button class="${kitBy === k ? 'on' : ''}" data-act="kitBy" data-by="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div><span class="fsep"></span>${[['on', 'Встановлені', 'check'], ['off', 'Не встановлені', 'download']].map(([k, l, icon]) => `<button class="fchip ${instFilterOf('kit') === k ? 'on' : ''}" data-act="instFilter" data-f="${k}">${ic(icon)}${t(l)}</button>`).join('')}</div><div class="tools"><label class="lq">${ic('find')}<input id="kitQ" value="${esc(kitQ)}" placeholder="${esc(t('Пошук у наборі'))}" spellcheck="false" autocomplete="off">${kitQ ? `<button data-act="kitQx" title="${esc(t('Очистити'))}">${ic('x')}</button>` : ''}</label>${outGroups.length ? `<button class="btn ico" data-act="kitAdd" data-kind="group" title="${esc(t('Додати групу'))}">${ic('group')}</button>` : ''}</div></div>`;
   // sections of rows: a heading that folds, its count, «+» to add from the library (a group has ✕ to take it out)
   const head = (key, icon, title, n, tail) => `<div class="sect ksect" data-act="kitFold" data-k="${esc(key)}"><i class="i chev ${kitFold[key] ? 'fold' : ''}">${I.chevD}</i>${icon}<span>${esc(title)}</span><span class="mono">${n}</span><span class="grow"></span>${tail}</div>`;
   const add = kind => `<button class="btn ico flat" data-act="kitAdd" data-kind="${kind}" title="${esc(t('Додати в набір'))}">${ic('add')}</button>`;
-  const section = (key, icon, title, rows, tail, empty) => head(key, icon, title, rows.length, tail) + (kitFold[key] ? '' : rows.length ? `<div class="list">${rows.join('')}</div>` : `<div class="m kempty">${t(empty)}</div>`);
-  const rowsOf = list => list.filter(instOk('kit')).sort(byName).map(x => rowHtml(x, 'kit'));
+  const section = (key, icon, title, rows, tail, empty) => head(key, icon, title, rows.length, tail) + (kitFold[key] ? '' : rows.length ? `<div class="list klist">${rows.join('')}</div>` : `<div class="m kempty">${t(empty)}</div>`);
+  const rowsOf = list => list.filter(instOk('kit')).filter(libMatchQ(kitQ)).sort(byName).map(kitCard);
   if (kitBy === 'grp') {
     // every group with kit programs or in the kit itself, then what has no group
     const inKit = a.filter(x => x.kit && x.id !== SELF_ID);
@@ -1542,12 +1787,28 @@ function kitPage() {
     h += section('winget', ic('pc'), t('З добірки'), own('winget'), add('winget'), 'Порожньо — додай кнопкою +');
     h += section('link', ic('link'), t('Посилання'), own('link'), add('link'), 'Порожньо — додай кнопкою +');
   }
-  const kitBtn = (act, attr) => `<button class="btn sm ico kitt on" data-act="${act}" ${attr} title="${esc(t('Прибрати з набору'))}">${kitIcon(true)}</button>`;
-  h += section('author', ic('user'), t('Автори'), authors().filter(au => au.kit).map(au => `<div class="r" data-login="${esc(au.login)}">${avatarHtml(au.avatar, au.login)}<div class="tx"><div class="nm"><span>${esc(au.name || au.login)}</span></div><div class="ds">${esc(au.login)}</div></div><div class="acts2">${kitBtn('kitAuthor', `data-login="${esc(au.login)}"`)}</div></div>`), add('author'), 'Порожньо — додай кнопкою +');
+  const kitBtn = (act, attr) => `<button class="ktgl on" data-act="${act}" ${attr} title="${esc(t('Прибрати з набору'))}"><span class="sw sm on"></span>${t('У наборі')}</button>`;
+  h += section('author', ic('user'), t('Автори'), authors().filter(au => au.kit).filter(au => !kitQ || (au.name + au.login).toLowerCase().includes(kitQ.toLowerCase())).map(au => `<div class="kcard r" data-login="${esc(au.login)}"><div class="kc-top">${avatarHtml(au.avatar, au.login)}<div class="tx"><div class="nm"><span>${esc(au.name || au.login)}</span></div><div class="ds mono">github.com/${esc(au.login)}</div></div></div><div class="kc-chips">${au.news?.length ? `<span class="kchip acc">+${au.news.length} ${t('нових')}</span>` : ''}<span class="kchip">${esc(nwk((au.repos || []).length, 'repo'))}</span></div><div class="kc-foot"><span class="m mono">${t('Автор GitHub')}</span>${kitBtn('kitAuthor', `data-login="${esc(au.login)}"`)}</div></div>`), add('author'), 'Порожньо — додай кнопкою +');
   const tws = kitTweaks().map(id => (tweakList || []).find(x => x.id === id)).filter(Boolean);
-  h += section('tweak', ic('tool'), t('Твіки'), tws.map(x => `<div class="r tw-r"><span class="ic"><i class="i">${I.tool}</i></span><div class="tx"><div class="nm"><span>${esc(tweakName(x))}</span></div></div><div class="meta">${x.status === 'on' || x.status === 'already' ? `<i class="sdot ok"></i>${t('застосовано')}` : `<i class="sdot"></i>${t('вимкнено')}`}</div><div class="acts2">${kitBtn('kitTweak', `data-id="${esc(x.id)}"`)}</div></div>`), add('tweak'), 'Порожньо — додай кнопкою +');
+  h += section('tweak', ic('tool'), t('Твіки'), tws.filter(x => !kitQ || tweakName(x).toLowerCase().includes(kitQ.toLowerCase())).map(x => `<div class="kcard tw-r"><div class="kc-top"><span class="ic"><i class="i">${I.tool}</i></span><div class="tx"><div class="nm"><span>${esc(tweakName(x))}</span></div><div class="ds">${esc((L === 'uk' ? x.ukD : L === 'en' ? x.enD : tx(x.ukD) ?? x.enD) || '')}</div></div></div><div class="kc-foot">${x.status === 'on' || x.status === 'already' ? `<span class="stp ok">${t('застосовано')}</span>` : `<span class="stp">${t('вимкнено')}</span>`}${kitBtn('kitTweak', `data-id="${esc(x.id)}"`)}</div></div>`), add('tweak'), 'Порожньо — додай кнопкою +');
+  // quick add: a link or a repository straight into the kit
+  h += `<section class="card kadd"><span class="kaddi">${ic('add')}</span><h2 class="big">${t('Швидке додавання до набору')}</h2><div class="m">${t('Встав посилання на репозиторій GitHub, GitLab чи Codeberg або сторінку — воно одразу потрапить у набір.')}</div><div class="row kaddf"><input class="inp mono" id="kitUrl" placeholder="https://github.com/owner/repo" spellcheck="false"><button class="btn acc" data-act="kitUrlAdd">${t('Додати')}</button></div><div class="m">${t('або обери з')} <button class="alink" data-view="pc">${t('Каталогу')}</button> · <button class="alink" data-view="all">${t('Бібліотеки')}</button></div></section>`;
   return h + '</div>';
 }
+/** A kit entry as a card: where it comes from, what Komora keeps for it, whether it stands here, its kit switch. */
+function kitCard(a) {
+  const src = a.kind === 'winget' ? a.repo : a.kind === 'link' ? hostOf(a.url) : a.kind === 'page' ? hostOf(a.url) : `${a.owner}/${a.repo}`;
+  const chips = [];
+  if (isUpd(a)) chips.push(`<span class="kchip warn">${ic('download')} ${t('Є оновлення')} ${esc(verOf(a.latest.tag))}</span>`);
+  if (a.pin) chips.push(`<span class="kchip">${ic('pin')} ${t('Закріплено')} ${esc(verOf(a.pin))}</span>`);
+  else if (S.cfg.kitAutoUpdate && INSTALLABLE(a)) chips.push(`<span class="kchip acc">${ic('refresh')} ${t('Оновлюється сама')}</span>`);
+  if (a.backupAt) chips.push(`<span class="kchip ok">${ic('save')} ${t('Копія налаштувань')} · ${esc(ago(new Date(a.backupAt * 1000).toISOString()))}</span>`);
+  const where = a.kind === 'link' ? `<span class="m mono">${esc(t({ video: 'Відео', product: 'Товар' }[a.linkKind] || 'Посилання'))}</span>` : a.inst ? `<span class="m mono">${esc(a.inst.version || verOf(a.inst.tag) || t('встановлено'))}</span>` : `<span class="warnc kmiss">${t('Не встановлено на цьому ПК')}</span>`;
+  return `<div class="kcard r ${multi.has(a.id) ? 'multi' : ''}" data-id="${esc(a.id)}" draggable="true"><div class="kc-top">${iconHtml(a)}<div class="tx"><div class="nm"><span>${esc(a.name)}</span>${a.inst ? `<span class="okc">${ic('check')}</span>` : ''}</div><div class="ds mono">${esc(src)}</div></div></div><div class="kc-chips">${chips.join('')}</div><div class="kc-foot">${where}<button class="ktgl on" data-act="kitId" data-id="${esc(a.id)}" title="${esc(t('Прибрати з набору'))}"><span class="sw sm on"></span>${t('У наборі')}</button></div></div>`;
+}
+/** A filter by text over names, owners and tags. */
+const libMatchQ = q => x => !q || [x.name, x.owner, x.repo, x.desc, ...(x.tags || [])].some(s => (s || '').toLowerCase().includes(q.toLowerCase()));
+let kitQ = '';
 /** «+» of a section of the kit: what of that kind is not in the kit yet (a click puts one in, the menu stays). */
 function kitAddMenu(el, kind) {
   let items = [];
@@ -1564,36 +1825,58 @@ function updatesPage() {
   const a = apps();
   const upd = a.filter(isUpd);
   const c = S.cfg;
-  const sel = `<select class="inp" data-cfg="checkHours" style="width:auto">${[[24, 'Щодня'], [168, 'Щотижня'], [720, 'Щомісяця'], [0, 'Вручну']].map(([v, l]) => `<option value="${v}" ${+c.checkHours === v ? 'selected' : ''}>${esc(t(l))}</option>`).join('')}</select>`;
+  const sel = `<label class="sched">${ic('clock')}<span>${t('Розклад')}:</span><select class="inp" data-cfg="checkHours">${[[24, 'Щодня'], [168, 'Щотижня'], [720, 'Щомісяця'], [0, 'Вручну']].map(([v, l]) => `<option value="${v}" ${+c.checkHours === v ? 'selected' : ''}>${esc(t(l))}</option>`).join('')}</select></label>`;
   const wu = wgUpdates();
   const all = upd.length + wu.length;
-  let h = `<div class="page narrow">${phead(t('Оновлення'), esc(statusText()), `<button class="btn" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t(S.checking ? 'Перевіряю…' : 'Перевірити зараз')}</button>${all ? `<button class="btn upd" data-act="updateAll">${t('Оновити все')} (${all})</button>` : ''}`)}`;
+  const inst = a.filter(x => x.inst);
+  const sub = all ? `<span class="warnc">● ${esc(nwk(all, 'upd'))}</span> · ${inst.length - upd.length} ${t('програм актуальні')}` : `<span class="okc">● ${t('Усе актуальне')}</span> · ${inst.length} ${t('програм встановлено')}`;
+  let h = `<div class="page wide updp">${phead(t('Оновлення'), sub, `<button class="btn" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t(S.checking ? 'Перевіряю…' : 'Перевірити зараз')}</button>${sel}${all ? `<button class="btn upd" data-act="updateAll">${ic('download')} ${t('Оновити все')} (${all})</button>` : ''}`, esc(statusText()))}`;
+  // what Komora checks before an install, with this PC's numbers
+  {
+    const signed = inst.filter(x => x.inst.signed === 'trusted').length;
+    const vt = inst.filter(x => x.inst.vt === 'done');
+    const vtBad = vt.filter(x => x.inst.vtHits > 0).length;
+    h += `<section class="card usafe"><span class="kshield ok">${ic('shield')}</span><div class="grow"><div class="row" style="gap:8px"><b>${t('Кожен файл перевіряється перед встановленням')}</b>${vt.length ? `<span class="pill mono ${vtBad ? 'warn' : 'ok'}">VirusTotal ${vt.length - vtBad}/${vt.length}</span>` : ''}</div><div class="m">${t('Підпис Authenticode, SHA-256 проти релізу, а з ключем — VirusTotal. Файл із пошкодженим підписом не встановлюється.')}</div></div><div class="ustat"><span class="m mono">${t('Підписані')}</span><b class="mono okc">${signed}/${inst.length}</b></div><div class="ustat"><span class="m mono">VirusTotal</span><b class="mono ${c.hasVt ? 'okc' : ''}">${c.hasVt ? t('з ключем') : t('без ключа')}</b></div></section>`;
+  }
   const running = x => { const b = busyOf(x.id); return b && !quietBusy(b); };
   const runU = upd.filter(running), runW = wu.filter(x => busyOf('wg:' + x.id));
-  if (runU.length || runW.length) h += `<div class="sect">${t('Йде зараз')} · ${runU.length + runW.length}</div><div class="list">${runU.map(x => rowHtml(x, 'upd')).join('')}${runW.map(x => wgRow(x, 'upd')).join('')}</div>`;
+  if (runU.length || runW.length) h += `<div class="sect">${t('Йде зараз')} · ${runU.length + runW.length}</div><div class="list ulist">${runU.map(updRow).join('')}${runW.map(x => wgRow(x, 'upd')).join('')}</div>`;
   const restU = upd.filter(x => !running(x)), restW = wu.filter(x => !busyOf('wg:' + x.id));
-  if (restU.length) h += `<div class="sect">${t('З бібліотеки')} · ${restU.length}</div><div class="list">${restU.map(x => rowHtml(x, 'upd')).join('')}</div>`;
-  if (restW.length) h += `<div class="sect">${t('З добірки')} · ${restW.length}</div><div class="list">${restW.map(x => wgRow(x, 'upd')).join('')}</div>`;
+  if (restU.length || restW.length) h += `<div class="sect">${t('Очікують встановлення')} · ${restU.length + restW.length}</div><div class="list ulist">${restU.map(updRow).join('')}${restW.map(x => wgRow(x, 'upd')).join('')}</div>`;
   if (!upd.length && !wu.length) {
     const pinned = a.filter(x => x.pin && x.inst && x.latest && x.latest.tag !== x.pin);
-    h += `<div class="empty" style="margin:40px auto"><span class="mark" style="background:var(--ok-bg);color:var(--ok)"><i class="i">${I.check}</i></span><div class="big">${t('Усе актуальне')}</div>${pinned.length ? `<div class="m">${t('Закріплено')}: ${pinned.map(x => `${esc(x.name)} ${esc(verOf(x.pin))} (${t('є')} ${esc(verOf(x.latest.tag))})`).join(', ')}</div>` : ''}</div>`;
+    h += `<div class="empty" style="margin:28px auto"><span class="mark" style="background:var(--ok-bg);color:var(--ok)"><i class="i">${I.check}</i></span><div class="big">${t('Усе актуальне')}</div>${pinned.length ? `<div class="m">${t('Закріплено')}: ${pinned.map(x => `${esc(x.name)} ${esc(verOf(x.pin))} (${t('є')} ${esc(verOf(x.latest.tag))})`).join(', ')}</div>` : ''}</div>`;
   }
   const bad = a.filter(x => health(x).length);
   if (bad.length) {
-    h += `<div class="sect">${t('Потребує уваги')} · ${bad.length}</div><div class="list">`;
-    for (const x of bad) h += `<div class="r" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds">${esc(health(x).join(' · '))}</div></div><div class="acts2"><span class="btn sm">${t('Відкрити')} ${ic('chevR')}</span></div></div>`;
+    h += `<div class="sect">${t('Потребує уваги')} · ${bad.length}</div><div class="list ulist">`;
+    for (const x of bad) h += `<div class="r urow" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds warnc">${esc(health(x).join(' · '))}</div></div><div class="acts2"><span class="btn sm">${t('Відкрити')} ${ic('chevR')}</span></div></div>`;
     h += '</div>';
   }
   // versions left out by hand: one click brings each back
   const sk = a.filter(x => x.skip && x.inst && x.latest?.tag === x.skip);
   const skw = (S.winget?.items || []).filter(x => x.has && x.latest && x.skip === x.latest);
   if (sk.length || skw.length) {
-    h += `<div class="sect">${t('Пропущені версії')} · ${sk.length + skw.length}</div><div class="list">`;
-    for (const x of sk) h += `<div class="r" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.inst.version || verOf(x.inst.tag))} → ${esc(verOf(x.skip))}</div></div><div class="acts2"><button class="btn sm" data-act="unskipId" data-id="${esc(x.id)}">${t('Не пропускати')}</button></div></div>`;
-    for (const x of skw) h += `<div class="r wg">${x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name) : letterTile(x.name)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.inst)} → ${esc(x.latest)}</div></div><div class="acts2"><button class="btn sm" data-act="wgSkip" data-id="${esc(x.id)}" data-v="">${t('Не пропускати')}</button></div></div>`;
+    h += `<div class="sect">${t('Пропущені версії')} · ${sk.length + skw.length}</div><div class="list ulist">`;
+    for (const x of sk) h += `<div class="r urow" data-id="${esc(x.id)}">${iconHtml(x)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.inst.version || verOf(x.inst.tag))} → ${esc(verOf(x.skip))}</div></div><div class="acts2"><button class="btn sm" data-act="unskipId" data-id="${esc(x.id)}">${t('Не пропускати')}</button></div></div>`;
+    for (const x of skw) h += `<div class="r urow wg">${x.icon ? picTile('icons/' + encodeURIComponent(x.icon), x.name) : letterTile(x.name)}<div class="tx"><div class="nm"><span>${esc(x.name)}</span></div><div class="ds mono">${esc(x.inst)} → ${esc(x.latest)}</div></div><div class="acts2"><button class="btn sm" data-act="wgSkip" data-id="${esc(x.id)}" data-v="">${t('Не пропускати')}</button></div></div>`;
     h += '</div>';
   }
   return h + histHtml() + '</div>';
+}
+/** An update of the library as a card: versions, source and signature; what's new, skip, update. */
+function updRow(a) {
+  const b = busyOf(a.id);
+  const det = b && b.pct >= 0 && b.stage === 'download';
+  const bar = b ? `<span class="bar ${det ? '' : 'ind'}"><i style="width:${det ? Math.round(b.pct * 100) : 30}%"></i></span>` : '';
+  const size = S.picks?.[a.id]?.size;
+  const src = a.kind === 'page' ? hostOf(a.url) : a.site ? (a.site.startsWith('gitlab') ? 'GitLab' : 'Codeberg') : 'GitHub Releases';
+  const sig = a.inst?.signed === 'trusted' ? `<span class="okc">${ic('check')} ${t('підписано')}${a.inst.signer ? ': ' + esc(a.inst.signer) : ''}</span>` : a.inst?.signed === 'bad' ? `<span class="errc">${t('пошкоджений підпис')}</span>` : '';
+  let act;
+  if (b && (b.stage === 'queued' || b.stage === 'download')) act = cancelBtn(a.id);
+  else if (b) act = `<span class="stp acc">${esc(stageText(b))}</span>`;
+  else act = `<button class="btn sm" data-act="relNotes" data-id="${esc(a.id)}">${ic('note')} ${t('Що нового')}</button><button class="btn sm" data-act="skipId" data-id="${esc(a.id)}" title="${esc(`${t('Пропустити версію')} ${verOf(a.latest.tag)} — ${t('з’явиться знову, коли вийде новіша')}`)}">${t('Пропустити')}</button><button class="btn sm upd soft" data-act="installId" data-id="${esc(a.id)}">${ic('download')} ${t('Оновити')}${size ? ` <span class="mono">(${esc(fmtSize(size))})</span>` : ''}</button>`;
+  return `<div class="r urow" data-id="${esc(a.id)}">${iconHtml(a)}<div class="tx"><div class="nm"><span>${esc(a.name)}</span><span class="vchg mono"><span class="m">${esc(a.inst.version || verOf(a.inst.tag))}</span> → <span class="up">${esc(verOf(a.latest.tag))}</span></span>${a.latest?.date ? `<span class="m mono">${esc(ago(a.latest.date))}</span>` : ''}</div><div class="ds">${ic('box')} ${esc(src)}${sig ? ' · ' + sig : ''}</div></div><div class="acts2">${act}</div>${bar}</div>`;
 }
 
 /** What Komora installed and updated, the newest first (asked for each time «Updates» opens). */
@@ -1603,15 +1886,17 @@ function histHtml() {
   const list = histList || [];
   if (!list.length) return '';
   const shown = histAll ? list : list.slice(0, 15);
-  let h = `<div class="sect">${t('Журнал')} · ${list.length}</div><div class="list hist">`;
+  const ok = list.length;
+  let h = `<section class="card uhist"><div class="row uhh">${ic('clock')}<div class="grow"><h2 class="big">${t('Історія оновлень')}</h2><div class="m">${t('Що Komora встановила й оновила на цьому ПК')}</div></div><span class="mono okc">${ok} ${t('записів')}</span></div><div class="list hist">`;
   for (const x of shown) {
     const ap = appById(x.id);
     const ver = x.from ? `${esc(verOf(x.from))} → ${esc(verOf(x.to))}` : `${t('встановлено')} ${esc(verOf(x.to))}`;
-    h += `<div class="r" ${ap ? `data-id="${esc(ap.id)}"` : ''}>${ap ? iconHtml(ap) : `<span class="ic">${ic('box')}</span>`}<div class="tx"><div class="nm"><span>${esc(ap?.name || x.name)}</span></div><div class="ds mono">${ver}</div></div><span class="m hwhen" title="${esc(new Date(x.at * 1000).toLocaleString(L))}">${esc(ago(new Date(x.at * 1000).toISOString()))}</span></div>`;
+    const rb = ap?.inst?.method === 'portable' && ap.inst.prev && x.from && list.find(y => y.id === x.id) === x ? `<button class="btn sm" data-act="rollbackId" data-id="${esc(ap.id)}" title="${esc(`${t('Повернути попередню версію')} ${ap.inst.prev}`)}">${ic('undo')} ${t('Відкотити')}</button>` : '';
+    h += `<div class="r" ${ap ? `data-id="${esc(ap.id)}"` : ''}>${ap ? iconHtml(ap) : `<span class="ic">${ic('box')}</span>`}<div class="tx"><div class="nm"><span>${esc(ap?.name || x.name)}</span></div><div class="ds mono">${ver}</div></div><span class="m hwhen" title="${esc(new Date(x.at * 1000).toLocaleString(L))}">${esc(ago(new Date(x.at * 1000).toISOString()))}</span>${rb}</div>`;
   }
   h += '</div>';
   if (list.length > shown.length) h += `<div class="row" style="margin-top:8px"><a class="alink" data-act="histAll">${t('Показати все')} (${list.length})</a></div>`;
-  return h;
+  return h + '</section>';
 }
 
 function emptyView() {
@@ -1966,7 +2251,7 @@ function discoverPage() {
   if (!disc.ran && !disc.loading) { disc.ran = true; setTimeout(() => discSearch(), 0); }
   const opt = (v, l, cur) => `<option value="${esc(v)}" ${String(cur) === String(v) ? 'selected' : ''}>${esc(l)}</option>`;
   const SITE = disc.site === 'gitlab' ? 'GitLab' : 'GitHub';
-  let h = `<div class="page narrow">${phead(t('Знайти нове'), `${onSite('Пошук на GitHub', SITE)}${disc.total ? ' · ' + mono(disc.total.toLocaleString(L)) + ' ' + t('знайдено') : ''}`)}${reposTabs()}`;
+  let h = `<div class="page narrow">${phead(t('Каталог'), `${onSite('Пошук на GitHub', SITE)}${disc.total ? ' · ' + mono(disc.total.toLocaleString(L)) + ' ' + t('знайдено') : ''}`)}${reposTabs()}`;
   h += `<div class="pin dpin"><div class="row"><label class="search grow"><span class="mono prompt">❯</span><input id="dq" value="${esc(disc.q)}" placeholder="${esc(onSite('Шукати на GitHub', SITE))}" spellcheck="false"></label><button class="btn acc" data-act="discGo">${ic('search')} ${t('Шукати')}</button><button class="btn ${discOpen ? 'on' : ''}" data-act="discFilters">${ic('sort')} ${t('Фільтри')}${discChanged() ? ` (${discChanged()})` : ''}</button>${SITE === 'GitHub' ? hint('Ліміт пошуку GitHub: 10 запитів на хвилину без токена, 30 — з токеном.') : ''}</div>`;
   const fld = (label, ctl, icon) => `<label class="dfld"><span class="dl">${icon ? ic(icon) : ''}${label}</span>${ctl}</label>`;
   h += `<div class="dpre"><span class="dl">${t('Швидкий пошук')}</span><div class="filters">${PRESETS.map(([l, p]) => `<button class="fchip ${Object.entries(p).every(([k, v]) => String(disc[k]) === String(v)) ? 'on' : ''}" data-act="preset" data-p="${esc(l)}">${t(l)}</button>`).join('')}</div></div>`;
@@ -2047,7 +2332,7 @@ function repoPage() {
 
 function authorsPage() {
   const list = authors().slice().sort((x, y) => (y.news?.length || 0) - (x.news?.length || 0) || (x.name || x.login).localeCompare(y.name || y.login));
-  let h = `<div class="page narrow">${phead(t('Автори'), t('Нові репозиторії тих, за ким стежиш, — під час кожної перевірки'))}${reposTabs()}`;
+  let h = `<div class="page narrow">${phead(t('Каталог'), t('Нові репозиторії тих, за ким стежиш, — під час кожної перевірки'))}${reposTabs()}`;
   h += `<div class="row" style="margin-bottom:16px"><input class="inp" id="followIn" placeholder="${esc(t('Логін GitHub або посилання на профіль GitHub, GitLab чи Codeberg'))}" style="max-width:360px"><button class="btn acc" data-act="follow">${ic('add')} ${t('Стежити')}</button></div>`;
   if (!list.length) return h + `<div class="empty"><span class="mark"><i class="i">${I.user}</i></span><div class="big">${t('Ще ні за ким не стежиш')}</div><div class="m" style="font-size:13px">${t('Стежити можна зі сторінки програми (меню ⋯) або тут за логіном.')}</div></div></div>`;
   h += '<div class="list">';
@@ -2093,13 +2378,13 @@ function tweaksPage() {
   const isOn = x => x.status === 'on' || x.status === 'already';
   const reset = tweakList.filter(x => x.status === 'reset');
   const F = { all: () => true, on: x => x.status === 'on', reset: x => x.status === 'reset', custom: x => x.custom };
-  let h = `<div class="page narrow">${phead(t('Твіки'), t('Кожен можна скасувати — Komora пам’ятає, що було до нього.'), `<button class="btn" data-act="explorer">${ic('restart')} ${t('Перезапустити Провідник')}</button>${tweakTab === 'tw' ? `<button class="btn acc" data-act="tweakNew">${ic('add')} ${t('Свій твік')}</button>` : ''}`)}`;
-  h += `<div class="tabs top" role="tablist">${[['tw', 'Твіки'], ['fix', 'Виправлення']].map(([k, l]) => `<button class="${tweakTab === k ? 'on' : ''}" data-act="tweakTab" data-tab="${k}">${t(l)}</button>`).join('')}</div>`;
-  if (tweakTab === 'tw') h += `<div class="filters pin">${[['all', 'Усі'], ['on', 'Застосовані'], ['reset', 'Скинуті Windows'], ['custom', 'Мої']].map(([k, l]) => `<button class="fchip ${tweakFilter === k ? 'on' : ''}" data-act="tweakFilter" data-f="${k}">${ic({ all: 'apps', on: 'check', reset: 'warn', custom: 'user' }[k])}${t(l)}<span class="mono">${tweakList.filter(F[k]).length}</span></button>`).join('')}</div>`;
-  // Steam's game shortcuts that lost their icon (the game moved to another disk)
-  if (tweakTab === 'fix' && toolsInfo === null) { toolsInfo = {}; post({ t: 'toolsScan' }); }
-  if (S.steam && tweakTab === 'fix') h += `<div class="tw steamfix" style="margin-top:14px"><i class="i">${I.pc}</i><div class="tx"><div class="nm"><span>${t('Значки ігор Steam')}</span></div><div class="d">${t('Коли гру переносять на інший диск, її ярлик на робочому столі стає білим. Komora знаходить гру в бібліотеках Steam і повертає значок.')}</div></div><button class="btn" data-act="steamIconsFix">${ic('tool')} ${t('Полагодити зараз')}</button><span class="m" title="${esc(t('Щоразу, коли Komora перевіряє оновлення'))}">${t('Лагодити автоматично')}</span><span class="sw ${S.cfg.steamIcons ? 'on' : ''}" role="switch" aria-checked="${!!S.cfg.steamIcons}" data-act="cfgSw" data-key="steamIcons"></span></div>`;
-  if (tweakTab === 'fix') {
+  let h = `<div class="page wide pcp">${phead(t('Цей ПК і твіки'), t('Залізо цього ПК, виправлення в один клік і твіки Windows, які можна скасувати'), `${S.sys ? `<button class="btn" data-act="copySpecs">${ic('copy')} ${t('Скопіювати характеристики')}</button>` : ''}<button class="btn" data-act="explorer">${ic('restart')} ${t('Перезапустити Провідник')}</button>`, esc(S.pc || ''))}`;
+  h += sysCard('', true);
+  // the fixes: one click each
+  if (toolsInfo === null) { toolsInfo = {}; post({ t: 'toolsScan' }); }
+  h += `<div class="psect"><h2 class="big">${ic('tool')} ${t('Швидкі виправлення')}</h2><span class="m">${t('Кожне — один клік; позначені admin просять дозволу Windows')}</span></div><div class="fixgrid">`;
+  if (S.steam) h += `<div class="tw tool steamfix"><i class="i">${I.pc}</i><div class="tx"><div class="nm"><span>${t('Значки ігор Steam')}</span></div><div class="d">${t('Коли гру переносять на інший диск, її ярлик на робочому столі стає білим. Komora знаходить гру в бібліотеках Steam і повертає значок.')}</div></div><button class="btn" data-act="steamIconsFix">${ic('refresh')} ${t('Повернути значки')}</button></div>`;
+  {
     const sz = toolsInfo.sizes || {};
     const tool = (icon, title, d, size, what) => `<div class="tw tool"><i class="i">${I[icon]}</i><div class="tx"><div class="nm"><span>${t(title)}</span>${size != null ? `<span class="pill mono">${esc(fmtSize(size) || '0')}</span>` : ''}</div><div class="d">${t(d)}</div></div><button class="btn" data-act="toolsClean" data-what="${what}" ${size ? '' : 'disabled'}>${ic('del')} ${t('Очистити')}</button></div>`;
     h += tool('pc', 'Кеш шейдерів відеокарти', 'NVIDIA, AMD, Intel і DirectX: допомагає від підвисань після оновлення драйвера. Гра збере шейдери знову під час першого запуску.', sz.shader, 'shader');
@@ -2111,8 +2396,13 @@ function tweaksPage() {
     h += fix('shield', 'Системні файли Windows', 'Перевіряє й відновлює пошкоджені файли Windows (sfc, потім DISM). Відкриється вікно з поступом; це триває 10–30 хвилин.', 'sfc', 'Перевірити', 'shield', true);
     h += tool('box', 'Тимчасові файли', 'Тимчасова тека Windows, завантаження winget і Komora старші за добу. Файли, які зараз використовуються, лишаються.', sz.temp, 'temp');
   }
+  h += '</div>';
+  // the tweak catalog
+  h += `<div class="psect"><h2 class="big">${ic('settings')} ${t('Твіки Windows')}</h2><span class="m">${t('Кожен можна скасувати — Komora пам’ятає, що було до нього.')}</span><span class="grow"></span><button class="btn acc" data-act="tweakNew">${ic('add')} ${t('Свій твік')}</button></div>`;
+  h += `<div class="guard"><i class="dot ok"></i><b>${t('Стежу за твіками')}:</b> <span class="m">${t('після кожного запуску й перевірки оновлень Komora дивиться, чи Windows не скинула їх, і пропонує повернути.')}</span></div>`;
+  h += `<div class="filters pin">${[['all', 'Усі'], ['on', 'Застосовані'], ['reset', 'Скинуті Windows'], ['custom', 'Мої']].map(([k, l]) => `<button class="fchip ${tweakFilter === k ? 'on' : ''}" data-act="tweakFilter" data-f="${k}">${ic({ all: 'apps', on: 'check', reset: 'warn', custom: 'user' }[k])}${t(l)}<span class="mono">${tweakList.filter(F[k]).length}</span></button>`).join('')}</div>`;
   let sectN = 0;
-  for (const [cat, title, icon] of tweakTab === 'tw' ? TCATS : []) {
+  for (const [cat, title, icon] of TCATS) {
     const list = tweakList.filter(x => x.cat === cat && F[tweakFilter](x));
     if (!list.length) continue;
     const all = tweakList.filter(x => x.cat === cat);
@@ -2219,7 +2509,7 @@ function newPcPage() {
   const offered = apps().filter(a => INSTALLABLE(a) && a.wasInstalled && !a.inst);
   const mode = c.syncDir ? 'dir' : c.syncDbx ? 'dropbox' : dbxForm ? 'dropbox' : c.syncGist ? 'gist' : 'off';
   const st = S.sync || {};
-  let h = `<div class="page narrow">${phead(t('Перенесення'), t('На інший ПК чи після перевстановлення Windows: синхронізація «Мого набору», файл перенесення, програми з цього ПК.'))}<div class="grid2 eq">`;
+  let h = `<div class="page narrow">${phead(t('Перенесення і синхронізація'), t('На інший ПК чи після перевстановлення Windows: синхронізація «Мого набору», файл перенесення, програми з цього ПК.'), mode !== 'off' ? `<span class="hpill ${st.err ? 'err' : 'ok'}"><i class="dot ${st.err ? 'err' : 'ok'}"></i>${esc(st.err ? t('Синхронізація не вдалася') : `${t('Синхронізовано')}${st.okAt ? ' · ' + ago(new Date(st.okAt * 1000).toISOString()) : ''}`)}</span><button class="btn acc" data-act="syncNow">${ic('refresh')} ${t('Синхронізувати зараз')}</button>` : '')}<div class="grid2 eq">`;
   // take everything to another PC
   const applied = (tweakList || []).filter(x => x.status === 'on' || x.status === 'reset').length;
   if (bkInfo === null) { bkInfo = undefined; post({ t: 'bkSize' }); }
@@ -2279,43 +2569,43 @@ function settingsPage() {
   const sel = (key, cur, opts) => `<select class="inp" data-cfg="${key}">${opts.map(([v, l]) => `<option value="${esc(v)}" ${String(cur) === String(v) ? 'selected' : ''}>${esc(t(l))}</option>`).join('')}</select>`;
   const sw = (key, on) => `<span class="sw ${on ? 'on' : ''}" role="switch" aria-checked="${!!on}" data-act="cfgSw" data-key="${key}"></span>`;
   const pathRow = (title, d, val, purpose, empty, clear) => `<div class="srow col"><div><div>${title}</div><div class="d">${d}</div></div><div class="row"><span class="path ${val ? '' : 'none'}">${esc(val || empty)}</span><button class="btn" data-act="pickPath" data-purpose="${purpose}">${t('Огляд…')}</button>${clear && val ? `<button class="btn ico" data-act="cfgVal" data-key="${purpose}" data-val="" title="${esc(t('Як пропонує встановлювач'))}">${ic('x')}</button>` : ''}</div></div>`;
-  let h = `<div class="page set">${phead(t('Налаштування'), t('Як Komora працює на цьому ПК: перевірки, теки, вигляд, ключі й дані'))}<div class="setcol">`;
-  h += `<div class="sect">${t('Вигляд')}</div>`;
+  let h = `<div class="page set wide">${phead(t('Налаштування'), t('Як Komora працює на цьому ПК: перевірки, теки, вигляд, ключі й дані'), `<button class="btn acc" data-act="check" ${S.checking ? 'disabled' : ''}>${ic('refresh')} ${t('Перевірити оновлення')}</button>`, `Komora ${esc(S.ver)}`)}<div class="setcol">`;
+  h += `<section class="card scard"><div class="sch"><span class="schi">${ic('palette')}</span><div><b>${t('Вигляд')}</b><span class="m">${t('Тема, тло й мова вікна')}</span></div></div>`;
   // the themes only: a dark or a light one is chosen with its palette at once
   const curD = dark(), curK = curD ? (c.darkLook || 'obsidian') : (c.lightLook || 'grey');
   const look = (kind, k, p) => `<button class="look ${curD === (kind === 'dark') && curK === k ? 'on' : ''}" data-act="look" data-kind="${kind}" data-val="${k}" title="${esc(t(LOOK_NAMES[k]))}"><span class="sw3" style="background:${p.layer}"><i style="background:${p.card};border-color:${p.stroke}"></i><i style="background:${p.btn};border-color:${p.stroke}"></i><b style="background:${kind === 'dark' ? '#a78bfa' : '#7c3aed'}"></b></span><span>${esc(t(LOOK_NAMES[k]))}</span></button>`;
   h += row(t('Тема'), '', `<div class="looks">${['dark', 'light'].flatMap(kind => Object.entries(LOOKS[kind]).map(([k, p]) => look(kind, k, p))).join('')}</div>`);
   h += row(t('Мова'), '', sel('lang', c.lang, [['auto', 'Як у Windows'], ['uk', 'Українська'], ['en', 'English'], ['de', 'Deutsch'], ['fr', 'Français'], ['es', 'Español'], ['pt', 'Português'], ['pl', 'Polski'], ['it', 'Italiano'], ['tr', 'Türkçe']]));
-  h += `<div class="sect">${t('Загальне')}</div>`;
+  h += `</section><section class="card scard"><div class="sch"><span class="schi">${ic('settings')}</span><div><b>${t('Загальне')}</b><span class="m">${t('Перевірки, сповіщення, копії налаштувань, автозапуск')}</span></div></div>`;
   h += row(t('Перевіряти оновлення'), t('Як часто Komora сама шукає нові версії'), sel('checkHours', c.checkHours, [[24, 'Щодня'], [168, 'Щотижня'], [720, 'Щомісяця'], [0, 'Вручну']]));
   h += row(t('Тестові версії (pre-release)'), t('Для всіх програм; окремо можна ввімкнути на сторінці програми'), sw('preAll', c.preAll));
   h += row(t('Сповіщення Windows'), t('Нові версії, нове від авторів, скинуті твіки'), sw('notify', c.notify));
   h += row(t('Копії налаштувань програм самі'), t('Теки налаштувань знаходяться самі; копія — перед кожним оновленням і раз на день, якщо файли змінилися'), sw('autoBackup', c.autoBackup));
   h += row(t('Запускати разом із Windows'), t('Згорнутою в трей'), sw('autostart', c.autostart));
-  h += `<div class="sect">${t('Встановлення')}</div>`;
+  h += `</section><section class="card scard"><div class="sch"><span class="schi">${ic('download')}</span><div><b>${t('Встановлення')}</b><span class="m">${t('Куди ставляться програми й чи показувати встановлювач')}</span></div></div>`;
   h += pathRow(t('Тека переносних програм'), t('Сюди розпаковуються zip і окремі .exe'), c.appsDir, 'appsDir', '', false);
   h += pathRow(t('Тека для встановлювачів'), t('Inno Setup і NSIS отримують цю теку, MSI — якщо підтримує; порожньо — як пропонує встановлювач'), c.setupDir, 'setupDir', t('як пропонує встановлювач'), true);
   h += row(t('Показувати вікно встановлювача'), t('Вимкнено — тихе встановлення'), sw('setupShow', c.setupShow));
   // devices with a battery: a tray icon each, and a note when the charge runs low
-  h += `<div class="sect" id="setDev">${t('Пристрої')}</div>`;
+  h += `</section><section class="card scard" id="setDev"><div class="sch"><span class="schi">${ic('pc')}</span><div><b>${t('Пристрої')}</b><span class="m">${t('Заряд мишей, клавіатур, навушників і геймпадів у треї')}</span></div></div>`;
   h += row(t('Заряд пристроїв у треї'), t('Окремий значок у треї для кожного пристрою, що повідомляє заряд: Bluetooth, миші й клавіатури Logitech, миші Razer, SteelSeries і ATK / VXE, гарнітури Arctis, геймпади PlayStation і Xbox. Наведи на значок — назва й відсоток.'), sw('btTray', c.btTray));
   if (c.btTray) {
     const bt = S.bt || [];
     h += `<div class="srow col btrow">${bt.length ? `<div class="btl">${bt.map(d => `<div class="btd"><i class="i">${DEV_I[d.kind] || DEV_I.bt}</i><span class="grow">${esc(d.name)}</span><span class="mono ${d.charging ? 'acc' : d.pct <= 20 ? 'errc' : 'm'}" title="${esc(d.charging ? t('заряджається') : '')}">${d.charging ? '⚡ ' : ''}${d.pct} %</span><span class="sw sm ${d.tray ? 'on' : ''}" role="switch" aria-checked="${!!d.tray}" data-act="btDev" data-id="${esc(d.id)}" title="${esc(t('Значок у треї'))}"></span></div>`).join('')}</div>` : `<div class="d">${t('Зараз жоден пристрій не повідомляє заряд.')}</div>`}</div>`;
     h += row(t('Сповіщення про низький заряд'), t('При 20 % і при 10 % — раз на розряд, лише для пристроїв зі значком у треї'), sw('btLow', c.btLow));
   }
-  h += `<div class="sect">${t('Ключі')}</div>`;
+  h += `</section><section class="card scard"><div class="sch"><span class="schi">${ic('shield')}</span><div><b>${t('Ключі')}</b><span class="m">${t('GitHub і VirusTotal')}</span></div></div>`;
   const rate = S.rate ? `<span class="mono" style="font-size:12px;color:${S.rate.remaining > 10 ? 'var(--ok)' : 'var(--warn)'}">● ${S.rate.remaining} / ${S.rate.limit} ${t('запитів')}</span>` : '';
   h += keyRow('token', t('Токен GitHub'), c.hasToken, 'github_pat_…', rate, esc(t('Без токена GitHub дає 60 запитів на годину, з токеном — 5000. Досить токена без дозволів; для синхронізації через Gist — дозвіл Gists.')), `<a class="alink" style="font-size:12px" data-act="openUrl" data-url="${TOKEN_URL}">${t('Створити токен на GitHub')} →</a>${howto('Як отримати токен', ['Створи токен на GitHub (посилання нижче): назва — будь-яка, Repository access — «Public repositories».', 'Для ліміту запитів дозволи не потрібні. Для синхронізації через Gist — Permissions → Account → Gists → Read and write.', 'Generate token, скопіюй токен і встав сюди → Зберегти.'])}`);
   h += keyRow('vtKey', t('Ключ VirusTotal'), c.hasVt, t('безкоштовний ключ API'), `<span class="mono m">${c.hasVt ? t('задано') : t('не задано')}</span>`, esc(t('Із ключем кожне встановлення перевіряється само, а невідомі файли вивантажуються. Без нього — кнопка «Завантажити на перевірку».')), `<a class="alink" style="font-size:12px" data-act="openUrl" data-url="https://www.virustotal.com/gui/my-apikey">${t('Отримати ключ на VirusTotal')} →</a>${howto('Як отримати ключ', ['Зареєструйся на virustotal.com — це безкоштовно.', 'Відкрий свій профіль → API key (посилання нижче) і скопіюй ключ.', 'Встав сюди → Зберегти. Безкоштовний ключ дає 4 запити на хвилину й 500 на день — Komora чекає сама.'])}`);
   h += `<div class="m" style="padding:2px 4px">${t('Ключі зашифровано для твого облікового запису Windows і не потрапляють у синхронізацію.')}</div>`;
-  h += `<div class="sect" id="about">${t('Про програму')}</div>`;
+  h += `</section><section class="card scard" id="about"><div class="sch"><span class="schi">${ic('info')}</span><div><b>${t('Про програму')}</b></div></div>`;
   h += `<div class="about"><div class="ahd"><span class="mark">${MARK}</span><div class="tx"><b>Komora</b><span class="mono m">${esc(S.ver)} · ${esc(S.arch)}</span></div></div>
     <button class="lrow" data-act="openUrl" data-url="https://github.com/Fenderenko/Komora"><span class="li gh">${GH_SVG}</span><span class="tx"><b>Fenderenko</b><span class="m">${t('автор · Komora на GitHub')}</span></span>${ic('open')}</button>
     <button class="lrow" data-act="openUrl" data-url="https://github.com/Fenderenko/Komora/blob/main/THIRD_PARTY.md"><span class="li">${ic('box')}</span><span class="tx"><b>${t('Сторонні компоненти')}</b><span class="m">${t('Шрифт Geist (OFL), значки Material Symbols (Apache-2.0) і Lucide (ISC)')}</span></span>${ic('open')}</button>
     <div class="lrow"><span class="li">${ic('folder')}</span><span class="tx"><b>${t('Тека даних')}</b><span class="m mono path2">${esc(S.dataDir || '')}</span></span><button class="btn sm" data-act="openPath" data-path="${esc(S.dataDir || '')}">${t('Відкрити теку')}</button></div></div>`;
   h += `<div class="m disclaim">${t('Komora — незалежний проєкт. Вона не пов’язана з Microsoft, Valve, Sony, Logitech, Razer, SteelSeries, Nintendo, GitHub, GitLab чи іншими згаданими компаніями й не схвалена ними; їхні назви й торгові марки належать власникам.')}</div>`;
-  h += '</div></div>';
+  h += '</section></div></div>';
   return h;
 }
 
@@ -2913,6 +3203,33 @@ document.addEventListener('click', e => {
     case 'exportKit': post({ t: 'export', zip: true, withBk: bkWith, kitOnly: true }); break;
     case 'groupPick': menuAt(b, [...groups().map(g => ({ label: g.name, dot: g.color || '#8d9099', check: view === 'g:' + g.id, fn: () => setView('g:' + g.id) })), '-', { icon: 'add', label: t('Нова група…'), fn: () => newGroup('') }]); break;
     case 'discFilters': discOpen = !discOpen; store.set('discOpen', discOpen); renderMain(true); break;
+    case 'pickSel': { const id = b.dataset.id; pickSel.has(id) ? pickSel.delete(id) : pickSel.add(id); renderMain(); break; }
+    case 'pickSelAll': { const W = S.winget || { items: [] }; const ids = W.items.filter(x => !x.has && (!pickCat || x.cat === pickCat)).map(x => x.id); const all = ids.every(id => pickSel.has(id)); ids.forEach(id => (all ? pickSel.delete(id) : pickSel.add(id))); renderMain(); break; }
+    case 'pickSelNone': pickSel.clear(); renderMain(); break;
+    case 'pickInstall': { const ids = [...pickSel].filter(id => (S.winget?.items || []).some(x => x.id === id && !x.has)); if (ids.length) post({ t: 'wgInstall', ids, to: '' }); pickSel.clear(); renderMain(); break; }
+    case 'pickKit': { for (const id of pickSel) { const lib = appById('wg:' + id); if (lib) { if (!lib.kit) edit(lib.id, { kit: true }); } else post({ t: 'wgKit', id }); } toast(t('Додано в мій набір')); pickSel.clear(); renderMain(); break; }
+    case 'pickQx': pickQ = ''; renderMain(true); $('#pickQ')?.focus(); break;
+    case 'relNotes': tabOf[b.dataset.id] = 'news'; openApp(b.dataset.id); break;
+    case 'rollbackId': post({ t: 'rollback', id: b.dataset.id }); break;
+    case 'kitShare': shareMenu(b, apps().filter(x => x.kit && KITABLE(x)).map(x => x.id)); break;
+    case 'kitUrlAdd': { const u = $('#kitUrl')?.value.trim(); if (u && looksLikeLink(u)) { post({ t: 'add', url: u, group: '', kit: true }); $('#kitUrl').value = ''; } else if (u) toast(t('Не схоже на посилання'), true); break; }
+    case 'kitQx': kitQ = ''; renderMain(true); $('#kitQ')?.focus(); break;
+    case 'copySpecs': {
+      const y = S.sys || {};
+      const c = y.cpu || {};
+      const lines = [`${S.pc || 'PC'}`, y.windows && `Windows: ${y.windows}${y.build ? ' (' + y.build + ')' : ''}`, c.name && `CPU: ${cpuShort(c.name)}${c.cores ? ` · ${c.cores}C/${c.threads || c.cores}T` : ''}`, ...(y.gpus || []).map(g => `GPU: ${g.name}${g.vram ? ' · ' + fmtSize(g.vram) : ''}${g.driver ? ' · ' + g.driver : ''}`), y.ram && `RAM: ${fmtSize(y.ram)}${y.mem?.type ? ' ' + y.mem.type : ''}${y.mem?.speed ? '-' + y.mem.speed : ''}`, y.board?.model && `Board: ${y.board.maker || ''} ${y.board.model}${y.board.bios ? ' · BIOS ' + y.board.bios : ''}`, ...(y.volumes || []).map(v => `${v.letter} ${v.disk?.name || ''} · ${fmtSize(v.total)}`)].filter(Boolean);
+      navigator.clipboard?.writeText(lines.join('\n')).then(() => toast(t('Скопійовано')), () => {});
+      break;
+    }
+    case 'homeTab': homeTab = b.dataset.tab; store.set('homeTab', homeTab); renderMain(); break;
+    case 'goDevices': go('settings'); requestAnimationFrame(() => $('#setDev')?.scrollIntoView({ block: 'start', behavior: 'smooth' })); break;
+    case 'addNew': openAdd(); break;
+    case 'launchId': post({ t: 'launch', id: b.dataset.id }); break;
+    case 'rowMenu': { const ap = appById(b.dataset.id); if (ap) menuAt(b, appMenuItems(ap), true); break; }
+    case 'rowPick': { const id = b.dataset.id; multi.has(id) ? multi.delete(id) : multi.add(id); cursor = id; renderMain(); break; }
+    case 'pickAll': { const ids = visibleOrder().map(x => x.id); const all = ids.every(id => multi.has(id)); multi.clear(); if (!all) ids.forEach(id => multi.add(id)); renderMain(); break; }
+    case 'pickNone': multi.clear(); renderMain(); break;
+    case 'libQx': libQ = ''; renderMain(true); $('#libQ')?.focus(); break;
     case 'instPick': menuAt(b, [['', 'Усі'], ['on', 'Встановлені'], ['off', 'Не встановлені']].map(([k, l]) => ({ label: t(l), check: instFilterOf() === k, fn: () => { instFilters = { ...instFilters, [view]: k }; store.set('instFilters', instFilters); render(); } }))); break;
     case 'tagPick': menuAt(b, allTags().slice(0, 30).map(([tg, c]) => ({ label: `#${tg} · ${c}`, check: view === 'tag:' + tg, fn: () => setView('tag:' + tg) }))); break;
     case 'openRepo': case 'openLink': post({ t: 'open', url: a.url }); break;
@@ -3223,6 +3540,26 @@ document.addEventListener('drop', e => {
 });
 document.addEventListener('dragend', () => { dragIds = []; showDrop(false); document.querySelectorAll('.n.drop').forEach(n => n.classList.remove('drop')); if (renderLater) { renderLater = false; render(); } });
 
+// ---- the library's own filter: the table follows the typing
+document.addEventListener('input', e => {
+  const id = e.target.id;
+  if (id !== 'libQ' && id !== 'pickQ' && id !== 'kitQ') return;
+  if (id === 'libQ') libQ = e.target.value; else if (id === 'pickQ') pickQ = e.target.value; else kitQ = e.target.value;
+  const p = e.target.selectionStart;
+  renderMain(true);
+  const q = $('#' + id);
+  if (q) { q.focus(); q.setSelectionRange(p, p); }
+});
+document.addEventListener('keydown', e => {
+  const id = e.target.id;
+  if (e.key === 'Enter' && id === 'kitUrl') { $('[data-act="kitUrlAdd"]')?.click(); return; }
+  if (e.key !== 'Escape' || !['libQ', 'pickQ', 'kitQ'].includes(id) || !e.target.value) return;
+  e.stopPropagation();
+  if (id === 'libQ') libQ = ''; else if (id === 'pickQ') pickQ = ''; else kitQ = '';
+  renderMain(true);
+  $('#' + id)?.focus();
+}, true);
+
 // ---- Ctrl+V anywhere outside a field: a link is added
 document.addEventListener('paste', e => {
   if (/INPUT|TEXTAREA/.test(e.target.tagName) || overlay) return;
@@ -3249,7 +3586,6 @@ document.addEventListener('change', e => {
   }
 });
 $('#home').addEventListener('click', () => { go('settings'); requestAnimationFrame(() => $('#about')?.scrollIntoView({ block: 'start', behavior: 'smooth' })); });
-$('#addBtn').addEventListener('click', () => openAdd());
 // the window buttons (the header is the title bar)
 $('#winbtns').addEventListener('click', e => { const b = e.target.closest('[data-win]'); if (b) post({ t: 'win', op: b.dataset.win }); });
 post({ t: 'win', op: 'state' });

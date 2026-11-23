@@ -542,6 +542,10 @@ pub fn scan() {
     if with(|s| std::mem::replace(&mut s.scanning, true)) {
         return;
     }
+    // icons saved by earlier runs show at once, not after the scan
+    if cached_icons() {
+        sync_library();
+    }
     crate::actions::event_ui(json!({ "t": "winget", "data": json() }));
     let arp = from_windows();
     let wg = available().then(|| (exported(), run(&["upgrade"]).map(|(t, _)| upgrades(&t))));
@@ -570,10 +574,47 @@ fn icon_stem(id: &str) -> String {
     format!("wg-{}", crate::install::norm(id))
 }
 
-/// Icons of the catalog: the installed program's own (its exe), else the one of its site; cached in www/icons.
+/// (any thread; a directory listing) Icons saved by earlier runs, for the packages that have none yet: the exe's own
+/// first, else the site's. True when any was added.
+fn cached_icons() -> bool {
+    let Ok(rd) = std::fs::read_dir(crate::util::www_dir().join("icons")) else { return false };
+    let files: HashSet<String> = rd.flatten().filter_map(|e| e.file_name().into_string().ok()).filter(|f| f.starts_with("wg-")).collect();
+    let mut added = false;
+    for (id, ..) in CATALOG {
+        let k = id.to_lowercase();
+        if with(|s| s.icons.contains_key(&k)) {
+            continue;
+        }
+        let stem = icon_stem(id);
+        let own = format!("{stem}-x.ico");
+        let f = if files.contains(&own) { Some(own) } else { ["png", "ico", "svg", "jpg", "gif", "webp"].iter().map(|e| format!("{stem}.{e}")).find(|f| files.contains(f)) };
+        if let Some(f) = f {
+            with(|s| s.icons.insert(k, f));
+            added = true;
+        }
+    }
+    added
+}
+
+/// (worker) A site's icon: the one its page names, its /favicon.ico, else DuckDuckGo's copy of the site's icon (for
+/// sites that turn automated requests away). Saved under `stem`.
+fn site_icon(site: &str, stem: &str) -> Option<String> {
+    let page = crate::link::fetch(site).ok().map(|p| p.icon).filter(|u| !u.is_empty());
+    let host = crate::net::split_url(site).map(|(h, ..)| h.to_string()).unwrap_or_default();
+    page.and_then(|u| crate::link::cache_icon(&u, stem))
+        .or_else(|| crate::link::cache_icon(&crate::link::absolute(site, "/favicon.ico"), stem))
+        .or_else(|| (!host.is_empty()).then(|| crate::link::cache_icon(&format!("https://icons.duckduckgo.com/ip3/{host}.ico"), stem)).flatten())
+}
+
+/// How many sites are asked for their icon at once.
+const ICON_JOBS: usize = 8;
+
+/// Icons of the catalog: the installed program's own (its exe), else the one of its site; cached in www/icons. Sites
+/// are asked several at a time, and the page gets each batch as it comes; packages of one site share its icon.
 fn icons() {
     let dir = crate::util::www_dir().join("icons");
-    let mut changed = false;
+    let mut changed = cached_icons();
+    let mut sites: Vec<(&str, Vec<(String, String)>)> = Vec::new();
     for (id, _, _, _, site) in CATALOG {
         let k = id.to_lowercase();
         let stem = icon_stem(id);
@@ -592,26 +633,39 @@ fn icons() {
         if cur.is_some() {
             continue;
         }
-        // a site icon cached before
-        if let Some(f) = ["png", "ico", "svg", "jpg", "gif", "webp"].iter().map(|e| format!("{stem}.{e}")).find(|f| dir.join(f).is_file()) {
-            with(|s| s.icons.insert(k, f));
-            changed = true;
-            continue;
-        }
-        if !with(|s| s.tried.insert(site.to_string())) {
-            continue;
-        }
-        if let Ok(p) = crate::link::fetch(site)
-            && let Some(f) = crate::link::cache_icon(&p.icon, &stem).or_else(|| crate::link::cache_icon(&crate::link::absolute(site, "/favicon.ico"), &stem))
-        {
-            with(|s| s.icons.insert(k, f));
-            changed = true;
+        match sites.iter_mut().find(|(s, _)| s == site) {
+            Some((_, list)) => list.push((k, stem)),
+            None => sites.push((site, vec![(k, stem)])),
         }
     }
+    sites.retain(|(site, _)| with(|s| s.tried.insert(site.to_string())));
     if changed {
         sync_library();
         crate::actions::event_ui(json!({ "t": "winget", "data": json() }));
         crate::actions::state_changed();
+    }
+    for batch in sites.chunks(ICON_JOBS) {
+        let got: Vec<Option<String>> = std::thread::scope(|sc| {
+            let jobs: Vec<_> = batch.iter().map(|(site, list)| sc.spawn(move || site_icon(site, &list[0].1))).collect();
+            jobs.into_iter().map(|j| j.join().ok().flatten()).collect()
+        });
+        let mut any = false;
+        for ((_, list), f) in batch.iter().zip(got) {
+            let Some(f) = f else { continue };
+            // each package keeps its own copy, so the next run finds it by its own name
+            for (i, (k, stem)) in list.iter().enumerate() {
+                let ext = f.rsplit('.').next().unwrap_or("png");
+                let own = format!("{stem}.{ext}");
+                let name = if i == 0 || std::fs::copy(dir.join(&f), dir.join(&own)).is_err() { f.clone() } else { own };
+                with(|s| s.icons.insert(k.clone(), name));
+            }
+            any = true;
+        }
+        if any {
+            sync_library();
+            crate::actions::event_ui(json!({ "t": "winget", "data": json() }));
+            crate::actions::state_changed();
+        }
     }
 }
 
