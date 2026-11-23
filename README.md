@@ -99,7 +99,7 @@ Rust stable with the MSVC toolchain. The page of the window (`web/`) and its fon
 
 ## Status
 
-1.3.0 — a new look: «Home», the library as a table, «Catalog», «This PC and tweaks» in one place. Tried for real: the library, GitHub search, update checks, portable installs, My kit, the bundle zip with
+1.3.1 — a new look: «Home», the library as a table, «Catalog», «This PC and tweaks» in one place. Tried for real: the library, GitHub search, update checks, portable installs, My kit, the bundle zip with
 settings backups, the title bar, the hardware details, finding installed programs of Picks and installing
 them through winget, the device charge in the tray (Bluetooth headphones and keyboards, a Logitech mouse on its
 receiver and cable, an ATK mouse next to it). Not yet tried on real systems: setups of every kind, updates and

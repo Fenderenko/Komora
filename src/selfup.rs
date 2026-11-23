@@ -26,6 +26,16 @@ fn old_of(exe: &Path) -> PathBuf {
     exe.with_extension("exe.old")
 }
 
+/// A free name for the running exe while it is swapped: Komora.exe.old, or — when that one is the image of a process
+/// still running (it cannot be deleted then) — Komora.exe.<ms>.old.
+fn free_old(exe: &Path) -> PathBuf {
+    let old = old_of(exe);
+    if !old.exists() || std::fs::remove_file(&old).is_ok() {
+        return old;
+    }
+    exe.with_extension(format!("exe.{}.old", util::unix_ms()))
+}
+
 /// The entry of Komora itself, as it is added to the library and to bundles.
 pub fn app() -> App {
     App {
@@ -107,9 +117,11 @@ pub fn update(rel: &Release, progress: &mut dyn FnMut(&str, f32)) -> Result<(), 
     }
     progress("install", -1.0);
     // the running exe cannot be overwritten, but it can be renamed
-    let old = old_of(&exe);
-    let _ = std::fs::remove_file(&old);
-    std::fs::rename(&exe, &old).map_err(|e| format!("cannot replace Komora.exe: {e}"))?;
+    let old = free_old(&exe);
+    if let Err(e) = std::fs::rename(&exe, &old) {
+        let _ = std::fs::remove_file(&tmp);
+        return Err(format!("cannot replace Komora.exe: {e}"));
+    }
     if let Err(e) = std::fs::rename(&tmp, &exe).or_else(|_| std::fs::copy(&tmp, &exe).map(|_| ())) {
         let _ = std::fs::rename(&old, &exe);
         let _ = std::fs::remove_file(&tmp);
@@ -143,12 +155,26 @@ pub fn after_update() -> bool {
     true
 }
 
-/// Removes the exe an update left behind.
+/// Removes the exes updates left behind (Komora.exe.old, Komora.exe.<ms>.old) and update downloads that never got
+/// installed; files still in use stay for the next start.
 pub fn clean_old() {
-    if let Some(e) = exe() {
-        let old = old_of(&e);
-        if old.exists() {
-            let _ = std::fs::remove_file(old);
+    if let Some(e) = exe()
+        && let (Some(dir), Some(name)) = (e.parent(), e.file_name().and_then(|n| n.to_str()))
+        && let Ok(rd) = std::fs::read_dir(dir)
+    {
+        let pre = format!("{}.", name.to_ascii_lowercase());
+        for f in rd.flatten() {
+            let n = f.file_name().to_string_lossy().to_ascii_lowercase();
+            if n.starts_with(&pre) && n.ends_with(".old") {
+                let _ = std::fs::remove_file(f.path());
+            }
+        }
+    }
+    if let Ok(rd) = std::fs::read_dir(util::downloads_dir()) {
+        for f in rd.flatten() {
+            if f.file_name().to_string_lossy().starts_with("komora-update-") {
+                let _ = std::fs::remove_file(f.path());
+            }
         }
     }
 }
