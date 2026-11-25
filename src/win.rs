@@ -9,10 +9,11 @@ use std::cell::RefCell;
 use webview2_com::{
     CreateCoreWebView2ControllerCompletedHandler, CreateCoreWebView2EnvironmentCompletedHandler,
     Microsoft::Web::WebView2::Win32::{
-        COREWEBVIEW2_COLOR, COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND_ALLOW, COREWEBVIEW2_MOVE_FOCUS_REASON_PROGRAMMATIC, CreateCoreWebView2EnvironmentWithOptions, ICoreWebView2, ICoreWebView2_3, ICoreWebView2Controller,
+        COREWEBVIEW2_COLOR, COREWEBVIEW2_HOST_RESOURCE_ACCESS_KIND_ALLOW, COREWEBVIEW2_PROCESS_FAILED_KIND, COREWEBVIEW2_PROCESS_FAILED_KIND_BROWSER_PROCESS_EXITED,
+        COREWEBVIEW2_PROCESS_FAILED_KIND_RENDER_PROCESS_EXITED, COREWEBVIEW2_PROCESS_FAILED_KIND_RENDER_PROCESS_UNRESPONSIVE, COREWEBVIEW2_MOVE_FOCUS_REASON_PROGRAMMATIC, CreateCoreWebView2EnvironmentWithOptions, ICoreWebView2, ICoreWebView2_3, ICoreWebView2Controller,
         ICoreWebView2Controller2, ICoreWebView2Settings3, ICoreWebView2Settings5, ICoreWebView2Settings9,
     },
-    NavigationStartingEventHandler, NewWindowRequestedEventHandler, WebMessageReceivedEventHandler,
+    NavigationStartingEventHandler, NewWindowRequestedEventHandler, ProcessFailedEventHandler, WebMessageReceivedEventHandler,
 };
 use windows::{
     Win32::{
@@ -373,6 +374,25 @@ fn ready(ctl: ICoreWebView2Controller) {
             })),
             &mut token,
         );
+        // WebView2 processes can die under the page (an overlay injected into them, a driver): the page reloads, a dead
+        // browser process gets the window built anew
+        let _ = wv.add_ProcessFailed(
+            &ProcessFailedEventHandler::create(Box::new(|wv, args| {
+                let Some(a) = args else { return Ok(()) };
+                let mut kind = COREWEBVIEW2_PROCESS_FAILED_KIND::default();
+                let _ = a.ProcessFailedKind(&mut kind);
+                logf!("WebView2 process failed: kind {}", kind.0);
+                if kind == COREWEBVIEW2_PROCESS_FAILED_KIND_BROWSER_PROCESS_EXITED {
+                    let _ = windows::Win32::UI::WindowsAndMessaging::SetTimer(Some(crate::util::main_hwnd()), crate::TIMER_REVIVE, 300, None);
+                } else if (kind == COREWEBVIEW2_PROCESS_FAILED_KIND_RENDER_PROCESS_EXITED || kind == COREWEBVIEW2_PROCESS_FAILED_KIND_RENDER_PROCESS_UNRESPONSIVE)
+                    && let Some(wv) = wv
+                {
+                    let _ = wv.Reload();
+                }
+                Ok(())
+            })),
+            &mut token,
+        );
         let _ = wv.add_NewWindowRequested(
             &NewWindowRequestedEventHandler::create(Box::new(|_, args| {
                 if let Some(a) = args {
@@ -545,6 +565,29 @@ pub fn hide() {
         }
         let _ = windows::Win32::UI::WindowsAndMessaging::SetTimer(Some(crate::util::main_hwnd()), crate::TIMER_FREE, 60_000, None);
     }
+}
+
+/// Times the window was built again after its WebView2 died: a page that fails at every start is not rebuilt forever.
+static REVIVES: std::sync::Mutex<Vec<u128>> = std::sync::Mutex::new(Vec::new());
+
+/// (UI thread) The WebView2 browser process is gone: the window and its WebView are built again, at most 3 times in
+/// 2 minutes; a hidden window is only let go (the next open builds it).
+pub fn revive() {
+    let was = shown();
+    close();
+    if !was {
+        return;
+    }
+    let now = util::unix_ms();
+    let mut r = REVIVES.lock().unwrap();
+    r.retain(|t| now - t < 120_000);
+    if r.len() >= 3 {
+        logf!("WebView2 keeps failing: the window is not built again");
+        return;
+    }
+    r.push(now);
+    drop(r);
+    open();
 }
 
 pub fn close() {

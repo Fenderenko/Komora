@@ -1016,7 +1016,7 @@ function render() {
 
 function renderTop() {
   $('.brand .mark').innerHTML = MARK;
-  $('.brand .ver').textContent = String(S.ver).split('.').slice(0, 2).join('.');
+  $('.brand .ver').textContent = String(S.ver);
   $('#q').placeholder = t('Шукати в бібліотеці й на GitHub');
   // the charge of the devices that report it; a click — their switches in «Settings»
   const bt = S.bt || [];

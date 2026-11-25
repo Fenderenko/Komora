@@ -81,6 +81,8 @@ const TIMER_TRAY: usize = 1;
 const TIMER_CHECK: usize = 2;
 /// The window has stayed hidden a minute: its WebView2 is let go (win::hide).
 pub const TIMER_FREE: usize = 3;
+/// The WebView2 browser process died (win.rs ProcessFailed): the window is built again outside that event.
+pub const TIMER_REVIVE: usize = 4;
 
 static TASKBAR_CREATED: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
 
@@ -207,6 +209,12 @@ unsafe extern "system" fn wndproc(h: HWND, m: u32, wp: WPARAM, lp: LPARAM) -> LR
             }
         }
         WM_TIMER if wp.0 == TIMER_CHECK => actions::tick(),
+        WM_TIMER if wp.0 == TIMER_REVIVE => {
+            unsafe {
+                let _ = KillTimer(Some(h), TIMER_REVIVE);
+            }
+            win::revive();
+        }
         WM_TIMER if wp.0 == TIMER_FREE => {
             unsafe {
                 let _ = KillTimer(Some(h), TIMER_FREE);
